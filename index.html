@@ -700,7 +700,7 @@
                 <div class="comments-section">
                     <div class="comments-title">
                         <i class="fas fa-comments"></i>
-                        Comentários
+                  d   Comentários
                         <button class="comments-toggle" onclick="toggleComments(this)">Ver</button>
                     </div>
                     <div class="comments-container" data-app="devtools"></div>
@@ -731,67 +731,71 @@
                 </div>
             </div>
             <!-- App 5: Horizon Bloquear Apps -->
-<div class="app-card" data-name="Horizon Bloquear Apps" data-category="security">
-    <div class="app-logo-container">
-        <img src="https://via.placeholder.com/80/FF6B6B/ffffff?text=Block" alt="Logo Horizon Bloquear">
-    </div>
-    <h3 class="app-name">Horizon Bloquear Apps</h3>
-    <span class="app-category">Segurança</span>
-    <p class="app-description">Aplicativo de controle parental com bloqueio de apps e monitoramento avançado.</p>
-    
-    <!-- Rating -->
-    <div class="rating-section">
-        <div class="stars" data-app="horizon">
-            <span class="star" data-value="1">★</span>
-            <span class="star" data-value="2">★</span>
-            <span class="star" data-value="3">★</span>
-            <span class="star" data-value="4">★</span>
-            <span class="star" data-value="5">★</span>
-        </div>
-        <span class="rating-count">(<span class="count">0</span>)</span>
-    </div>
+<div 
+    <div class="app-card" data-name="Ferramentas de Desenvolvimento" data-category="development">
+                <div class="app-logo-container">
+                    <img src="https://via.placeholder.com/80/FBBC04/ffffff?text=DevTools" alt="Logo Dev Tools">
+                </div>
+                <h3 class="app-name">Ferramentas Dev</h3>
+                <span class="app-category">Desenvolvimento</span>
+                <p class="app-description">Suite completa de ferramentas para desenvolvedores web e mobile.</p>
+                
+                <!-- Rating -->
+                <div class="rating-section">
+                    <div class="stars" data-app="devtools">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                    </div>
+                    <span class="rating-count">(<span class="count">0</span>)</span>
+                </div>
 
-    <a href="LINK_DO_ARQUIVO" class="btn-download">
-        <img src="https://www.vectorlogo.zone/logos/shields_io/shields_io-icon.svg" alt="Horizon Bloquear">
-        Baixar Agora
-    </a>
+                <a href="LINK_DO_ARQUIVO" class="btn-download">
+                    <i class="fas fa-download"></i>
+                    Baixar Agora
+                </a>
 
-    <!-- Comments Section -->
-    <div class="comments-section">
-        <div class="comments-title">
-            <i class="fas fa-comments"></i>
-            Comentários
-            <button class="comments-toggle" onclick="toggleComments(this)">Ver</button>
-        </div>
-        <div class="comments-container" data-app="horizon"></div>
-        <form class="comment-form" data-app="horizon" onsubmit="submitComment(event, 'horizon')">
-            <div class="form-group">
-                <label>Nome:</label>
-                <input type="text" class="comment-name" required>
-            </div>
-            <div class="form-group">
-                <label>Comentário:</label>
-                <textarea class="comment-text" required></textarea>
-            </div>
-            <div class="form-group">
-                <label>Avaliação:</label>
-                <div class="rating-input" data-app="horizon">
-                    <span class="star" data-value="1">★</span>
-                    <span class="star" data-value="2">★</span>
-                    <span class="star" data-value="3">★</span>
-                    <span class="star" data-value="4">★</span>
-                    <span class="star" data-value="5">★</span>
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <div class="comments-title">
+                        <i class="fas fa-comments"></i>
+                        Comentários
+                        <button class="comments-toggle" onclick="toggleComments(this)">Ver</button>
+                    </div>
+                    <div class="comments-container" data-app="horizon"></div>
+                    <form class="comment-form" data-app="horizon" onsubmit="submitComment(event, 'horizon')">
+                        <div class="form-group">
+                            <label>Nome:</label>
+                            <input type="text" class="comment-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Comentário:</label>
+                            <textarea class="comment-text" required></textarea>
+                        </div>
+                        <div class="form-group">
+                        <label>Avaliação:</label>
+                            <div class="rating-input" data-app="horizon">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-submit-comment">Enviar Comentário</button>
+                    </form>
+                    <button class="btn-submit-comment" style="background: #667eea; margin-top: 10px;" onclick="toggleCommentForm(this)">
+                        <i class="fas fa-plus"></i> Adicionar Comentário
+                    </button>
                 </div>
             </div>
-            <button type="submit" class="btn-submit-comment">Enviar Comentário</button>
-        </form>
-        <button class="btn-submit-comment" style="background: #667eea; margin-top: 10px;" onclick="toggleCommentForm(this)">
-            <i class="fas fa-plus"></i> Adicionar Comentário
-        </button>
-    </div>
-</div>
+            <!-- App 5: Horizon Bloquear Apps -->
+<div
 
-        </div>
+
+        
 
         <!-- Empty State (Hidden by default) -->
         <div class="empty-state" id="emptyState" style="display: none;">
@@ -821,7 +825,13 @@ const appData = {
     mobile: { ratings: [], comments: [] },
     devtools: { ratings: [], comments: [] },
     horizon: { ratings: [], comments: [] }  // ← ADICIONE ESTA LINHA
-        // Load data from localStorage
+        // Load data from localStorageconst appData = {
+    chrome: { ratings: [], comments: [] },
+    pdf: { ratings: [], comments: [] },
+    mobile: { ratings: [], comments: [] },
+    devtools: { ratings: [], comments: [] },
+    horizon: { ratings: [], comments: [] }  // ← ADICIONE ESTA LINHA
+};
         function loadData() {
             const saved = localStorage.getItem('appData');
             if (saved) {
