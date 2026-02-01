@@ -1,250 +1,171 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Downloads - Horizonte Tutoriais</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HorizonClick - Centro de Downloads</title>
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#667eea">
 
-body{
-    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-    background:linear-gradient(135deg,#667eea,#764ba2);
-    min-height:100vh;
-    padding:20px;
-}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-.wrapper{max-width:900px;margin:auto}
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+        font-family:Segoe UI,Arial;
+        background:linear-gradient(135deg,#667eea,#764ba2);
+        min-height:100vh;
+        padding:20px;
+    }
+    .wrapper{max-width:900px;margin:auto}
+    header{
+        background:#fff;
+        border-radius:18px;
+        padding:30px;
+        text-align:center;
+        box-shadow:0 15px 40px rgba(0,0,0,.15);
+    }
+    header h1{color:#667eea;font-size:2.2rem}
+    header p{color:#666;margin:8px 0 15px}
 
-/* Header */
-header{
-    background:#fff;
-    border-radius:15px;
-    padding:40px 30px;
-    text-align:center;
-    box-shadow:0 10px 40px rgba(0,0,0,.1);
-}
+    .search-container{position:relative}
+    .search-container input{
+        width:100%;
+        padding:14px 45px 14px 18px;
+        border-radius:12px;
+        border:2px solid #ddd;
+    }
+    .search-icon{
+        position:absolute;
+        right:15px;
+        top:50%;
+        transform:translateY(-50%);
+        color:#667eea;
+    }
 
-header h1{color:#667eea;font-size:2.4rem}
-header p{color:#666;margin:10px 0 20px}
+    .app-card{background:#fff;border-radius:18px;padding:25px;box-shadow:0 10px 30px rgba(0,0,0,.15);animation:fade .6s ease;}
+    @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1}}
 
-/* Search */
-.search-container{position:relative}
-.search-container input{
-    width:100%;
-    padding:12px 40px 12px 20px;
-    border-radius:10px;
-    border:2px solid #ddd;
-}
-.search-icon{
-    position:absolute;
-    right:15px;
-    top:50%;
-    transform:translateY(-50%);
-    color:#667eea;
-}
+    .app-logo-container{
+        width:90px;height:90px;margin:0 auto;
+    }
+    .logo-click{width:100%;height:100%;animation:pulse 2s infinite;}
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
 
-.results-info{margin-top:10px;color:#666}
+    .app-name{text-align:center;font-size:1.6rem;margin-top:10px}
+    .app-category{text-align:center;color:#999}
+    .app-description{text-align:center;color:#666;margin:15px 0}
 
-/* Card */
-.container{margin-top:30px}
-.app-card{
-    background:#fff;
-    border-radius:15px;
-    padding:25px;
-    box-shadow:0 5px 20px rgba(0,0,0,.1);
-}
+    .btn-download{display:flex;justify-content:center;align-items:center;gap:10px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:14px;border-radius:12px;text-decoration:none;font-weight:600;margin-bottom:15px;}
 
-.app-logo-container{
-    width:80px;height:80px;
-    margin:auto;
-}
-.app-logo-container img{width:100%;height:100%;object-fit:contain}
+    .comments-title{display:flex;align-items:center;gap:8px;font-weight:600;}
+    .comments-toggle{margin-left:auto;background:none;border:none;color:#667eea;cursor:pointer;}
+    .comments-container{display:none;margin-top:10px}
+    .comments-container.show{display:block}
 
-.app-name{text-align:center;font-size:1.4rem;margin-top:10px}
-.app-category{text-align:center;color:#999;font-size:.85rem}
-.app-description{text-align:center;margin:15px 0;color:#666}
+    .comment{background:#f4f4f4;padding:10px;border-left:4px solid #667eea;margin-bottom:8px;border-radius:6px;}
+    .comment-form{display:none;margin-top:10px}
+    .comment-form.show{display:block}
 
-/* Rating */
-.rating-section{
-    display:flex;
-    justify-content:center;
-    gap:5px;
-    margin-bottom:15px;
-}
-.star{font-size:1.3rem;color:#ffc107;cursor:pointer}
-.star.empty{color:#ddd}
+    .form-group input,.form-group textarea{width:100%;padding:10px;margin-bottom:8px;border-radius:8px;border:1px solid #ddd;}
+    .btn-submit-comment{background:#667eea;color:#fff;border:none;padding:10px;width:100%;border-radius:8px;cursor:pointer;}
 
-/* Download */
-.btn-download{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-    background:linear-gradient(135deg,#667eea,#764ba2);
-    color:#fff;
-    padding:12px;
-    border-radius:10px;
-    text-decoration:none;
-    font-weight:600;
-    margin-bottom:15px;
-}
-
-/* Comments */
-.comments-title{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    font-weight:600;
-}
-.comments-toggle{
-    margin-left:auto;
-    border:none;
-    background:none;
-    color:#667eea;
-    cursor:pointer;
-}
-.comments-container{display:none;margin-top:10px}
-.comments-container.show{display:block}
-
-.comment{
-    background:#f5f5f5;
-    padding:10px;
-    border-left:3px solid #667eea;
-    margin-bottom:10px;
-}
-
-.comment-form{display:none;margin-top:10px}
-.comment-form.show{display:block}
-
-.form-group{margin-bottom:8px}
-.form-group input,
-.form-group textarea{
-    width:100%;
-    padding:8px;
-    border-radius:6px;
-    border:1px solid #ddd;
-}
-
-.btn-submit-comment{
-    background:#667eea;
-    color:#fff;
-    border:none;
-    padding:8px;
-    border-radius:6px;
-    width:100%;
-    cursor:pointer;
-}
-
-footer{
-    text-align:center;
-    color:#fff;
-    margin-top:40px;
-    opacity:.9;
-}
-</style>
+    footer{text-align:center;color:#fff;margin-top:40px;opacity:.9;}
+  </style>
 </head>
 
 <body>
 <div class="wrapper">
 
-<header>
-    <h1>Horizonte Tutoriais</h1>
-    <p>Centro de Downloads</p>
+  <header>
+      <h1>Horizonte Tutoriais</h1>
+      <p>Centro de Downloads</p>
 
-    <div class="search-container">
-        <input id="searchInput" placeholder="🔍 Buscar aplicativo">
-        <i class="fas fa-search search-icon"></i>
-    </div>
+      <div class="search-container">
+          <input id="searchInput" placeholder="🔍 Buscar aplicativo" onkeyup="searchApp()">
+          <i class="fas fa-search search-icon"></i>
+      </div>
 
-    <div class="results-info">
-        <span id="resultsCount">1 aplicativo encontrado</span>
-    </div>
-</header>
+      <div class="results-info" id="resultsCount">1 aplicativo encontrado</div>
+  </header>
 
-<div class="container" id="appsContainer">
+  <div class="container">
+  <div class="app-card" data-name="HorizonClick">
 
-<div class="app-card" data-name="Extensão Chrome">
     <div class="app-logo-container">
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png">
+        <svg class="logo-click" viewBox="0 0 64 64">
+            <rect x="14" y="4" width="36" height="56" rx="6" fill="#667eea"/>
+            <circle cx="32" cy="50" r="3" fill="#fff"/>
+            <circle cx="42" cy="18" r="5" stroke="#fff" stroke-width="2"/>
+        </svg>
     </div>
 
-    <h3 class="app-name">Extensão Chrome</h3>
-    <span class="app-category">Browser</span>
+    <h3 class="app-name">HorizonClick</h3>
+    <div class="app-category">Extensão • Chrome</div>
+
     <p class="app-description">
-        Extensão para Google Chrome com funcionalidades avançadas.
+      Extensão inteligente para cliques rápidos, automação e produtividade no Google Chrome.
     </p>
 
-    <div class="rating-section">
-        <span class="star empty" data-value="1">★</span>
-        <span class="star empty" data-value="2">★</span>
-        <span class="star empty" data-value="3">★</span>
-        <span class="star empty" data-value="4">★</span>
-        <span class="star empty" data-value="5">★</span>
-    </div>
-
-    <a href="LINK_DO_ARQUIVO" class="btn-download">
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" width="20">
-        HorizonClick
-    </a>
+    <a class="btn-download" href="#">Baixar HorizonClick</a>
 
     <div class="comments-section">
-        <div class="comments-title">
-            <i class="fas fa-comments"></i> Comentários
-            <button class="comments-toggle" onclick="toggleComments(this)">HorizonClick</button>
-        </div>
+      <div class="comments-title">
+        <i class="fas fa-comments"></i> Comentários
+        <button class="comments-toggle" onclick="toggleComments(this)">Mostrar</button>
+      </div>
 
-        <div class="comments-container"></div>
+      <div class="comments-container"></div>
 
-        <form class="comment-form" onsubmit="submitComment(event)">
-            <div class="form-group">
-                <input placeholder="Seu nome" required>
-            </div>
-            <div class="form-group">
-                <textarea placeholder="Comentário" required></textarea>
-            </div>
-            <button class="btn-submit-comment">HorizonClick</button>
-        </form>
+      <form class="comment-form" onsubmit="submitComment(event)">
+        <input placeholder="Seu nome" required>
+        <textarea placeholder="Comentário" required></textarea>
+        <button class="btn-submit-comment">Enviar</button>
+      </form>
 
-        <button class="btn-submit-comment" onclick="toggleForm(this)">
-            HorizonClick
-        </button>
+      <button class="btn-submit-comment" onclick="toggleForm(this)">
+        Escrever comentário
+      </button>
     </div>
-</div>
 
-</div>
+  </div>
+  </div>
 
-<footer>
-    © 2026 Horizonte Tutoriais
-</footer>
+  <footer>© 2026 Horizonte Tutoriais</footer>
+
 </div>
 
 <script>
-const comments=[];
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('sw.js');
+}
 
 function toggleComments(btn){
-    const c=btn.parentElement.nextElementSibling;
-    c.classList.toggle('show');
-    btn.textContent=c.classList.contains('show')?'Ocultar':'HorizonClick';
+  const c = btn.parentElement.nextElementSibling;
+  c.classList.toggle('show');
+  btn.textContent = c.classList.contains('show') ? 'Ocultar' : 'Mostrar';
 }
 
 function toggleForm(btn){
-    const f=btn.previousElementSibling;
-    f.classList.toggle('show');
+  btn.previousElementSibling.classList.toggle('show');
 }
 
 function submitComment(e){
-    e.preventDefault();
-    const form=e.target;
-    const name=form.querySelector('input').value;
-    const text=form.querySelector('textarea').value;
-    const c=document.createElement('div');
-    c.className='comment';
-    c.innerHTML=`<strong>${name}</strong><br>${text}`;
-    document.querySelector('.comments-container').appendChild(c);
-    form.reset();
+  e.preventDefault();
+  const form = e.target;
+  const comment = document.createElement('div');
+  comment.className = 'comment';
+  comment.innerHTML = `<strong>${form[0].value}</strong><br>${form[1].value}`;
+  document.querySelector('.comments-container').appendChild(comment);
+  form.reset();
+}
+
+function searchApp(){
+  const value = document.getElementById('searchInput').value.toLowerCase();
+  const card = document.querySelector('.app-card');
+  card.style.display = card.dataset.name.toLowerCase().includes(value) ? 'block' : 'none';
+  document.getElementById('resultsCount').innerText = card.style.display === 'block' ? '1 aplicativo encontrado' : '0 aplicativos encontrados';
 }
 </script>
 
