@@ -60,6 +60,13 @@ header p{color:#666;margin:10px 0 20px}
 .app-logo-container{
     width:80px;height:80px;
     margin:auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.app-logo-container i{
+    font-size: 60px;
+    color: #667eea;
 }
 .app-logo-container img{width:100%;height:100%;object-fit:contain}
 
@@ -120,15 +127,18 @@ footer{
 
 <div class="container" id="appsContainer">
 
-<div class="app-card" data-name="Extensão Chrome">
+<div class="app-card" data-name="HorizonClick">
     <div class="app-logo-container">
-        <img src="https://cdn-icons-png.flaticon.com/512/1160/1160358.png" alt="Dedo clicando no celular">
+        <!-- Ícone de dedo clicando no celular usando FontAwesome -->
+        <i class="fas fa-mobile-alt" style="position: relative;">
+            <i class="fas fa-hand-pointer" style="font-size: 25px; position: absolute; bottom: -5px; right: -10px; color: #764ba2;"></i>
+        </i>
     </div>
 
-    <h3 class="app-name">Extensão Chrome</h3>
-    <span class="app-category">Browser</span>
+    <h3 class="app-name">HorizonClick</h3>
+    <span class="app-category">Utilitário</span>
     <p class="app-description">
-        Extensão para Google Chrome com funcionalidades avançadas.
+        Acesse funcionalidades avançadas com apenas um clique através do HorizonClick.
     </p>
 
     <div class="rating-section">
