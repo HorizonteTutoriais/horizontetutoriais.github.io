@@ -21,7 +21,7 @@
         }
 
         .wrapper {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -88,7 +88,7 @@
         /* Container */
         .container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
             margin-top: 30px;
         }
@@ -107,6 +107,843 @@
         .app-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        /* Logo Container */
+        .app-logo-container {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #e0e0e0;
+        }
+
+        .app-logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .app-logo-container.icon-fallback {
+            font-size: 2.5rem;
+            color: #667eea;
+        }
+
+        .app-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .app-category {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .app-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        /* Rating Section */
+        .rating-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .stars {
+            display: flex;
+            gap: 3px;
+        }
+
+        .star {
+            font-size: 1.2rem;
+            color: #ffc107;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .star:hover {
+            transform: scale(1.2);
+        }
+
+        .star.empty {
+            color: #ddd;
+        }
+
+        .rating-count {
+            font-size: 0.9rem;
+            color: #999;
+            margin-left: 5px;
+        }
+
+        /* Download Button */
+        .btn-download {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .btn-download:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-download:active {
+            transform: scale(0.98);
+        }
+
+        .btn-download i {
+            font-size: 1.1rem;
+        }
+
+        /* Comments Section */
+        .comments-section {
+            margin-top: 15px;
+        }
+
+        .comments-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comments-toggle {
+            background: none;
+            border: none;
+            color: #667eea;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-decoration: underline;
+            padding: 0;
+            margin-left: auto;
+        }
+
+        .comments-container {
+            display: none;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+
+        .comments-container.show {
+            display: block;
+        }
+
+        .comment {
+            background: #f9f9f9;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            border-left: 3px solid #667eea;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .comment-text {
+            color: #666;
+            line-height: 1.4;
+            word-break: break-word;
+        }
+
+        .comment-rating {
+            font-size: 0.85rem;
+            color: #ffc107;
+            margin-top: 6px;
+        }
+
+        /* Comment Form */
+        .comment-form {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .comment-form.show {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: vertical;
+        }
+
+        .form-group textarea {
+            min-height: 60px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+        }
+
+        .rating-input {
+            display: flex;
+            gap: 5px;
+            margin-top: 6px;
+        }
+
+        .rating-input .star {
+            font-size: 1.5rem;
+        }
+
+        .btn-submit-comment {
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-submit-comment:hover {
+            background: #764ba2;
+        }
+
+        .btn-submit-comment:active {
+            transform: scale(0.98);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .app-logo-container {
+                width: 70px;
+                height: 70px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 30px 20px;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .app-name {
+                font-size: 1.1rem;
+            }
+
+            .comments-container {
+                max-height: 250px;
+            }
+        }
+
+        /* Scrollbar Styling */
+        .comments-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .comments-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .comments-container::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 10px;
+        }
+
+        .comments-container::-webkit-scrollbar-thumb:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Header -->
+        <header>
+            <h1>Horizonte Tutoriais</h1>
+            <p>Centro de Downloads</p>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="🔍 Buscar aplicativos..."
+                    aria-label="Buscar aplicativos"
+                >
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <div class="results-info">
+                <span id="resultsCount">4 aplicativos encontrados</span>
+            </div>
+        </header>
+
+        <!-- Apps Container -->
+        <div class="container" id="appsContainer">
+            
+            <!-- App 1: Chrome Extension -->
+            <div class="app-card" data-name="Extensão Chrome" data-category="browser">
+                <div class="app-logo-container">
+                    <img src="https://via.placeholder.com/80/4285F4/ffffff?text=Chrome" alt="Logo Chrome">
+                </div>
+                <h3 class="app-name">Extensão Chrome</h3>
+                <span class="app-category">Browser</span>
+                <p class="app-description">Extensão para navegador Chrome com funcionalidades avançadas e integração perfeita.</p>
+                
+                <!-- Rating -->
+                <div class="rating-section">
+                    <div class="stars" data-app="chrome">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                    </div>
+                    <span class="rating-count">(<span class="count">0</span>)</span>
+                </div>
+
+                <a href="LINK_DO_ARQUIVO" class="btn-download">
+                    <i class="fas fa-download"></i>
+                    Baixar Agora
+                </a>
+
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <div class="comments-title">
+                        <i class="fas fa-comments"></i>
+                        Comentários
+                        <button class="comments-toggle" onclick="toggleComments(this)">Ver</button>
+                    </div>
+                    <div class="comments-container" data-app="chrome"></div>
+                    <form class="comment-form" data-app="chrome" onsubmit="submitComment(event, 'chrome')">
+                        <div class="form-group">
+                            <label>Nome:</label>
+                            <input type="text" class="comment-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Comentário:</label>
+                            <textarea class="comment-text" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Avaliação:</label>
+                            <div class="rating-input" data-app="chrome">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-submit-comment">Enviar Comentário</button>
+                    </form>
+                    <button class="btn-submit-comment" style="background: #667eea; margin-top: 10px;" onclick="toggleCommentForm(this)">
+                        <i class="fas fa-plus"></i> Adicionar Comentário
+                    </button>
+                </div>
+            </div>
+
+            <!-- App 2: PDF Viewer -->
+            <div class="app-card" data-name="Leitor PDF Pro" data-category="utilities">
+                <div class="app-logo-container">
+                    <img src="https://via.placeholder.com/80/FF0000/ffffff?text=PDF" alt="Logo PDF">
+                </div>
+                <h3 class="app-name">Leitor PDF Pro</h3>
+                <span class="app-category">Utilitários</span>
+                <p class="app-description">Visualizador de PDF com ferramentas avançadas de anotação e edição.</p>
+                
+                <!-- Rating -->
+                <div class="rating-section">
+                    <div class="stars" data-app="pdf">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                    </div>
+                    <span class="rating-count">(<span class="count">0</span>)</span>
+                </div>
+
+                <a href="LINK_DO_ARQUIVO" class="btn-download">
+                    <i class="fas fa-download"></i>
+                    Baixar Agora
+                </a>
+
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <div class="comments-title">
+                        <i class="fas fa-comments"></i>
+                        Comentários
+                        <button class="comments-toggle" onclick="toggleComments(this)">Ver</button>
+                    </div>
+                    <div class="comments-container" data-app="pdf"></div>
+                    <form class="comment-form" data-app="pdf" onsubmit="submitComment(event, 'pdf')">
+                        <div class="form-group">
+                            <label>Nome:</label>
+                            <input type="text" class="comment-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Comentário:</label>
+                            <textarea class="comment-text" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Avaliação:</label>
+                            <div class="rating-input" data-app="pdf">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-submit-comment">Enviar Comentário</button>
+                    </form>
+                    <button class="btn-submit-comment" style="background: #667eea; margin-top: 10px;" onclick="toggleCommentForm(this)">
+                        <i class="fas fa-plus"></i> Adicionar Comentário
+                    </button>
+                </div>
+            </div>
+
+            <!-- App 3: Mobile App -->
+            <div class="app-card" data-name="Aplicativo Mobile" data-category="mobile">
+                <div class="app-logo-container">
+                    <img src="https://via.placeholder.com/80/34A853/ffffff?text=Mobile" alt="Logo Mobile">
+                </div>
+                <h3 class="app-name">Aplicativo Mobile</h3>
+                <span class="app-category">Mobile</span>
+                <p class="app-description">App para iOS e Android com sincronização em nuvem e suporte offline.</p>
+                
+                <!-- Rating -->
+                <div class="rating-section">
+                    <div class="stars" data-app="mobile">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                    </div>
+                    <span class="rating-count">(<span class="count">0</span>)</span>
+                </div>
+
+                <a href="LINK_DO_ARQUIVO" class="btn-download">
+                    <i class="fas fa-download"></i>
+                    Baixar Agora
+                </a>
+
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <div class="comments-title">
+                        <i class="fas fa-comments"></i>
+                        Comentários
+                        <button class="comments-toggle" onclick="toggleComments(this)">Ver</button>
+                    </div>
+                    <div class="comments-container" data-app="mobile"></div>
+                    <form class="comment-form" data-app="mobile" onsubmit="submitComment(event, 'mobile')">
+                        <div class="form-group">
+                            <label>Nome:</label>
+                            <input type="text" class="comment-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Comentário:</label>
+                            <textarea class="comment-text" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Avaliação:</label>
+                            <div class="rating-input" data-app="mobile">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-submit-comment">Enviar Comentário</button>
+                    </form>
+                    <button class="btn-submit-comment" style="background: #667eea; margin-top: 10px;" onclick="toggleCommentForm(this)">
+                        <i class="fas fa-plus"></i> Adicionar Comentário
+                    </button>
+                </div>
+            </div>
+
+            <!-- App 4: Dev Tools -->
+            <div class="app-card" data-name="Ferramentas de Desenvolvimento" data-category="development">
+                <div class="app-logo-container">
+                    <img src="https://via.placeholder.com/80/FBBC04/ffffff?text=DevTools" alt="Logo Dev Tools">
+                </div>
+                <h3 class="app-name">Ferramentas Dev</h3>
+                <span class="app-category">Desenvolvimento</span>
+                <p class="app-description">Suite completa de ferramentas para desenvolvedores web e mobile.</p>
+                
+                <!-- Rating -->
+                <div class="rating-section">
+                    <div class="stars" data-app="devtools">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                    </div>
+                    <span class="rating-count">(<span class="count">0</span>)</span>
+                </div>
+
+                <a href="LINK_DO_ARQUIVO" class="btn-download">
+                    <i class="fas fa-download"></i>
+                    Baixar Agora
+                </a>
+
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <div class="comments-title">
+                        <i class="fas fa-comments"></i>
+                        Comentários
+                        <button class="comments-toggle" onclick="toggleComments(this)">Ver</button>
+                    </div>
+                    <div class="comments-container" data-app="devtools"></div>
+                    <form class="comment-form" data-app="devtools" onsubmit="submitComment(event, 'devtools')">
+                        <div class="form-group">
+                            <label>Nome:</label>
+                            <input type="text" class="comment-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Comentário:</label>
+                            <textarea class="comment-text" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Avaliação:</label>
+                            <div class="rating-input" data-app="devtools">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-submit-comment">Enviar Comentário</button>
+                    </form>
+                    <button class="btn-submit-comment" style="background: #667eea; margin-top: 10px;" onclick="toggleCommentForm(this)">
+                        <i class="fas fa-plus"></i> Adicionar Comentário
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Empty State (Hidden by default) -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <i class="fas fa-search"></i>
+            <h3>Nenhum aplicativo encontrado</h3>
+            <p>Tente ajustar seus critérios de busca</p>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Horizonte Tutoriais. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Data storage (localStorage)
+        const appData = {
+            chrome: { ratings: [], comments: [] },
+            pdf: { ratings: [], comments: [] },
+            mobile: { ratings: [], comments: [] },
+            devtools: { ratings: [], comments: [] }
+        };
+
+        // Load data from localStorage
+        function loadData() {
+            const saved = localStorage.getItem('appData');
+            if (saved) {
+                Object.assign(appData, JSON.parse(saved));
+                updateAllRatings();
+                updateAllComments();
+            }
+        }
+
+        // Save data to localStorage
+        function saveData() {
+            localStorage.setItem('appData', JSON.stringify(appData));
+        }
+
+        // Update ratings display
+        function updateAllRatings() {
+            Object.keys(appData).forEach(app => {
+                updateRatingDisplay(app);
+            });
+        }
+
+        // Update rating display for specific app
+        function updateRatingDisplay(app) {
+            const ratings = appData[app].ratings;
+            const starsContainer = document.querySelector(`.stars[data-app="${app}"]`);
+            const countSpan = starsContainer.closest('.rating-section').querySelector('.count');
+            
+            if (ratings.length === 0) {
+                starsContainer.querySelectorAll('.star').forEach(star => {
+                    star.classList.add('empty');
+                });
+                countSpan.textContent = '0';
+            } else {
+                const avgRating = Math.round(ratings.reduce((a, b) => a + b) / ratings.length);
+                starsContainer.querySelectorAll('.star').forEach((star, index) => {
+                    if (index < avgRating) {
+                        star.classList.remove('empty');
+                    } else {
+                        star.classList.add('empty');
+                    }
+                });
+                countSpan.textContent = ratings.length;
+            }
+        }
+
+        // Update comments display
+        function updateAllComments() {
+            Object.keys(appData).forEach(app => {
+                updateCommentsDisplay(app);
+            });
+        }
+
+        // Update comments display for specific app
+        function updateCommentsDisplay(app) {
+            const container = document.querySelector(`.comments-container[data-app="${app}"]`);
+            container.innerHTML = '';
+            
+            appData[app].comments.forEach(comment => {
+                const commentEl = document.createElement('div');
+                commentEl.className = 'comment';
+                commentEl.innerHTML = `
+                    <div class="comment-author">${escapeHtml(comment.author)}</div>
+                    <div class="comment-text">${escapeHtml(comment.text)}</div>
+                    <div class="comment-rating">${'★'.repeat(comment.rating)}${'☆'.repeat(5 - comment.rating)}</div>
+                `;
+                container.appendChild(commentEl);
+            });
+        }
+
+        // Toggle comments visibility
+        function toggleComments(button) {
+            const container = button.closest('.comments-section').querySelector('.comments-container');
+            container.classList.toggle('show');
+            button.textContent = container.classList.contains('show') ? 'Ocultar' : 'Ver';
+        }
+
+        // Toggle comment form
+        function toggleCommentForm(button) {
+            const form = button.closest('.comments-section').querySelector('.comment-form');
+            form.classList.toggle('show');
+            button.innerHTML = form.classList.contains('show') ? 
+                '<i class="fas fa-minus"></i> Cancelar' : 
+                '<i class="fas fa-plus"></i> Adicionar Comentário';
+        }
+
+        // Submit comment
+        function submitComment(e, app) {
+            e.preventDefault();
+            const form = e.target;
+            const name = form.querySelector('.comment-name').value;
+            const text = form.querySelector('.comment-text').value;
+            const rating = parseInt(form.querySelector('.rating-input[data-app="' + app + '"] .star.selected')?.getAttribute('data-value') || '5');
+
+            appData[app].comments.push({ author: name, text: text, rating: rating });
+            appData[app].ratings.push(rating);
+
+            saveData();
+            updateCommentsDisplay(app);
+            updateRatingDisplay(app);
+
+            form.reset();
+            form.classList.remove('show');
+            form.closest('.comments-section').querySelector('.btn-submit-comment').innerHTML = 
+                '<i class="fas fa-plus"></i> Adicionar Comentário';
+        }
+
+        // Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        // Star rating input
+        document.querySelectorAll('.rating-input .star').forEach(star => {
+            star.addEventListener('click', function() {
+                const app = this.closest('.rating-input').getAttribute('data-app');
+                const value = this.getAttribute('data-value');
+                
+                document.querySelectorAll(`.rating-input[data-app="${app}"] .star`).forEach(s => {
+                    s.classList.remove('selected');
+                    s.classList.add('empty');
+                });
+                
+                for (let i = 0; i < value; i++) {
+                    document.querySelectorAll(`.rating-input[data-app="${app}"] .star`)[i].classList.remove('empty');
+                    document.querySelectorAll(`.rating-input[data-app="${app}"] .star`)[i].classList.add('selected');
+                }
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const appsContainer = document.getElementById('appsContainer');
+        const emptyState = document.getElementById('emptyState');
+        const resultsCount = document.getElementById('resultsCount');
+        const appCards = document.querySelectorAll('.app-card');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            appCards.forEach(card => {
+                const name = card.getAttribute('data-name').toLowerCase();
+                const category = card.getAttribute('data-category').toLowerCase();
+                const description = card.querySelector('.app-description').textContent.toLowerCase();
+
+                const matches = name.includes(searchTerm) || 
+                               category.includes(searchTerm) || 
+                               description.includes(searchTerm);
+
+                if (searchTerm === '' || matches) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (visibleCount === 0) {
+                appsContainer.style.display = 'none';
+                emptyState.style.display = 'block';
+                resultsCount.textContent = 'Nenhum resultado encontrado';
+            } else {
+                appsContainer.style.display = 'grid';
+                emptyState.style.display = 'none';
+                resultsCount.textContent = `${visibleCount} aplicativo${visibleCount !== 1 ? 's' : ''} encontrado${visibleCount !== 1 ? 's' : ''}`;
+            }
+        });
+
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                this.value = '';
+                this.dispatchEvent(new Event('input'));
+            }
+        });
+
+        // Initialize
+        loadData();
+    </script>
+</body>
+</html>            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
         }
 
         .app-icon {
