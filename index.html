@@ -730,24 +730,27 @@ here<!DOCTYPE html>
             </div>
             <script>
     function criarQuintoBotao() {
-        // Seleciona o último botão existente
+        // Seleciona o último botão com a classe '.btn-download' dentro de '.app-card'
         const ultimoBotao = document.querySelector('.app-card .btn-download:last-of-type');
 
+        // Se não encontrar o último botão, não faz nada
         if (!ultimoBotao) return;
 
         // Clona o botão (true = clona conteúdo)
         const novoBotao = ultimoBotao.cloneNode(true);
 
-        // Altera o texto e o link (altere o link conforme necessário)
-        novoBotao.href = "LINK_DO_HORIZON_BLOQUEAR_APPS";  // Insira o link que você deseja
-        novoBotao.innerHTML = '<i class="fas fa-ban"></i> Horizon Bloquear apps';  // Altere o ícone se necessário
+        // Altera o link (você deve substituir o "LINK_DO_HORIZON_BLOQUEAR_APPS" pelo link desejado)
+        novoBotao.href = "LINK_DO_HORIZON_BLOQUEAR_APPS";  // Insira o link correto
 
-        // Insere após o último botão
+        // Altera o conteúdo do botão, incluindo o ícone e o texto
+        novoBotao.innerHTML = '<i class="fas fa-ban"></i> Horizon Bloquear apps';  // Altere o ícone e texto se necessário
+
+        // Insere o novo botão após o último botão existente
         ultimoBotao.parentNode.insertBefore(novoBotao, ultimoBotao.nextSibling);
     }
 
     // Executa quando a página carregar
-    criarQuintoBotao();
+    window.onload = criarQuintoBotao;
             </script>
 
         </div>
