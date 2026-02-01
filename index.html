@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Downloads - Horizonte Tutoriais</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
         * {
             margin: 0;
@@ -21,11 +22,10 @@
         }
 
         .wrapper {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
-        /* Header */
         header {
             background: white;
             border-radius: 15px;
@@ -39,7 +39,6 @@
             font-size: 2.5rem;
             color: #667eea;
             margin-bottom: 10px;
-            font-weight: 700;
         }
 
         header p {
@@ -48,7 +47,6 @@
             margin-bottom: 25px;
         }
 
-        /* Search Bar */
         .search-container {
             position: relative;
             margin-top: 20px;
@@ -60,13 +58,6 @@
             border: 2px solid #e0e0e0;
             border-radius: 10px;
             font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .search-container input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         .search-icon {
@@ -75,37 +66,194 @@
             top: 50%;
             transform: translateY(-50%);
             color: #667eea;
-            pointer-events: none;
         }
 
-        /* Results Info */
         .results-info {
-            color: #666;
-            font-size: 0.95rem;
             margin-top: 15px;
+            color: #666;
         }
 
-        /* Container */
         .container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin-top: 30px;
         }
 
-        /* App Card */
         .app-card {
             background: white;
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
         }
 
-        .app-card:hover {
-            transform: translateY(-5px);
+        .app-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .app-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .app-category {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .app-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* BOTÃO ÚNICO */
+        .download-wrapper {
+            margin: 50px 0;
+            text-align: center;
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.3s;
+        }
+
+        .btn-download:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+    <header>
+        <h1>Horizonte Tutoriais</h1>
+        <p>Centro de Downloads</p>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="🔍 Buscar aplicativos...">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+
+        <div class="results-info">
+            <span id="resultsCount">4 aplicativos encontrados</span>
+        </div>
+    </header>
+
+    <div class="container" id="appsContainer">
+
+        <div class="app-card" data-name="Extensão Chrome" data-category="browser">
+            <i class="fab fa-chrome app-icon"></i>
+            <h3 class="app-name">Extensão Chrome</h3>
+            <span class="app-category">Browser</span>
+            <p class="app-description">Extensão para navegador Chrome com funcionalidades avançadas.</p>
+        </div>
+
+        <div class="app-card" data-name="Leitor PDF Pro" data-category="utilities">
+            <i class="fas fa-file-pdf app-icon"></i>
+            <h3 class="app-name">Leitor PDF Pro</h3>
+            <span class="app-category">Utilitários</span>
+            <p class="app-description">Visualizador de PDF com ferramentas de anotação.</p>
+        </div>
+
+        <div class="app-card" data-name="Aplicativo Mobile" data-category="mobile">
+            <i class="fas fa-mobile-alt app-icon"></i>
+            <h3 class="app-name">Aplicativo Mobile</h3>
+            <span class="app-category">Mobile</span>
+            <p class="app-description">App para iOS e Android com sincronização em nuvem.</p>
+        </div>
+
+        <div class="app-card" data-name="Ferramentas Dev" data-category="development">
+            <i class="fas fa-code app-icon"></i>
+            <h3 class="app-name">Ferramentas Dev</h3>
+            <span class="app-category">Desenvolvimento</span>
+            <p class="app-description">Suite completa para desenvolvedores.</p>
+        </div>
+
+    </div>
+
+    <!-- BOTÃO ÚNICO -->
+    <div class="download-wrapper">
+        <a href="LINK_DO_ARQUIVO" class="btn-download">
+            <i class="fas fa-download"></i>
+            Baixar Aplicativo
+        </a>
+    </div>
+
+    <div class="empty-state" id="emptyState">
+        <i class="fas fa-search"></i>
+        <h3>Nenhum aplicativo encontrado</h3>
+        <p>Tente ajustar sua busca</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Horizonte Tutoriais</p>
+    </footer>
+
+</div>
+
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const appCards = document.querySelectorAll('.app-card');
+    const resultsCount = document.getElementById('resultsCount');
+    const emptyState = document.getElementById('emptyState');
+    const appsContainer = document.getElementById('appsContainer');
+
+    searchInput.addEventListener('input', function () {
+        const term = this.value.toLowerCase();
+        let count = 0;
+
+        appCards.forEach(card => {
+            const text = card.textContent.toLowerCase();
+            if (text.includes(term)) {
+                card.style.display = 'flex';
+                count++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        resultsCount.textContent = `${count} aplicativo${count !== 1 ? 's' : ''} encontrado${count !== 1 ? 's' : ''}`;
+        emptyState.style.display = count === 0 ? 'block' : 'none';
+        appsContainer.style.display = count === 0 ? 'none' : 'grid';
+    });
+</script>
+
+</body>
+</html>            transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
         }
 
