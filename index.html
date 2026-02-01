@@ -1,4 +1,4 @@
-here<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -6,70 +6,376 @@ here<!DOCTYPE html>
     <title>Downloads - Horizonte Tutoriais</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 50px 20px;
-            margin: 0;
-            background-color: #0d1117;
-            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-        .container {
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .search-container input {
             width: 100%;
-            max-width: 400px; /* Largura ideal para celular */
+            padding: 12px 40px 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-container input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #667eea;
+            pointer-events: none;
+        }
+
+        /* Results Info */
+        .results-info {
+            color: #666;
+            font-size: 0.95rem;
+            margin-top: 15px;
+        }
+
+        /* Container */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        /* App Card */
+        .app-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            gap: 15px; /* Espaço entre os botões */
         }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .app-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .app-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .app-category {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .app-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        /* Download Button */
         .btn-download {
-            background-color: #238636;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 15px;
-            font-size: 16px;
-            font-weight: bold;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: 600;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            transition: 0.2s;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
         }
-        .btn-download:active { transform: scale(0.98); }
+
+        .btn-download:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-download:active {
+            transform: scale(0.98);
+        }
+
+        .btn-download i {
+            font-size: 1.1rem;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .app-icon {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 30px 20px;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .app-name {
+                font-size: 1.1rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="wrapper">
+        <!-- Header -->
+        <header>
+            <h1>Horizonte Tutoriais</h1>
+            <p>Centro de Downloads</p>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="🔍 Buscar aplicativos..."
+                    aria-label="Buscar aplicativos"
+                >
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <div class="results-info">
+                <span id="resultsCount">4 aplicativos encontrados</span>
+            </div>
+        </header>
 
-    <h1>Horizonte Tutoriais</h1>
-    <p>Escolha o arquivo para baixar:</p>
+        <!-- Apps Container -->
+        <div class="container" id="appsContainer">
+            
+            <!-- App 1: Chrome Extension -->
+            <div class="app-card" data-name="Extensão Chrome" data-category="browser">
+                <i class="fab fa-chrome app-icon"></i>
+                <h3 class="app-name">Extensão Chrome</h3>
+                <span class="app-category">Browser</span>
+                <p class="app-description">Extensão para navegador Chrome com funcionalidades avançadas e integração perfeita.</p>
+                <a href="LINK_DO_ARQUIVO" class="btn-download">
+                    <i class="fas fa-download"></i>
+                    Baixar Agora
+                </a>
+            </div>
 
-    <div class="container">
-        
-        <!-- BOTÃO 1 -->
-        <a href="LINK_DO_ARQUIVO" class="btn-download">
-            <i class="fas fa-download"></i>
-            Baixar Arquivo
-        </a>
+            <!-- App 2: PDF Viewer -->
+            <div class="app-card" data-name="Leitor PDF Pro" data-category="utilities">
+                <i class="fas fa-file-pdf app-icon"></i>
+                <h3 class="app-name">Leitor PDF Pro</h3>
+                <span class="app-category">Utilitários</span>
+                <p class="app-description">Visualizador de PDF com ferramentas avançadas de anotação e edição.</p>
+                <a href="LINK_DO_ARQUIVO" class="btn-download">
+                    <i class="fas fa-download"></i>
+                    Baixar Agora
+                </a>
+            </div>
 
-        <!-- BOTÃO 2 -->
-        <a href="LINK_DO_ARQUIVO" class="btn-download">
-            <i class="fas fa-download"></i>
-            Baixar Arquivo
-        </a>
+            <!-- App 3: Mobile App -->
+            <div class="app-card" data-name="Aplicativo Mobile" data-category="mobile">
+                <i class="fas fa-mobile-alt app-icon"></i>
+                <h3 class="app-name">Aplicativo Mobile</h3>
+                <span class="app-category">Mobile</span>
+                <p class="app-description">App para iOS e Android com sincronização em nuvem e suporte offline.</p>
+                <a href="LINK_DO_ARQUIVO" class="btn-download">
+                    <i class="fas fa-download"></i>
+                    Baixar Agora
+                </a>
+            </div>
 
-        <!-- BOTÃO 3 -->
-        <a href="LINK_DO_ARQUIVO" class="btn-download">
-            <i class="fas fa-download"></i>
-            Baixar Arquivo
-        </a>
-        <a href="LINK_DO_ARQUIVO" class="btn-download">
-            <i class="fas fa-download"></i>
-            Baixar Arquivo
-        </a>
+            <!-- App 4: Dev Tools -->
+            <div class="app-card" data-name="Ferramentas de Desenvolvimento" data-category="development">
+                <i class="fas fa-code app-icon"></i>
+                <h3 class="app-name">Ferramentas Dev</h3>
+                <span class="app-category">Desenvolvimento</span>
+                <p class="app-description">Suite completa de ferramentas para desenvolvedores web e mobile.</p>
+                <a href="LINK_DO_ARQUIVO" class="btn-download">
+                    <i class="fas fa-download"></i>
+                    Baixar Agora
+                </a>
+            </div>
 
+        </div>
+
+        <!-- Empty State (Hidden by default) -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <i class="fas fa-search"></i>
+            <h3>Nenhum aplicativo encontrado</h3>
+            <p>Tente ajustar seus critérios de busca</p>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Horizonte Tutoriais. Todos os direitos reservados.</p>
+        </footer>
     </div>
+
+    <!-- JavaScript for Search Functionality -->
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const appsContainer = document.getElementById('appsContainer');
+        const emptyState = document.getElementById('emptyState');
+        const resultsCount = document.getElementById('resultsCount');
+        const appCards = document.querySelectorAll('.app-card');
+
+        // Search functionality
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            appCards.forEach(card => {
+                const name = card.getAttribute('data-name').toLowerCase();
+                const category = card.getAttribute('data-category').toLowerCase();
+                const description = card.querySelector('.app-description').textContent.toLowerCase();
+
+                const matches = name.includes(searchTerm) || 
+                               category.includes(searchTerm) || 
+                               description.includes(searchTerm);
+
+                if (searchTerm === '' || matches) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update results count and empty state
+            if (visibleCount === 0) {
+                appsContainer.style.display = 'none';
+                emptyState.style.display = 'block';
+                resultsCount.textContent = 'Nenhum resultado encontrado';
+            } else {
+                appsContainer.style.display = 'grid';
+                emptyState.style.display = 'none';
+                resultsCount.textContent = `${visibleCount} aplicativo${visibleCount !== 1 ? 's' : ''} encontrado${visibleCount !== 1 ? 's' : ''}`;
+            }
+        });
+
+        // Clear search on empty input
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                this.value = '';
+                this.dispatchEvent(new Event('input'));
+            }
+        });
+    </script>
 </body>
 </html>
