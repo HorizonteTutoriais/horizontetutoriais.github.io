@@ -813,7 +813,13 @@ here<!DOCTYPE html>
             mobile: { ratings: [], comments: [] },
             devtools: { ratings: [], comments: [] }
         };
-
+const appData = {
+    chrome: { ratings: [], comments: [] },
+    pdf: { ratings: [], comments: [] },
+    mobile: { ratings: [], comments: [] },
+    devtools: { ratings: [], comments: [] },
+    novo: { ratings: [], comments: [] } // 👈 ADICIONAR
+};
         // Load data from localStorage
         function loadData() {
             const saved = localStorage.getItem('appData');
