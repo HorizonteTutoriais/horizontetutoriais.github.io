@@ -1,172 +1,200 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HorizonClick - Centro de Downloads</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Downloads - HorizonClick</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#667eea">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+body{
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    min-height:100vh;
+    padding:20px;
+}
 
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{
-        font-family:Segoe UI,Arial;
-        background:linear-gradient(135deg,#667eea,#764ba2);
-        min-height:100vh;
-        padding:20px;
-    }
-    .wrapper{max-width:900px;margin:auto}
-    header{
-        background:#fff;
-        border-radius:18px;
-        padding:30px;
-        text-align:center;
-        box-shadow:0 15px 40px rgba(0,0,0,.15);
-    }
-    header h1{color:#667eea;font-size:2.2rem}
-    header p{color:#666;margin:8px 0 15px}
+.wrapper{max-width:900px;margin:auto}
 
-    .search-container{position:relative}
-    .search-container input{
-        width:100%;
-        padding:14px 45px 14px 18px;
-        border-radius:12px;
-        border:2px solid #ddd;
-    }
-    .search-icon{
-        position:absolute;
-        right:15px;
-        top:50%;
-        transform:translateY(-50%);
-        color:#667eea;
-    }
+/* Header */
+header{
+    background:#fff;
+    border-radius:15px;
+    padding:40px 30px;
+    text-align:center;
+    box-shadow:0 10px 40px rgba(0,0,0,.1);
+}
 
-    .app-card{background:#fff;border-radius:18px;padding:25px;box-shadow:0 10px 30px rgba(0,0,0,.15);animation:fade .6s ease;}
-    @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1}}
+header h1{color:#667eea;font-size:2.4rem}
+header p{color:#666;margin:10px 0 20px}
 
-    .app-logo-container{
-        width:90px;height:90px;margin:0 auto;
-    }
-    .logo-click{width:100%;height:100%;animation:pulse 2s infinite;}
-    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
+/* Search */
+.search-container{position:relative}
+.search-container input{
+    width:100%;
+    padding:12px 40px 12px 20px;
+    border-radius:10px;
+    border:2px solid #ddd;
+}
+.search-icon{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#667eea;
+}
 
-    .app-name{text-align:center;font-size:1.6rem;margin-top:10px}
-    .app-category{text-align:center;color:#999}
-    .app-description{text-align:center;color:#666;margin:15px 0}
+.results-info{margin-top:10px;color:#666}
 
-    .btn-download{display:flex;justify-content:center;align-items:center;gap:10px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:14px;border-radius:12px;text-decoration:none;font-weight:600;margin-bottom:15px;}
+/* Card */
+.container{margin-top:30px}
+.app-card{
+    background:#fff;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
 
-    .comments-title{display:flex;align-items:center;gap:8px;font-weight:600;}
-    .comments-toggle{margin-left:auto;background:none;border:none;color:#667eea;cursor:pointer;}
-    .comments-container{display:none;margin-top:10px}
-    .comments-container.show{display:block}
+.app-logo-container{
+    width:80px;height:80px;
+    margin:auto;
+}
+.app-logo-container img{width:100%;height:100%;object-fit:contain}
 
-    .comment{background:#f4f4f4;padding:10px;border-left:4px solid #667eea;margin-bottom:8px;border-radius:6px;}
-    .comment-form{display:none;margin-top:10px}
-    .comment-form.show{display:block}
+.app-name{text-align:center;font-size:1.4rem;margin-top:10px}
+.app-category{text-align:center;color:#999;font-size:.85rem}
+.app-description{text-align:center;margin:15px 0;color:#666}
 
-    .form-group input,.form-group textarea{width:100%;padding:10px;margin-bottom:8px;border-radius:8px;border:1px solid #ddd;}
-    .btn-submit-comment{background:#667eea;color:#fff;border:none;padding:10px;width:100%;border-radius:8px;cursor:pointer;}
+/* Rating */
+.rating-section{
+    display:flex;
+    justify-content:center;
+    gap:5px;
+    margin-bottom:15px;
+}
+.star{font-size:1.3rem;color:#ffc107;cursor:pointer}
+.star.empty{color:#ddd}
 
-    footer{text-align:center;color:#fff;margin-top:40px;opacity:.9;}
-  </style>
+/* Download */
+.btn-download{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:#fff;
+    padding:12px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:600;
+    margin-bottom:15px;
+}
+
+footer{
+    text-align:center;
+    color:#fff;
+    margin-top:40px;
+    opacity:.9;
+}
+</style>
 </head>
 
 <body>
 <div class="wrapper">
 
-  <header>
-      <h1>Horizonte Tutoriais</h1>
-      <p>Centro de Downloads</p>
+<header>
+    <h1>HorizonClick</h1>
+    <p>Centro de Downloads</p>
 
-      <div class="search-container">
-          <input id="searchInput" placeholder="🔍 Buscar aplicativo" onkeyup="searchApp()">
-          <i class="fas fa-search search-icon"></i>
-      </div>
-
-      <div class="results-info" id="resultsCount">1 aplicativo encontrado</div>
-  </header>
-
-  <div class="container">
-  <div class="app-card" data-name="HorizonClick">
-
-    <div class="app-logo-container">
-        <svg class="logo-click" viewBox="0 0 64 64">
-            <rect x="14" y="4" width="36" height="56" rx="6" fill="#667eea"/>
-            <circle cx="32" cy="50" r="3" fill="#fff"/>
-            <circle cx="42" cy="18" r="5" stroke="#fff" stroke-width="2"/>
-        </svg>
+    <div class="search-container">
+        <input id="searchInput" placeholder="🔍 Buscar aplicativo">
+        <i class="fas fa-search search-icon"></i>
     </div>
 
-    <h3 class="app-name">HorizonClick</h3>
-    <div class="app-category">Extensão • Chrome</div>
+    <div class="results-info">
+        <span id="resultsCount">1 aplicativo encontrado</span>
+    </div>
+</header>
 
+<div class="container" id="appsContainer">
+
+<div class="app-card" data-name="Extensão Chrome">
+    <div class="app-logo-container">
+        <img src="https://cdn-icons-png.flaticon.com/512/1160/1160358.png" alt="Dedo clicando no celular">
+    </div>
+
+    <h3 class="app-name">Extensão Chrome</h3>
+    <span class="app-category">Browser</span>
     <p class="app-description">
-      Extensão inteligente para cliques rápidos, automação e produtividade no Google Chrome.
+        Extensão para Google Chrome com funcionalidades avançadas.
     </p>
 
-    <a class="btn-download" href="#">Baixar HorizonClick</a>
-
-    <div class="comments-section">
-      <div class="comments-title">
-        <i class="fas fa-comments"></i> Comentários
-        <button class="comments-toggle" onclick="toggleComments(this)">Mostrar</button>
-      </div>
-
-      <div class="comments-container"></div>
-
-      <form class="comment-form" onsubmit="submitComment(event)">
-        <input placeholder="Seu nome" required>
-        <textarea placeholder="Comentário" required></textarea>
-        <button class="btn-submit-comment">Enviar</button>
-      </form>
-
-      <button class="btn-submit-comment" onclick="toggleForm(this)">
-        Escrever comentário
-      </button>
+    <div class="rating-section">
+        <span class="star empty" data-value="1">★</span>
+        <span class="star empty" data-value="2">★</span>
+        <span class="star empty" data-value="3">★</span>
+        <span class="star empty" data-value="4">★</span>
+        <span class="star empty" data-value="5">★</span>
     </div>
 
-  </div>
-  </div>
-
-  <footer>© 2026 Horizonte Tutoriais</footer>
+    <a href="LINK_DO_ARQUIVO" class="btn-download">
+        <i class="fas fa-hand-pointer"></i>
+        HorizonClick
+    </a>
 
 </div>
 
+</div>
+
+<footer>
+    © 2026 HorizonClick
+</footer>
+</div>
+
 <script>
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('sw.js');
-}
+// Script básico para funcionalidade de busca
+const searchInput = document.getElementById('searchInput');
+const appsContainer = document.getElementById('appsContainer');
+const resultsCount = document.getElementById('resultsCount');
 
-function toggleComments(btn){
-  const c = btn.parentElement.nextElementSibling;
-  c.classList.toggle('show');
-  btn.textContent = c.classList.contains('show') ? 'Ocultar' : 'Mostrar';
-}
+searchInput.addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    const cards = appsContainer.querySelectorAll('.app-card');
+    let visibleCount = 0;
 
-function toggleForm(btn){
-  btn.previousElementSibling.classList.toggle('show');
-}
+    cards.forEach(card => {
+        const appName = card.getAttribute('data-name').toLowerCase();
+        if (appName.includes(searchTerm)) {
+            card.style.display = 'block';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
 
-function submitComment(e){
-  e.preventDefault();
-  const form = e.target;
-  const comment = document.createElement('div');
-  comment.className = 'comment';
-  comment.innerHTML = `<strong>${form[0].value}</strong><br>${form[1].value}`;
-  document.querySelector('.comments-container').appendChild(comment);
-  form.reset();
-}
+    resultsCount.textContent = `${visibleCount} aplicativo${visibleCount !== 1 ? 's' : ''} encontrado${visibleCount !== 1 ? 's' : ''}`;
+});
 
-function searchApp(){
-  const value = document.getElementById('searchInput').value.toLowerCase();
-  const card = document.querySelector('.app-card');
-  card.style.display = card.dataset.name.toLowerCase().includes(value) ? 'block' : 'none';
-  document.getElementById('resultsCount').innerText = card.style.display === 'block' ? '1 aplicativo encontrado' : '0 aplicativos encontrados';
-}
+// Funcionalidade de avaliação por estrelas
+document.querySelectorAll('.rating-section').forEach(section => {
+    const stars = section.querySelectorAll('.star');
+    
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            const value = parseInt(this.getAttribute('data-value'));
+            
+            stars.forEach((s, index) => {
+                if (index < value) {
+                    s.classList.remove('empty');
+                } else {
+                    s.classList.add('empty');
+                }
+            });
+        });
+    });
+});
 </script>
 
 </body>
