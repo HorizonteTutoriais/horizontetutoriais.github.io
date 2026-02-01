@@ -728,30 +728,66 @@ here<!DOCTYPE html>
                     </button>
                 </div>
             </div>
-            <script>
-    function criarQuintoBotao() {
-        // Seleciona o último botão com a classe '.btn-download' dentro de '.app-card'
-        const ultimoBotao = document.querySelector('.app-card .btn-download:last-of-type');
+            <!-- App 5: Novo Aplicativo -->
+<div class="app-card" data-name="Novo Aplicativo" data-category="novo">
+    <div class="app-logo-container">
+        <img src="URL_DA_IMAGEM_DO_LOGO" alt="Logo Novo Aplicativo">
+    </div>
+    <h3 class="app-name">Novo Aplicativo</h3>
+    <span class="app-category">Novo</span>
+    <p class="app-description">Descrição do novo aplicativo aqui.</p>
+    
+    <!-- Rating -->
+    <div class="rating-section">
+        <div class="stars" data-app="novo">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+        <span class="rating-count">(<span class="count">0</span>)</span>
+    </div>
 
-        // Se não encontrar o último botão, não faz nada
-        if (!ultimoBotao) return;
+    <a href="LINK_DO_ARQUIVO" class="btn-download">
+        <img src="URL_DA_IMAGEM_DO_LOGO" alt="Novo Aplicativo">
+        Baixar Agora
+    </a>
 
-        // Clona o botão (true = clona conteúdo)
-        const novoBotao = ultimoBotao.cloneNode(true);
-
-        // Altera o link (você deve substituir o "LINK_DO_HORIZON_BLOQUEAR_APPS" pelo link desejado)
-        novoBotao.href = "LINK_DO_HORIZON_BLOQUEAR_APPS";  // Insira o link correto
-
-        // Altera o conteúdo do botão, incluindo o ícone e o texto
-        novoBotao.innerHTML = '<i class="fas fa-ban"></i> Horizon Bloquear apps';  // Altere o ícone e texto se necessário
-
-        // Insere o novo botão após o último botão existente
-        ultimoBotao.parentNode.insertBefore(novoBotao, ultimoBotao.nextSibling);
-    }
-
-    // Executa quando a página carregar
-    window.onload = criarQuintoBotao;
-            </script>
+    <!-- Comments Section -->
+    <div class="comments-section">
+        <div class="comments-title">
+            <i class="fas fa-comments"></i>
+            Comentários
+            <button class="comments-toggle" onclick="toggleComments(this)">Ver</button>
+        </div>
+        <div class="comments-container" data-app="novo"></div>
+        <form class="comment-form" data-app="novo" onsubmit="submitComment(event, 'novo')">
+            <div class="form-group">
+                <label>Nome:</label>
+                <input type="text" class="comment-name" required>
+            </div>
+            <div class="form-group">
+                <label>Comentário:</label>
+                <textarea class="comment-text" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Avaliação:</label>
+                <div class="rating-input" data-app="novo">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
+            </div>
+            <button type="submit" class="btn-submit-comment">Enviar Comentário</button>
+        </form>
+        <button class="btn-submit-comment" style="background: #667eea; margin-top: 10px;" onclick="toggleCommentForm(this)">
+            <i class="fas fa-plus"></i> Adicionar Comentário
+        </button>
+    </div>
+</div>
 
         </div>
 
