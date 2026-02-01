@@ -728,6 +728,27 @@ here<!DOCTYPE html>
                     </button>
                 </div>
             </div>
+            <script>
+    function criarQuintoBotao() {
+        // Seleciona o último botão existente
+        const ultimoBotao = document.querySelector('.app-card .btn-download:last-of-type');
+
+        if (!ultimoBotao) return;
+
+        // Clona o botão (true = clona conteúdo)
+        const novoBotao = ultimoBotao.cloneNode(true);
+
+        // Altera o texto e o link (altere o link conforme necessário)
+        novoBotao.href = "LINK_DO_HORIZON_BLOQUEAR_APPS";  // Insira o link que você deseja
+        novoBotao.innerHTML = '<i class="fas fa-ban"></i> Horizon Bloquear apps';  // Altere o ícone se necessário
+
+        // Insere após o último botão
+        ultimoBotao.parentNode.insertBefore(novoBotao, ultimoBotao.nextSibling);
+    }
+
+    // Executa quando a página carregar
+    criarQuintoBotao();
+            </script>
 
         </div>
 
