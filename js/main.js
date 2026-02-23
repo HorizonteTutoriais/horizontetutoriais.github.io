@@ -87,6 +87,57 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  /* ---- Modo Noturno (Dark Mode) ---- */
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  const body = document.body;
+  const currentTheme = localStorage.getItem('theme');
+
+  if (currentTheme === 'dark') {
+    body.classList.add('dark-mode');
+    if (darkModeToggle) darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+  }
+
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', function () {
+      body.classList.toggle('dark-mode');
+      let theme = 'light';
+      if (body.classList.contains('dark-mode')) {
+        theme = 'dark';
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      } else {
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      }
+      localStorage.setItem('theme', theme);
+    });
+  }
+
+  /* ---- Barra de Pesquisa (Search) ---- */
+  const searchToggle = document.getElementById('search-toggle');
+  const searchForm   = document.getElementById('search-form');
+  const searchInput  = document.getElementById('search-input');
+
+  if (searchToggle && searchForm) {
+    searchToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      searchForm.classList.toggle('active');
+      if (searchForm.classList.contains('active')) {
+        searchInput.focus();
+      }
+    });
+
+    // Fechar pesquisa ao clicar fora
+    document.addEventListener('click', function (e) {
+      if (!searchForm.contains(e.target) && !searchToggle.contains(e.target)) {
+        searchForm.classList.remove('active');
+      }
+    });
+
+    // Impedir fechamento ao clicar dentro do form
+    searchForm.addEventListener('click', function (e) {
+      e.stopPropagation();
+    });
+  }
+
   /* ---- Utilitário: escapar HTML ---- */
   function escapeHtml(text) {
     return text
