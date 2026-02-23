@@ -27,9 +27,26 @@
 <header class="site-header">
   <div class="container header-inner">
     <a href="index.html" class="site-logo">🌅 Horizonte <span>Tutoriais</span></a>
-    <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="header-telegram">
-      <i class="fab fa-telegram"></i> Junte-Se Ao Nosso Telegram
-    </a>
+    <div class="header-actions">
+      <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="header-telegram">
+        <i class="fab fa-telegram"></i> Junte-Se
+      </a>
+      
+      <!-- Botão Modo Noturno -->
+      <button id="dark-mode-toggle" class="header-btn" title="Alternar Modo Noturno">
+        <i class="fas fa-moon"></i>
+      </button>
+
+      <!-- Barra de Pesquisa -->
+      <div class="search-container">
+        <button id="search-toggle" class="header-btn" title="Pesquisar">
+          <i class="fas fa-search"></i>
+        </button>
+        <form action="index.html" method="GET" class="search-form" id="search-form">
+          <input type="text" name="s" placeholder="O que você procura?" id="search-input">
+        </form>
+      </div>
+    </div>
   </div>
 </header>
 
