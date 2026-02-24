@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (currentTheme === 'dark') {
     body.classList.add('dark-mode');
-    if (darkModeToggle) darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    if (darkModeToggle) darkModeToggle.textContent = '☀️';
   }
 
   if (darkModeToggle) {
@@ -103,9 +103,9 @@ document.addEventListener('DOMContentLoaded', function () {
       let theme = 'light';
       if (body.classList.contains('dark-mode')) {
         theme = 'dark';
-        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        darkModeToggle.textContent = '☀️';
       } else {
-        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        darkModeToggle.textContent = '🌙';
       }
       localStorage.setItem('theme', theme);
     });
@@ -151,13 +151,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchTerm = searchInput.value.toLowerCase().trim();
     if (!searchTerm) return;
 
-    // Procurar por apps com nomes similares
+    // Procurar por apps com nomes similares nos cards
     const allApps = document.querySelectorAll('[data-app-name][data-app-url]');
     let foundApp = null;
 
     for (let app of allApps) {
       const appName = app.getAttribute('data-app-name').toLowerCase();
-      if (appName.includes(searchTerm) || searchTerm.includes(appName.split(' ')[0])) {
+      if (appName.includes(searchTerm) || searchTerm.includes(appName)) {
         foundApp = app;
         break;
       }
