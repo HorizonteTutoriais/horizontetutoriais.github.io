@@ -1,5 +1,6 @@
 /* ============================================================
    HORIZONTE TUTORIAIS — JavaScript Principal (INFALÍVEL)
+   Adaptado para envio de comentários via E-mail com Formspree
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -57,27 +58,59 @@ document.addEventListener('DOMContentLoaded', function () {
     };
   }
 
-  /* ---- Sistema de Comentários via WhatsApp ---- */
+  /* ---- Sistema de Comentários via E-mail (Formspree) ---- */
   const commentForm = document.getElementById('direct-comment-form');
+  const formStatus = document.getElementById('form-status');
+  const submitBtn = document.getElementById('submit-btn');
+
   if (commentForm) {
-    commentForm.onsubmit = function(e) {
+    commentForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      const name = document.getElementById('user-name').value;
-      const comment = document.getElementById('user-comment').value;
+
+      // Desabilita o botão durante o envio
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
       
-      // Formata a mensagem para o WhatsApp
-      const message = `Olá! Novo comentário no site Horizonte Tutoriais:\n\n*Nome:* ${name}\n*Comentário:* ${comment}`;
-      const encodedMessage = encodeURIComponent(message);
+      // Limpa mensagens anteriores
+      formStatus.className = 'form-status';
+      formStatus.textContent = '';
+
+      // Coleta os dados do formulário
+      const formData = new FormData(commentForm);
       
-      // Substitua pelo seu número de WhatsApp (com código do país e DDD)
-      const whatsappNumber = "5500000000000"; 
-      
-      // Abre o WhatsApp com a mensagem pronta
-      window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
-      
-      alert('Obrigado! Seu comentário foi preparado para envio via WhatsApp.');
-      commentForm.reset();
-    };
+      // Envia os dados via Formspree
+      fetch(commentForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          // Sucesso
+          formStatus.className = 'form-status success';
+          formStatus.textContent = '✅ Comentário enviado com sucesso! Obrigado pela mensagem.';
+          commentForm.reset();
+          submitBtn.textContent = 'Enviar Comentário';
+          submitBtn.disabled = false;
+        } else {
+          // Erro na resposta
+          formStatus.className = 'form-status error';
+          formStatus.textContent = '❌ Erro ao enviar comentário. Tente novamente.';
+          submitBtn.textContent = 'Enviar Comentário';
+          submitBtn.disabled = false;
+        }
+      })
+      .catch(error => {
+        // Erro na requisição
+        console.error('Erro:', error);
+        formStatus.className = 'form-status error';
+        formStatus.textContent = '❌ Erro de conexão. Verifique sua internet e tente novamente.';
+        submitBtn.textContent = 'Enviar Comentário';
+        submitBtn.disabled = false;
+      });
+    });
   }
 
   /* ---- Botão Carregar Mais ---- */
