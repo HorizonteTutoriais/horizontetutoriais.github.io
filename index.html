@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Horizonte Tutoriais — Sua fonte definitiva para tutoriais e APKs</title>
   <meta name="description" content="Horizonte Tutoriais — Baixe os melhores APKs, tutoriais, aplicativos premium desbloqueados e muito mais. Atualizado diariamente." />
+  <meta name="keywords" content="horizonte tutoriais, apk, download, aplicativos, tutoriais, android, premium" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌅</text></svg>" />
@@ -30,11 +31,11 @@
       <!-- Botão Modo Noturno -->
       <button id="dark-mode-toggle" class="header-btn" title="Alternar Modo Noturno">🌙</button>
 
-      <!-- Barra de Pesquisa Fixa -->
+      <!-- Barra de Pesquisa -->
       <div class="search-container">
-        <form action="index.html" method="GET" class="search-form-fixed">
-          <input type="text" name="s" placeholder="Pesquisar..." id="search-input">
-          <button type="submit" class="search-submit-btn">🔍</button>
+        <button id="search-toggle" class="header-btn" title="Pesquisar">🔍</button>
+        <form action="#" method="GET" class="search-form" id="search-form" onsubmit="return false;">
+          <input type="text" name="s" placeholder="O que você procura?" id="search-input">
         </form>
       </div>
     </div>
@@ -93,7 +94,33 @@
             <a href="posts/youtube-premium.html" class="btn-download-sm">Download</a>
           </div>
         </div>
-        <!-- Adicione os outros itens aqui conforme seu original -->
+        <div class="post-list-item">
+          <img src="images/app-panda.png" alt="TubeMate" onerror="this.src='https://placehold.co/64x64/ff6f00/fff?text=TM'" />
+          <div class="post-list-info">
+            <div class="post-title"><a href="posts/tubemate-pro.html">TubeMate v3.5.8 (Pro Desbloqueado)</a></div>
+            <div class="post-cat"><a href="pages/aplicativos.html">Aplicativos</a></div>
+            <a href="posts/tubemate-pro.html" class="btn-download-sm">Download</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="apps-section">
+        <div class="section-header">
+          <h2 class="section-title" style="margin-bottom:0">📦 Aplicativos</h2>
+          <a href="pages/aplicativos.html" class="show-more">Mostrar mais</a>
+        </div>
+        <div class="apps-grid" id="apps-grid">
+          <div class="app-card">
+            <div class="app-card-title"><a href="posts/telegram-premium.html">Telegram v12.4.3 (Premium)</a></div>
+            <div class="app-card-cat"><span>Quente</span> · Ferramentas</div>
+            <a href="posts/telegram-premium.html" class="btn-download-sm">Download</a>
+          </div>
+          <div class="app-card">
+            <div class="app-card-title"><a href="posts/sticker-premium.html">Sticker.ly v3.29.0 (Premium)</a></div>
+            <div class="app-card-cat">Aplicativos</div>
+            <a href="posts/sticker-premium.html" class="btn-download-sm">Download</a>
+          </div>
+        </div>
       </section>
     </main>
 
@@ -102,18 +129,36 @@
         <h3 class="widget-title">📣 Mídias Sociais</h3>
         <a href="https://t.me/HorizonteTutoriais" target="_blank" class="social-btn telegram">Telegram</a>
         <a href="#" class="social-btn whatsapp">WhatsApp</a>
+        <a href="#" class="social-btn instagram">Instagram</a>
+        <a href="#" class="social-btn youtube">YouTube</a>
       </div>
       <div class="sidebar-widget about-widget">
         <h3 class="widget-title">ℹ️ Sobre Nós</h3>
-        <p>Horizonte Tutoriais — Sua fonte definitiva para APKs e tutoriais.</p>
+        <p>Horizonte Tutoriais — Sua fonte definitiva para APKs e tutoriais. Publicamos diariamente os melhores aplicativos para Android.</p>
       </div>
     </aside>
   </div>
 </div>
 
 <footer class="site-footer">
-  <div class="container">
-    <p>Copyright &copy; 2026 Horizonte Tutoriais</p>
+  <div class="container footer-top">
+    <div class="footer-about">
+      <h3>🌅 Horizonte Tutoriais</h3>
+      <p>Sua fonte definitiva para APKs e tutoriais.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Links Rápidos</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="pages/aplicativos.html">Aplicativos</a></li>
+        <li><a href="pages/jogos.html">Jogos</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>Copyright &copy; 2026 Horizonte Tutoriais | Todos os direitos reservados</p>
+    </div>
   </div>
 </footer>
 
