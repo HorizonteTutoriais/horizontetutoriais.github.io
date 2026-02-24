@@ -37,7 +37,8 @@
 
       <!-- Barra de Pesquisa -->
       <div class="search-container">
-        <button id="search-toggle" class="header-btn" title="Pesquisar">🔍</button>
+        <!-- Botão da Lupa Corrigido com Emoji e onclick direto -->
+        <button id="search-toggle" class="header-btn" title="Pesquisar" onclick="toggleSearch(event)">🔍</button>
         <form action="#" method="GET" class="search-form" id="search-form" onsubmit="return false;">
           <input type="text" name="s" placeholder="O que você procura?" id="search-input">
         </form>
@@ -69,7 +70,7 @@
 
       <!-- Atualizações -->
       <section class="updates-section">
-        <h2 class="section-title">🔄 Atualizações</h2>
+        <h2 class="section-title">🔄 Últimas Atualizações</h2>
         <div class="updates-grid">
 
           <div class="update-card" data-app-name="Telegram" data-app-url="posts/telegram-premium.html">
@@ -161,7 +162,7 @@
 
       <!-- Exclusivo -->
       <section class="exclusive-section">
-        <h2 class="section-title">💎 Exclusivo</h2>
+        <h2 class="section-title">💎 Quente e Exclusivo</h2>
         <div class="exclusive-grid">
 
           <div class="excl-card" data-app-name="YouTube" data-app-url="posts/youtube-premium.html">
@@ -242,7 +243,7 @@
       <!-- Aplicativos -->
       <section class="apps-section">
         <div class="section-header">
-          <h2 class="section-title" style="margin-bottom:0">📦 Aplicativos</h2>
+          <h2 class="section-title" style="margin-bottom:0">📦 Mais Aplicativos</h2>
           <a href="pages/aplicativos.html" class="show-more">Mostrar mais</a>
         </div>
         <div class="apps-grid" id="apps-grid">
