@@ -4,8 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Horizonte Tutoriais — Sua fonte definitiva para tutoriais e APKs</title>
+  <meta name="description" content="Horizonte Tutoriais — Baixe os melhores APKs, tutoriais, aplicativos premium desbloqueados e muito mais. Atualizado diariamente." />
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌅</text></svg>" />
 </head>
 <body>
 
@@ -13,6 +15,7 @@
   <div class="container">
     <a href="pages/contato.html">Contate-Nos</a>
     <a href="pages/privacidade.html">Política de Privacidade</a>
+    <a href="pages/isencao.html">Isenção de Responsabilidade</a>
   </div>
 </div>
 
@@ -20,12 +23,14 @@
   <div class="container header-inner">
     <a href="index.html" class="site-logo">🌅 Horizonte <span>Tutoriais</span></a>
     <div class="header-actions">
-      <a href="https://t.me/HorizonteTutoriais" target="_blank" class="header-telegram">Junte-Se</a>
+      <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="header-telegram">
+        <i class="fab fa-telegram"></i> Junte-Se
+      </a>
       
       <!-- Botão Modo Noturno -->
-      <button id="dark-mode-toggle" class="header-btn">🌙</button>
+      <button id="dark-mode-toggle" class="header-btn" title="Alternar Modo Noturno">🌙</button>
 
-      <!-- Barra de Pesquisa (Sempre Visível no Celular) -->
+      <!-- Barra de Pesquisa Fixa -->
       <div class="search-container">
         <form action="index.html" method="GET" class="search-form-fixed">
           <input type="text" name="s" placeholder="Pesquisar..." id="search-input">
@@ -36,13 +41,15 @@
   </div>
 </header>
 
-<nav class="site-nav">
+<nav class="site-nav" aria-label="Navegação principal">
   <div class="container">
-    <ul class="nav-list">
-      <li><a href="index.html" class="active">🏠 Lar</a></li>
-      <li><a href="pages/aplicativos.html">📱 Aplicativos</a></li>
-      <li><a href="pages/jogos.html">🎮 Jogos</a></li>
-      <li><a href="pages/tutoriais.html">📚 Tutoriais</a></li>
+    <ul class="nav-list" id="nav-list">
+      <li><a href="index.html" class="active"><span class="nav-icon">🏠</span> Lar</a></li>
+      <li><a href="pages/aplicativos.html"><span class="nav-icon">📱</span> Aplicativos</a></li>
+      <li><a href="pages/jogos.html"><span class="nav-icon">🎮</span> Jogos</a></li>
+      <li><a href="pages/tutoriais.html"><span class="nav-icon">📚</span> Tutoriais</a></li>
+      <li><a href="pages/ferramentas.html"><span class="nav-icon">🔧</span> Ferramentas</a></li>
+      <li><a href="pages/quente.html"><span class="nav-icon">🔥</span> Quente</a></li>
     </ul>
   </div>
 </nav>
@@ -54,20 +61,61 @@
         <h2 class="section-title">🔄 Atualizações</h2>
         <div class="updates-grid">
           <div class="update-card">
-            <img src="https://placehold.co/56x56" alt="App">
-            <div class="card-title">Telegram Premium</div>
-            <a href="#" class="btn-download">Download</a>
+            <img src="images/app-telegram.png" alt="Telegram" onerror="this.src='https://placehold.co/56x56/0088cc/fff?text=TG'" />
+            <div class="card-title">Telegram v12.4.3 (Premium Desbloqueado)</div>
+            <a href="posts/telegram-premium.html" class="btn-download">Download</a>
           </div>
           <div class="update-card">
-            <img src="https://placehold.co/56x56" alt="App">
-            <div class="card-title">Spotify Premium</div>
-            <a href="#" class="btn-download">Download</a>
+            <img src="images/app-spotify.png" alt="Spotify" onerror="this.src='https://placehold.co/56x56/1db954/fff?text=SP'" />
+            <div class="card-title">Spotify Music v9.1.22 (Premium Grátis)</div>
+            <a href="posts/spotify-premium.html" class="btn-download">Download</a>
+          </div>
+          <div class="update-card">
+            <img src="images/app-capcut.png" alt="CapCut" onerror="this.src='https://placehold.co/56x56/000/fff?text=CC'" />
+            <div class="card-title">CapCut Pro v13.2.0 (Sem Marca D'água)</div>
+            <a href="posts/capcut-pro.html" class="btn-download">Download</a>
+          </div>
+          <div class="update-card">
+            <img src="images/app-sticker.png" alt="Sticker.ly" onerror="this.src='https://placehold.co/56x56/ff6b35/fff?text=ST'" />
+            <div class="card-title">Sticker.ly v3.29.0 (Premium Desbloqueado)</div>
+            <a href="posts/sticker-premium.html" class="btn-download">Download</a>
           </div>
         </div>
       </section>
+
+      <section class="popular-section">
+        <h2 class="section-title">⭐ Aplicativos Populares</h2>
+        <div class="post-list-item">
+          <img src="images/app-youtube.png" alt="YouTube" onerror="this.src='https://placehold.co/64x64/ff0000/fff?text=YT'" />
+          <div class="post-list-info">
+            <div class="post-title"><a href="posts/youtube-premium.html">YouTube Premium v19.45.36 (Sem Anúncios)</a></div>
+            <div class="post-cat"><a href="pages/aplicativos.html">Aplicativos</a></div>
+            <a href="posts/youtube-premium.html" class="btn-download-sm">Download</a>
+          </div>
+        </div>
+        <!-- Adicione os outros itens aqui conforme seu original -->
+      </section>
     </main>
+
+    <aside class="sidebar">
+      <div class="sidebar-widget">
+        <h3 class="widget-title">📣 Mídias Sociais</h3>
+        <a href="https://t.me/HorizonteTutoriais" target="_blank" class="social-btn telegram">Telegram</a>
+        <a href="#" class="social-btn whatsapp">WhatsApp</a>
+      </div>
+      <div class="sidebar-widget about-widget">
+        <h3 class="widget-title">ℹ️ Sobre Nós</h3>
+        <p>Horizonte Tutoriais — Sua fonte definitiva para APKs e tutoriais.</p>
+      </div>
+    </aside>
   </div>
 </div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Copyright &copy; 2026 Horizonte Tutoriais</p>
+  </div>
+</footer>
 
 <script src="js/main.js"></script>
 </body>
