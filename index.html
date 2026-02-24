@@ -289,17 +289,23 @@
         </div>
       </section>
 
-      <!-- ===== SEÇÃO DE COMENTÁRIOS ===== -->
+      <!-- ===== SEÇÃO DE COMENTÁRIOS (DISQUS) ===== -->
       <section class="comments-section" style="background:var(--white);border:1px solid var(--gray-border);border-radius:var(--radius);padding:16px;margin-top:20px;box-shadow:var(--shadow);">
         <h3 class="widget-title">💬 Comentários</h3>
-        <div id="comments-list" style="margin-bottom:20px;">
-          <p class="no-comments" style="font-size:13px;color:var(--gray-text);">Seja o primeiro a comentar!</p>
-        </div>
-        <form id="comment-form" style="display:flex;flex-direction:column;gap:10px;">
-          <input type="text" id="comment-name" placeholder="Seu nome" required style="width:100%;border:1px solid var(--gray-border);border-radius:var(--radius);padding:8px 10px;font-size:13px;">
-          <textarea id="comment-content" placeholder="Escreva seu comentário..." required style="width:100%;border:1px solid var(--gray-border);border-radius:var(--radius);padding:10px;font-size:13px;min-height:80px;resize:vertical;"></textarea>
-          <button type="submit" style="background:var(--blue-primary);color:#fff;padding:8px 20px;border-radius:var(--radius);border:none;font-size:13px;font-weight:700;cursor:pointer;align-self:flex-start;">Enviar Comentário</button>
-        </form>
+        <div id="disqus_thread"></div>
+        <script>
+            var disqus_config = function () {
+                this.page.url = "https://horizontetutoriais.github.io/index.html";  
+                this.page.identifier = "index_page"; 
+            };
+            (function() { 
+                var d = document, s = d.createElement('script');
+                s.src = 'https://horizontetutoriais.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Por favor, habilite o JavaScript para ver os <a href="https://disqus.com/?ref_noscript">comentários do Disqus.</a></noscript>
       </section>
 
     </main>
