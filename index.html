@@ -19,9 +19,11 @@
     .search-fixed-container input::placeholder { color: rgba(255,255,255,0.7); }
     .search-fixed-container button { background: transparent; border: none; color: #fff; cursor: pointer; font-size: 16px; padding: 0 5px; }
     
-    /* Estilo para a seção de comentários Disqus */
+    /* Estilo para a seção de comentários Formspree */
     .custom-comments { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: var(--shadow); }
-    #disqus_thread { width: 100%; margin-top: 15px; }
+    .comment-form input, .comment-form textarea { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid var(--gray-border); border-radius: var(--radius); font-family: inherit; }
+    .comment-form button { background: var(--primary); color: #fff; border: none; padding: 12px 20px; border-radius: var(--radius); cursor: pointer; font-weight: bold; width: 100%; }
+    .comment-form button:hover { background: var(--primary-dark); }
     
     @media (max-width: 600px) {
       .header-telegram { display: none; }
@@ -300,26 +302,18 @@
         </div>
       </section>
 
-      <!-- ===== SEÇÃO DE COMENTÁRIOS DISQUS ===== -->
+      <!-- ===== SEÇÃO DE COMENTÁRIOS FORMSPREE ===== -->
       <section class="custom-comments">
         <h3 class="widget-title">💬 DEIXE UM COMENTÁRIO</h3>
-        <p style="font-size:13px;color:#666;margin:0;">Compartilhe sua opinião ou dúvida com a comunidade!</p>
+        <p style="font-size:13px;color:#666;margin-bottom:15px;">Seu comentário será enviado diretamente para o administrador via e-mail.</p>
         
-        <!-- Código principal do Disqus -->
-        <div id="disqus_thread"></div>
-        <script>
-          var disqus_config = function () {
-            this.page.url = window.location.href;
-            this.page.identifier = window.location.pathname;
-          };
-          (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://horizonte-tutoriais-2.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-          })();
-        </script>
-        <noscript>Por favor, ative o JavaScript para ver os <a href="https://disqus.com/?ref_noscript">comentários via Disqus.</a></noscript>
+        <form class="comment-form" id="direct-comment-form" action="https://formspree.io/f/xykdllbv" method="POST">
+          <input type="text" name="nome" placeholder="Seu Nome" required>
+          <input type="email" name="email" placeholder="Seu E-mail (opcional)">
+          <textarea name="comentario" rows="4" placeholder="Escreva seu comentário..." required></textarea>
+          <button type="submit">Enviar Comentário</button>
+        </form>
+        <div class="form-status" id="form-status" style="margin-top:10px; font-weight:bold;"></div>
       </section>
 
     </main>
