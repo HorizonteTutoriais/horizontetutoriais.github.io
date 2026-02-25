@@ -21,7 +21,7 @@
     
     /* Estilo para a seção de comentários Formspree */
     .custom-comments { background: #ffffff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-top: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-family: sans-serif; }
-    .comment-form input, .comment-form textarea { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; box-sizing: border-box; }
+    .comment-form input, .comment-form textarea { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; box-sizing: border-box; font-size: 16px; }
     
     /* BOTÃO: Estilo original com feedback visual */
     .comment-form button { 
@@ -40,12 +40,6 @@
       transition: background 0.3s;
     }
     .comment-form button:hover { background-color: #004494 !important; }
-    .comment-form button:disabled { background-color: #ccc !important; cursor: not-allowed; }
-
-    /* Status do formulário */
-    .form-status { margin-top: 15px; padding: 10px; border-radius: 5px; display: none; font-weight: bold; text-align: center; }
-    .status-success { display: block; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-    .status-error { display: block; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
     
     @media (max-width: 600px) {
       .header-telegram { display: none; }
@@ -324,26 +318,23 @@
         </div>
       </section>
 
-      <!-- ===== SEÇÃO DE COMENTÁRIOS FORMSPREE CONFIGURADA (ID: xpqjkvpy) ===== -->
+      <!-- ===== SEÇÃO DE COMENTÁRIOS NATIVA (ID: xpqjkvpy) ===== -->
       <section class="custom-comments">
         <h3 class="widget-title">💬 DEIXE UM COMENTÁRIO</h3>
         <p style="font-size:13px;color:#666;margin-bottom:15px;">Seu comentário será enviado diretamente para o administrador via e-mail.</p>
         
-        <!-- FORMULÁRIO COM O SEU NOVO ID -->
-        <form id="direct-comment-form" action="https://formspree.io/f/xpqjkvpy" method="POST">
-          <!-- CONFIGURAÇÕES OCULTAS EM PORTUGUÊS -->
+        <!-- FORMULÁRIO NATIVO: SEM SCRIPTS PARA NÃO TRAVAR NO ANDROID -->
+        <form action="https://formspree.io/f/xpqjkvpy" method="POST">
+          <!-- CONFIGURAÇÕES DO FORMSPREE -->
           <input type="hidden" name="_subject" value="Novo Comentário no Horizonte Tutoriais!">
           <input type="hidden" name="_language" value="pt-BR">
           
           <input type="text" name="nome" placeholder="Seu Nome" required>
-          <input type="email" name="_replyto" placeholder="Seu E-mail (obrigatório para resposta)" required>
-          <textarea name="comentario" rows="4" placeholder="Escreva seu comentário..." required></textarea>
+          <input type="email" name="_replyto" placeholder="Seu E-mail (obrigatório)" required>
+          <textarea name="comentario" rows="4" placeholder="Escreva seu comentário aqui..." required></textarea>
           
-          <button type="submit" id="submit-btn">Enviar Comentário</button>
+          <button type="submit">Enviar Comentário</button>
         </form>
-        
-        <!-- Mensagens de Status em Português -->
-        <div id="form-status" class="form-status"></div>
       </section>
 
     </main>
@@ -477,53 +468,6 @@
 </footer>
 
 <script src="js/main.js"></script>
-
-<!-- SCRIPT DE TRATAMENTO DO FORMSPREE EM PORTUGUÊS -->
-<script>
-  const form = document.getElementById("direct-comment-form");
-  const status = document.getElementById("form-status");
-  const button = document.getElementById("submit-btn");
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-    status.style.display = "block";
-    status.className = "form-status";
-    status.innerHTML = "Enviando comentário... aguarde.";
-    button.disabled = true;
-
-    const data = new FormData(event.target);
-    
-    fetch(event.target.action, {
-      method: form.method,
-      body: data,
-      headers: {
-        'Accept': 'application/json'
-      }
-    }).then(response => {
-      if (response.ok) {
-        status.innerHTML = "✅ ENVIADO COM SUCESSO! Verifique seu e-mail agora.";
-        status.className = "form-status status-success";
-        form.reset();
-      } else {
-        response.json().then(data => {
-          if (Object.hasOwn(data, 'errors')) {
-            status.innerHTML = "❌ Erro: " + data["errors"].map(error => error["message"]).join(", ");
-          } else {
-            status.innerHTML = "❌ Ops! Ocorreu um problema ao enviar.";
-          }
-          status.className = "form-status status-error";
-        })
-      }
-    }).catch(error => {
-      status.innerHTML = "❌ Erro de conexão. Verifique sua internet.";
-      status.className = "form-status status-error";
-    }).finally(() => {
-      button.disabled = false;
-    });
-  }
-  
-  form.addEventListener("submit", handleSubmit);
-</script>
 
 </body>
 </html>
