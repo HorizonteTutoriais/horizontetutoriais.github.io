@@ -21,9 +21,24 @@
     
     /* Estilo para a seção de comentários Formspree */
     .custom-comments { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: var(--shadow); }
-    .comment-form input, .comment-form textarea { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid var(--gray-border); border-radius: var(--radius); font-family: inherit; }
-    .comment-form button { background: var(--primary); color: #fff; border: none; padding: 12px 20px; border-radius: var(--radius); cursor: pointer; font-weight: bold; width: 100%; }
-    .comment-form button:hover { background: var(--primary-dark); }
+    .comment-form input, .comment-form textarea { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid var(--gray-border); border-radius: var(--radius); font-family: inherit; box-sizing: border-box; }
+    
+    /* CORREÇÃO DO BOTÃO: Garantindo visibilidade e estilo original */
+    .comment-form button { 
+      background-color: #0056b3 !important; /* Azul escuro visível */
+      color: #ffffff !important; /* Texto branco */
+      border: none; 
+      padding: 15px 20px; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      font-weight: bold; 
+      width: 100%; 
+      display: block !important; 
+      margin-top: 10px;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+    .comment-form button:hover { background-color: #004494 !important; }
     
     @media (max-width: 600px) {
       .header-telegram { display: none; }
