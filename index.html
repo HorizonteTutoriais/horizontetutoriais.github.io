@@ -23,9 +23,15 @@
     .custom-comments { background: #ffffff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-top: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-family: sans-serif; }
     .widget-title { margin-top: 0; font-size: 18px; border-bottom: 2px solid #0056b3; display: inline-block; margin-bottom: 15px; }
     
+    /* AJUSTE PARA O BOTÃO FICAR VISÍVEL NO CELULAR */
+    #cusdis_thread {
+      min-height: 300px; /* Garante um espaço mínimo */
+    }
+    
     @media (max-width: 600px) {
       .header-telegram { display: none; }
       .search-fixed-container input { width: 100px; }
+      .custom-comments { padding: 15px; }
     }
   </style>
 </head>
@@ -300,18 +306,19 @@
         </div>
       </section>
 
-      <!-- ===== SEÇÃO DE COMENTÁRIOS PÚBLICOS (CUSDIS) ===== -->
+      <!-- ===== SEÇÃO DE COMENTÁRIOS PÚBLICOS (CUSDIS) TRADUZIDA E AJUSTADA ===== -->
       <section class="custom-comments">
         <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
         <p style="font-size:13px;color:#666;margin-bottom:15px;">Compartilhe sua opinião! Não é necessário fazer login.</p>
         
-        <!-- CÓDIGO DO CUSDIS INTEGRADO -->
+        <!-- CÓDIGO DO CUSDIS COM TRADUÇÃO PARA PORTUGUÊS (data-lang="pt-br") -->
         <div id="cusdis_thread"
           data-host="https://cusdis.com"
           data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
           data-page-id="index_horizonte"
           data-page-url="https://horizontetutoriais.com/index.html"
           data-page-title="Horizonte Tutoriais - Início"
+          data-lang="pt-br"
         ></div>
         <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
       </section>
