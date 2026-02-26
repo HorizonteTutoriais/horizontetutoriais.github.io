@@ -19,57 +19,14 @@
     .search-fixed-container input::placeholder { color: rgba(255,255,255,0.7); }
     .search-fixed-container button { background: transparent; border: none; color: #fff; cursor: pointer; font-size: 16px; padding: 0 5px; }
     
-    /* Estilo para a seção de comentários */
-    .custom-comments { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: var(--shadow); }
-    .comment-form input, .comment-form textarea { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid var(--gray-border); border-radius: 4px; font-family: inherit; box-sizing: border-box; }
-    .comment-form button { background: var(--blue-primary); color: #fff; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; transition: background 0.3s ease; }
-    .comment-form button:hover { background: var(--blue-dark); }
-    .comment-form button:disabled { background: #ccc; cursor: not-allowed; }
-    .form-status { margin-top: 10px; padding: 10px; border-radius: 4px; display: none; }
-    .form-status.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; display: block; }
-    .form-status.error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; display: block; }
-    
-    /* ESTILOS ADICIONAIS PARA O FORMULÁRIO MANUAL (PARA GARANTIR VISIBILIDADE) */
-    .comment-form-manual { display: flex; flex-direction: column; gap: 10px; }
-    .comment-form-manual label { font-weight: bold; font-size: 14px; color: #333; }
-    .comment-form-manual input, .comment-form-manual textarea { 
-      width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; box-sizing: border-box; font-size: 16px; 
-    }
-    .comment-form-manual textarea { height: 80px; resize: none; }
-    
-    .comment-form-manual button { 
-      background-color: var(--blue-primary) !important; color: #ffffff !important; border: none; padding: 12px; border-radius: 6px; 
-      cursor: pointer; font-weight: bold; font-size: 16px; text-transform: uppercase; transition: background 0.3s;
-      order: -1;
-      margin-bottom: 10px;
-    }
-    .comment-form-manual button:hover { background-color: var(--blue-dark) !important; }
-    .comment-form-manual button:disabled { background-color: #ccc !important; cursor: not-allowed; }
-
-    .widget-title { margin-top: 0; font-size: 18px; border-bottom: 2px solid var(--blue-primary); display: inline-block; margin-bottom: 15px; }
+    /* Estilo para a seção de comentários Cusdis */
+    .custom-comments { background: #ffffff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-top: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-family: sans-serif; }
+    .widget-title { margin-top: 0; font-size: 18px; border-bottom: 2px solid #0056b3; display: inline-block; margin-bottom: 15px; }
     
     @media (max-width: 600px) {
       .header-telegram { display: none; }
       .search-fixed-container input { width: 100px; }
-      .custom-comments { padding: 15px; }
     }
-    
-    /* ESCONDER APENAS O FORMULÁRIO DO CUSDIS (Onde as pessoas digitam) */
-    /* Mas PERMITIR que a lista de comentários aprovados apareça */
-    #cusdis_thread iframe[src*="comment"] {
-      display: none !important;
-    }
-    
-    /* Estilo para a mensagem de status do envio */
-    .comment-status {
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 4px;
-      display: none;
-      font-weight: bold;
-    }
-    .status-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-    .status-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
   </style>
 </head>
 <body>
@@ -343,40 +300,29 @@
         </div>
       </section>
 
-      <!-- ===== SEÇÃO DE COMENTÁRIOS (CORRIGIDA) ===== -->
+      <!-- ===== SEÇÃO DE COMENTÁRIOS PÚBLICOS (CUSDIS) ===== -->
       <section class="custom-comments">
         <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
         <p style="font-size:13px;color:#666;margin-bottom:15px;">Compartilhe sua opinião! Não é necessário fazer login.</p>
         
-        <!-- FORMULÁRIO MANUAL EM PORTUGUÊS -->
-        <div class="comment-form-manual">
-          <button type="button" id="manual-submit-btn">ENVIAR COMENTÁRIO AGORA</button>
-          
-          <label>Seu Nome:</label>
-          <input type="text" id="manual-nickname" placeholder="Ex: João Silva" required>
-          
-          <label>Seu Comentário:</label>
-          <textarea id="manual-content" placeholder="Escreva aqui sua opinião..." required></textarea>
-          
-          <div id="manual-status" class="comment-status"></div>
-        </div>
-
-        <!-- LISTA DE COMENTÁRIOS APROVADOS -->
-        <div id="cusdis_list" style="margin-top: 30px;">
-          <div id="cusdis_thread"
-            data-host="https://cusdis.com"
-            data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
-            data-page-id="index_horizonte"
-            data-page-url="https://horizontetutoriais.com/index.html"
-            data-page-title="Horizonte Tutoriais - Início"
-          ></div>
-        </div>
+        <!-- CÓDIGO DO CUSDIS INTEGRADO -->
+        <div id="cusdis_thread"
+          data-host="https://cusdis.com"
+          data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
+          data-page-id="index_horizonte"
+          data-page-url="https://horizontetutoriais.com/index.html"
+          data-page-title="Horizonte Tutoriais - Início"
+        ></div>
+        <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
       </section>
 
     </main>
+    <!-- /COLUNA PRINCIPAL -->
 
     <!-- ===== SIDEBAR ===== -->
     <aside class="sidebar">
+
+      <!-- Mídias Sociais -->
       <div class="sidebar-widget">
         <h3 class="widget-title">📣 Mídias Sociais</h3>
         <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn telegram">
@@ -393,8 +339,10 @@
         </a>
       </div>
 
+      <!-- Posts Populares -->
       <div class="sidebar-widget">
         <h3 class="widget-title">🔥 Aplicativos Populares</h3>
+
         <div class="sidebar-post">
           <img src="images/app-youtube.png" alt="YouTube" onerror="this.src='https://placehold.co/56x56/ff0000/fff?text=YT'" />
           <div class="sidebar-post-info">
@@ -402,6 +350,7 @@
             <div class="sp-cat">Aplicativos</div>
           </div>
         </div>
+
         <div class="sidebar-post">
           <img src="images/app-panda.png" alt="TubeMate" onerror="this.src='https://placehold.co/56x56/ff6f00/fff?text=TM'" />
           <div class="sidebar-post-info">
@@ -409,25 +358,55 @@
             <div class="sp-cat">Aplicativos</div>
           </div>
         </div>
+
         <div class="sidebar-post">
           <img src="images/app-capcut.png" alt="CapCut" onerror="this.src='https://placehold.co/56x56/000/fff?text=CC'" />
           <div class="sidebar-post-info">
-            <div class="sp-title"><a href="posts/capcut-pro.html">CapCut Pro — Sem Marca D'água</a></div>
+            <div class="sp-title"><a href="posts/capcut-pro.html">CapCut Pro — Efeitos Ilimitados</a></div>
             <div class="sp-cat">Aplicativos</div>
           </div>
         </div>
+
+        <div class="sidebar-post">
+          <img src="images/app-telegram.png" alt="Telegram" onerror="this.src='https://placehold.co/56x56/0088cc/fff?text=TG'" />
+          <div class="sidebar-post-info">
+            <div class="sp-title"><a href="posts/telegram-premium.html">Telegram Premium Desbloqueado</a></div>
+            <div class="sp-cat">Aplicativos</div>
+          </div>
+        </div>
+
+        <div class="sidebar-post">
+          <img src="images/app-sticker.png" alt="Sticker.ly" onerror="this.src='https://placehold.co/56x56/ff6b35/fff?text=ST'" />
+          <div class="sidebar-post-info">
+            <div class="sp-title"><a href="posts/sticker-premium.html">Sticker.ly — Figurinhas Premium</a></div>
+            <div class="sp-cat">Aplicativos</div>
+          </div>
+        </div>
+
       </div>
+
+      <!-- Sobre Nós -->
+      <div class="sidebar-widget about-widget">
+        <h3 class="widget-title">ℹ️ Sobre Nós</h3>
+        <p>Horizonte Tutoriais — Sua fonte definitiva para APKs e tutoriais. Publicamos diariamente os melhores aplicativos, jogos e ferramentas para Android.</p>
+      </div>
+
     </aside>
+    <!-- /SIDEBAR -->
+
   </div>
 </div>
+<!-- /CONTAINER -->
 
+<!-- ===== FOOTER ===== -->
 <footer class="site-footer">
-  <div class="container footer-grid">
-    <div class="footer-brand">
-      <div class="footer-logo">🌅 Horizonte Tutoriais</div>
+  <div class="container footer-top">
+    <div class="footer-about">
+      <h3>🌅 Horizonte Tutoriais</h3>
       <p>Horizonte Tutoriais — Sua fonte definitiva para APKs e tutoriais. Todos os direitos reservados.</p>
       <div class="footer-social">
         <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" title="Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         <a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
         <a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener" title="YouTube"><i class="fab fa-youtube"></i></a>
       </div>
@@ -467,62 +446,7 @@
   </div>
 </footer>
 
-<!-- SCRIPT CUSDIS -->
-<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-<script>
-  // Permitir que o Cusdis carregue a lista, mas ocultar apenas o formulário dele
-  window.cusdis_prevent_initial_load = false;
-
-  document.getElementById('manual-submit-btn').addEventListener('click', async function() {
-    const nickname = document.getElementById('manual-nickname').value;
-    const content = document.getElementById('manual-content').value;
-    const status = document.getElementById('manual-status');
-    const btn = this;
-
-    if (!nickname || !content) {
-      status.innerHTML = "❌ Por favor, preencha o nome e o comentário.";
-      status.className = "comment-status status-error";
-      status.style.display = "block";
-      return;
-    }
-
-    btn.disabled = true;
-    status.innerHTML = "Enviando...";
-    status.className = "comment-status";
-    status.style.display = "block";
-
-    try {
-      const response = await fetch('https://cusdis.com/api/open/comments', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          appId: 'e3da7ffe-b147-47d9-b66a-8c62df6263b4',
-          pageId: 'index_horizonte',
-          pageTitle: 'Horizonte Tutoriais - Início',
-          pageUrl: 'https://horizontetutoriais.com/index.html',
-          nickname: nickname,
-          content: content
-        })
-      });
-
-      if (response.ok) {
-        status.innerHTML = "✅ ENVIADO! Aguarde a aprovação do administrador.";
-        status.className = "comment-status status-success";
-        document.getElementById('manual-nickname').value = '';
-        document.getElementById('manual-content').value = '';
-      } else {
-        status.innerHTML = "❌ Erro ao enviar. Tente novamente mais tarde.";
-        status.className = "comment-status status-error";
-      }
-    } catch (e) {
-      status.innerHTML = "❌ Erro de conexão. Verifique sua internet.";
-      status.className = "comment-status status-error";
-    } finally {
-      btn.disabled = false;
-    }
-  });
-</script>
-
 <script src="js/main.js"></script>
+
 </body>
 </html>
