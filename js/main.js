@@ -1,5 +1,5 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS — JavaScript ULTRA (FORÇAMENTO GLOBAL)
+   HORIZONTE TUTORIAIS — JavaScript (RESTAURADO E CORRIGIDO)
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -19,91 +19,36 @@ document.addEventListener('DOMContentLoaded', function () {
       if (darkModeToggle) darkModeToggle.textContent = '🌙';
       localStorage.setItem('theme', 'light');
     }
-
-    // Forçar em todos os elementos
-    forceThemeOnAllElements(isDark);
   }
 
-  // 2. Função para forçar tema em todos os elementos
-  function forceThemeOnAllElements(isDark) {
-    const allElements = document.querySelectorAll('*');
-    allElements.forEach(el => {
-      if (isDark) {
-        // Remover cores de fundo branco
-        if (el.style.backgroundColor === 'white' || 
-            el.style.backgroundColor === '#fff' || 
-            el.style.backgroundColor === '#ffffff') {
-          el.style.backgroundColor = '#1e1e1e';
-        }
-        // Remover cores de texto preto
-        if (el.style.color === 'black' || 
-            el.style.color === '#000' || 
-            el.style.color === '#000000') {
-          el.style.color = '#e0e0e0';
-        }
-      }
-    });
-
-    // Forçar em iframes (Cusdis)
-    const iframes = document.querySelectorAll('iframe');
-    iframes.forEach(iframe => {
-      try {
-        const doc = iframe.contentDocument || iframe.contentWindow.document;
-        if (doc) {
-          if (isDark) {
-            doc.body.style.backgroundColor = '#1e1e1e';
-            doc.body.style.color = '#e0e0e0';
-            doc.body.style.filter = 'invert(1) hue-rotate(180deg)';
-          } else {
-            doc.body.style.backgroundColor = '#fff';
-            doc.body.style.color = '#333';
-            doc.body.style.filter = 'none';
-          }
-        }
-      } catch (e) {}
-    });
-  }
-
-  // 3. Inicializar tema salvo
+  // 2. Inicializar tema salvo
   if (localStorage.getItem('theme') === 'dark') {
     setDarkTheme(true);
   }
 
-  // 4. Listener do botão de modo noturno
+  // 3. Listener do botão de modo noturno
   if (darkModeToggle) {
     darkModeToggle.addEventListener('click', function () {
       setDarkTheme(!body.classList.contains('dark-mode'));
     });
   }
 
-  // 5. Atualizar links do YouTube
+  // 4. Atualizar links do YouTube (Apenas onde houver o ícone ou classe youtube)
   function updateYouTubeLinks() {
-    const allLinks = document.querySelectorAll('a');
-    allLinks.forEach(link => {
-      if (link.href.includes('youtube.com') || link.classList.contains('youtube')) {
+    const youtubeLinks = document.querySelectorAll('a[href*="youtube.com"], .social-btn.youtube, .fa-youtube');
+    youtubeLinks.forEach(link => {
+      if (link.tagName === 'A') {
         link.href = youtubeLink;
+      } else {
+        const parent = link.closest('a');
+        if (parent) parent.href = youtubeLink;
       }
     });
   }
 
   updateYouTubeLinks();
-  setTimeout(updateYouTubeLinks, 1000);
 
-  // 6. Observador para novos elementos (para garantir que elementos dinâmicos também recebam o tema)
-  const observer = new MutationObserver(function(mutations) {
-    if (body.classList.contains('dark-mode')) {
-      forceThemeOnAllElements(true);
-    }
-  });
-
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-    attributes: true,
-    attributeFilter: ['style']
-  });
-
-  // 7. Barra de Pesquisa
+  // 5. Barra de Pesquisa (Apenas se existir)
   const searchInput = document.getElementById('search-input-fixed');
   if (searchInput) {
     searchInput.addEventListener('keypress', function(e) {
