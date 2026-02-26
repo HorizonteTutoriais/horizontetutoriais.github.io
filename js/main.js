@@ -9,17 +9,24 @@ document.addEventListener('DOMContentLoaded', function () {
   const darkModeToggle = document.getElementById('dark-mode-toggle');
   const body = document.body;
 
+  // Aplicar tema salvo ao carregar a página
   if (localStorage.getItem('theme') === 'dark') {
     body.classList.add('dark-mode');
     if (darkModeToggle) darkModeToggle.textContent = '☀️';
   }
 
+  // Adicionar listener ao botão de toggle
   if (darkModeToggle) {
     darkModeToggle.addEventListener('click', function () {
       body.classList.toggle('dark-mode');
       const isDark = body.classList.contains('dark-mode');
       darkModeToggle.textContent = isDark ? '☀️' : '🌙';
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      
+      // Recarregar comentários do Cusdis se existirem
+      if (window.CUSDIS && window.CUSDIS.setTheme) {
+        window.CUSDIS.setTheme(isDark ? 'dark' : 'light');
+      }
     });
   }
 
@@ -120,6 +127,39 @@ document.addEventListener('DOMContentLoaded', function () {
     loadMoreBtn.addEventListener('click', function () {
       hiddenPosts.forEach(el => el.classList.remove('hidden-post'));
       loadMoreBtn.style.display = 'none';
+    });
+  }
+
+  /* ---- Aplicar Modo Noturno a Iframes (Cusdis) ---- */
+  function applyDarkModeToIframes() {
+    const isDark = body.classList.contains('dark-mode');
+    const iframes = document.querySelectorAll('iframe');
+    
+    iframes.forEach(iframe => {
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        if (doc) {
+          if (isDark) {
+            doc.body.style.backgroundColor = '#1e1e1e';
+            doc.body.style.color = '#e0e0e0';
+          } else {
+            doc.body.style.backgroundColor = '#fff';
+            doc.body.style.color = '#333';
+          }
+        }
+      } catch (e) {
+        // Iframes de origem diferente não podem ser acessados
+      }
+    });
+  }
+
+  // Aplicar ao carregar
+  applyDarkModeToIframes();
+
+  // Reaplicar quando o modo noturno é alterado
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', function () {
+      setTimeout(applyDarkModeToIframes, 100);
     });
   }
 
