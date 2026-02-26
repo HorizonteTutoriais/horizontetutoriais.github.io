@@ -35,12 +35,12 @@
     .comment-form-manual input, .comment-form-manual textarea { 
       width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; box-sizing: border-box; font-size: 16px; 
     }
-    .comment-form-manual textarea { height: 80px; resize: none; } /* Altura menor para o botão subir */
+    .comment-form-manual textarea { height: 80px; resize: none; }
     
     .comment-form-manual button { 
       background-color: var(--blue-primary) !important; color: #ffffff !important; border: none; padding: 12px; border-radius: 6px; 
       cursor: pointer; font-weight: bold; font-size: 16px; text-transform: uppercase; transition: background 0.3s;
-      order: -1; /* COLOCA O BOTÃO NO TOPO */
+      order: -1;
       margin-bottom: 10px;
     }
     .comment-form-manual button:hover { background-color: var(--blue-dark) !important; }
@@ -54,14 +54,22 @@
       .custom-comments { padding: 15px; }
     }
     
-    /* Esconder o formulário automático do Cusdis para manter apenas o manual em português */
-    #cusdis_thread iframe {
+    /* ESCONDER APENAS O FORMULÁRIO DO CUSDIS (Onde as pessoas digitam) */
+    /* Mas PERMITIR que a lista de comentários aprovados apareça */
+    #cusdis_thread iframe[src*="comment"] {
       display: none !important;
     }
-    /* Mas permitir que a lista de comentários apareça se houver */
-    #cusdis_list {
-      margin-top: 20px;
+    
+    /* Estilo para a mensagem de status do envio */
+    .comment-status {
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 4px;
+      display: none;
+      font-weight: bold;
     }
+    .status-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .status-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
   </style>
 </head>
 <body>
@@ -335,14 +343,13 @@
         </div>
       </section>
 
-      <!-- ===== SEÇÃO DE COMENTÁRIOS (CORRIGIDA: APENAS VERSÃO EM PORTUGUÊS) ===== -->
+      <!-- ===== SEÇÃO DE COMENTÁRIOS (CORRIGIDA) ===== -->
       <section class="custom-comments">
         <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
         <p style="font-size:13px;color:#666;margin-bottom:15px;">Compartilhe sua opinião! Não é necessário fazer login.</p>
         
         <!-- FORMULÁRIO MANUAL EM PORTUGUÊS -->
         <div class="comment-form-manual">
-          <!-- BOTÃO NO TOPO PARA APARECER LOGO DE CARA -->
           <button type="button" id="manual-submit-btn">ENVIAR COMENTÁRIO AGORA</button>
           
           <label>Seu Nome:</label>
@@ -354,8 +361,8 @@
           <div id="manual-status" class="comment-status"></div>
         </div>
 
-        <!-- LISTA DE COMENTÁRIOS (O CUSDIS VAI CARREGAR APENAS AS MENSAGENS AQUI) -->
-        <div id="cusdis_list">
+        <!-- LISTA DE COMENTÁRIOS APROVADOS -->
+        <div id="cusdis_list" style="margin-top: 30px;">
           <div id="cusdis_thread"
             data-host="https://cusdis.com"
             data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
@@ -367,12 +374,9 @@
       </section>
 
     </main>
-    <!-- /COLUNA PRINCIPAL -->
 
     <!-- ===== SIDEBAR ===== -->
     <aside class="sidebar">
-
-      <!-- Mídias Sociais -->
       <div class="sidebar-widget">
         <h3 class="widget-title">📣 Mídias Sociais</h3>
         <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn telegram">
@@ -389,10 +393,8 @@
         </a>
       </div>
 
-      <!-- Posts Populares -->
       <div class="sidebar-widget">
         <h3 class="widget-title">🔥 Aplicativos Populares</h3>
-
         <div class="sidebar-post">
           <img src="images/app-youtube.png" alt="YouTube" onerror="this.src='https://placehold.co/56x56/ff0000/fff?text=YT'" />
           <div class="sidebar-post-info">
@@ -400,7 +402,6 @@
             <div class="sp-cat">Aplicativos</div>
           </div>
         </div>
-
         <div class="sidebar-post">
           <img src="images/app-panda.png" alt="TubeMate" onerror="this.src='https://placehold.co/56x56/ff6f00/fff?text=TM'" />
           <div class="sidebar-post-info">
@@ -408,7 +409,6 @@
             <div class="sp-cat">Aplicativos</div>
           </div>
         </div>
-
         <div class="sidebar-post">
           <img src="images/app-capcut.png" alt="CapCut" onerror="this.src='https://placehold.co/56x56/000/fff?text=CC'" />
           <div class="sidebar-post-info">
@@ -416,14 +416,11 @@
             <div class="sp-cat">Aplicativos</div>
           </div>
         </div>
-
       </div>
-
     </aside>
   </div>
 </div>
 
-<!-- ===== FOOTER ===== -->
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-brand">
@@ -470,11 +467,11 @@
   </div>
 </footer>
 
-<!-- SCRIPT PARA CONECTAR O FORMULÁRIO MANUAL AO CUSDIS -->
+<!-- SCRIPT CUSDIS -->
 <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 <script>
-  // ESTE SCRIPT GARANTE QUE O FORMULÁRIO EM INGLÊS NÃO SEJA CRIADO PELO CUSDIS
-  window.cusdis_prevent_initial_load = true;
+  // Permitir que o Cusdis carregue a lista, mas ocultar apenas o formulário dele
+  window.cusdis_prevent_initial_load = false;
 
   document.getElementById('manual-submit-btn').addEventListener('click', async function() {
     const nickname = document.getElementById('manual-nickname').value;
