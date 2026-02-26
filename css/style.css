@@ -1,8 +1,7 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS — Folha de Estilos Principal (VERSÃO FINAL)
+   HORIZONTE TUTORIAIS — CSS ULTRA (FORÇAMENTO MÁXIMO)
    ============================================================ */
 
-/* ---------- Reset & Base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -36,16 +35,9 @@ a:hover { text-decoration: underline; }
 
 img { max-width: 100%; height: auto; display: block; }
 
-/* ---------- Layout Principal ---------- */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 12px; }
 .main-layout { display: grid; grid-template-columns: 1fr 280px; gap: 20px; padding: 20px 0; }
 
-@media (max-width: 900px) {
-  .main-layout { grid-template-columns: 1fr; }
-  .sidebar { order: -1; }
-}
-
-/* ---------- Header & Nav ---------- */
 .top-bar { background: var(--blue-dark); color: #fff; font-size: 12px; padding: 4px 0; }
 .top-bar .container { display: flex; justify-content: flex-end; gap: 20px; }
 .top-bar a { color: #cce5ff; }
@@ -60,7 +52,6 @@ img { max-width: 100%; height: auto; display: block; }
 .nav-list li a { display: flex; align-items: center; gap: 5px; color: #fff; padding: 10px 16px; font-size: 13px; font-weight: 600; white-space: nowrap; }
 .nav-list li a.active { background: rgba(255,255,255,.15); }
 
-/* ---------- Seções e Cards ---------- */
 .popular-section, .updates-section, .exclusive-section, .apps-section, .comments-section, .sidebar-widget {
   background: var(--white);
   border: 1px solid var(--gray-border);
@@ -80,7 +71,6 @@ img { max-width: 100%; height: auto; display: block; }
   text-transform: uppercase;
 }
 
-/* ---------- Post (Descrição de Apps e Jogos) ---------- */
 .post-header h1 { font-size: 20px; color: var(--blue-dark); margin-bottom: 8px; }
 .post-meta { font-size: 12px; color: var(--gray-text); margin-bottom: 10px; }
 .post-featured-img { width: 100%; border-radius: var(--radius); margin-bottom: 16px; }
@@ -103,9 +93,21 @@ img { max-width: 100%; height: auto; display: block; }
 .telegram-cta { background: #0088cc; color: #fff; border-radius: var(--radius); padding: 12px 16px; display: flex; align-items: center; gap: 10px; font-size: 13px; margin: 16px 0; }
 .telegram-cta a { color: #fff; font-weight: 700; }
 
-/* ---------- MODO NOTURNO (FORÇADO) ---------- */
+.social-btn.youtube { background: #ff0000; color: #fff !important; }
+
+/* ============================================================
+   MODO NOTURNO — FORÇAMENTO ULTRA-AGRESSIVO
+   ============================================================ */
+
 body.dark-mode {
   background-color: #0a0a0a !important;
+  color: #e0e0e0 !important;
+}
+
+/* FORÇAR FUNDO ESCURO EM TUDO */
+body.dark-mode,
+body.dark-mode * {
+  background-color: transparent !important;
   color: #e0e0e0 !important;
 }
 
@@ -116,44 +118,164 @@ body.dark-mode .apps-section,
 body.dark-mode .comments-section,
 body.dark-mode .sidebar-widget,
 body.dark-mode article,
-body.dark-mode section {
+body.dark-mode section,
+body.dark-mode main,
+body.dark-mode .post-body,
+body.dark-mode .download-box {
+  background-color: #1e1e1e !important;
+  border-color: #333 !important;
+  color: #e0e0e0 !important;
+}
+
+/* FORÇAR CORES DE TEXTO CLARAS */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode p,
+body.dark-mode li,
+body.dark-mode td,
+body.dark-mode th,
+body.dark-mode span,
+body.dark-mode div,
+body.dark-mode a,
+body.dark-mode button,
+body.dark-mode label,
+body.dark-mode strong,
+body.dark-mode b,
+body.dark-mode em,
+body.dark-mode i,
+body.dark-mode .post-body,
+body.dark-mode .post-body p,
+body.dark-mode .post-body li,
+body.dark-mode .post-body h2,
+body.dark-mode .widget-title,
+body.dark-mode .section-title {
+  color: #e0e0e0 !important;
+}
+
+/* TÍTULOS EM DESTAQUE */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode .section-title,
+body.dark-mode .widget-title,
+body.dark-mode .post-header h1 {
+  color: #ffd600 !important;
+}
+
+/* TABELAS */
+body.dark-mode .info-table,
+body.dark-mode table {
   background-color: #1e1e1e !important;
   border-color: #333 !important;
 }
 
-body.dark-mode h1, 
-body.dark-mode h2, 
-body.dark-mode h3, 
-body.dark-mode .section-title, 
-body.dark-mode .widget-title,
-body.dark-mode .post-header h1 {
-  color: #ffd600 !important;
-  border-left-color: #ffd600 !important;
+body.dark-mode .info-table tr,
+body.dark-mode table tr {
+  background-color: #1e1e1e !important;
 }
 
-body.dark-mode p, 
-body.dark-mode li, 
-body.dark-mode td, 
-body.dark-mode span, 
-body.dark-mode div,
-body.dark-mode .post-body,
-body.dark-mode .post-body p,
-body.dark-mode .post-body li {
+body.dark-mode .info-table tr:nth-child(even),
+body.dark-mode table tr:nth-child(even) {
+  background-color: #252525 !important;
+}
+
+body.dark-mode .info-table td,
+body.dark-mode table td,
+body.dark-mode .info-table th,
+body.dark-mode table th {
+  border-color: #333 !important;
+  background-color: transparent !important;
   color: #e0e0e0 !important;
 }
 
-body.dark-mode .info-table tr:nth-child(even) { background-color: #252525 !important; }
-body.dark-mode .info-table td { border-color: #333 !important; }
-body.dark-mode .info-table td:first-child { color: #ffd600 !important; background-color: #1a1a1a !important; }
+body.dark-mode .info-table td:first-child,
+body.dark-mode table td:first-child {
+  color: #ffd600 !important;
+}
 
-body.dark-mode .download-box { background: linear-gradient(135deg, #1a237e, #0d47a1) !important; border-color: #0d47a1 !important; }
-body.dark-mode .download-box p { color: #fff !important; }
+/* BOTÕES DE DOWNLOAD */
+body.dark-mode .btn-big-download,
+body.dark-mode .btn-download,
+body.dark-mode .btn-download-sm {
+  background-color: #2e7d32 !important;
+  color: #fff !important;
+  border-color: #2e7d32 !important;
+}
 
-body.dark-mode .site-nav { background: #1a1a1a !important; border-bottom-color: #000 !important; }
-body.dark-mode .site-footer { background: #0a0a0a !important; border-top-color: #333 !important; }
+body.dark-mode .btn-big-download:hover,
+body.dark-mode .btn-download:hover,
+body.dark-mode .btn-download-sm:hover {
+  background-color: #1b5e20 !important;
+  color: #fff !important;
+}
 
-/* Botão Dark Mode */
-.header-btn { background: rgba(255,255,255,0.15); border: none; color: #fff; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+/* DOWNLOAD BOX */
+body.dark-mode .download-box {
+  background: linear-gradient(135deg, #1a237e, #0d47a1) !important;
+  border-color: #0d47a1 !important;
+}
 
-/* Links YouTube */
-.social-btn.youtube { background: #ff0000; color: #fff !important; }
+body.dark-mode .download-box p {
+  color: #fff !important;
+}
+
+/* FORMULÁRIOS E INPUTS */
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background-color: #252525 !important;
+  border-color: #444 !important;
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+  color: #888 !important;
+}
+
+/* COMENTÁRIOS (Cusdis) */
+body.dark-mode #cusdis_thread,
+body.dark-mode iframe {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+/* LINKS */
+body.dark-mode a {
+  color: #64b5f6 !important;
+}
+
+body.dark-mode a:hover {
+  color: #90caf9 !important;
+}
+
+/* FOOTER */
+body.dark-mode .site-footer {
+  background-color: #0a0a0a !important;
+  border-top-color: #333 !important;
+}
+
+body.dark-mode .footer-bottom {
+  background-color: #1a1a1a !important;
+}
+
+/* HEADER BUTTONS */
+.header-btn,
+#dark-mode-toggle {
+  cursor: pointer;
+  font-size: 20px;
+  background: none !important;
+  border: none !important;
+  color: #fff !important;
+}
+
+/* BREADCRUMB */
+body.dark-mode .breadcrumb {
+  color: #888 !important;
+}
+
+body.dark-mode .breadcrumb a {
+  color: #64b5f6 !important;
+}
