@@ -301,7 +301,7 @@
         </div>
       </section>
 
-      <!-- ===== SEÇÃO DE COMENTÁRIOS (APENAS O ORIGINAL TRADUZIDO) ===== -->
+      <!-- ===== SEÇÃO DE COMENTÁRIOS (SISTEMA ORIGINAL COM TRADUÇÃO COMPLETA) ===== -->
       <section class="custom-comments">
         <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
         <p style="font-size:13px;color:#666;margin-bottom:15px;">Compartilhe sua opinião! Não é necessário fazer login.</p>
@@ -417,7 +417,7 @@
   // Permitir carregamento inicial
   window.cusdis_prevent_initial_load = false;
 
-  // TRADUÇÃO DOS TERMOS ORIGINAIS
+  // TRADUÇÃO DOS TERMOS E MENSAGENS DE STATUS
   function translateCusdis() {
     const translations = {
       'Nickname': 'Seu Nome',
@@ -426,7 +426,9 @@
       'Submit': 'Enviar Comentário',
       'Email (optional)': 'E-mail (opcional)',
       'Reply...': 'Escreva aqui sua opinião...',
-      'Load more': 'Carregar mais'
+      'Load more': 'Carregar mais',
+      'sending...': 'Enviando...',
+      'Your comment has been sent. Please wait for approval.': 'Seu comentário foi enviado! Aguarde a aprovação do administrador.'
     };
 
     const iframes = document.querySelectorAll('#cusdis_thread iframe');
@@ -434,7 +436,7 @@
       try {
         const doc = iframe.contentDocument || iframe.contentWindow.document;
         
-        // Traduzir textos fixos
+        // Traduzir textos fixos e mensagens de status que aparecem dinamicamente
         const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null, false);
         let node;
         while(node = walker.nextNode()) {
@@ -457,8 +459,8 @@
     });
   }
 
-  // Rodar tradução periodicamente
-  setInterval(translateCusdis, 1000);
+  // Rodar tradução periodicamente (cada 500ms para ser mais rápido na captura do status)
+  setInterval(translateCusdis, 500);
 </script>
 
 <script src="js/main.js"></script>
