@@ -1,5 +1,5 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS — Folha de Estilos Principal
+   HORIZONTE TUTORIAIS — Folha de Estilos Principal (ULTRA DARK)
    ============================================================ */
 
 /* ---------- Reset & Base ---------- */
@@ -574,155 +574,85 @@ img { max-width: 100%; height: auto; display: block; }
 .footer-nav a { color: #0088cc; font-size: 12px; }
 .footer-bottom { background: #eee; padding: 12px 0; text-align: center; font-size: 12px; color: #666; }
 
-/* ---------- Responsividade ---------- */
-@media (max-width: 900px) {
-  .main-layout { grid-template-columns: 1fr; }
-  .sidebar { order: -1; }
-  .updates-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 600px) {
-  .updates-grid { grid-template-columns: repeat(2, 1fr); }
-  .exclusive-grid, .apps-grid { grid-template-columns: 1fr; }
-  .site-logo { font-size: 17px; }
-  .post-header h1 { font-size: 17px; }
-  .footer-top { flex-direction: column; }
-}
-
-/* ---------- Utilitários ---------- */
-.hidden { display: none !important; }
-.text-center { text-align: center; }
-.mt-10 { margin-top: 10px; }
-.mb-10 { margin-bottom: 10px; }
-
 /* ============================================================
-   MODO NOTURNO — REGRAS COM !important PARA GARANTIR VISIBILIDADE
+   MODO NOTURNO — REGRAS GLOBAIS COM !important
    ============================================================ */
 
 body.dark-mode {
-  --gray-bg:      #121212 !important;
-  --white:        #1e1e1e !important;
-  --gray-border:  #333 !important;
-  --gray-text:    #aaa !important;
+  background-color: #0a0a0a !important;
   color: #e0e0e0 !important;
-  background: #0a0a0a !important;
 }
 
-/* Fundo e Cores Gerais */
-body.dark-mode { background-color: #0a0a0a !important; }
-body.dark-mode * { color-scheme: dark !important; }
-
-/* Elementos Principais */
-body.dark-mode .site-nav { 
-  background: #1a1a1a !important; 
-  border-bottom-color: #000 !important; 
-}
-body.dark-mode .top-bar { 
-  background: #0a0a0a !important; 
-}
-
-/* Seções e Cards */
+/* Fundo Escuro para Containers */
 body.dark-mode .popular-section,
 body.dark-mode .updates-section,
 body.dark-mode .exclusive-section,
 body.dark-mode .apps-section,
 body.dark-mode .comments-section,
 body.dark-mode .sidebar-widget,
-body.dark-mode .static-page {
-  background: #1e1e1e !important;
+body.dark-mode .static-page,
+body.dark-mode .custom-comments,
+body.dark-mode article {
+  background-color: #1e1e1e !important;
   border-color: #333 !important;
   color: #e0e0e0 !important;
 }
 
-/* Cards Internos */
+/* Cards */
 body.dark-mode .update-card, 
 body.dark-mode .excl-card, 
 body.dark-mode .app-card {
-  background: #252525 !important;
+  background-color: #252525 !important;
   border-color: #333 !important;
-  color: #e0e0e0 !important;
 }
 
-/* Títulos e Textos em Cards */
+/* Títulos */
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
 body.dark-mode .card-title,
 body.dark-mode .post-title a,
 body.dark-mode .excl-title a,
 body.dark-mode .app-card-title a,
-body.dark-mode .post-title,
-body.dark-mode .excl-title,
-body.dark-mode .app-card-title {
-  color: #e0e0e0 !important;
-}
-
-/* Descrições e Categorias */
-body.dark-mode .app-card-cat,
-body.dark-mode .excl-cat,
-body.dark-mode .post-cat {
-  color: #aaa !important;
-}
-
-body.dark-mode .app-card-cat span { 
-  color: #ff9800 !important;
-}
-
-/* Linhas e Divisores */
-body.dark-mode .post-list-item { 
-  border-bottom-color: #333 !important; 
-}
-
-/* Títulos de Seção */
-body.dark-mode .section-title {
-  color: #ffd600 !important;
-  border-left-color: #ffd600 !important;
-}
-
-/* Widget Titles */
+body.dark-mode .section-title,
 body.dark-mode .widget-title {
   color: #ffd600 !important;
-  border-left-color: #ffd600 !important;
 }
 
-/* Post Body - Descrição de Apps e Jogos */
-body.dark-mode .post-body {
+/* Textos Gerais */
+body.dark-mode p, 
+body.dark-mode li, 
+body.dark-mode td, 
+body.dark-mode span,
+body.dark-mode .post-body,
+body.dark-mode .static-page p {
   color: #e0e0e0 !important;
 }
 
-body.dark-mode .post-body h2 {
-  color: #ffd600 !important;
-  border-bottom-color: #333 !important;
-}
-
-body.dark-mode .post-body h3 {
-  color: #64b5f6 !important;
-}
-
-body.dark-mode .post-body strong {
-  color: #e0e0e0 !important;
-}
-
-body.dark-mode .post-body p,
-body.dark-mode .post-body li,
-body.dark-mode .post-body ul,
-body.dark-mode .post-body ol {
-  color: #e0e0e0 !important;
-}
-
-/* Tabelas de Informações */
-body.dark-mode .info-table {
-  border-color: #333 !important;
-}
-
-body.dark-mode .info-table tr:nth-child(even) {
-  background: #252525 !important;
-}
-
+/* Tabelas de Especificação */
 body.dark-mode .info-table td {
   border-color: #333 !important;
-  color: #e0e0e0 !important;
+  background-color: #1e1e1e !important;
 }
-
+body.dark-mode .info-table tr:nth-child(even) {
+  background-color: #252525 !important;
+}
 body.dark-mode .info-table td:first-child {
   color: #ffd600 !important;
   background-color: #1a1a1a !important;
+}
+
+/* Formulários e Comentários */
+body.dark-mode textarea,
+body.dark-mode input[type="text"],
+body.dark-mode input[type="email"] {
+  background-color: #252525 !important;
+  border-color: #444 !important;
+  color: #e0e0e0 !important;
+}
+body.dark-mode textarea::placeholder,
+body.dark-mode input::placeholder {
+  color: #888 !important;
 }
 
 /* Download Box */
@@ -731,123 +661,25 @@ body.dark-mode .download-box {
   border-color: #0d47a1 !important;
 }
 
-body.dark-mode .download-box p {
-  color: #e0e0e0 !important;
-}
-
-/* Seção de Comentários - CRÍTICO */
-body.dark-mode .comments-section {
-  background: #1e1e1e !important;
-  border-color: #333 !important;
-}
-
-body.dark-mode .comments-section h3 {
-  color: #ffd600 !important;
-}
-
-body.dark-mode .comments-section p {
-  color: #e0e0e0 !important;
-}
-
-body.dark-mode .comment-form textarea,
-body.dark-mode .comment-form input[type="text"],
-body.dark-mode .comment-form input[type="email"] {
-  background: #252525 !important;
-  border-color: #444 !important;
-  color: #e0e0e0 !important;
-}
-
-body.dark-mode .comment-form textarea::placeholder,
-body.dark-mode .comment-form input[type="text"]::placeholder,
-body.dark-mode .comment-form input[type="email"]::placeholder {
-  color: #888 !important;
-}
-
-body.dark-mode .no-comments {
-  color: #aaa !important;
-}
-
-/* Breadcrumb */
-body.dark-mode .breadcrumb {
-  color: #aaa !important;
-}
-
-body.dark-mode .breadcrumb a {
-  color: #64b5f6 !important;
-}
-
-/* Página Estática */
-body.dark-mode .static-page {
-  background: #1e1e1e !important;
-  border-color: #333 !important;
-}
-
-body.dark-mode .static-page h1 {
-  color: #ffd600 !important;
-}
-
-body.dark-mode .static-page h2 {
-  color: #64b5f6 !important;
-}
-
-body.dark-mode .static-page p,
-body.dark-mode .static-page ul li {
-  color: #e0e0e0 !important;
-}
-
-/* Post Header */
-body.dark-mode .post-header h1 {
-  color: #ffd600 !important;
-}
-
-body.dark-mode .post-meta {
-  color: #aaa !important;
-}
-
-body.dark-mode .badge-cat {
-  background: #1a237e !important;
-  color: #64b5f6 !important;
-}
-
-body.dark-mode .badge-hot {
-  background: #4a0e0e !important;
-  color: #ff6b6b !important;
-}
-
-/* Telegram CTA */
-body.dark-mode .telegram-cta {
-  background: #0066aa !important;
-}
-
-/* Sidebar About Widget */
-body.dark-mode .sidebar-widget p {
-  color: #e0e0e0 !important;
-}
-
-/* Footer */
+/* Rodapé */
 body.dark-mode .site-footer {
-  background: #0a0a0a !important;
+  background-color: #0a0a0a !important;
   border-top-color: #333 !important;
-  color: #aaa !important;
 }
-
-body.dark-mode .footer-about h3,
-body.dark-mode .footer-links h4 {
-  color: #e0e0e0 !important;
-}
-
 body.dark-mode .footer-bottom {
-  background: #1a1a1a !important;
-  color: #aaa !important;
+  background-color: #1a1a1a !important;
 }
 
 /* Barra de Pesquisa */
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+body.dark-mode .search-form {
+  background-color: #333 !important;
+}
+body.dark-mode .search-form input {
+  color: #e0e0e0 !important;
 }
 
+/* Estilos do Cabeçalho */
+.header-actions { display: flex; align-items: center; gap: 10px; }
 .header-btn {
   background: rgba(255,255,255,0.15);
   border: none;
@@ -859,92 +691,20 @@ body.dark-mode .footer-bottom {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s, transform 0.2s;
   font-size: 16px;
 }
-
-.header-btn:hover {
-  background: rgba(255,255,255,0.3);
-  transform: scale(1.05);
-}
-
-.search-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
 .search-form {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
   background: #fff;
   border-radius: 20px;
   padding: 0 15px;
-  width: 0;
-  overflow: hidden;
-  transition: width 0.3s ease, box-shadow 0.3s;
   display: flex;
   align-items: center;
-  z-index: 10;
 }
-
-.search-form.active {
-  width: 200px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
 .search-form input {
   border: none;
   outline: none;
   padding: 8px 0;
-  width: 100%;
+  width: 150px;
   font-size: 14px;
   background: transparent;
-  color: #333;
-}
-
-body.dark-mode .search-form {
-  background: #333 !important;
-}
-
-body.dark-mode .search-form input {
-  color: #e0e0e0 !important;
-}
-
-body.dark-mode .search-form input::placeholder {
-  color: #888 !important;
-}
-
-/* Ajuste Mobile */
-@media (max-width: 600px) {
-  .header-telegram { display: none; }
-  .search-form.active { width: 160px; }
-}
-
-/* Cusdis Comments Widget */
-body.dark-mode #cusdis_thread,
-body.dark-mode [data-host="https://cusdis.com"] {
-  color-scheme: dark !important;
-}
-
-body.dark-mode #cusdis_list {
-  background: #1e1e1e !important;
-  color: #e0e0e0 !important;
-}
-
-/* Custom Comments Section */
-body.dark-mode .custom-comments {
-  background: #1e1e1e !important;
-  border-color: #333 !important;
-  color: #e0e0e0 !important;
-}
-
-body.dark-mode .custom-comments h3 {
-  color: #ffd600 !important;
-}
-
-body.dark-mode .custom-comments p {
-  color: #e0e0e0 !important;
 }
