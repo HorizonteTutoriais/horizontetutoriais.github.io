@@ -53,6 +53,15 @@
       .search-fixed-container input { width: 100px; }
       .custom-comments { padding: 15px; }
     }
+    
+    /* Esconder o formulário automático do Cusdis para manter apenas o manual em português */
+    #cusdis_thread iframe {
+      display: none !important;
+    }
+    /* Mas permitir que a lista de comentários apareça se houver */
+    #cusdis_list {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -326,7 +335,7 @@
         </div>
       </section>
 
-      <!-- ===== SEÇÃO DE COMENTÁRIOS (CORRIGIDA: PORTUGUÊS E VISÍVEL) ===== -->
+      <!-- ===== SEÇÃO DE COMENTÁRIOS (CORRIGIDA: APENAS VERSÃO EM PORTUGUÊS) ===== -->
       <section class="custom-comments">
         <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
         <p style="font-size:13px;color:#666;margin-bottom:15px;">Compartilhe sua opinião! Não é necessário fazer login.</p>
@@ -403,51 +412,25 @@
         <div class="sidebar-post">
           <img src="images/app-capcut.png" alt="CapCut" onerror="this.src='https://placehold.co/56x56/000/fff?text=CC'" />
           <div class="sidebar-post-info">
-            <div class="sp-title"><a href="posts/capcut-pro.html">CapCut Pro — Efeitos Ilimitados</a></div>
+            <div class="sp-title"><a href="posts/capcut-pro.html">CapCut Pro — Sem Marca D'água</a></div>
             <div class="sp-cat">Aplicativos</div>
           </div>
         </div>
 
-        <div class="sidebar-post">
-          <img src="images/app-telegram.png" alt="Telegram" onerror="this.src='https://placehold.co/56x56/0088cc/fff?text=TG'" />
-          <div class="sidebar-post-info">
-            <div class="sp-title"><a href="posts/telegram-premium.html">Telegram Premium Desbloqueado</a></div>
-            <div class="sp-cat">Aplicativos</div>
-          </div>
-        </div>
-
-        <div class="sidebar-post">
-          <img src="images/app-sticker.png" alt="Sticker.ly" onerror="this.src='https://placehold.co/56x56/ff6b35/fff?text=ST'" />
-          <div class="sidebar-post-info">
-            <div class="sp-title"><a href="posts/sticker-premium.html">Sticker.ly — Figurinhas Premium</a></div>
-            <div class="sp-cat">Aplicativos</div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Sobre Nós -->
-      <div class="sidebar-widget about-widget">
-        <h3 class="widget-title">ℹ️ Sobre Nós</h3>
-        <p>Horizonte Tutoriais — Sua fonte definitiva para APKs e tutoriais. Publicamos diariamente os melhores aplicativos, jogos e ferramentas para Android.</p>
       </div>
 
     </aside>
-    <!-- /SIDEBAR -->
-
   </div>
 </div>
-<!-- /CONTAINER -->
 
 <!-- ===== FOOTER ===== -->
 <footer class="site-footer">
-  <div class="container footer-top">
-    <div class="footer-about">
-      <h3>🌅 Horizonte Tutoriais</h3>
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">🌅 Horizonte Tutoriais</div>
       <p>Horizonte Tutoriais — Sua fonte definitiva para APKs e tutoriais. Todos os direitos reservados.</p>
       <div class="footer-social">
         <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" title="Telegram"><i class="fab fa-telegram"></i></a>
-        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         <a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
         <a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener" title="YouTube"><i class="fab fa-youtube"></i></a>
       </div>
