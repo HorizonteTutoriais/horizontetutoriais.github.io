@@ -1,7 +1,8 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS — CSS ULTRA (FORÇAMENTO MÁXIMO)
+   HORIZONTE TUTORIAIS — Folha de Estilos (RESTAURADA E CORRIGIDA)
    ============================================================ */
 
+/* ---------- Reset & Base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -35,28 +36,114 @@ a:hover { text-decoration: underline; }
 
 img { max-width: 100%; height: auto; display: block; }
 
-.container { max-width: 1100px; margin: 0 auto; padding: 0 12px; }
-.main-layout { display: grid; grid-template-columns: 1fr 280px; gap: 20px; padding: 20px 0; }
+/* ---------- Top Bar ---------- */
+.top-bar {
+  background: var(--blue-dark);
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 0;
+}
+.top-bar .container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+.top-bar a { color: #cce5ff; font-size: 12px; }
+.top-bar a:hover { color: #fff; text-decoration: none; }
 
-.top-bar { background: var(--blue-dark); color: #fff; font-size: 12px; padding: 4px 0; }
-.top-bar .container { display: flex; justify-content: flex-end; gap: 20px; }
-.top-bar a { color: #cce5ff; }
-
-.site-header { background: var(--blue-primary); padding: 10px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,.3); }
-.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.site-logo { font-size: 22px; font-weight: 800; color: #fff; }
+/* ---------- Header ---------- */
+.site-header {
+  background: var(--blue-primary);
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,.3);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.site-logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
 .site-logo span { color: #ffd600; }
+.site-logo:hover { text-decoration: none; color: #fff; }
 
-.site-nav { background: var(--blue-nav); border-bottom: 3px solid var(--blue-dark); }
-.nav-list { display: flex; list-style: none; overflow-x: auto; }
-.nav-list li a { display: flex; align-items: center; gap: 5px; color: #fff; padding: 10px 16px; font-size: 13px; font-weight: 600; white-space: nowrap; }
-.nav-list li a.active { background: rgba(255,255,255,.15); }
+.header-telegram {
+  background: #0088cc;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.header-telegram:hover { background: #006fa3; text-decoration: none; color: #fff; }
 
-.popular-section, .updates-section, .exclusive-section, .apps-section, .comments-section, .sidebar-widget {
+/* ---------- Navigation ---------- */
+.site-nav {
+  background: var(--blue-nav);
+  border-bottom: 3px solid var(--blue-dark);
+}
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-list::-webkit-scrollbar { display: none; }
+.nav-list li a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background .2s;
+}
+.nav-list li a:hover,
+.nav-list li a.active { background: rgba(255,255,255,.15); text-decoration: none; }
+.nav-list li a .nav-icon { font-size: 14px; }
+
+/* ---------- Container ---------- */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+/* ---------- Layout Principal ---------- */
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+@media (max-width: 900px) {
+  .main-layout { grid-template-columns: 1fr; }
+  .sidebar { order: 2; }
+}
+
+/* ---------- Seções e Cards ---------- */
+.popular-section, .updates-section, .exclusive-section, .apps-section, .comments-section, .sidebar-widget, .static-page {
   background: var(--white);
   border: 1px solid var(--gray-border);
   border-radius: var(--radius);
-  padding: 16px;
+  padding: 14px;
   margin-bottom: 20px;
   box-shadow: var(--shadow);
 }
@@ -71,12 +158,35 @@ img { max-width: 100%; height: auto; display: block; }
   text-transform: uppercase;
 }
 
+/* Grid de Atualizações */
+.updates-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
+.update-card { background: var(--gray-bg); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 10px; text-align: center; }
+.update-card img { width: 56px; height: 56px; border-radius: 12px; margin: 0 auto 8px; }
+.update-card .card-title { font-size: 11px; font-weight: 600; color: #333; margin-bottom: 6px; }
+
+/* Grid de Apps e Jogos */
+.apps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.app-card { background: var(--gray-bg); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 10px; }
+.app-card-title { font-size: 12px; font-weight: 700; color: #222; margin-bottom: 2px; }
+.app-card-cat { font-size: 10px; color: var(--gray-text); margin-bottom: 6px; }
+
+/* Lista de Posts */
+.post-list-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid #eee; }
+.post-list-item:last-child { border-bottom: none; }
+.post-list-item img { width: 64px; height: 64px; border-radius: 10px; flex-shrink: 0; }
+.post-list-info { flex: 1; }
+.post-list-info .post-title { font-size: 13px; font-weight: 700; color: #222; }
+
+/* Botões */
+.btn-download, .btn-download-sm { background: var(--green-btn); color: #fff !important; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; display: inline-block; }
+.btn-download:hover, .btn-download-sm:hover { background: var(--green-hover); }
+
+/* ---------- Post (Descrição) ---------- */
 .post-header h1 { font-size: 20px; color: var(--blue-dark); margin-bottom: 8px; }
 .post-meta { font-size: 12px; color: var(--gray-text); margin-bottom: 10px; }
 .post-featured-img { width: 100%; border-radius: var(--radius); margin-bottom: 16px; }
 .post-body { font-size: 14px; line-height: 1.8; color: #333; }
 .post-body h2 { font-size: 17px; color: var(--blue-dark); margin: 20px 0 10px; border-bottom: 2px solid #e3f2fd; padding-bottom: 6px; }
-.post-body p, .post-body li { margin-bottom: 12px; }
 
 .info-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
 .info-table tr:nth-child(even) { background: #f0f4ff; }
@@ -86,28 +196,18 @@ img { max-width: 100%; height: auto; display: block; }
 .download-box { background: linear-gradient(135deg, #e3f2fd, #bbdefb); border: 2px solid var(--blue-primary); border-radius: var(--radius); padding: 20px; text-align: center; margin: 20px 0; }
 .btn-big-download { display: inline-block; background: var(--green-btn); color: #fff !important; padding: 14px 40px; border-radius: 8px; font-size: 16px; font-weight: 800; }
 
-.badge { padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-right: 6px; }
-.badge-cat { background: #e3f2fd; color: var(--blue-primary); }
-.badge-hot { background: #ffebee; color: #c62828; }
-
 .telegram-cta { background: #0088cc; color: #fff; border-radius: var(--radius); padding: 12px 16px; display: flex; align-items: center; gap: 10px; font-size: 13px; margin: 16px 0; }
 .telegram-cta a { color: #fff; font-weight: 700; }
 
-.social-btn.youtube { background: #ff0000; color: #fff !important; }
+/* ---------- Sidebar ---------- */
+.social-btn { display: flex; align-items: center; gap: 10px; padding: 9px 14px; border-radius: var(--radius); color: #fff !important; font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+.social-btn.telegram { background: #0088cc; }
+.social-btn.youtube { background: #ff0000; }
+.social-btn.instagram { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
 
-/* ============================================================
-   MODO NOTURNO — FORÇAMENTO ULTRA-AGRESSIVO
-   ============================================================ */
-
+/* ---------- MODO NOTURNO (CORRIGIDO) ---------- */
 body.dark-mode {
   background-color: #0a0a0a !important;
-  color: #e0e0e0 !important;
-}
-
-/* FORÇAR FUNDO ESCURO EM TUDO */
-body.dark-mode,
-body.dark-mode * {
-  background-color: transparent !important;
   color: #e0e0e0 !important;
 }
 
@@ -117,165 +217,59 @@ body.dark-mode .exclusive-section,
 body.dark-mode .apps-section,
 body.dark-mode .comments-section,
 body.dark-mode .sidebar-widget,
+body.dark-mode .static-page,
 body.dark-mode article,
-body.dark-mode section,
-body.dark-mode main,
-body.dark-mode .post-body,
-body.dark-mode .download-box {
+body.dark-mode section {
   background-color: #1e1e1e !important;
   border-color: #333 !important;
-  color: #e0e0e0 !important;
 }
 
-/* FORÇAR CORES DE TEXTO CLARAS */
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3,
-body.dark-mode h4,
-body.dark-mode h5,
-body.dark-mode h6,
-body.dark-mode p,
-body.dark-mode li,
-body.dark-mode td,
-body.dark-mode th,
-body.dark-mode span,
+body.dark-mode .update-card, 
+body.dark-mode .excl-card, 
+body.dark-mode .app-card {
+  background-color: #252525 !important;
+  border-color: #333 !important;
+}
+
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode .section-title, 
+body.dark-mode .widget-title,
+body.dark-mode .post-header h1,
+body.dark-mode .card-title,
+body.dark-mode .post-title a,
+body.dark-mode .app-card-title a {
+  color: #ffd600 !important;
+  border-left-color: #ffd600 !important;
+}
+
+body.dark-mode p, 
+body.dark-mode li, 
+body.dark-mode td, 
+body.dark-mode span, 
 body.dark-mode div,
-body.dark-mode a,
-body.dark-mode button,
-body.dark-mode label,
-body.dark-mode strong,
-body.dark-mode b,
-body.dark-mode em,
-body.dark-mode i,
 body.dark-mode .post-body,
 body.dark-mode .post-body p,
-body.dark-mode .post-body li,
-body.dark-mode .post-body h2,
-body.dark-mode .widget-title,
-body.dark-mode .section-title {
+body.dark-mode .post-body li {
   color: #e0e0e0 !important;
 }
 
-/* TÍTULOS EM DESTAQUE */
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode .section-title,
-body.dark-mode .widget-title,
-body.dark-mode .post-header h1 {
-  color: #ffd600 !important;
-}
+body.dark-mode .info-table tr:nth-child(even) { background-color: #252525 !important; }
+body.dark-mode .info-table td { border-color: #333 !important; }
+body.dark-mode .info-table td:first-child { color: #ffd600 !important; background-color: #1a1a1a !important; }
 
-/* TABELAS */
-body.dark-mode .info-table,
-body.dark-mode table {
-  background-color: #1e1e1e !important;
-  border-color: #333 !important;
-}
+body.dark-mode .download-box { background: linear-gradient(135deg, #1a237e, #0d47a1) !important; border-color: #0d47a1 !important; }
+body.dark-mode .download-box p { color: #fff !important; }
 
-body.dark-mode .info-table tr,
-body.dark-mode table tr {
-  background-color: #1e1e1e !important;
-}
+body.dark-mode .site-nav { background: #1a1a1a !important; border-bottom-color: #000 !important; }
+body.dark-mode .site-footer { background: #0a0a0a !important; border-top-color: #333 !important; }
 
-body.dark-mode .info-table tr:nth-child(even),
-body.dark-mode table tr:nth-child(even) {
-  background-color: #252525 !important;
-}
-
-body.dark-mode .info-table td,
-body.dark-mode table td,
-body.dark-mode .info-table th,
-body.dark-mode table th {
-  border-color: #333 !important;
-  background-color: transparent !important;
-  color: #e0e0e0 !important;
-}
-
-body.dark-mode .info-table td:first-child,
-body.dark-mode table td:first-child {
-  color: #ffd600 !important;
-}
-
-/* BOTÕES DE DOWNLOAD */
-body.dark-mode .btn-big-download,
-body.dark-mode .btn-download,
-body.dark-mode .btn-download-sm {
-  background-color: #2e7d32 !important;
-  color: #fff !important;
-  border-color: #2e7d32 !important;
-}
-
-body.dark-mode .btn-big-download:hover,
-body.dark-mode .btn-download:hover,
-body.dark-mode .btn-download-sm:hover {
-  background-color: #1b5e20 !important;
-  color: #fff !important;
-}
-
-/* DOWNLOAD BOX */
-body.dark-mode .download-box {
-  background: linear-gradient(135deg, #1a237e, #0d47a1) !important;
-  border-color: #0d47a1 !important;
-}
-
-body.dark-mode .download-box p {
-  color: #fff !important;
-}
-
-/* FORMULÁRIOS E INPUTS */
-body.dark-mode input,
-body.dark-mode textarea,
-body.dark-mode select {
-  background-color: #252525 !important;
-  border-color: #444 !important;
-  color: #e0e0e0 !important;
-}
-
-body.dark-mode input::placeholder,
-body.dark-mode textarea::placeholder {
-  color: #888 !important;
-}
-
-/* COMENTÁRIOS (Cusdis) */
-body.dark-mode #cusdis_thread,
-body.dark-mode iframe {
+/* Correção para os Comentários */
+body.dark-mode .cusdis-thread, 
+body.dark-mode #cusdis_thread {
   filter: invert(1) hue-rotate(180deg) !important;
 }
 
-/* LINKS */
-body.dark-mode a {
-  color: #64b5f6 !important;
-}
-
-body.dark-mode a:hover {
-  color: #90caf9 !important;
-}
-
-/* FOOTER */
-body.dark-mode .site-footer {
-  background-color: #0a0a0a !important;
-  border-top-color: #333 !important;
-}
-
-body.dark-mode .footer-bottom {
-  background-color: #1a1a1a !important;
-}
-
-/* HEADER BUTTONS */
-.header-btn,
-#dark-mode-toggle {
-  cursor: pointer;
-  font-size: 20px;
-  background: none !important;
-  border: none !important;
-  color: #fff !important;
-}
-
-/* BREADCRUMB */
-body.dark-mode .breadcrumb {
-  color: #888 !important;
-}
-
-body.dark-mode .breadcrumb a {
-  color: #64b5f6 !important;
-}
+/* Botão Dark Mode */
+.header-btn { background: rgba(255,255,255,0.15); border: none; color: #fff; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
