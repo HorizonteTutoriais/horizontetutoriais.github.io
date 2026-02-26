@@ -19,27 +19,9 @@
     .search-fixed-container input::placeholder { color: rgba(255,255,255,0.7); }
     .search-fixed-container button { background: transparent; border: none; color: #fff; cursor: pointer; font-size: 16px; padding: 0 5px; }
     
-    /* Estilo para a seção de comentários Formspree */
+    /* Estilo para a seção de comentários Cusdis */
     .custom-comments { background: #ffffff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-top: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-family: sans-serif; }
-    .comment-form input, .comment-form textarea { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; box-sizing: border-box; font-size: 16px; }
-    
-    /* BOTÃO: Estilo original com feedback visual */
-    .comment-form button { 
-      background-color: #0056b3 !important; 
-      color: #ffffff !important; 
-      border: none; 
-      padding: 15px 20px; 
-      border-radius: 8px; 
-      cursor: pointer; 
-      font-weight: bold; 
-      width: 100%; 
-      display: block !important; 
-      margin-top: 10px;
-      font-size: 16px;
-      text-transform: uppercase;
-      transition: background 0.3s;
-    }
-    .comment-form button:hover { background-color: #004494 !important; }
+    .widget-title { margin-top: 0; font-size: 18px; border-bottom: 2px solid #0056b3; display: inline-block; margin-bottom: 15px; }
     
     @media (max-width: 600px) {
       .header-telegram { display: none; }
@@ -318,23 +300,20 @@
         </div>
       </section>
 
-      <!-- ===== SEÇÃO DE COMENTÁRIOS NATIVA (ID: xpqjkvpy) ===== -->
+      <!-- ===== SEÇÃO DE COMENTÁRIOS PÚBLICOS (CUSDIS) ===== -->
       <section class="custom-comments">
-        <h3 class="widget-title">💬 DEIXE UM COMENTÁRIO</h3>
-        <p style="font-size:13px;color:#666;margin-bottom:15px;">Seu comentário será enviado diretamente para o administrador via e-mail.</p>
+        <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
+        <p style="font-size:13px;color:#666;margin-bottom:15px;">Compartilhe sua opinião! Não é necessário fazer login.</p>
         
-        <!-- FORMULÁRIO NATIVO: SEM SCRIPTS PARA NÃO TRAVAR NO ANDROID -->
-        <form action="https://formspree.io/f/xpqjkvpy" method="POST">
-          <!-- CONFIGURAÇÕES DO FORMSPREE -->
-          <input type="hidden" name="_subject" value="Novo Comentário no Horizonte Tutoriais!">
-          <input type="hidden" name="_language" value="pt-BR">
-          
-          <input type="text" name="nome" placeholder="Seu Nome" required>
-          <input type="email" name="_replyto" placeholder="Seu E-mail (obrigatório)" required>
-          <textarea name="comentario" rows="4" placeholder="Escreva seu comentário aqui..." required></textarea>
-          
-          <button type="submit">Enviar Comentário</button>
-        </form>
+        <!-- CÓDIGO DO CUSDIS INTEGRADO -->
+        <div id="cusdis_thread"
+          data-host="https://cusdis.com"
+          data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
+          data-page-id="index_horizonte"
+          data-page-url="https://horizontetutoriais.com/index.html"
+          data-page-title="Horizonte Tutoriais - Início"
+        ></div>
+        <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
       </section>
 
     </main>
