@@ -2,16 +2,19 @@
 // Este arquivo monta automaticamente as listas de apps e jogos
 
 function obterPrefixoCaminho() {
-  // Se estiver na pasta "pages", precisa subir um nível (../) para chegar na raiz
-  // Se estiver no Index (raiz), não precisa de prefixo
   const path = window.location.pathname;
-  if (path.includes('/pages/')) {
+  
+  // Se estiver em uma subpasta (pages, posts, Index com Cusdis)
+  if (path.includes('/pages/') || path.includes('/posts/') || path.includes('/Index%20com%20Cusdis/') || path.includes('/Index com Cusdis/')) {
+    // Se for um post (que está em posts/aplicativos/ ou posts/jogos/), precisa subir 2 níveis
+    if (path.includes('/posts/aplicativos/') || path.includes('/posts/jogos/')) {
+        return '../../';
+    }
+    // Para as outras subpastas, sobe 1 nível
     return '../';
   }
-  // Para a pasta "Index com Cusdis", também precisa subir um nível
-  if (path.includes('/Index com Cusdis/')) {
-    return '../';
-  }
+  
+  // Se estiver na raiz
   return '';
 }
 
@@ -22,7 +25,7 @@ function renderizarAtualizacoes() {
   const prefixo = obterPrefixoCaminho();
   container.innerHTML = '';
   
-  // Adiciona aplicativos
+  // Renderiza aplicativos
   APPS_DATA.aplicativos.forEach(app => {
     const card = document.createElement('div');
     card.className = 'update-card';
@@ -34,7 +37,7 @@ function renderizarAtualizacoes() {
     container.appendChild(card);
   });
 
-  // Adiciona jogos
+  // Renderiza jogos
   APPS_DATA.jogos.forEach(jogo => {
     const card = document.createElement('div');
     card.className = 'update-card';
@@ -58,7 +61,7 @@ function renderizarDestaques() {
   const itensAntigos = container.querySelectorAll('.post-list-item');
   itensAntigos.forEach(item => item.remove());
 
-  // Adiciona aplicativos
+  // Aplicativos
   APPS_DATA.aplicativos.forEach(app => {
     const item = document.createElement('div');
     item.className = 'post-list-item';
@@ -73,7 +76,7 @@ function renderizarDestaques() {
     container.appendChild(item);
   });
 
-  // Adiciona jogos
+  // Jogos
   APPS_DATA.jogos.forEach(jogo => {
     const item = document.createElement('div');
     item.className = 'post-list-item';
@@ -94,9 +97,6 @@ function renderizarPaginaAplicativos() {
   if (!container) return;
 
   const prefixo = obterPrefixoCaminho();
-  const titulo = container.querySelector('.section-title');
-  if (!titulo) return;
-
   const itensAntigos = container.querySelectorAll('.post-list-item');
   itensAntigos.forEach(item => item.remove());
 
@@ -135,13 +135,19 @@ function renderizarPaginaJogos() {
 }
 
 function renderizarSidebar() {
-  const container = document.querySelector('.sidebar-widget:nth-of-type(2)');
+  const widgets = document.querySelectorAll('.sidebar-widget');
+  let container = null;
+  
+  widgets.forEach(w => {
+    const h3 = w.querySelector('h3');
+    if (h3 && (h3.innerText.includes('Populares') || h3.innerText.includes('Quente'))) {
+      container = w;
+    }
+  });
+
   if (!container) return;
 
   const prefixo = obterPrefixoCaminho();
-  const titulo = container.querySelector('.widget-title');
-  if (!titulo) return;
-
   const itensAntigos = container.querySelectorAll('.sidebar-post');
   itensAntigos.forEach(item => item.remove());
 
@@ -184,6 +190,8 @@ document.addEventListener('DOMContentLoaded', function() {
     renderizarSidebar();
   } else if (path.includes('jogos.html')) {
     renderizarPaginaJogos();
+    renderizarSidebar();
+  } else {
     renderizarSidebar();
   }
 });
