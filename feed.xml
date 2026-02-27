@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
+here<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Horizonte Tutoriais</title>
     <link>https://seu-usuario.github.io/horizonte-tutoriais/</link>
     <description>Sua fonte definitiva para APKs e tutoriais Android</description>
     <language>pt-BR</language>
-    <lastBuildDate>Fri, 27 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 27 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://seu-usuario.github.io/horizonte-tutoriais/feed.xml" rel="self" type="application/rss+xml"/>
 
     <item>
       <title>Download do APK do Resident Evil 4 Mobile</title>
       <link>https://seu-usuario.github.io/horizonte-tutoriais/posts/jogos/resident-evil-4.html</link>
       <description>Baixe Resident Evil 4 para Android. O classico do survival horror agora no seu celular.</description>
-      <pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 27 Feb 2026 00:00:00 +0000</pubDate>
       <guid>https://seu-usuario.github.io/horizonte-tutoriais/posts/jogos/resident-evil-4.html</guid>
     </item>
 
@@ -20,7 +20,7 @@
       <title>Download do APK do Horizon Clicker (Automacao de Cliques)</title>
       <link>https://seu-usuario.github.io/horizonte-tutoriais/posts/aplicativos/horizon-clicker.html</link>
       <description>Baixe o Horizon Clicker, a melhor ferramenta de automacao de cliques para Android.</description>
-      <pubDate>Thu, 26 Feb 2026 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 26 Feb 2026 00:00:00 +0000</pubDate>
       <guid>https://seu-usuario.github.io/horizonte-tutoriais/posts/aplicativos/horizon-clicker.html</guid>
     </item>
 
