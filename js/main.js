@@ -1,61 +1,125 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS — JavaScript (RESTAURADO E CORRIGIDO)
+   HORIZONTE TUTORIAIS — JavaScript Principal (INFALÍVEL)
+   Adaptado para envio de comentários via E-mail com Formspree
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', function () {
 
+  /* ---- Modo Noturno (Dark Mode) ---- */
   const darkModeToggle = document.getElementById('dark-mode-toggle');
   const body = document.body;
-  const youtubeLink = "https://www.youtube.com/@horizontetutoriais1346";
 
-  // 1. Função para aplicar o tema
-  function setDarkTheme(isDark) {
-    if (isDark) {
-      body.classList.add('dark-mode');
-      if (darkModeToggle) darkModeToggle.textContent = '☀️';
-      localStorage.setItem('theme', 'dark');
-    } else {
-      body.classList.remove('dark-mode');
-      if (darkModeToggle) darkModeToggle.textContent = '🌙';
-      localStorage.setItem('theme', 'light');
-    }
-  }
-
-  // 2. Inicializar tema salvo
   if (localStorage.getItem('theme') === 'dark') {
-    setDarkTheme(true);
+    body.classList.add('dark-mode');
+    if (darkModeToggle) darkModeToggle.textContent = '☀️';
   }
 
-  // 3. Listener do botão de modo noturno
   if (darkModeToggle) {
     darkModeToggle.addEventListener('click', function () {
-      setDarkTheme(!body.classList.contains('dark-mode'));
+      body.classList.toggle('dark-mode');
+      const isDark = body.classList.contains('dark-mode');
+      darkModeToggle.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
   }
 
-  // 4. Atualizar links do YouTube (Apenas onde houver o ícone ou classe youtube)
-  function updateYouTubeLinks() {
-    const youtubeLinks = document.querySelectorAll('a[href*="youtube.com"], .social-btn.youtube, .fa-youtube');
-    youtubeLinks.forEach(link => {
-      if (link.tagName === 'A') {
-        link.href = youtubeLink;
-      } else {
-        const parent = link.closest('a');
-        if (parent) parent.href = youtubeLink;
-      }
-    });
-  }
-
-  updateYouTubeLinks();
-
-  // 5. Barra de Pesquisa (Apenas se existir)
+  /* ---- Barra de Pesquisa (Sempre Visível) ---- */
   const searchInput = document.getElementById('search-input-fixed');
-  if (searchInput) {
-    searchInput.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        const term = searchInput.value.toLowerCase().trim();
-        if (term) alert('Pesquisando por: ' + term);
+  const searchBtn = document.getElementById('search-submit-fixed');
+
+  function performSearch() {
+    const term = searchInput.value.toLowerCase().trim();
+    if (!term) return;
+
+    // Procura o app nos cards e redireciona
+    const apps = document.querySelectorAll('[data-app-name]');
+    let foundUrl = null;
+
+    for (let app of apps) {
+      const appName = app.getAttribute('data-app-name').toLowerCase();
+      if (appName.includes(term) || term.includes(appName)) {
+        foundUrl = app.getAttribute('data-app-url');
+        break;
       }
+    }
+
+    if (foundUrl) {
+      window.location.href = foundUrl;
+    } else {
+      alert('App não encontrado. Tente outro nome!');
+    }
+    searchInput.value = '';
+  }
+
+  if (searchBtn) searchBtn.onclick = performSearch;
+  if (searchInput) {
+    searchInput.onkeypress = function(e) {
+      if (e.key === 'Enter') performSearch();
+    };
+  }
+
+  /* ---- Sistema de Comentários via E-mail (Formspree) ---- */
+  const commentForm = document.getElementById('direct-comment-form');
+  const formStatus = document.getElementById('form-status');
+  const submitBtn = document.getElementById('submit-btn');
+
+  if (commentForm) {
+    commentForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Desabilita o botão durante o envio
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+      
+      // Limpa mensagens anteriores
+      formStatus.className = 'form-status';
+      formStatus.textContent = '';
+
+      // Coleta os dados do formulário
+      const formData = new FormData(commentForm);
+      
+      // Envia os dados via Formspree
+      fetch(commentForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          // Sucesso
+          formStatus.className = 'form-status success';
+          formStatus.textContent = '✅ Comentário enviado com sucesso! Obrigado pela mensagem.';
+          commentForm.reset();
+          submitBtn.textContent = 'Enviar Comentário';
+          submitBtn.disabled = false;
+        } else {
+          // Erro na resposta
+          formStatus.className = 'form-status error';
+          formStatus.textContent = '❌ Erro ao enviar comentário. Tente novamente.';
+          submitBtn.textContent = 'Enviar Comentário';
+          submitBtn.disabled = false;
+        }
+      })
+      .catch(error => {
+        // Erro na requisição
+        console.error('Erro:', error);
+        formStatus.className = 'form-status error';
+        formStatus.textContent = '❌ Erro de conexão. Verifique sua internet e tente novamente.';
+        submitBtn.textContent = 'Enviar Comentário';
+        submitBtn.disabled = false;
+      });
+    });
+  }
+
+  /* ---- Botão Carregar Mais ---- */
+  const loadMoreBtn = document.getElementById('load-more-btn');
+  const hiddenPosts = document.querySelectorAll('.app-card.hidden-post');
+  if (loadMoreBtn && hiddenPosts.length > 0) {
+    loadMoreBtn.addEventListener('click', function () {
+      hiddenPosts.forEach(el => el.classList.remove('hidden-post'));
+      loadMoreBtn.style.display = 'none';
     });
   }
 
