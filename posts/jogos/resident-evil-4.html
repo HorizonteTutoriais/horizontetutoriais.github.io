@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+here<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -149,7 +149,7 @@ function playVideo(element, videoId) {
   element.classList.add('active');
   const videoPlayer = document.getElementById('video-player');
   const iframe = videoPlayer.querySelector('iframe');
-  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
   videoPlayer.style.display = 'block';
   videoPlayer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
@@ -162,4 +162,4 @@ function toggleGuides(element) {
 </script>
 <script src="../../js/main.js"></script>
 </body>
-</html>
+  </html>
