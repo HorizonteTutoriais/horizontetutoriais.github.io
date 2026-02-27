@@ -96,6 +96,21 @@
       <!-- BOTÃO RSS NA DESCRIÇÃO -->
       <button class="rss-copy-btn" onclick="copyToClipboard('../../feed.xml')" style="margin-top: 15px; width: 80%; max-width: 300px; margin-left: auto; margin-right: auto;"><i class="fas fa-copy"></i> Copiar Link do Feed</button>
     </div>
+    <!-- SEÇÃO DE COMENTÁRIOS CUSDIS -->
+    <section class="custom-comments">
+      <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
+      <p style="font-size:13px;color:#666;margin-bottom:15px;">Compartilhe sua opinião! Não é necessário fazer login.</p>
+      
+      <div id="cusdis_list">
+        <div id="cusdis_thread"
+          data-host="https://cusdis.com"
+          data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
+          data-page-id="index_horizonte"
+          data-page-url="https://horizontetutoriais.com/posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html"
+          data-page-title="Download Resident Evil 4 Mobile"
+        ></div>
+      </div>
+    </section>
     <div class="telegram-cta"><i class="fab fa-telegram" style="font-size:20px"></i><span>Junte-se ao <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener">@HorizonteTutoriais</a> no Telegram!</span></div>
   </article>
 </main>
@@ -104,3 +119,149 @@
   <div class="sidebar-widget about-widget"><h3 class="widget-title">ℹ️ Sobre Nós</h3><p>Horizonte Tutoriais — Sua fonte definitiva para APKs e tutoriais.</p></div>
   
   <!-- SEÇÃO DE TUTORIAIS EM VÍDEO NA SIDEBAR -->
+  <div class="tutorials-widget">
+    <div class="tutorials-header" onclick="toggleTutorials(this)">
+      <span class="tutorials-header-title">
+        <i class="fas fa-video"></i> TUTORIAIS
+      </span>
+      <span class="tutorials-header-icon">▼</span>
+    </div>
+    
+    <div class="tutorials-list">
+      <div class="tutorial-item" onclick="playVideo(this, 'XDhx-rdHSmY')">
+        ▶️ Vídeo Um
+      </div>
+      <div class="tutorial-item" onclick="playVideo(this, 'XDhx-rdHSmY')">
+        ▶️ Vídeo Dois
+      </div>
+      <div class="tutorial-item" onclick="playVideo(this, 'XDhx-rdHSmY')">
+        ▶️ Vídeo Três
+      </div>
+      
+      <div id="video-player" style="display: none; margin-top: 10px;">
+        <div class="video-player-container">
+          <iframe src="" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO DE GUIAS RETRÁTIL NA SIDEBAR -->
+  <div class="guides-widget">
+    <div class="guides-header" onclick="toggleGuides(this)">
+      <span class="guides-header-title">
+        <i class="fas fa-book"></i> GUIAS
+      </span>
+      <span class="guides-header-icon">▼</span>
+    </div>
+    
+    <div class="guides-list">
+      <div class="guide-item">
+        <a href="https://4br.me/BaixarGuias" target="_blank" rel="noopener"><i class="fas fa-download"></i> Baixar Guias</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- WIDGET DE RSS NA SIDEBAR -->
+  <div class="rss-widget">
+    <div class="rss-widget-title">
+      <i class="fas fa-rss"></i> Receba Novidades!
+    </div>
+    <div class="rss-widget-text">
+      Adicione nosso feed ao seu leitor de RSS favorito e receba notificações de novos tutoriais e jogos.
+    </div>
+    <button class="rss-copy-btn" onclick="copyToClipboard('../../feed.xml')"><i class="fas fa-copy"></i> Copiar Link do Feed</button>
+  </div>
+</aside>
+</div></div>
+<footer class="site-footer"><div class="container footer-top"><div class="footer-about"><h3>🌅 Horizonte Tutoriais</h3><p>Sua fonte definitiva para APKs e tutoriais.</p><div class="footer-social"><a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener"><i class="fab fa-telegram"></i></a><a href="https://wa.me/5500000000000" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a><a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a><a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a></div></div><div class="footer-links"><h4>Links Rápidos</h4><ul><li><a href="../../index.html">Início</a></li><li><a href="../../pages/aplicativos.html">Aplicativos</a></li><li><a href="../../pages/jogos.html">Jogos</a></li></ul></div><div class="footer-links"><h4>Informações</h4><ul><li><a href="../../pages/sobre.html">Sobre</a></li><li><a href="../../pages/contato.html">Contate-nos</a></li><li><a href="../../pages/privacidade.html">Política de Privacidade</a></li><li><a href="../../pages/isencao.html">Isenção de Responsabilidade</a></li></ul></div></div><div class="footer-bottom"><div class="container"><div class="footer-nav"><a href="../../pages/sobre.html">Sobre</a><a href="../../pages/contato.html">Contate-nos</a><a href="../../pages/privacidade.html">Política de Privacidade</a><a href="../../pages/isencao.html">Isenção de Responsabilidade</a></div><p>Copyright &copy; 2025–2026 <a href="../../index.html">Horizonte Tutoriais</a> | Todos os direitos reservados | <a href="../../feed.xml" class="rss-btn"><i class="fas fa-rss"></i> RSS Feed</a></p></div></div></footer>
+
+<script>
+function copyToClipboard(text) {
+  var fullUrl = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/' + text;
+  navigator.clipboard.writeText(fullUrl).then(function() {
+    alert('Link do feed copiado para a área de transferência!');
+  }).catch(function(err) {
+    alert('Erro ao copiar: ' + err);
+  });
+}
+
+function toggleTutorials(element) {
+  element.classList.toggle('active');
+  const list = element.nextElementSibling;
+  list.classList.toggle('active');
+}
+
+function playVideo(element, videoId) {
+  document.querySelectorAll('.tutorial-item').forEach(item => {
+    item.classList.remove('active');
+  });
+  element.classList.add('active');
+  const videoPlayer = document.getElementById('video-player');
+  const iframe = videoPlayer.querySelector('iframe');
+  iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+  videoPlayer.style.display = 'block';
+  videoPlayer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function toggleGuides(element) {
+  element.classList.toggle('active');
+  const list = element.nextElementSibling;
+  list.classList.toggle('active');
+}
+</script>
+
+<!-- SCRIPT CUSDIS -->
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+<script>
+  // Permitir carregamento inicial
+  window.cusdis_prevent_initial_load = false;
+
+  // TRADUÇÃO DOS TERMOS E MENSAGENS DE STATUS
+  function translateCusdis() {
+    const translations = {
+      'Nickname': 'Seu Nome',
+      'Reply': 'Responder',
+      'Comment': 'Comentário',
+      'Submit': 'Enviar Comentário',
+      'Email (optional)': 'E-mail (opcional)',
+      'Reply...': 'Escreva aqui sua opinião...',
+      'Load more': 'Carregar mais',
+      'sending...': 'Enviando...',
+      'Your comment has been sent. Please wait for approval.': 'Seu comentário foi enviado! Aguarde a aprovação do administrador.'
+    };
+
+    const iframes = document.querySelectorAll('#cusdis_thread iframe');
+    iframes.forEach(iframe => {
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        
+        // Traduzir textos fixos e mensagens de status que aparecem dinamicamente
+        const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null, false);
+        let node;
+        while(node = walker.nextNode()) {
+          const text = node.nodeValue.trim();
+          if (translations[text]) {
+            node.nodeValue = translations[text];
+          }
+        }
+        
+        // Traduzir placeholders e botões
+        doc.querySelectorAll('input, textarea, button').forEach(el => {
+          if (el.placeholder && translations[el.placeholder]) {
+            el.placeholder = translations[el.placeholder];
+          }
+          if (el.innerText && translations[el.innerText.trim()]) {
+            el.innerText = translations[el.innerText.trim()];
+          }
+        });
+      } catch (e) { }
+    });
+  }
+
+  // Rodar tradução periodicamente (cada 500ms para ser mais rápido na captura do status)
+  setInterval(translateCusdis, 500);
+</script>
+<script src="../../js/main.js"></script>
+</body>
+</html>
