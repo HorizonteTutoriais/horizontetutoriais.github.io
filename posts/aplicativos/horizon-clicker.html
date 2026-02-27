@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+here<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -23,6 +23,12 @@
     .tutorial-item.active { background: #e3f2fd; border-left-color: #1a73e8; }
     .video-player-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; border-radius: 6px; margin-top: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
     .video-player-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    
+    /* Estilo para os botões Guia e Baixar Guias */
+    .btn-guide { display: block; width: 100%; background: #0d47a1; color: #fff; text-align: center; padding: 10px; border-radius: 6px; font-size: 14px; font-weight: 700; text-decoration: none; margin-top: 10px; transition: background 0.3s ease; }
+    .btn-guide:hover { background: #1565c0; color: #fff; }
+    .btn-download-guides { display: block; width: 100%; background: #1565c0; color: #fff; text-align: center; padding: 10px; border-radius: 6px; font-size: 14px; font-weight: 700; text-decoration: none; margin-top: 8px; transition: background 0.3s ease; }
+    .btn-download-guides:hover { background: #0d47a1; color: #fff; }
   </style>
 </head>
 <body>
@@ -94,25 +100,15 @@
     
     <div class="tutorials-list">
       <div class="tutorial-item" onclick="playVideo(this, 'XDhx-rdHSmY')">
-        ▶️ Vídeo Um
-      </div>
-      <div class="tutorial-item" onclick="playVideo(this, 'XDhx-rdHSmY')">
-        ▶️ Vídeo Dois
-      </div>
-      <div class="tutorial-item" onclick="playVideo(this, 'XDhx-rdHSmY')">
-        ▶️ Vídeo Três
-      </div>
-<div class="tutorial-item" onclick="playVideo(this, 'XDhx-rdHSmY')">
-        ▶️ Vídeo quatro
-      </div>
-<div class="tutorial-item" onclick="playVideo(this, 'XDhx-rdHSmY')">
-        ▶️ Vídeo cinco
+        ▶️ Vídeo de Tutorial
       </div>
       
       <div id="video-player" style="display: none; margin-top: 10px;">
         <div class="video-player-container">
           <iframe src="" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
+        <a href="#" class="btn-guide"><i class="fas fa-book"></i> GUIA</a>
+        <a href="https://4br.me/BaixarGuias" class="btn-download-guides" target="_blank" rel="noopener"><i class="fas fa-download"></i> BAIXAR GUIAS</a>
       </div>
     </div>
   </div>
@@ -128,26 +124,17 @@ function toggleTutorials(element) {
 }
 
 function playVideo(element, videoId) {
-  // Remove a classe 'active' de todos os itens
   document.querySelectorAll('.tutorial-item').forEach(item => {
     item.classList.remove('active');
   });
-  
-  // Adiciona a classe 'active' ao item clicado
   element.classList.add('active');
-  
-  // Atualiza o src do iframe com o novo vídeo
   const videoPlayer = document.getElementById('video-player');
   const iframe = videoPlayer.querySelector('iframe');
   iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-  
-  // Mostra o player de vídeo
   videoPlayer.style.display = 'block';
-  
-  // Scroll suave até o player
   videoPlayer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 </script>
 <script src="../../js/main.js"></script>
 </body>
-</html>
+  </html>
