@@ -30,10 +30,10 @@
     .rss-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
     
     /* Estilo para o widget de RSS na sidebar */
-    .rss-widget { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 15px; margin-top: 15px; box-shadow: var(--shadow); }
-    .rss-widget-title { font-size: 13px; font-weight: 700; color: #ff9800; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
-    .rss-widget-text { font-size: 12px; color: #666; margin-bottom: 10px; line-height: 1.5; }
-    .rss-copy-btn { display: block; width: 100%; background: #ff9800; color: #fff; text-align: center; padding: 10px; border-radius: 6px; font-size: 12px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; transition: background 0.3s ease; }
+    .rss-widget { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 0; margin-top: 15px; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+    .rss-widget-title { font-size: 13px; font-weight: 700; color: #ff9800; margin-bottom: 0; display: flex; align-items: center; gap: 6px; padding: 15px 15px 10px 15px; }
+    .rss-widget-text { font-size: 12px; color: #666; margin-bottom: 0; line-height: 1.5; padding: 0 15px 15px 15px; }
+    .rss-copy-btn { display: block; width: 100%; background: #ff9800; color: #fff; text-align: center; padding: 12px 15px; border-radius: 0 0 var(--radius) var(--radius); font-size: 12px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; transition: background 0.3s ease; margin: 0; }
     .rss-copy-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
     
     @media (max-width: 600px) {
@@ -142,8 +142,6 @@
           <span class="s-icon"><i class="fab fa-youtube"></i></span> YouTube
         </a>
         
-        <!-- BOTÃO DE COPIAR LINK DO FEED NA SIDEBAR -->
-        <button class="rss-copy-btn" onclick="copyToClipboard('feed.xml')"><i class="fas fa-copy"></i> Copiar Link do Feed</button>
       </div>
 
       <!-- WIDGET DE RSS NA SIDEBAR -->
@@ -154,6 +152,8 @@
         <div class="rss-widget-text">
           Adicione nosso feed ao seu leitor de RSS favorito e receba notificações de novos tutoriais e jogos.
         </div>
+        <!-- BOTÃO DE COPIAR LINK DO FEED -->
+        <button class="rss-copy-btn" onclick="copyToClipboard('feed.xml')"><i class="fas fa-copy"></i> Copiar Link do Feed</button>
       </div>
 
       <div class="sidebar-widget">
