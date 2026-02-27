@@ -12,8 +12,8 @@ const APPS_DATA = {
       quente: true,
       imagem: "https://placehold.co/64x64/1a73e8/fff?text=HC",
       imagemGrande: "https://placehold.co/56x56/1a73e8/fff?text=HC",
-      // O caminho deve ser relativo à raiz do site
-      url: "posts/Aplicativos/horizon-clicker.html",
+      // O caminho agora usa "aplicativos" (minúsculo) para evitar erros no GitHub
+      url: "posts/aplicativos/horizon-clicker.html",
       linkDownload: "https://4br.me/BaixarHorizonClicker"
     }
   ],
@@ -26,9 +26,9 @@ const APPS_DATA = {
       quente: true,
       imagem: "https://placehold.co/64x64/c62828/fff?text=RE4",
       imagemGrande: "https://placehold.co/56x56/c62828/fff?text=RE4",
-      // O caminho deve ser relativo à raiz do site
-      url: "posts/Jogos/resident-evil-4.html",
-      linkDownload: "posts/Jogos/resident-evil-4.html"
+      // O caminho agora usa "jogos" (minúsculo)
+      url: "posts/jogos/resident-evil-4.html",
+      linkDownload: "posts/jogos/resident-evil-4.html"
     }
   ]
 };
