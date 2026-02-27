@@ -8,6 +8,22 @@
   <link rel="stylesheet" href="../../css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌅</text></svg>" />
+  <style>
+    /* Estilos para a seção de tutoriais retrátil */
+    .tutorials-section { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: var(--shadow); }
+    .tutorials-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding: 12px; background: #f5f5f5; border-radius: 6px; border: 1px solid #e0e0e0; transition: all 0.3s ease; }
+    .tutorials-header:hover { background: #efefef; border-color: #0d47a1; }
+    .tutorials-header-title { font-size: 16px; font-weight: 700; color: #0d47a1; display: flex; align-items: center; gap: 8px; }
+    .tutorials-header-icon { font-size: 18px; transition: transform 0.3s ease; }
+    .tutorials-header.active .tutorials-header-icon { transform: rotate(180deg); }
+    .tutorials-list { display: none; margin-top: 15px; }
+    .tutorials-list.active { display: block; }
+    .tutorial-item { background: #f9f9f9; border-left: 4px solid #0d47a1; padding: 12px 15px; margin-bottom: 10px; cursor: pointer; border-radius: 4px; transition: all 0.3s ease; }
+    .tutorial-item:hover { background: #f0f0f0; transform: translateX(5px); }
+    .tutorial-item.active { background: #e3f2fd; border-left-color: #1a73e8; }
+    .video-player-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; border-radius: 8px; margin-top: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .video-player-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+  </style>
 </head>
 <body>
 <div class="top-bar"><div class="container"><a href="../../pages/contato.html">Contate-Nos</a><a href="../../pages/privacidade.html">Política de Privacidade</a><a href="../../pages/isencao.html">Isenção de Responsabilidade</a></div></div>
@@ -41,6 +57,34 @@
       <tr><td>Atualizado em</td><td>26/02/2026</td></tr>
     </table>
 
+    <!-- SEÇÃO DE TUTORIAIS EM VÍDEO RETRÁTIL -->
+    <section class="tutorials-section">
+      <div class="tutorials-header" onclick="toggleTutorials(this)">
+        <span class="tutorials-header-title">
+          <i class="fas fa-video"></i> TUTORIAIS EM VÍDEO
+        </span>
+        <span class="tutorials-header-icon">▼</span>
+      </div>
+      
+      <div class="tutorials-list">
+        <div class="tutorial-item" onclick="playVideo(this, 'XDhx-rdHSmY')">
+          ▶️ Vídeo Um
+        </div>
+        <div class="tutorial-item" onclick="playVideo(this, 'XDhx-rdHSmY')">
+          ▶️ Vídeo Dois
+        </div>
+        <div class="tutorial-item" onclick="playVideo(this, 'XDhx-rdHSmY')">
+          ▶️ Vídeo Três
+        </div>
+        
+        <div id="video-player" style="display: none; margin-top: 15px;">
+          <div class="video-player-container">
+            <iframe src="" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div class="download-box">
       <p style="font-size:14px;font-weight:700;color:#0d47a1;margin-bottom:12px">⬇️ Clique abaixo para baixar o aplicativo</p>
       <a href="https://4br.me/BaixarHorizonClicker" class="btn-big-download" target="_blank" rel="noopener"><i class="fas fa-download"></i> DOWNLOAD</a>
@@ -69,6 +113,35 @@
 </aside>
 </div></div>
 <footer class="site-footer"><div class="container footer-top"><div class="footer-about"><h3>🌅 Horizonte Tutoriais</h3><p>Sua fonte definitiva para APKs e tutoriais.</p><div class="footer-social"><a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener"><i class="fab fa-telegram"></i></a><a href="https://wa.me/5500000000000" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a><a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a><a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a></div></div><div class="footer-links"><h4>Links Rápidos</h4><ul><li><a href="../../index.html">Início</a></li><li><a href="../../pages/aplicativos.html">Aplicativos</a></li><li><a href="../../pages/jogos.html">Jogos</a></li></ul></div><div class="footer-links"><h4>Informações</h4><ul><li><a href="../../pages/sobre.html">Sobre</a></li><li><a href="../../pages/contato.html">Contate-nos</a></li><li><a href="../../pages/privacidade.html">Política de Privacidade</a></li><li><a href="../../pages/isencao.html">Isenção de Responsabilidade</a></li></ul></div></div><div class="footer-bottom"><div class="container"><div class="footer-nav"><a href="../../pages/sobre.html">Sobre</a><a href="../../pages/contato.html">Contate-nos</a><a href="../../pages/privacidade.html">Política de Privacidade</a><a href="../../pages/isencao.html">Isenção de Responsabilidade</a></div><p>Copyright &copy; 2025–2026 <a href="../../index.html">Horizonte Tutoriais</a> | Todos os direitos reservados</p></div></div></footer>
+
+<script>
+function toggleTutorials(element) {
+  element.classList.toggle('active');
+  const list = element.nextElementSibling;
+  list.classList.toggle('active');
+}
+
+function playVideo(element, videoId) {
+  // Remove a classe 'active' de todos os itens
+  document.querySelectorAll('.tutorial-item').forEach(item => {
+    item.classList.remove('active');
+  });
+  
+  // Adiciona a classe 'active' ao item clicado
+  element.classList.add('active');
+  
+  // Atualiza o src do iframe com o novo vídeo
+  const videoPlayer = document.getElementById('video-player');
+  const iframe = videoPlayer.querySelector('iframe');
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  
+  // Mostra o player de vídeo
+  videoPlayer.style.display = 'block';
+  
+  // Scroll suave até o player
+  videoPlayer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+</script>
 <script src="../../js/main.js"></script>
 </body>
 </html>
