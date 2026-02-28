@@ -39,10 +39,6 @@ here<!DOCTYPE html>
     .guide-item a { color: #0d47a1; text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 5px; }
     .guide-item a:hover { color: #1565c0; }
     
-    /* Estilo para a secao de comentarios */
-    .custom-comments { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: var(--shadow); }
-    .widget-title { margin-top: 0; font-size: 18px; border-bottom: 2px solid var(--blue-primary); display: inline-block; margin-bottom: 15px; }
-    
     /* Estilo para o botão RSS */
     .rss-btn { display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; background: #ff9800; color: #fff; text-decoration: none; border-radius: 4px; font-size: 12px; font-weight: 600; transition: background 0.3s ease; }
     .rss-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
@@ -57,7 +53,7 @@ here<!DOCTYPE html>
 </head>
 <body>
 <div class="top-bar"><div class="container"><a href="../../pages/contato.html">Contate-Nos</a><a href="../../pages/privacidade.html">Política de Privacidade</a><a href="../../pages/isencao.html">Isenção de Responsabilidade</a><a href="../../feed.xml" class="rss-btn" target="_blank" rel="noopener"><i class="fas fa-rss"></i> RSS</a></div></div>
-<header class="site-header"><div class="container header-inner"><a href="../../index.html" class="site-logo">🌅 Horizonte <span>Tutoriais</span></a><div class="header-actions"><button id="dark-mode-toggle" class="header-btn" style="background:none;border:none;font-size:20px;cursor:pointer;">🌙</button><div class="search-fixed-container"><input type="text" id="search-input-fixed" placeholder="Pesquisar..."><button id="search-submit-fixed">🔍</button></div><a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="header-telegram"><i class="fab fa-telegram"></i> Junte-Se Ao Nosso Telegram</a></div></div></header>
+<header class="site-header"><div class="container header-inner"><a href="../../index.html" class="site-logo">🌅 Horizonte <span>Tutoriais</span></a><a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="header-telegram"><i class="fab fa-telegram"></i> Junte-Se Ao Nosso Telegram</a></div></header>
 <nav class="site-nav"><div class="container"><ul class="nav-list"><li><a href="../../index.html"><span class="nav-icon">🏠</span> Lar</a></li><li><a href="../../pages/aplicativos.html"><span class="nav-icon">📱</span> Aplicativos</a></li><li><a href="../../pages/jogos.html" class="active"><span class="nav-icon">🎮</span> Jogos</a></li><li><a href="../../pages/tutoriais.html"><span class="nav-icon">📚</span> Tutoriais</a></li><li><a href="../../pages/ferramentas.html"><span class="nav-icon">🔧</span> Ferramentas</a></li><li><a href="../../pages/quente.html"><span class="nav-icon">🔥</span> Quente</a></li></ul></div></nav>
 <div class="container"><div class="main-layout">
 <main>
@@ -97,23 +93,9 @@ here<!DOCTYPE html>
       </div>
       
       <p style="font-size:11px;color:#666;margin-top:15px">Instale o APK e mova os dados dos discos para a pasta OBB.</p>
-      <button class="rss-copy-btn" onclick="copyToClipboard('../../feed.xml')" style="margin-top: 15px; width: 80%; max-width: 300px; margin-left: auto; margin-right: auto;"><i class="fas fa-copy"></i> Copiar Link do Feed</button>
+      <!-- BOTÃO RSS NA DESCRIÇÃO -->
+      <a href="../../feed.xml" class="rss-btn" target="_blank" rel="noopener" style="margin-top: 15px;"><i class="fas fa-rss"></i> RSS Feed</a>
     </div>
-    <!-- SEÇÃO DE COMENTÁRIOS CUSDIS -->
-    <section class="custom-comments">
-      <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
-      <p style="font-size:13px;color:#666;margin-bottom:15px;">Compartilhe sua opinião! Não é necessário fazer login.</p>
-      
-      <div id="cusdis_list">
-        <div id="cusdis_thread"
-          data-host="https://cusdis.com"
-          data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
-          data-page-id="index_horizonte"
-          data-page-url="https://horizontetutoriais.com/posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html"
-          data-page-title="Download Resident Evil 4 Mobile"
-        ></div>
-      </div>
-    </section>
     <div class="telegram-cta"><i class="fab fa-telegram" style="font-size:20px"></i><span>Junte-se ao <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener">@HorizonteTutoriais</a> no Telegram!</span></div>
   </article>
 </main>
@@ -213,72 +195,6 @@ function toggleGuides(element) {
   list.classList.toggle('active');
 }
 </script>
-
-<!-- SCRIPT CUSDIS -->
-<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-<script>
-  // Permitir carregamento inicial
-  window.cusdis_prevent_initial_load = false;
-
-  // FUNCAO PARA COPIAR LINK DO FEED
-  function copyToClipboard(text) {
-    var fullUrl = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/' + text;
-    navigator.clipboard.writeText(fullUrl).then(function() {
-      alert('Link do feed copiado para a área de transferência!');
-    }).catch(function(err) {
-      alert('Erro ao copiar: ' + err);
-    });
-  }
-
-  // TRADUCAO DOS TERMOS E MENSAGENS DE STATUS
-  function translateCusdis() {
-    const translations = {
-      'Nickname': 'Seu Nome',
-      'Reply': 'Responder',
-      'Comment': 'Comentário',
-      'Submit': 'Enviar Comentário',
-      'Email (optional)': 'E-mail (opcional)',
-      'Reply...': 'Escreva aqui sua opinião...',
-      'Load more': 'Carregar mais',
-      'sending...': 'Enviando...',
-      'Your comment has been sent. Please wait for approval.': 'Seu comentário foi enviado! Aguarde a aprovação do administrador.'
-    };
-
-    const iframes = document.querySelectorAll('#cusdis_thread iframe');
-    iframes.forEach(iframe => {
-      try {
-        const doc = iframe.contentDocument || iframe.contentWindow.document;
-        
-        // Traduzir textos fixos e mensagens de status que aparecem dinamicamente
-        const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null, false);
-        let node;
-        while(node = walker.nextNode()) {
-          const text = node.nodeValue.trim();
-          if (translations[text]) {
-            node.nodeValue = translations[text];
-          }
-        }
-        
-        // Traduzir placeholders e botoes
-        doc.querySelectorAll('input, textarea, button').forEach(el => {
-          if (el.placeholder && translations[el.placeholder]) {
-            el.placeholder = translations[el.placeholder];
-          }
-          if (el.innerText && translations[el.innerText.trim()]) {
-            el.innerText = translations[el.innerText.trim()];
-          }
-        });
-      } catch (e) { }
-    });
-  }
-
-  // Rodar traducao periodicamente (cada 500ms para ser mais rapido na captura do status)
-  setInterval(translateCusdis, 500);
-</script>
-<script src="../../js/main.js"></script>
-<!-- Scripts de renderização dinâmica -->
-<script src="../../js/dados.js"></script>
-<script src="../../js/renderizar.js"></script>
 <script src="../../js/main.js"></script>
 </body>
-                                </html>
+                                                                                                                                                                                   </html>
