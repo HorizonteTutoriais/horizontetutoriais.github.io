@@ -1,6 +1,6 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS — JavaScript Principal (BLINDADO)
-   Busca Global Integrada + Dark Mode + Comentários
+   HORIZONTE TUTORIAIS — JavaScript Principal (BLINDADO v2)
+   Busca Global com Caminhos Inteligentes para GitHub Pages
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ---- ÍNDICE GLOBAL DE APLICATIVOS E JOGOS (INTEGRADO) ---- */
   const SEARCH_INDEX = [
     // Aplicativos
-    { nome: "Horizon Clicker", url: "posts/aplicativos/horizon-clicker-FINAL-CORRIGIDO.html", aliases: ["horizon", "clicker", "automação"] },
+    { nome: "Horizon Clicker", url: "/posts/aplicativos/horizon-clicker-FINAL-CORRIGIDO.html", aliases: ["horizon", "clicker", "automação"] },
     // Jogos
-    { nome: "Resident Evil 4 Mobile Edition", url: "posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html", aliases: ["resident", "evil", "re4", "resident evil 4", "resident evil", "horror"] }
+    { nome: "Resident Evil 4 Mobile Edition", url: "/posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html", aliases: ["resident", "evil", "re4", "resident evil 4", "resident evil", "horror"] }
   ];
 
   /* ---- Modo Noturno (Dark Mode) ---- */
@@ -31,9 +31,27 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---- Barra de Pesquisa BLINDADA (Sempre Visível) ---- */
+  /* ---- Barra de Pesquisa BLINDADA v2 (Sempre Visível) ---- */
   const searchInput = document.getElementById('search-input-fixed');
   const searchBtn = document.getElementById('search-submit-fixed');
+
+  function getBaseUrl() {
+    // Detecta o caminho base do site (importante para GitHub Pages)
+    const pathname = window.location.pathname;
+    
+    // Se está em /tutoriais.github.io/, o base é /tutoriais.github.io/
+    // Se está em /tutoriais.github.io/pages/algo.html, o base ainda é /tutoriais.github.io/
+    if (pathname.includes('/pages/') || pathname.includes('/posts/')) {
+      // Remove tudo depois da primeira pasta principal
+      const parts = pathname.split('/').filter(p => p);
+      if (parts.length > 1) {
+        return '/' + parts[0] + '/';
+      }
+    }
+    
+    // Retorna a raiz do site
+    return '/';
+  }
 
   function performSearch() {
     const term = searchInput.value.toLowerCase().trim();
@@ -80,21 +98,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (foundUrl) {
-      // Detecta se precisa de caminho relativo ou absoluto
-      if (!foundUrl.startsWith('http')) {
-        // Tenta descobrir o caminho correto baseado na URL atual
-        const currentPath = window.location.pathname;
-        if (currentPath.includes('/posts/')) {
-          // Já está em um post, não precisa mudar muito
-          foundUrl = foundUrl.replace(/^posts\//, '../../posts/');
-        } else if (currentPath.includes('/pages/')) {
-          // Está em uma página, precisa voltar um nível
-          foundUrl = foundUrl.replace(/^posts\//, '../posts/');
-        } else {
-          // Está na home, usa o caminho direto
-          foundUrl = foundUrl;
+      // Se o URL começa com /, é um caminho absoluto
+      if (foundUrl.startsWith('/')) {
+        // Adiciona o base URL (importante para GitHub Pages)
+        const baseUrl = getBaseUrl();
+        if (baseUrl !== '/') {
+          // Remove a barra inicial de foundUrl e adiciona depois do base
+          foundUrl = baseUrl + foundUrl.substring(1);
         }
       }
+      
       window.location.href = foundUrl;
     } else {
       alert('App não encontrado. Tente: "Horizon Clicker" ou "Resident Evil 4"');
