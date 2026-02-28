@@ -1,16 +1,16 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS — JavaScript Principal (BLINDADO v2)
-   Busca Global com Caminhos Inteligentes para GitHub Pages
+   HORIZONTE TUTORIAIS — JavaScript Principal (BLINDADO v3)
+   Busca Global com Links Relativos Inteligentes
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', function () {
 
   /* ---- ÍNDICE GLOBAL DE APLICATIVOS E JOGOS (INTEGRADO) ---- */
   const SEARCH_INDEX = [
-    // Aplicativos
-    { nome: "Horizon Clicker", url: "/posts/aplicativos/horizon-clicker-FINAL-CORRIGIDO.html", aliases: ["horizon", "clicker", "automação"] },
-    // Jogos
-    { nome: "Resident Evil 4 Mobile Edition", url: "/posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html", aliases: ["resident", "evil", "re4", "resident evil 4", "resident evil", "horror"] }
+    // Aplicativos - usando caminhos relativos que funcionam de qualquer lugar
+    { nome: "Horizon Clicker", urlFromHome: "posts/aplicativos/horizon-clicker-FINAL-CORRIGIDO.html", aliases: ["horizon", "clicker", "automação"] },
+    // Jogos - usando caminhos relativos que funcionam de qualquer lugar
+    { nome: "Resident Evil 4 Mobile Edition", urlFromHome: "posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html", aliases: ["resident", "evil", "re4", "resident evil 4", "resident evil", "horror"] }
   ];
 
   /* ---- Modo Noturno (Dark Mode) ---- */
@@ -31,26 +31,32 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---- Barra de Pesquisa BLINDADA v2 (Sempre Visível) ---- */
+  /* ---- Barra de Pesquisa BLINDADA v3 (Sempre Visível) ---- */
   const searchInput = document.getElementById('search-input-fixed');
   const searchBtn = document.getElementById('search-submit-fixed');
 
-  function getBaseUrl() {
-    // Detecta o caminho base do site (importante para GitHub Pages)
-    const pathname = window.location.pathname;
+  function calculateRelativePath(targetUrl) {
+    // Detecta o nível de profundidade da página atual
+    const currentPath = window.location.pathname;
     
-    // Se está em /tutoriais.github.io/, o base é /tutoriais.github.io/
-    // Se está em /tutoriais.github.io/pages/algo.html, o base ainda é /tutoriais.github.io/
-    if (pathname.includes('/pages/') || pathname.includes('/posts/')) {
-      // Remove tudo depois da primeira pasta principal
-      const parts = pathname.split('/').filter(p => p);
-      if (parts.length > 1) {
-        return '/' + parts[0] + '/';
-      }
+    // Conta quantas pastas estamos dentro
+    const pathParts = currentPath.split('/').filter(p => p && p !== 'index.html');
+    
+    // Se estamos em /pages/ ou /posts/, precisamos voltar um nível (..)
+    // Se estamos na raiz ou em /index.html, não precisamos voltar
+    let depth = 0;
+    
+    if (currentPath.includes('/pages/') || currentPath.includes('/posts/')) {
+      depth = 1; // Estamos um nível abaixo da raiz
     }
     
-    // Retorna a raiz do site
-    return '/';
+    // Monta o caminho relativo
+    let relativePath = '';
+    for (let i = 0; i < depth; i++) {
+      relativePath += '../';
+    }
+    
+    return relativePath + targetUrl;
   }
 
   function performSearch() {
@@ -68,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
       
       // Verifica se o termo está no nome
       if (itemName.includes(term) || term.includes(itemName)) {
-        foundUrl = item.url;
+        foundUrl = item.urlFromHome;
         break;
       }
       
@@ -76,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (item.aliases) {
         for (let alias of item.aliases) {
           if (alias.includes(term) || term.includes(alias)) {
-            foundUrl = item.url;
+            foundUrl = item.urlFromHome;
             break;
           }
         }
@@ -98,17 +104,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (foundUrl) {
-      // Se o URL começa com /, é um caminho absoluto
-      if (foundUrl.startsWith('/')) {
-        // Adiciona o base URL (importante para GitHub Pages)
-        const baseUrl = getBaseUrl();
-        if (baseUrl !== '/') {
-          // Remove a barra inicial de foundUrl e adiciona depois do base
-          foundUrl = baseUrl + foundUrl.substring(1);
-        }
-      }
-      
-      window.location.href = foundUrl;
+      // Calcula o caminho relativo correto baseado na página atual
+      const finalUrl = calculateRelativePath(foundUrl);
+      window.location.href = finalUrl;
     } else {
       alert('App não encontrado. Tente: "Horizon Clicker" ou "Resident Evil 4"');
     }
