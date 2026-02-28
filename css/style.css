@@ -739,4 +739,4 @@ body.dark-mode .search-form input {
 @media (max-width: 600px) {
   .header-telegram { display: none; }
   .search-form.active { width: 160px; }
-   }
+}
