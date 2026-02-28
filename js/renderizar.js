@@ -1,4 +1,4 @@
-// ===== RENDERIZADOR DINÂMICO DO SITE =====
+here// ===== RENDERIZADOR DINÂMICO DO SITE =====
 // Este arquivo monta automaticamente as listas de apps e jogos
 
 function obterPrefixoCaminho() {
@@ -181,8 +181,7 @@ function renderizarSidebar() {
 document.addEventListener('DOMContentLoaded', function() {
   const path = window.location.pathname;
 
-  // Verificação melhorada para incluir a pasta do Cusdis
-  if (path.includes('index.html') || path.endsWith('/') || path.includes('INDEX_FINAL_TRADUCAO_COMPLETA.html') || path.includes('Index%20com%20Cusdis') || path.includes('Index com Cusdis')) {
+  if (path.includes('index.html') || path.endsWith('/') || path.includes('INDEX_FINAL_TRADUCAO_COMPLETA.html')) {
     renderizarAtualizacoes();
     renderizarDestaques();
     renderizarSidebar();
