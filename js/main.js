@@ -1,4 +1,4 @@
-/* ============================================================
+here/* ============================================================
    HORIZONTE TUTORIAIS — JavaScript Principal (INFALÍVEL)
    Adaptado para envio de comentários via E-mail com Formspree
    ============================================================ */
@@ -27,55 +27,35 @@ document.addEventListener('DOMContentLoaded', function () {
   const searchInput = document.getElementById('search-input-fixed');
   const searchBtn = document.getElementById('search-submit-fixed');
 
-  function obterPrefixoBusca() {
-    const path = window.location.pathname;
-    if (path.includes('/posts/aplicativos/') || path.includes('/posts/jogos/')) {
-      return '../../';
-    }
-    if (path.includes('/pages/') || path.includes('/Index%20com%20Cusdis/') || path.includes('/Index com Cusdis/')) {
-      return '../';
-    }
-    return '';
-  }
-
   function performSearch() {
-    if (!searchInput) return;
     const term = searchInput.value.toLowerCase().trim();
     if (!term) return;
 
-    // Verifica se APPS_DATA está disponível (carregado pelo dados.js)
-    if (typeof APPS_DATA === 'undefined') {
-      alert('Erro: dados do site não carregados. Recarregue a página.');
-      return;
+    // Procura o app nos cards e redireciona
+    const apps = document.querySelectorAll('[data-app-name]');
+    let foundUrl = null;
+
+    for (let app of apps) {
+      const appName = app.getAttribute('data-app-name').toLowerCase();
+      if (appName.includes(term) || term.includes(appName)) {
+        foundUrl = app.getAttribute('data-app-url');
+        break;
+      }
     }
 
-    const prefixo = obterPrefixoBusca();
-    const todosItens = [
-      ...APPS_DATA.aplicativos,
-      ...APPS_DATA.jogos
-    ];
-
-    // Busca por correspondência parcial no nome ou descrição
-    const encontrado = todosItens.find(item => {
-      const nome = item.nome.toLowerCase();
-      const descricao = item.descricao.toLowerCase();
-      return nome.includes(term) || descricao.includes(term) || term.includes(nome);
-    });
-
-    if (encontrado) {
-      window.location.href = prefixo + encontrado.url;
+    if (foundUrl) {
+      window.location.href = foundUrl;
     } else {
-      alert('Nenhum resultado encontrado para "' + searchInput.value + '". Tente outro nome!');
+      alert('App não encontrado. Tente outro nome!');
     }
-
     searchInput.value = '';
   }
 
-  if (searchBtn) searchBtn.addEventListener('click', performSearch);
+  if (searchBtn) searchBtn.onclick = performSearch;
   if (searchInput) {
-    searchInput.addEventListener('keypress', function (e) {
+    searchInput.onkeypress = function(e) {
       if (e.key === 'Enter') performSearch();
-    });
+    };
   }
 
   /* ---- Sistema de Comentários via E-mail (Formspree) ---- */
