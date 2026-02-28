@@ -1,4 +1,4 @@
-// ===== DADOS CENTRALIZADOS DO SITE =====
+here// ===== DADOS CENTRALIZADOS DO SITE =====
 // Adicione novos aplicativos ou jogos neste arquivo
 // O site atualizará automaticamente todas as páginas
 
