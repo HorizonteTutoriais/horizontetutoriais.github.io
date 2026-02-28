@@ -3,22 +3,17 @@ here// ===== RENDERIZADOR DINÂMICO DO SITE =====
 
 function obterPrefixoCaminho() {
   const path = window.location.pathname;
-
+  
   // Se estiver em um post (posts/aplicativos/ ou posts/jogos/), precisa subir 2 níveis
   if (path.includes('/posts/aplicativos/') || path.includes('/posts/jogos/')) {
     return '../../';
   }
-
+  
   // Se estiver em uma subpasta de pages/, sobe 1 nível
   if (path.includes('/pages/')) {
     return '../';
   }
-
-  // Se estiver na pasta "Index com Cusdis" (com ou sem encoding), sobe 1 nível
-  if (path.includes('/Index%20com%20Cusdis/') || path.includes('/Index com Cusdis/')) {
-    return '../';
-  }
-
+  
   // Raiz do site
   return '';
 }
@@ -28,8 +23,8 @@ function renderizarAtualizacoes() {
   if (!container) return;
 
   // Verifica se APPS_DATA existe
-  if (typeof APPS_DATA === 'undefined') {
-    console.error('APPS_DATA não foi carregado. Verifique se dados.js está sendo carregado corretamente.');
+  if (typeof APPS_DATA === 'undefined' || !APPS_DATA) {
+    console.warn('APPS_DATA não disponível ainda');
     return;
   }
 
@@ -37,7 +32,7 @@ function renderizarAtualizacoes() {
   container.innerHTML = '';
 
   // Renderiza aplicativos
-  if (APPS_DATA.aplicativos && APPS_DATA.aplicativos.length > 0) {
+  if (APPS_DATA.aplicativos && Array.isArray(APPS_DATA.aplicativos)) {
     APPS_DATA.aplicativos.forEach(app => {
       const card = document.createElement('div');
       card.className = 'update-card';
@@ -53,7 +48,7 @@ function renderizarAtualizacoes() {
   }
 
   // Renderiza jogos
-  if (APPS_DATA.jogos && APPS_DATA.jogos.length > 0) {
+  if (APPS_DATA.jogos && Array.isArray(APPS_DATA.jogos)) {
     APPS_DATA.jogos.forEach(jogo => {
       const card = document.createElement('div');
       card.className = 'update-card';
@@ -74,8 +69,8 @@ function renderizarDestaques() {
   if (!container) return;
 
   // Verifica se APPS_DATA existe
-  if (typeof APPS_DATA === 'undefined') {
-    console.error('APPS_DATA não foi carregado. Verifique se dados.js está sendo carregado corretamente.');
+  if (typeof APPS_DATA === 'undefined' || !APPS_DATA) {
+    console.warn('APPS_DATA não disponível ainda');
     return;
   }
 
@@ -87,7 +82,7 @@ function renderizarDestaques() {
   itensAntigos.forEach(item => item.remove());
 
   // Aplicativos
-  if (APPS_DATA.aplicativos && APPS_DATA.aplicativos.length > 0) {
+  if (APPS_DATA.aplicativos && Array.isArray(APPS_DATA.aplicativos)) {
     APPS_DATA.aplicativos.forEach(app => {
       const item = document.createElement('div');
       item.className = 'post-list-item';
@@ -106,7 +101,7 @@ function renderizarDestaques() {
   }
 
   // Jogos
-  if (APPS_DATA.jogos && APPS_DATA.jogos.length > 0) {
+  if (APPS_DATA.jogos && Array.isArray(APPS_DATA.jogos)) {
     APPS_DATA.jogos.forEach(jogo => {
       const item = document.createElement('div');
       item.className = 'post-list-item';
@@ -130,8 +125,8 @@ function renderizarPaginaAplicativos() {
   if (!container) return;
 
   // Verifica se APPS_DATA existe
-  if (typeof APPS_DATA === 'undefined') {
-    console.error('APPS_DATA não foi carregado. Verifique se dados.js está sendo carregado corretamente.');
+  if (typeof APPS_DATA === 'undefined' || !APPS_DATA) {
+    console.warn('APPS_DATA não disponível ainda');
     return;
   }
 
@@ -139,7 +134,7 @@ function renderizarPaginaAplicativos() {
   const itensAntigos = container.querySelectorAll('.post-list-item');
   itensAntigos.forEach(item => item.remove());
 
-  if (APPS_DATA.aplicativos && APPS_DATA.aplicativos.length > 0) {
+  if (APPS_DATA.aplicativos && Array.isArray(APPS_DATA.aplicativos)) {
     APPS_DATA.aplicativos.forEach(app => {
       const item = document.createElement('div');
       item.className = 'post-list-item';
@@ -163,15 +158,15 @@ function renderizarPaginaJogos() {
   if (!container) return;
 
   // Verifica se APPS_DATA existe
-  if (typeof APPS_DATA === 'undefined') {
-    console.error('APPS_DATA não foi carregado. Verifique se dados.js está sendo carregado corretamente.');
+  if (typeof APPS_DATA === 'undefined' || !APPS_DATA) {
+    console.warn('APPS_DATA não disponível ainda');
     return;
   }
 
   const prefixo = obterPrefixoCaminho();
   container.innerHTML = '';
 
-  if (APPS_DATA.jogos && APPS_DATA.jogos.length > 0) {
+  if (APPS_DATA.jogos && Array.isArray(APPS_DATA.jogos)) {
     APPS_DATA.jogos.forEach(jogo => {
       const card = document.createElement('div');
       card.className = 'app-card';
@@ -201,8 +196,8 @@ function renderizarSidebar() {
   if (!container) return;
 
   // Verifica se APPS_DATA existe
-  if (typeof APPS_DATA === 'undefined') {
-    console.error('APPS_DATA não foi carregado. Verifique se dados.js está sendo carregado corretamente.');
+  if (typeof APPS_DATA === 'undefined' || !APPS_DATA) {
+    console.warn('APPS_DATA não disponível ainda');
     return;
   }
 
@@ -210,7 +205,7 @@ function renderizarSidebar() {
   const itensAntigos = container.querySelectorAll('.sidebar-post');
   itensAntigos.forEach(item => item.remove());
 
-  if (APPS_DATA.aplicativos && APPS_DATA.aplicativos.length > 0) {
+  if (APPS_DATA.aplicativos && Array.isArray(APPS_DATA.aplicativos)) {
     APPS_DATA.aplicativos.forEach(app => {
       const item = document.createElement('div');
       item.className = 'sidebar-post';
@@ -225,7 +220,7 @@ function renderizarSidebar() {
     });
   }
 
-  if (APPS_DATA.jogos && APPS_DATA.jogos.length > 0) {
+  if (APPS_DATA.jogos && Array.isArray(APPS_DATA.jogos)) {
     APPS_DATA.jogos.forEach(jogo => {
       const item = document.createElement('div');
       item.className = 'sidebar-post';
@@ -241,32 +236,35 @@ function renderizarSidebar() {
   }
 }
 
-// Aguarda um pouco para garantir que APPS_DATA foi carregado
+// Função para renderizar tudo de uma vez
+function renderizarTudo() {
+  const path = window.location.pathname;
+
+  // Página inicial (index.html na raiz)
+  const ehPaginaInicial =
+    path.endsWith('/') ||
+    path.endsWith('index.html') ||
+    path.includes('horizontetutoriais.github.io');
+
+  if (ehPaginaInicial) {
+    renderizarAtualizacoes();
+    renderizarDestaques();
+    renderizarSidebar();
+  } else if (path.includes('aplicativos.html')) {
+    renderizarPaginaAplicativos();
+    renderizarSidebar();
+  } else if (path.includes('jogos.html')) {
+    renderizarPaginaJogos();
+    renderizarSidebar();
+  } else {
+    renderizarSidebar();
+  }
+}
+
+// Executa quando o DOM está pronto
 document.addEventListener('DOMContentLoaded', function() {
-  // Pequeno delay para garantir que dados.js foi executado
-  setTimeout(function() {
-    const path = window.location.pathname;
-
-    // Página inicial (index.html na raiz ou dentro de "Index com Cusdis")
-    const ehPaginaInicial =
-      path.endsWith('/') ||
-      path.endsWith('index.html') ||
-      path.includes('Index%20com%20Cusdis') ||
-      path.includes('Index com Cusdis') ||
-      path.includes('INDEX_FINAL_TRADUCAO_COMPLETA.html');
-
-    if (ehPaginaInicial) {
-      renderizarAtualizacoes();
-      renderizarDestaques();
-      renderizarSidebar();
-    } else if (path.includes('aplicativos.html')) {
-      renderizarPaginaAplicativos();
-      renderizarSidebar();
-    } else if (path.includes('jogos.html')) {
-      renderizarPaginaJogos();
-      renderizarSidebar();
-    } else {
-      renderizarSidebar();
-    }
-  }, 100);
+  renderizarTudo();
 });
+
+// Também tenta renderizar após um pequeno delay para garantir que dados.js foi carregado
+setTimeout(renderizarTudo, 500);
