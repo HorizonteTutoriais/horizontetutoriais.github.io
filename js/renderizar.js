@@ -1,4 +1,4 @@
-// ===== RENDERIZADOR DINÂMICO DO SITE =====
+here// ===== RENDERIZADOR DINÂMICO DO SITE =====
 // Este arquivo monta automaticamente as listas de apps e jogos
 
 function obterPrefixoCaminho() {
