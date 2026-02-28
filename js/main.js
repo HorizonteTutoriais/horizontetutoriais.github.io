@@ -1,37 +1,9 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS — JavaScript Principal (BLINDADO v4)
-   Busca Global com URLs Completas Baseadas no Domínio
+   HORIZONTE TUTORIAIS — JavaScript Principal (INFALÍVEL)
+   Adaptado para envio de comentários via E-mail com Formspree
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', function () {
-
-  /* ---- Detectar o domínio base do site ---- */
-  function getBaseUrl() {
-    const protocol = window.location.protocol; // http: ou https:
-    const hostname = window.location.hostname; // tutoriais.github.io
-    const pathname = window.location.pathname; // /tutoriais.github.io/ ou /
-    
-    // Extrai a base do pathname (tudo antes do primeiro arquivo)
-    let basePath = '/';
-    const pathParts = pathname.split('/').filter(p => p);
-    
-    // Se houver mais de uma parte no caminho, a primeira é o repositório
-    if (pathParts.length > 0 && !pathname.includes('.html')) {
-      basePath = '/' + pathParts[0] + '/';
-    } else if (pathParts.length > 1) {
-      basePath = '/' + pathParts[0] + '/';
-    }
-    
-    return protocol + '//' + hostname + basePath;
-  }
-
-  /* ---- ÍNDICE GLOBAL DE APLICATIVOS E JOGOS (INTEGRADO) ---- */
-  const SEARCH_INDEX = [
-    // Aplicativos - usando caminhos relativos à raiz
-    { nome: "Horizon Clicker", path: "posts/aplicativos/horizon-clicker-FINAL-CORRIGIDO.html", aliases: ["horizon", "clicker", "automação"] },
-    // Jogos - usando caminhos relativos à raiz
-    { nome: "Resident Evil 4 Mobile Edition", path: "posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html", aliases: ["resident", "evil", "re4", "resident evil 4", "resident evil", "horror"] }
-  ];
 
   /* ---- Modo Noturno (Dark Mode) ---- */
   const darkModeToggle = document.getElementById('dark-mode-toggle');
@@ -51,74 +23,59 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---- Barra de Pesquisa BLINDADA v4 (Sempre Visível) ---- */
+  /* ---- Barra de Pesquisa (Sempre Visível) ---- */
   const searchInput = document.getElementById('search-input-fixed');
   const searchBtn = document.getElementById('search-submit-fixed');
 
+  function obterPrefixoBusca() {
+    const path = window.location.pathname;
+    if (path.includes('/posts/aplicativos/') || path.includes('/posts/jogos/')) {
+      return '../../';
+    }
+    if (path.includes('/pages/') || path.includes('/Index%20com%20Cusdis/') || path.includes('/Index com Cusdis/')) {
+      return '../';
+    }
+    return '';
+  }
+
   function performSearch() {
+    if (!searchInput) return;
     const term = searchInput.value.toLowerCase().trim();
-    if (!term) {
-      alert('Digite algo para buscar!');
+    if (!term) return;
+
+    // Verifica se APPS_DATA está disponível (carregado pelo dados.js)
+    if (typeof APPS_DATA === 'undefined') {
+      alert('Erro: dados do site não carregados. Recarregue a página.');
       return;
     }
 
-    let foundPath = null;
+    const prefixo = obterPrefixoBusca();
+    const todosItens = [
+      ...APPS_DATA.aplicativos,
+      ...APPS_DATA.jogos
+    ];
 
-    // Busca no índice global integrado
-    for (let item of SEARCH_INDEX) {
-      const itemName = item.nome.toLowerCase();
-      
-      // Verifica se o termo está no nome
-      if (itemName.includes(term) || term.includes(itemName)) {
-        foundPath = item.path;
-        break;
-      }
-      
-      // Verifica se o termo está nos aliases
-      if (item.aliases) {
-        for (let alias of item.aliases) {
-          if (alias.includes(term) || term.includes(alias)) {
-            foundPath = item.path;
-            break;
-          }
-        }
-      }
-      
-      if (foundPath) break;
-    }
+    // Busca por correspondência parcial no nome ou descrição
+    const encontrado = todosItens.find(item => {
+      const nome = item.nome.toLowerCase();
+      const descricao = item.descricao.toLowerCase();
+      return nome.includes(term) || descricao.includes(term) || term.includes(nome);
+    });
 
-    // Se não encontrou no índice, tenta procurar nos cards visíveis da página
-    if (!foundPath) {
-      const apps = document.querySelectorAll('[data-app-name]');
-      for (let app of apps) {
-        const appName = app.getAttribute('data-app-name').toLowerCase();
-        if (appName.includes(term) || term.includes(appName)) {
-          foundPath = app.getAttribute('data-app-url');
-          break;
-        }
-      }
-    }
-
-    if (foundPath) {
-      // Constrói a URL completa baseada no domínio atual
-      const baseUrl = getBaseUrl();
-      const fullUrl = baseUrl + foundPath;
-      window.location.href = fullUrl;
+    if (encontrado) {
+      window.location.href = prefixo + encontrado.url;
     } else {
-      alert('App não encontrado. Tente: "Horizon Clicker" ou "Resident Evil 4"');
+      alert('Nenhum resultado encontrado para "' + searchInput.value + '". Tente outro nome!');
     }
+
     searchInput.value = '';
   }
 
-  if (searchBtn) {
-    searchBtn.onclick = performSearch;
-  }
+  if (searchBtn) searchBtn.addEventListener('click', performSearch);
   if (searchInput) {
-    searchInput.onkeypress = function(e) {
-      if (e.key === 'Enter') {
-        performSearch();
-      }
-    };
+    searchInput.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') performSearch();
+    });
   }
 
   /* ---- Sistema de Comentários via E-mail (Formspree) ---- */
@@ -130,14 +87,18 @@ document.addEventListener('DOMContentLoaded', function () {
     commentForm.addEventListener('submit', function(e) {
       e.preventDefault();
 
+      // Desabilita o botão durante o envio
       submitBtn.disabled = true;
       submitBtn.textContent = 'Enviando...';
       
+      // Limpa mensagens anteriores
       formStatus.className = 'form-status';
       formStatus.textContent = '';
 
+      // Coleta os dados do formulário
       const formData = new FormData(commentForm);
       
+      // Envia os dados via Formspree
       fetch(commentForm.action, {
         method: 'POST',
         body: formData,
@@ -147,12 +108,14 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .then(response => {
         if (response.ok) {
+          // Sucesso
           formStatus.className = 'form-status success';
           formStatus.textContent = '✅ Comentário enviado com sucesso! Obrigado pela mensagem.';
           commentForm.reset();
           submitBtn.textContent = 'Enviar Comentário';
           submitBtn.disabled = false;
         } else {
+          // Erro na resposta
           formStatus.className = 'form-status error';
           formStatus.textContent = '❌ Erro ao enviar comentário. Tente novamente.';
           submitBtn.textContent = 'Enviar Comentário';
@@ -160,6 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       })
       .catch(error => {
+        // Erro na requisição
         console.error('Erro:', error);
         formStatus.className = 'form-status error';
         formStatus.textContent = '❌ Erro de conexão. Verifique sua internet e tente novamente.';
