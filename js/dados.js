@@ -1,5 +1,5 @@
-// ===== DADOS CENTRALIZADOS DO SITE =====
-// Adicione novos aplicativos ou jogos neste arquivo
+here// ===== DADOS CENTRALIZADOS DO SITE =====
+// Adicione novos aplicativos, jogos ou tutoriais neste arquivo
 // O site atualizará automaticamente todas as páginas
 
 const APPS_DATA = {
@@ -27,6 +27,18 @@ const APPS_DATA = {
       imagemGrande: "https://placehold.co/56x56/c62828/fff?text=RE4",
       url: "posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html",
       linkDownload: "https://4br.me/BaixarApkR4"
+    }
+  ],
+  tutoriais: [
+    {
+      id: "tutorial-instalacao",
+      nome: "Como instalar APK + OBB",
+      descricao: "Guia passo a passo",
+      categoria: "Tutoriais",
+      quente: false,
+      imagem: "https://placehold.co/64x64/4caf50/fff?text=TUT",
+      imagemGrande: "https://placehold.co/56x56/4caf50/fff?text=TUT",
+      url: "pages/tutoriais.html"
     }
   ]
 };
