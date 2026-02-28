@@ -181,7 +181,8 @@ function renderizarSidebar() {
 document.addEventListener('DOMContentLoaded', function() {
   const path = window.location.pathname;
 
-  if (path.includes('index.html') || path.endsWith('/') || path.includes('INDEX_FINAL_TRADUCAO_COMPLETA.html')) {
+  // Verificação melhorada para incluir a pasta do Cusdis
+  if (path.includes('index.html') || path.endsWith('/') || path.includes('INDEX_FINAL_TRADUCAO_COMPLETA.html') || path.includes('Index%20com%20Cusdis') || path.includes('Index com Cusdis')) {
     renderizarAtualizacoes();
     renderizarDestaques();
     renderizarSidebar();
