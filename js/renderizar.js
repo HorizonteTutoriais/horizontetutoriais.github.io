@@ -1,79 +1,75 @@
-// ===== RENDERIZADOR DINÂMICO DO SITE =====
-// Este arquivo monta automaticamente as listas de apps e jogos
+here// ===== MOTOR DE AUTOMAÇÃO TOTAL DO HORIZONTE TUTORIAIS =====
+// Este script organiza TUDO automaticamente com base no arquivo js/dados.js
 
-function obterPrefixoCaminho() {
+function obterPrefixo() {
   const path = window.location.pathname;
-  if (path.includes('/posts/aplicativos/') || path.includes('/posts/jogos/')) return '../../';
+  if (path.includes('/posts/')) return '../../';
   if (path.includes('/pages/')) return '../';
   return '';
 }
 
-function criarCardApp(app, prefixo) {
+function criarCard(item, prefixo, tipo) {
   const div = document.createElement('div');
-  div.className = 'update-card';
-  div.innerHTML = `
-    <img src="${app.imagemGrande}" alt="${app.nome}" />
-    <div class="card-title">${app.nome} (${app.descricao})</div>
-    <a href="${prefixo}${app.url}" class="btn-download">Download</a>
-  `;
-  return div;
-}
-
-function criarCardJogo(jogo, prefixo) {
-  const div = document.createElement('div');
-  div.className = 'update-card';
-  div.innerHTML = `
-    <img src="${jogo.imagemGrande}" alt="${jogo.nome}" />
-    <div class="card-title">${jogo.nome}</div>
-    <a href="${prefixo}${jogo.url}" class="btn-download">Download</a>
-  `;
-  return div;
-}
-
-function criarItemLista(item, prefixo, catUrl) {
-  const div = document.createElement('div');
-  div.className = 'post-list-item';
-  div.innerHTML = `
-    <img src="${item.imagem}" alt="${item.nome}" />
-    <div class="post-list-info">
-      <div class="post-title"><a href="${prefixo}${item.url}">${item.nome} ${item.descricao ? '(' + item.descricao + ')' : ''}</a></div>
-      <div class="post-cat"><a href="${prefixo}${catUrl}">${item.categoria}</a></div>
-      <a href="${prefixo}${item.url}" class="btn-download-sm">Download</a>
-    </div>
-  `;
-  return div;
-}
-
-function renderizarTudo() {
-  if (typeof APPS_DATA === 'undefined') return;
-
-  const prefixo = obterPrefixoCaminho();
   
-  // 1. Últimas Atualizações (Updates Grid)
+  if (tipo === 'update') {
+    div.className = 'update-card';
+    div.innerHTML = `
+      <img src="${item.imagemGrande}" alt="${item.nome}" />
+      <div class="card-title">${item.nome} ${item.descricao ? '(' + item.descricao + ')' : ''}</div>
+      <a href="${prefixo}${item.url}" class="btn-download">Download</a>
+    `;
+  } else if (tipo === 'app-card') {
+    div.className = 'app-card';
+    div.innerHTML = `
+      <div class="app-card-title"><a href="${prefixo}${item.url}">${item.nome}</a></div>
+      <div class="app-card-cat"><span>${item.quente ? 'Quente' : ''}</span> · ${item.descricao}</div>
+      <a href="${prefixo}${item.url}" class="btn-download-sm">Download</a>
+    `;
+  } else {
+    div.className = 'post-list-item';
+    div.innerHTML = `
+      <img src="${item.imagem}" alt="${item.nome}" />
+      <div class="post-list-info">
+        <div class="post-title"><a href="${prefixo}${item.url}">${item.nome} ${item.descricao ? '(' + item.descricao + ')' : ''}</a></div>
+        <div class="post-cat"><a href="${prefixo}pages/${item.categoria.toLowerCase()}.html">${item.categoria}</a></div>
+        <a href="${prefixo}${item.url}" class="btn-download-sm">Download</a>
+      </div>
+    `;
+  }
+  return div;
+}
+
+function organizarSiteTotal() {
+  if (typeof APPS_DATA === 'undefined') return;
+  const prefixo = obterPrefixo();
+  const path = window.location.pathname;
+
+  // 1. HOME: Últimas Atualizações (Todos os itens misturados)
   const updatesGrid = document.querySelector('.updates-grid');
   if (updatesGrid) {
     updatesGrid.innerHTML = '';
-    if (APPS_DATA.aplicativos) APPS_DATA.aplicativos.forEach(app => updatesGrid.appendChild(criarCardApp(app, prefixo)));
-    if (APPS_DATA.jogos) APPS_DATA.jogos.forEach(jogo => updatesGrid.appendChild(criarCardJogo(jogo, prefixo)));
+    const todos = [...(APPS_DATA.aplicativos || []), ...(APPS_DATA.jogos || []), ...(APPS_DATA.tutoriais || [])];
+    todos.forEach(item => updatesGrid.appendChild(criarCard(item, prefixo, 'update')));
   }
 
-  // 2. Destaques (Popular Section na Home)
+  // 2. HOME: Destaques (Todos os itens misturados)
   const popularSection = document.querySelector('.popular-section');
-  if (popularSection && !window.location.pathname.includes('aplicativos.html')) {
+  if (popularSection && (path.endsWith('index.html') || path.endsWith('/'))) {
     const itensAntigos = popularSection.querySelectorAll('.post-list-item');
     itensAntigos.forEach(item => item.remove());
-    if (APPS_DATA.aplicativos) APPS_DATA.aplicativos.forEach(app => popularSection.appendChild(criarItemLista(app, prefixo, 'pages/aplicativos.html')));
-    if (APPS_DATA.jogos) APPS_DATA.jogos.forEach(jogo => popularSection.appendChild(criarItemLista(jogo, prefixo, 'pages/jogos.html')));
+    [...(APPS_DATA.aplicativos || []), ...(APPS_DATA.jogos || []), ...(APPS_DATA.tutoriais || [])].forEach(item => {
+      popularSection.appendChild(criarCard(item, prefixo, 'list'));
+    });
   }
 
-  // 3. Sidebar (Populares/Quente)
+  // 3. SIDEBAR: Populares (Todos os itens em todas as páginas)
   const sidebarWidgets = document.querySelectorAll('.sidebar-widget');
   sidebarWidgets.forEach(w => {
     const h3 = w.querySelector('h3');
     if (h3 && (h3.innerText.includes('Populares') || h3.innerText.includes('Quente') || h3.innerText.includes('🔥'))) {
       const itensAntigos = w.querySelectorAll('.sidebar-post');
       itensAntigos.forEach(item => item.remove());
-      [...APPS_DATA.aplicativos, ...APPS_DATA.jogos].forEach(item => {
+      [...(APPS_DATA.aplicativos || []), ...(APPS_DATA.jogos || []), ...(APPS_DATA.tutoriais || [])].forEach(item => {
         const div = document.createElement('div');
         div.className = 'sidebar-post';
         div.innerHTML = `
@@ -88,38 +84,37 @@ function renderizarTudo() {
     }
   });
 
-  // 4. Páginas de Listagem (Aplicativos / Jogos)
-  if (window.location.pathname.includes('aplicativos.html')) {
+  // 4. PÁGINA APLICATIVOS: Apenas Aplicativos
+  if (path.includes('aplicativos.html')) {
     const container = document.querySelector('.popular-section');
-    if (container) {
+    if (container && APPS_DATA.aplicativos) {
       const itensAntigos = container.querySelectorAll('.post-list-item');
       itensAntigos.forEach(item => item.remove());
-      APPS_DATA.aplicativos.forEach(app => container.appendChild(criarItemLista(app, '../', 'pages/aplicativos.html')));
+      APPS_DATA.aplicativos.forEach(app => container.appendChild(criarCard(app, '../', 'list')));
     }
   }
-  if (window.location.pathname.includes('jogos.html')) {
+
+  // 5. PÁGINA JOGOS: Apenas Jogos
+  if (path.includes('jogos.html')) {
     const container = document.querySelector('.apps-grid');
-    if (container) {
+    if (container && APPS_DATA.jogos) {
       container.innerHTML = '';
-      APPS_DATA.jogos.forEach(jogo => {
-        const div = document.createElement('div');
-        div.className = 'app-card';
-        div.innerHTML = `
-          <div class="app-card-title"><a href="../${jogo.url}">${jogo.nome}</a></div>
-          <div class="app-card-cat"><span>${jogo.quente ? 'Quente' : ''}</span> · ${jogo.descricao}</div>
-          <a href="../${jogo.url}" class="btn-download-sm">Download</a>
-        `;
-        container.appendChild(div);
-      });
+      APPS_DATA.jogos.forEach(jogo => container.appendChild(criarCard(jogo, '../', 'app-card')));
+    }
+  }
+
+  // 6. PÁGINA TUTORIAIS: Apenas Tutoriais
+  if (path.includes('tutoriais.html')) {
+    const container = document.querySelector('.popular-section');
+    if (container && APPS_DATA.tutoriais) {
+      const itensAntigos = container.querySelectorAll('.post-list-item');
+      itensAntigos.forEach(item => item.remove());
+      APPS_DATA.tutoriais.forEach(tut => container.appendChild(criarCard(tut, '../', 'list')));
     }
   }
 }
 
-// Execução imediata e por eventos
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', renderizarTudo);
-} else {
-  renderizarTudo();
-}
-window.onload = renderizarTudo;
-setTimeout(renderizarTudo, 500);
+// Iniciar automação total
+document.addEventListener('DOMContentLoaded', organizarSiteTotal);
+window.onload = organizarSiteTotal;
+setTimeout(organizarSiteTotal, 500);
