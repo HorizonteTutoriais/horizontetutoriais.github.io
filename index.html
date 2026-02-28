@@ -59,23 +59,16 @@ here<!DOCTYPE html>
 <header class="site-header">
   <div class="container header-inner">
     <a href="index.html" class="site-logo">🌅 Horizonte <span>Tutoriais</span></a>
-    <div class="header-actions">
-      <!-- Botão Modo Noturno -->
-      <button id="dark-mode-toggle" class="header-btn" style="background:none;border:none;font-size:20px;cursor:pointer;">🌙</button>
-
-      <!-- Barra de Pesquisa Sempre Visível -->
-      <div class="search-fixed-container">
-        <input type="text" id="search-input-fixed" placeholder="Pesquisar app...">
-        <button id="search-submit-fixed">🔍</button>
-      </div>
-    </div>
+    <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="header-telegram">
+      <i class="fab fa-telegram"></i> Junte-Se Ao Nosso Telegram
+    </a>
   </div>
 </header>
 
 <!-- ===== NAVEGAÇÃO ===== -->
-<nav class="site-nav" aria-label="Navegação principal">
+<nav class="site-nav">
   <div class="container">
-    <ul class="nav-list" id="nav-list">
+    <ul class="nav-list">
       <li><a href="index.html" class="active"><span class="nav-icon">🏠</span> Lar</a></li>
       <li><a href="pages/aplicativos.html"><span class="nav-icon">📱</span> Aplicativos</a></li>
       <li><a href="pages/jogos.html"><span class="nav-icon">🎮</span> Jogos</a></li>
@@ -86,41 +79,32 @@ here<!DOCTYPE html>
   </div>
 </nav>
 
-<!-- ===== CONTEÚDO PRINCIPAL ===== -->
+<!-- ===== CONTAINER PRINCIPAL ===== -->
 <div class="container">
   <div class="main-layout">
-
-    <!-- ===== COLUNA PRINCIPAL ===== -->
+    <!-- ===== MAIN ===== -->
     <main>
+      <section class="hero-section">
+        <h1>🌅 Bem-vindo ao Horizonte Tutoriais</h1>
+        <p>Sua fonte definitiva para APKs, aplicativos premium e tutoriais. Tudo atualizado e pronto para download.</p>
+        <div class="search-fixed-container">
+          <input type="text" id="search-input" placeholder="Pesquisar app..." />
+          <button onclick="document.getElementById('search-input').focus()"><i class="fas fa-search"></i></button>
+        </div>
+      </section>
 
-      <!-- Atualizações -->
+      <!-- ===== ÚLTIMAS ATUALIZAÇÕES ===== -->
       <section class="updates-section">
-        <h2 class="section-title">🔄 Últimas Atualizações</h2>
+        <h2 class="section-title">📲 ÚLTIMAS ATUALIZAÇÕES</h2>
         <div class="updates-grid">
-          <!-- Preenchido dinamicamente por renderizar.js -->
+          <!-- Organizado automaticamente por renderizar.js -->
         </div>
       </section>
 
-      <!-- Aplicativos Populares -->
+      <!-- ===== DESTAQUES ===== -->
       <section class="popular-section">
-        <h2 class="section-title">⭐ Destaques</h2>
-        <!-- Preenchido dinamicamente por renderizar.js -->
-      </section>
-
-      <!-- ===== SEÇÃO DE COMENTÁRIOS (SISTEMA ORIGINAL COM TRADUÇÃO COMPLETA) ===== -->
-      <section class="custom-comments">
-        <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
-        <p style="font-size:13px;color:#666;margin-bottom:15px;">Compartilhe sua opinião! Não é necessário fazer login.</p>
-        
-        <div id="cusdis_list">
-          <div id="cusdis_thread"
-            data-host="https://cusdis.com"
-            data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
-            data-page-id="index_horizonte"
-            data-page-url="https://horizontetutoriais.com/index.html"
-            data-page-title="Horizonte Tutoriais - Início"
-          ></div>
-        </div>
+        <h2 class="section-title">⭐ DESTAQUES</h2>
+        <!-- Organizado automaticamente por renderizar.js -->
       </section>
 
     </main>
@@ -141,7 +125,6 @@ here<!DOCTYPE html>
         <a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn youtube">
           <span class="s-icon"><i class="fab fa-youtube"></i></span> YouTube
         </a>
-        
       </div>
 
       <!-- WIDGET DE RSS NA SIDEBAR -->
@@ -152,27 +135,28 @@ here<!DOCTYPE html>
         <div class="rss-widget-text">
           Adicione nosso feed ao seu leitor de RSS favorito e receba notificações de novos tutoriais e jogos.
         </div>
-        <!-- BOTÃO DE COPIAR LINK DO FEED -->
         <button class="rss-copy-btn" onclick="copyToClipboard('feed.xml')"><i class="fas fa-copy"></i> Copiar Link do Feed</button>
       </div>
 
       <div class="sidebar-widget">
         <h3 class="widget-title">🔥 Populares</h3>
-        <!-- Preenchido dinamicamente por renderizar.js -->
+        <!-- Organizado automaticamente por renderizar.js -->
       </div>
     </aside>
   </div>
 </div>
 
+<!-- ===== FOOTER ===== -->
 <footer class="site-footer">
-  <div class="container footer-grid">
-    <div class="footer-brand">
-      <div class="footer-logo">🌅 Horizonte Tutoriais</div>
-      <p>Horizonte Tutoriais — Sua fonte definitiva para APKs e tutoriais. Todos os direitos reservados.</p>
+  <div class="container footer-top">
+    <div class="footer-about">
+      <h3>🌅 Horizonte Tutoriais</h3>
+      <p>Sua fonte definitiva para APKs e tutoriais.</p>
       <div class="footer-social">
-        <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" title="Telegram"><i class="fab fa-telegram"></i></a>
-        <a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener"><i class="fab fa-telegram"></i></a>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
       </div>
     </div>
     <div class="footer-links">
@@ -181,8 +165,6 @@ here<!DOCTYPE html>
         <li><a href="index.html">Início</a></li>
         <li><a href="pages/aplicativos.html">Aplicativos</a></li>
         <li><a href="pages/jogos.html">Jogos</a></li>
-        <li><a href="pages/tutoriais.html">Tutoriais</a></li>
-        <li><a href="pages/quente.html">Quente</a></li>
       </ul>
     </div>
     <div class="footer-links">
@@ -203,7 +185,7 @@ here<!DOCTYPE html>
         <a href="pages/privacidade.html">Política de Privacidade</a>
         <a href="pages/isencao.html">Isenção de Responsabilidade</a>
       </div>
-      <p>Copyright &copy; 2025–2026 <a href="index.html">Horizonte Tutoriais</a> | Todos os direitos reservados | <a href="feed.xml" class="rss-btn"><i class="fas fa-rss"></i> RSS Feed</a></p>
+      <p>Copyright &copy; 2025–2026 <a href="index.html">Horizonte Tutoriais</a> | Todos os direitos reservados</p>
     </div>
   </div>
 </footer>
@@ -211,10 +193,8 @@ here<!DOCTYPE html>
 <!-- SCRIPT CUSDIS -->
 <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 <script>
-  // Permitir carregamento inicial
   window.cusdis_prevent_initial_load = false;
 
-  // FUNÇÃO PARA COPIAR LINK DO FEED
   function copyToClipboard(text) {
     var fullUrl = window.location.origin + '/' + text;
     navigator.clipboard.writeText(fullUrl).then(function() {
@@ -223,51 +203,6 @@ here<!DOCTYPE html>
       alert('Erro ao copiar: ' + err);
     });
   }
-
-  // TRADUÇÃO DOS TERMOS E MENSAGENS DE STATUS
-  function translateCusdis() {
-    const translations = {
-      'Nickname': 'Seu Nome',
-      'Reply': 'Responder',
-      'Comment': 'Comentário',
-      'Submit': 'Enviar Comentário',
-      'Email (optional)': 'E-mail (opcional)',
-      'Reply...': 'Escreva aqui sua opinião...',
-      'Load more': 'Carregar mais',
-      'sending...': 'Enviando...',
-      'Your comment has been sent. Please wait for approval.': 'Seu comentário foi enviado! Aguarde a aprovação do administrador.'
-    };
-
-    const iframes = document.querySelectorAll('#cusdis_thread iframe');
-    iframes.forEach(iframe => {
-      try {
-        const doc = iframe.contentDocument || iframe.contentWindow.document;
-        
-        // Traduzir textos fixos e mensagens de status que aparecem dinamicamente
-        const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null, false);
-        let node;
-        while(node = walker.nextNode()) {
-          const text = node.nodeValue.trim();
-          if (translations[text]) {
-            node.nodeValue = translations[text];
-          }
-        }
-        
-        // Traduzir placeholders e botões
-        doc.querySelectorAll('input, textarea, button').forEach(el => {
-          if (el.placeholder && translations[el.placeholder]) {
-            el.placeholder = translations[el.placeholder];
-          }
-          if (el.innerText && translations[el.innerText.trim()]) {
-            el.innerText = translations[el.innerText.trim()];
-          }
-        });
-      } catch (e) { }
-    });
-  }
-
-  // Rodar tradução periodicamente (cada 500ms para ser mais rápido na captura do status)
-  setInterval(translateCusdis, 500);
 </script>
 
 <!-- Scripts de renderização dinâmica -->
@@ -275,4 +210,4 @@ here<!DOCTYPE html>
 <script src="js/renderizar.js"></script>
 <script src="js/main.js"></script>
 </body>
-  </html>
+          </html>
