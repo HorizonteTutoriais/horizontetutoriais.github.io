@@ -27,41 +27,57 @@ function renderizarAtualizacoes() {
   const container = document.querySelector('.updates-grid');
   if (!container) return;
 
+  // Verifica se APPS_DATA existe
+  if (typeof APPS_DATA === 'undefined') {
+    console.error('APPS_DATA não foi carregado. Verifique se dados.js está sendo carregado corretamente.');
+    return;
+  }
+
   const prefixo = obterPrefixoCaminho();
   container.innerHTML = '';
 
   // Renderiza aplicativos
-  APPS_DATA.aplicativos.forEach(app => {
-    const card = document.createElement('div');
-    card.className = 'update-card';
-    card.setAttribute('data-app-name', app.nome);
-    card.setAttribute('data-app-url', prefixo + app.url);
-    card.innerHTML = `
-      <img src="${app.imagemGrande}" alt="${app.nome}" />
-      <div class="card-title">${app.nome} (${app.descricao})</div>
-      <a href="${prefixo}${app.url}" class="btn-download">Download</a>
-    `;
-    container.appendChild(card);
-  });
+  if (APPS_DATA.aplicativos && APPS_DATA.aplicativos.length > 0) {
+    APPS_DATA.aplicativos.forEach(app => {
+      const card = document.createElement('div');
+      card.className = 'update-card';
+      card.setAttribute('data-app-name', app.nome);
+      card.setAttribute('data-app-url', prefixo + app.url);
+      card.innerHTML = `
+        <img src="${app.imagemGrande}" alt="${app.nome}" />
+        <div class="card-title">${app.nome} (${app.descricao})</div>
+        <a href="${prefixo}${app.url}" class="btn-download">Download</a>
+      `;
+      container.appendChild(card);
+    });
+  }
 
   // Renderiza jogos
-  APPS_DATA.jogos.forEach(jogo => {
-    const card = document.createElement('div');
-    card.className = 'update-card';
-    card.setAttribute('data-app-name', jogo.nome);
-    card.setAttribute('data-app-url', prefixo + jogo.url);
-    card.innerHTML = `
-      <img src="${jogo.imagemGrande}" alt="${jogo.nome}" />
-      <div class="card-title">${jogo.nome}</div>
-      <a href="${prefixo}${jogo.url}" class="btn-download">Download</a>
-    `;
-    container.appendChild(card);
-  });
+  if (APPS_DATA.jogos && APPS_DATA.jogos.length > 0) {
+    APPS_DATA.jogos.forEach(jogo => {
+      const card = document.createElement('div');
+      card.className = 'update-card';
+      card.setAttribute('data-app-name', jogo.nome);
+      card.setAttribute('data-app-url', prefixo + jogo.url);
+      card.innerHTML = `
+        <img src="${jogo.imagemGrande}" alt="${jogo.nome}" />
+        <div class="card-title">${jogo.nome}</div>
+        <a href="${prefixo}${jogo.url}" class="btn-download">Download</a>
+      `;
+      container.appendChild(card);
+    });
+  }
 }
 
 function renderizarDestaques() {
   const container = document.querySelector('.popular-section');
   if (!container) return;
+
+  // Verifica se APPS_DATA existe
+  if (typeof APPS_DATA === 'undefined') {
+    console.error('APPS_DATA não foi carregado. Verifique se dados.js está sendo carregado corretamente.');
+    return;
+  }
 
   const prefixo = obterPrefixoCaminho();
   const titulo = container.querySelector('.section-title');
@@ -71,84 +87,104 @@ function renderizarDestaques() {
   itensAntigos.forEach(item => item.remove());
 
   // Aplicativos
-  APPS_DATA.aplicativos.forEach(app => {
-    const item = document.createElement('div');
-    item.className = 'post-list-item';
-    item.setAttribute('data-app-name', app.nome);
-    item.setAttribute('data-app-url', prefixo + app.url);
-    item.innerHTML = `
-      <img src="${app.imagem}" alt="${app.nome}" />
-      <div class="post-list-info">
-        <div class="post-title"><a href="${prefixo}${app.url}">${app.nome} (${app.descricao})</a></div>
-        <div class="post-cat"><a href="${prefixo}pages/aplicativos.html">${app.categoria}</a></div>
-        <a href="${prefixo}${app.url}" class="btn-download-sm">Download</a>
-      </div>
-    `;
-    container.appendChild(item);
-  });
+  if (APPS_DATA.aplicativos && APPS_DATA.aplicativos.length > 0) {
+    APPS_DATA.aplicativos.forEach(app => {
+      const item = document.createElement('div');
+      item.className = 'post-list-item';
+      item.setAttribute('data-app-name', app.nome);
+      item.setAttribute('data-app-url', prefixo + app.url);
+      item.innerHTML = `
+        <img src="${app.imagem}" alt="${app.nome}" />
+        <div class="post-list-info">
+          <div class="post-title"><a href="${prefixo}${app.url}">${app.nome} (${app.descricao})</a></div>
+          <div class="post-cat"><a href="${prefixo}pages/aplicativos.html">${app.categoria}</a></div>
+          <a href="${prefixo}${app.url}" class="btn-download-sm">Download</a>
+        </div>
+      `;
+      container.appendChild(item);
+    });
+  }
 
   // Jogos
-  APPS_DATA.jogos.forEach(jogo => {
-    const item = document.createElement('div');
-    item.className = 'post-list-item';
-    item.setAttribute('data-app-name', jogo.nome);
-    item.setAttribute('data-app-url', prefixo + jogo.url);
-    item.innerHTML = `
-      <img src="${jogo.imagem}" alt="${jogo.nome}" />
-      <div class="post-list-info">
-        <div class="post-title"><a href="${prefixo}${jogo.url}">${jogo.nome}</a></div>
-        <div class="post-cat"><a href="${prefixo}pages/jogos.html">${jogo.categoria}</a></div>
-        <a href="${prefixo}${jogo.url}" class="btn-download-sm">Download</a>
-      </div>
-    `;
-    container.appendChild(item);
-  });
+  if (APPS_DATA.jogos && APPS_DATA.jogos.length > 0) {
+    APPS_DATA.jogos.forEach(jogo => {
+      const item = document.createElement('div');
+      item.className = 'post-list-item';
+      item.setAttribute('data-app-name', jogo.nome);
+      item.setAttribute('data-app-url', prefixo + jogo.url);
+      item.innerHTML = `
+        <img src="${jogo.imagem}" alt="${jogo.nome}" />
+        <div class="post-list-info">
+          <div class="post-title"><a href="${prefixo}${jogo.url}">${jogo.nome}</a></div>
+          <div class="post-cat"><a href="${prefixo}pages/jogos.html">${jogo.categoria}</a></div>
+          <a href="${prefixo}${jogo.url}" class="btn-download-sm">Download</a>
+        </div>
+      `;
+      container.appendChild(item);
+    });
+  }
 }
 
 function renderizarPaginaAplicativos() {
   const container = document.querySelector('.popular-section');
   if (!container) return;
 
+  // Verifica se APPS_DATA existe
+  if (typeof APPS_DATA === 'undefined') {
+    console.error('APPS_DATA não foi carregado. Verifique se dados.js está sendo carregado corretamente.');
+    return;
+  }
+
   const prefixo = obterPrefixoCaminho();
   const itensAntigos = container.querySelectorAll('.post-list-item');
   itensAntigos.forEach(item => item.remove());
 
-  APPS_DATA.aplicativos.forEach(app => {
-    const item = document.createElement('div');
-    item.className = 'post-list-item';
-    item.setAttribute('data-app-name', app.nome);
-    item.setAttribute('data-app-url', prefixo + app.url);
-    item.innerHTML = `
-      <img src="${app.imagem}" alt="${app.nome}" />
-      <div class="post-list-info">
-        <div class="post-title"><a href="${prefixo}${app.url}">${app.nome} (${app.descricao})</a></div>
-        <div class="post-cat"><a href="aplicativos.html">${app.categoria}</a> · <span style="color:#e53935;font-weight:700">${app.quente ? 'Quente' : ''}</span></div>
-        <a href="${prefixo}${app.url}" class="btn-download-sm">Download</a>
-      </div>
-    `;
-    container.appendChild(item);
-  });
+  if (APPS_DATA.aplicativos && APPS_DATA.aplicativos.length > 0) {
+    APPS_DATA.aplicativos.forEach(app => {
+      const item = document.createElement('div');
+      item.className = 'post-list-item';
+      item.setAttribute('data-app-name', app.nome);
+      item.setAttribute('data-app-url', prefixo + app.url);
+      item.innerHTML = `
+        <img src="${app.imagem}" alt="${app.nome}" />
+        <div class="post-list-info">
+          <div class="post-title"><a href="${prefixo}${app.url}">${app.nome} (${app.descricao})</a></div>
+          <div class="post-cat"><a href="aplicativos.html">${app.categoria}</a> · <span style="color:#e53935;font-weight:700">${app.quente ? 'Quente' : ''}</span></div>
+          <a href="${prefixo}${app.url}" class="btn-download-sm">Download</a>
+        </div>
+      `;
+      container.appendChild(item);
+    });
+  }
 }
 
 function renderizarPaginaJogos() {
   const container = document.querySelector('.apps-grid');
   if (!container) return;
 
+  // Verifica se APPS_DATA existe
+  if (typeof APPS_DATA === 'undefined') {
+    console.error('APPS_DATA não foi carregado. Verifique se dados.js está sendo carregado corretamente.');
+    return;
+  }
+
   const prefixo = obterPrefixoCaminho();
   container.innerHTML = '';
 
-  APPS_DATA.jogos.forEach(jogo => {
-    const card = document.createElement('div');
-    card.className = 'app-card';
-    card.setAttribute('data-app-name', jogo.nome);
-    card.setAttribute('data-app-url', prefixo + jogo.url);
-    card.innerHTML = `
-      <div class="app-card-title"><a href="${prefixo}${jogo.url}">${jogo.nome}</a></div>
-      <div class="app-card-cat"><span>${jogo.quente ? 'Quente' : ''}</span> · ${jogo.descricao}</div>
-      <a href="${prefixo}${jogo.url}" class="btn-download-sm">Download</a>
-    `;
-    container.appendChild(card);
-  });
+  if (APPS_DATA.jogos && APPS_DATA.jogos.length > 0) {
+    APPS_DATA.jogos.forEach(jogo => {
+      const card = document.createElement('div');
+      card.className = 'app-card';
+      card.setAttribute('data-app-name', jogo.nome);
+      card.setAttribute('data-app-url', prefixo + jogo.url);
+      card.innerHTML = `
+        <div class="app-card-title"><a href="${prefixo}${jogo.url}">${jogo.nome}</a></div>
+        <div class="app-card-cat"><span>${jogo.quente ? 'Quente' : ''}</span> · ${jogo.descricao}</div>
+        <a href="${prefixo}${jogo.url}" class="btn-download-sm">Download</a>
+      `;
+      container.appendChild(card);
+    });
+  }
 }
 
 function renderizarSidebar() {
@@ -164,59 +200,73 @@ function renderizarSidebar() {
 
   if (!container) return;
 
+  // Verifica se APPS_DATA existe
+  if (typeof APPS_DATA === 'undefined') {
+    console.error('APPS_DATA não foi carregado. Verifique se dados.js está sendo carregado corretamente.');
+    return;
+  }
+
   const prefixo = obterPrefixoCaminho();
   const itensAntigos = container.querySelectorAll('.sidebar-post');
   itensAntigos.forEach(item => item.remove());
 
-  APPS_DATA.aplicativos.forEach(app => {
-    const item = document.createElement('div');
-    item.className = 'sidebar-post';
-    item.innerHTML = `
-      <img src="${app.imagem}" alt="${app.nome}" />
-      <div class="sidebar-post-info">
-        <div class="sp-title"><a href="${prefixo}${app.url}">${app.nome}</a></div>
-        <div class="sp-cat">${app.categoria}</div>
-      </div>
-    `;
-    container.appendChild(item);
-  });
+  if (APPS_DATA.aplicativos && APPS_DATA.aplicativos.length > 0) {
+    APPS_DATA.aplicativos.forEach(app => {
+      const item = document.createElement('div');
+      item.className = 'sidebar-post';
+      item.innerHTML = `
+        <img src="${app.imagem}" alt="${app.nome}" />
+        <div class="sidebar-post-info">
+          <div class="sp-title"><a href="${prefixo}${app.url}">${app.nome}</a></div>
+          <div class="sp-cat">${app.categoria}</div>
+        </div>
+      `;
+      container.appendChild(item);
+    });
+  }
 
-  APPS_DATA.jogos.forEach(jogo => {
-    const item = document.createElement('div');
-    item.className = 'sidebar-post';
-    item.innerHTML = `
-      <img src="${jogo.imagem}" alt="${jogo.nome}" />
-      <div class="sidebar-post-info">
-        <div class="sp-title"><a href="${prefixo}${jogo.url}">${jogo.nome}</a></div>
-        <div class="sp-cat">${jogo.categoria}</div>
-      </div>
-    `;
-    container.appendChild(item);
-  });
+  if (APPS_DATA.jogos && APPS_DATA.jogos.length > 0) {
+    APPS_DATA.jogos.forEach(jogo => {
+      const item = document.createElement('div');
+      item.className = 'sidebar-post';
+      item.innerHTML = `
+        <img src="${jogo.imagem}" alt="${jogo.nome}" />
+        <div class="sidebar-post-info">
+          <div class="sp-title"><a href="${prefixo}${jogo.url}">${jogo.nome}</a></div>
+          <div class="sp-cat">${jogo.categoria}</div>
+        </div>
+      `;
+      container.appendChild(item);
+    });
+  }
 }
 
+// Aguarda um pouco para garantir que APPS_DATA foi carregado
 document.addEventListener('DOMContentLoaded', function() {
-  const path = window.location.pathname;
+  // Pequeno delay para garantir que dados.js foi executado
+  setTimeout(function() {
+    const path = window.location.pathname;
 
-  // Página inicial (index.html na raiz ou dentro de "Index com Cusdis")
-  const ehPaginaInicial =
-    path.endsWith('/') ||
-    path.endsWith('index.html') ||
-    path.includes('Index%20com%20Cusdis') ||
-    path.includes('Index com Cusdis') ||
-    path.includes('INDEX_FINAL_TRADUCAO_COMPLETA.html');
+    // Página inicial (index.html na raiz ou dentro de "Index com Cusdis")
+    const ehPaginaInicial =
+      path.endsWith('/') ||
+      path.endsWith('index.html') ||
+      path.includes('Index%20com%20Cusdis') ||
+      path.includes('Index com Cusdis') ||
+      path.includes('INDEX_FINAL_TRADUCAO_COMPLETA.html');
 
-  if (ehPaginaInicial) {
-    renderizarAtualizacoes();
-    renderizarDestaques();
-    renderizarSidebar();
-  } else if (path.includes('aplicativos.html')) {
-    renderizarPaginaAplicativos();
-    renderizarSidebar();
-  } else if (path.includes('jogos.html')) {
-    renderizarPaginaJogos();
-    renderizarSidebar();
-  } else {
-    renderizarSidebar();
-  }
+    if (ehPaginaInicial) {
+      renderizarAtualizacoes();
+      renderizarDestaques();
+      renderizarSidebar();
+    } else if (path.includes('aplicativos.html')) {
+      renderizarPaginaAplicativos();
+      renderizarSidebar();
+    } else if (path.includes('jogos.html')) {
+      renderizarPaginaJogos();
+      renderizarSidebar();
+    } else {
+      renderizarSidebar();
+    }
+  }, 100);
 });
