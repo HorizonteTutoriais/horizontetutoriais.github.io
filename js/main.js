@@ -1,16 +1,36 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS — JavaScript Principal (BLINDADO v3)
-   Busca Global com Links Relativos Inteligentes
+   HORIZONTE TUTORIAIS — JavaScript Principal (BLINDADO v4)
+   Busca Global com URLs Completas Baseadas no Domínio
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', function () {
 
+  /* ---- Detectar o domínio base do site ---- */
+  function getBaseUrl() {
+    const protocol = window.location.protocol; // http: ou https:
+    const hostname = window.location.hostname; // tutoriais.github.io
+    const pathname = window.location.pathname; // /tutoriais.github.io/ ou /
+    
+    // Extrai a base do pathname (tudo antes do primeiro arquivo)
+    let basePath = '/';
+    const pathParts = pathname.split('/').filter(p => p);
+    
+    // Se houver mais de uma parte no caminho, a primeira é o repositório
+    if (pathParts.length > 0 && !pathname.includes('.html')) {
+      basePath = '/' + pathParts[0] + '/';
+    } else if (pathParts.length > 1) {
+      basePath = '/' + pathParts[0] + '/';
+    }
+    
+    return protocol + '//' + hostname + basePath;
+  }
+
   /* ---- ÍNDICE GLOBAL DE APLICATIVOS E JOGOS (INTEGRADO) ---- */
   const SEARCH_INDEX = [
-    // Aplicativos - usando caminhos relativos que funcionam de qualquer lugar
-    { nome: "Horizon Clicker", urlFromHome: "posts/aplicativos/horizon-clicker-FINAL-CORRIGIDO.html", aliases: ["horizon", "clicker", "automação"] },
-    // Jogos - usando caminhos relativos que funcionam de qualquer lugar
-    { nome: "Resident Evil 4 Mobile Edition", urlFromHome: "posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html", aliases: ["resident", "evil", "re4", "resident evil 4", "resident evil", "horror"] }
+    // Aplicativos - usando caminhos relativos à raiz
+    { nome: "Horizon Clicker", path: "posts/aplicativos/horizon-clicker-FINAL-CORRIGIDO.html", aliases: ["horizon", "clicker", "automação"] },
+    // Jogos - usando caminhos relativos à raiz
+    { nome: "Resident Evil 4 Mobile Edition", path: "posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html", aliases: ["resident", "evil", "re4", "resident evil 4", "resident evil", "horror"] }
   ];
 
   /* ---- Modo Noturno (Dark Mode) ---- */
@@ -31,33 +51,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---- Barra de Pesquisa BLINDADA v3 (Sempre Visível) ---- */
+  /* ---- Barra de Pesquisa BLINDADA v4 (Sempre Visível) ---- */
   const searchInput = document.getElementById('search-input-fixed');
   const searchBtn = document.getElementById('search-submit-fixed');
-
-  function calculateRelativePath(targetUrl) {
-    // Detecta o nível de profundidade da página atual
-    const currentPath = window.location.pathname;
-    
-    // Conta quantas pastas estamos dentro
-    const pathParts = currentPath.split('/').filter(p => p && p !== 'index.html');
-    
-    // Se estamos em /pages/ ou /posts/, precisamos voltar um nível (..)
-    // Se estamos na raiz ou em /index.html, não precisamos voltar
-    let depth = 0;
-    
-    if (currentPath.includes('/pages/') || currentPath.includes('/posts/')) {
-      depth = 1; // Estamos um nível abaixo da raiz
-    }
-    
-    // Monta o caminho relativo
-    let relativePath = '';
-    for (let i = 0; i < depth; i++) {
-      relativePath += '../';
-    }
-    
-    return relativePath + targetUrl;
-  }
 
   function performSearch() {
     const term = searchInput.value.toLowerCase().trim();
@@ -66,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-    let foundUrl = null;
+    let foundPath = null;
 
     // Busca no índice global integrado
     for (let item of SEARCH_INDEX) {
@@ -74,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
       
       // Verifica se o termo está no nome
       if (itemName.includes(term) || term.includes(itemName)) {
-        foundUrl = item.urlFromHome;
+        foundPath = item.path;
         break;
       }
       
@@ -82,31 +78,32 @@ document.addEventListener('DOMContentLoaded', function () {
       if (item.aliases) {
         for (let alias of item.aliases) {
           if (alias.includes(term) || term.includes(alias)) {
-            foundUrl = item.urlFromHome;
+            foundPath = item.path;
             break;
           }
         }
       }
       
-      if (foundUrl) break;
+      if (foundPath) break;
     }
 
     // Se não encontrou no índice, tenta procurar nos cards visíveis da página
-    if (!foundUrl) {
+    if (!foundPath) {
       const apps = document.querySelectorAll('[data-app-name]');
       for (let app of apps) {
         const appName = app.getAttribute('data-app-name').toLowerCase();
         if (appName.includes(term) || term.includes(appName)) {
-          foundUrl = app.getAttribute('data-app-url');
+          foundPath = app.getAttribute('data-app-url');
           break;
         }
       }
     }
 
-    if (foundUrl) {
-      // Calcula o caminho relativo correto baseado na página atual
-      const finalUrl = calculateRelativePath(foundUrl);
-      window.location.href = finalUrl;
+    if (foundPath) {
+      // Constrói a URL completa baseada no domínio atual
+      const baseUrl = getBaseUrl();
+      const fullUrl = baseUrl + foundPath;
+      window.location.href = fullUrl;
     } else {
       alert('App não encontrado. Tente: "Horizon Clicker" ou "Resident Evil 4"');
     }
