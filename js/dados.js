@@ -1,4 +1,4 @@
-here// ===== DADOS CENTRALIZADOS DO SITE =====
+// ===== DADOS CENTRALIZADOS DO SITE =====
 // Adicione novos aplicativos ou jogos neste arquivo
 // O site atualizará automaticamente todas as páginas
 
@@ -12,7 +12,8 @@ const APPS_DATA = {
       quente: true,
       imagem: "https://placehold.co/64x64/1a73e8/fff?text=HC",
       imagemGrande: "https://placehold.co/56x56/1a73e8/fff?text=HC",
-      url: "posts/aplicativos/horizon-clicker-FINAL-CORRIGIDO.html",
+      // O caminho agora usa "aplicativos" (minúsculo) para evitar erros no GitHub
+      url: "posts/aplicativos/horizon-clicker.html",
       linkDownload: "https://4br.me/BaixarHorizonClicker"
     }
   ],
@@ -25,8 +26,9 @@ const APPS_DATA = {
       quente: true,
       imagem: "https://placehold.co/64x64/c62828/fff?text=RE4",
       imagemGrande: "https://placehold.co/56x56/c62828/fff?text=RE4",
-      url: "posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html",
-      linkDownload: "posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html"
+      // O caminho agora usa "jogos" (minúsculo)
+      url: "posts/jogos/resident-evil-4.html",
+      linkDownload: "posts/jogos/resident-evil-4.html"
     }
   ]
 };
