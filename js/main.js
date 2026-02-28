@@ -1,9 +1,17 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS — JavaScript Principal (INFALÍVEL)
-   Adaptado para envio de comentários via E-mail com Formspree
+   HORIZONTE TUTORIAIS — JavaScript Principal (BLINDADO)
+   Busca Global Integrada + Dark Mode + Comentários
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', function () {
+
+  /* ---- ÍNDICE GLOBAL DE APLICATIVOS E JOGOS (INTEGRADO) ---- */
+  const SEARCH_INDEX = [
+    // Aplicativos
+    { nome: "Horizon Clicker", url: "posts/aplicativos/horizon-clicker-FINAL-CORRIGIDO.html", aliases: ["horizon", "clicker", "automação"] },
+    // Jogos
+    { nome: "Resident Evil 4 Mobile Edition", url: "posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html", aliases: ["resident", "evil", "re4", "resident evil 4", "resident evil", "horror"] }
+  ];
 
   /* ---- Modo Noturno (Dark Mode) ---- */
   const darkModeToggle = document.getElementById('dark-mode-toggle');
@@ -23,38 +31,85 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---- Barra de Pesquisa (Sempre Visível) ---- */
+  /* ---- Barra de Pesquisa BLINDADA (Sempre Visível) ---- */
   const searchInput = document.getElementById('search-input-fixed');
   const searchBtn = document.getElementById('search-submit-fixed');
 
   function performSearch() {
     const term = searchInput.value.toLowerCase().trim();
-    if (!term) return;
+    if (!term) {
+      alert('Digite algo para buscar!');
+      return;
+    }
 
-    // Procura o app nos cards e redireciona
-    const apps = document.querySelectorAll('[data-app-name]');
     let foundUrl = null;
 
-    for (let app of apps) {
-      const appName = app.getAttribute('data-app-name').toLowerCase();
-      if (appName.includes(term) || term.includes(appName)) {
-        foundUrl = app.getAttribute('data-app-url');
+    // Busca no índice global integrado
+    for (let item of SEARCH_INDEX) {
+      const itemName = item.nome.toLowerCase();
+      
+      // Verifica se o termo está no nome
+      if (itemName.includes(term) || term.includes(itemName)) {
+        foundUrl = item.url;
         break;
+      }
+      
+      // Verifica se o termo está nos aliases
+      if (item.aliases) {
+        for (let alias of item.aliases) {
+          if (alias.includes(term) || term.includes(alias)) {
+            foundUrl = item.url;
+            break;
+          }
+        }
+      }
+      
+      if (foundUrl) break;
+    }
+
+    // Se não encontrou no índice, tenta procurar nos cards visíveis da página
+    if (!foundUrl) {
+      const apps = document.querySelectorAll('[data-app-name]');
+      for (let app of apps) {
+        const appName = app.getAttribute('data-app-name').toLowerCase();
+        if (appName.includes(term) || term.includes(appName)) {
+          foundUrl = app.getAttribute('data-app-url');
+          break;
+        }
       }
     }
 
     if (foundUrl) {
+      // Detecta se precisa de caminho relativo ou absoluto
+      if (!foundUrl.startsWith('http')) {
+        // Tenta descobrir o caminho correto baseado na URL atual
+        const currentPath = window.location.pathname;
+        if (currentPath.includes('/posts/')) {
+          // Já está em um post, não precisa mudar muito
+          foundUrl = foundUrl.replace(/^posts\//, '../../posts/');
+        } else if (currentPath.includes('/pages/')) {
+          // Está em uma página, precisa voltar um nível
+          foundUrl = foundUrl.replace(/^posts\//, '../posts/');
+        } else {
+          // Está na home, usa o caminho direto
+          foundUrl = foundUrl;
+        }
+      }
       window.location.href = foundUrl;
     } else {
-      alert('App não encontrado. Tente outro nome!');
+      alert('App não encontrado. Tente: "Horizon Clicker" ou "Resident Evil 4"');
     }
     searchInput.value = '';
   }
 
-  if (searchBtn) searchBtn.onclick = performSearch;
+  if (searchBtn) {
+    searchBtn.onclick = performSearch;
+  }
   if (searchInput) {
     searchInput.onkeypress = function(e) {
-      if (e.key === 'Enter') performSearch();
+      if (e.key === 'Enter') {
+        performSearch();
+      }
     };
   }
 
@@ -67,18 +122,14 @@ document.addEventListener('DOMContentLoaded', function () {
     commentForm.addEventListener('submit', function(e) {
       e.preventDefault();
 
-      // Desabilita o botão durante o envio
       submitBtn.disabled = true;
       submitBtn.textContent = 'Enviando...';
       
-      // Limpa mensagens anteriores
       formStatus.className = 'form-status';
       formStatus.textContent = '';
 
-      // Coleta os dados do formulário
       const formData = new FormData(commentForm);
       
-      // Envia os dados via Formspree
       fetch(commentForm.action, {
         method: 'POST',
         body: formData,
@@ -88,14 +139,12 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .then(response => {
         if (response.ok) {
-          // Sucesso
           formStatus.className = 'form-status success';
           formStatus.textContent = '✅ Comentário enviado com sucesso! Obrigado pela mensagem.';
           commentForm.reset();
           submitBtn.textContent = 'Enviar Comentário';
           submitBtn.disabled = false;
         } else {
-          // Erro na resposta
           formStatus.className = 'form-status error';
           formStatus.textContent = '❌ Erro ao enviar comentário. Tente novamente.';
           submitBtn.textContent = 'Enviar Comentário';
@@ -103,7 +152,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       })
       .catch(error => {
-        // Erro na requisição
         console.error('Erro:', error);
         formStatus.className = 'form-status error';
         formStatus.textContent = '❌ Erro de conexão. Verifique sua internet e tente novamente.';
