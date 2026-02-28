@@ -97,14 +97,14 @@ here<!DOCTYPE html>
       <section class="updates-section">
         <h2 class="section-title">🔄 Últimas Atualizações</h2>
         <div class="updates-grid">
-          <!-- Preenchido dinamicamente -->
+          <!-- Preenchido dinamicamente por renderizar.js -->
         </div>
       </section>
 
       <!-- Aplicativos Populares -->
       <section class="popular-section">
         <h2 class="section-title">⭐ Destaques</h2>
-        <!-- Preenchido dinamicamente -->
+        <!-- Preenchido dinamicamente por renderizar.js -->
       </section>
 
       <!-- ===== SEÇÃO DE COMENTÁRIOS (SISTEMA ORIGINAL COM TRADUÇÃO COMPLETA) ===== -->
@@ -158,7 +158,7 @@ here<!DOCTYPE html>
 
       <div class="sidebar-widget">
         <h3 class="widget-title">🔥 Populares</h3>
-        <!-- Preenchido dinamicamente -->
+        <!-- Preenchido dinamicamente por renderizar.js -->
       </div>
     </aside>
   </div>
@@ -270,223 +270,9 @@ here<!DOCTYPE html>
   setInterval(translateCusdis, 500);
 </script>
 
-<!-- ===== DADOS E RENDERIZAÇÃO EMBUTIDOS ===== -->
-<script>
-  // DADOS CENTRALIZADOS - EMBUTIDOS DIRETAMENTE
-  const APPS_DATA = {
-    aplicativos: [
-      {
-        id: "horizon-clicker",
-        nome: "Horizon Clicker",
-        descricao: "Automação de Cliques",
-        categoria: "Aplicativos",
-        quente: true,
-        imagem: "https://placehold.co/64x64/1a73e8/fff?text=HC",
-        imagemGrande: "https://placehold.co/56x56/1a73e8/fff?text=HC",
-        url: "posts/aplicativos/horizon-clicker-FINAL-CORRIGIDO.html",
-        linkDownload: "https://4br.me/BaixarHorizonClicker"
-      }
-    ],
-    jogos: [
-      {
-        id: "resident-evil-4",
-        nome: "Resident Evil 4 Mobile Edition",
-        descricao: "Ação / Survival Horror",
-        categoria: "Jogos",
-        quente: true,
-        imagem: "https://placehold.co/64x64/c62828/fff?text=RE4",
-        imagemGrande: "https://placehold.co/56x56/c62828/fff?text=RE4",
-        url: "posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html",
-        linkDownload: "posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html"
-      }
-    ]
-  };
-
-  // FUNÇÕES DE RENDERIZAÇÃO
-  function renderizarAtualizacoes() {
-    const container = document.querySelector('.updates-grid');
-    if (!container) return;
-
-    container.innerHTML = '';
-    
-    // Renderiza aplicativos
-    APPS_DATA.aplicativos.forEach(app => {
-      const card = document.createElement('div');
-      card.className = 'update-card';
-      card.innerHTML = `
-        <img src="${app.imagemGrande}" alt="${app.nome}" />
-        <div class="card-title">${app.nome} (${app.descricao})</div>
-        <a href="${app.url}" class="btn-download">Download</a>
-      `;
-      container.appendChild(card);
-    });
-
-    // Renderiza jogos
-    APPS_DATA.jogos.forEach(jogo => {
-      const card = document.createElement('div');
-      card.className = 'update-card';
-      card.innerHTML = `
-        <img src="${jogo.imagemGrande}" alt="${jogo.nome}" />
-        <div class="card-title">${jogo.nome}</div>
-        <a href="${jogo.url}" class="btn-download">Download</a>
-      `;
-      container.appendChild(card);
-    });
-  }
-
-  function renderizarDestaques() {
-    const container = document.querySelector('.popular-section');
-    if (!container) return;
-
-    const titulo = container.querySelector('.section-title');
-    if (!titulo) return;
-
-    const itensAntigos = container.querySelectorAll('.post-list-item');
-    itensAntigos.forEach(item => item.remove());
-
-    // Aplicativos
-    APPS_DATA.aplicativos.forEach(app => {
-      const item = document.createElement('div');
-      item.className = 'post-list-item';
-      item.innerHTML = `
-        <img src="${app.imagem}" alt="${app.nome}" />
-        <div class="post-list-info">
-          <div class="post-title"><a href="${app.url}">${app.nome} (${app.descricao})</a></div>
-          <div class="post-cat"><a href="pages/aplicativos.html">${app.categoria}</a></div>
-          <a href="${app.url}" class="btn-download-sm">Download</a>
-        </div>
-      `;
-      container.appendChild(item);
-    });
-
-    // Jogos
-    APPS_DATA.jogos.forEach(jogo => {
-      const item = document.createElement('div');
-      item.className = 'post-list-item';
-      item.innerHTML = `
-        <img src="${jogo.imagem}" alt="${jogo.nome}" />
-        <div class="post-list-info">
-          <div class="post-title"><a href="${jogo.url}">${jogo.nome}</a></div>
-          <div class="post-cat"><a href="pages/jogos.html">${jogo.categoria}</a></div>
-          <a href="${jogo.url}" class="btn-download-sm">Download</a>
-        </div>
-      `;
-      container.appendChild(item);
-    });
-  }
-
-  function renderizarSidebar() {
-    const widgets = document.querySelectorAll('.sidebar-widget');
-    let container = null;
-    
-    widgets.forEach(w => {
-      const h3 = w.querySelector('h3');
-      if (h3 && (h3.innerText.includes('Populares') || h3.innerText.includes('Quente'))) {
-        container = w;
-      }
-    });
-
-    if (!container) return;
-
-    const itensAntigos = container.querySelectorAll('.sidebar-post');
-    itensAntigos.forEach(item => item.remove());
-
-    APPS_DATA.aplicativos.forEach(app => {
-      const item = document.createElement('div');
-      item.className = 'sidebar-post';
-      item.innerHTML = `
-        <img src="${app.imagem}" alt="${app.nome}" />
-        <div class="sidebar-post-info">
-          <div class="sp-title"><a href="${app.url}">${app.nome}</a></div>
-          <div class="sp-cat">${app.categoria}</div>
-        </div>
-      `;
-      container.appendChild(item);
-    });
-
-    APPS_DATA.jogos.forEach(jogo => {
-      const item = document.createElement('div');
-      item.className = 'sidebar-post';
-      item.innerHTML = `
-        <img src="${jogo.imagem}" alt="${jogo.nome}" />
-        <div class="sidebar-post-info">
-          <div class="sp-title"><a href="${jogo.url}">${jogo.nome}</a></div>
-          <div class="sp-cat">${jogo.categoria}</div>
-        </div>
-      `;
-      container.appendChild(item);
-    });
-  }
-
-  // Executar renderização quando o DOM estiver pronto
-  document.addEventListener('DOMContentLoaded', function() {
-    renderizarAtualizacoes();
-    renderizarDestaques();
-    renderizarSidebar();
-  });
-
-  // MODO NOTURNO
-  const darkModeToggle = document.getElementById('dark-mode-toggle');
-  const body = document.body;
-
-  if (localStorage.getItem('theme') === 'dark') {
-    body.classList.add('dark-mode');
-    if (darkModeToggle) darkModeToggle.textContent = '☀️';
-  }
-
-  if (darkModeToggle) {
-    darkModeToggle.addEventListener('click', function () {
-      body.classList.toggle('dark-mode');
-      const isDark = body.classList.contains('dark-mode');
-      darkModeToggle.textContent = isDark ? '☀️' : '🌙';
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    });
-  }
-
-  // BARRA DE PESQUISA
-  const searchInput = document.getElementById('search-input-fixed');
-  const searchBtn = document.getElementById('search-submit-fixed');
-
-  function performSearch() {
-    const term = searchInput.value.toLowerCase().trim();
-    if (!term) return;
-
-    let foundUrl = null;
-
-    // Procura nos aplicativos
-    for (let app of APPS_DATA.aplicativos) {
-      if (app.nome.toLowerCase().includes(term)) {
-        foundUrl = app.url;
-        break;
-      }
-    }
-
-    // Procura nos jogos
-    if (!foundUrl) {
-      for (let jogo of APPS_DATA.jogos) {
-        if (jogo.nome.toLowerCase().includes(term)) {
-          foundUrl = jogo.url;
-          break;
-        }
-      }
-    }
-
-    if (foundUrl) {
-      window.location.href = foundUrl;
-    } else {
-      alert('App não encontrado. Tente outro nome!');
-    }
-    searchInput.value = '';
-  }
-
-  if (searchBtn) searchBtn.onclick = performSearch;
-  if (searchInput) {
-    searchInput.onkeypress = function(e) {
-      if (e.key === 'Enter') performSearch();
-    };
-  }
-</script>
-
+<!-- Scripts de renderização dinâmica -->
+<script src="js/dados.js"></script>
+<script src="js/renderizar.js"></script>
 <script src="js/main.js"></script>
 </body>
-  </html>
+        </html>
