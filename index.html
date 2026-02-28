@@ -11,8 +11,6 @@ here<!DOCTYPE html>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
   <!-- Favicon inline SVG -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌅</text></svg>" />
-  <!-- Link de descoberta do Feed RSS -->
-  <link rel="alternate" type="application/rss+xml" title="Horizonte Tutoriais - Feed RSS" href="feed.xml" />
   <style>
     /* Estilo para a barra de pesquisa sempre visível no celular */
     .header-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
@@ -24,17 +22,6 @@ here<!DOCTYPE html>
     /* Estilo para a seção de comentários */
     .custom-comments { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: var(--shadow); }
     .widget-title { margin-top: 0; font-size: 18px; border-bottom: 2px solid var(--blue-primary); display: inline-block; margin-bottom: 15px; }
-    
-    /* Estilos para os botões RSS */
-    .rss-btn { display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; background: #ff9800; color: #fff; text-decoration: none; border-radius: 4px; font-size: 12px; font-weight: 600; transition: background 0.3s ease; }
-    .rss-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
-    
-    /* Estilo para o widget de RSS na sidebar */
-    .rss-widget { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 15px; margin-top: 15px; box-shadow: var(--shadow); }
-    .rss-widget-title { font-size: 13px; font-weight: 700; color: #ff9800; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
-    .rss-widget-text { font-size: 12px; color: #666; margin-bottom: 10px; line-height: 1.5; }
-    .rss-copy-btn { display: block; width: 100%; background: #ff9800; color: #fff; text-align: center; padding: 10px; border-radius: 6px; font-size: 12px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; transition: background 0.3s ease; }
-    .rss-copy-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
     
     @media (max-width: 600px) {
       .header-telegram { display: none; }
@@ -51,7 +38,6 @@ here<!DOCTYPE html>
     <a href="pages/contato.html">Contate-Nos</a>
     <a href="pages/privacidade.html">Política de Privacidade</a>
     <a href="pages/isencao.html">Isenção de Responsabilidade</a>
-    <a href="feed.xml" class="rss-btn" target="_blank" rel="noopener"><i class="fas fa-rss"></i> RSS</a>
   </div>
 </div>
 
@@ -97,14 +83,222 @@ here<!DOCTYPE html>
       <section class="updates-section">
         <h2 class="section-title">🔄 Últimas Atualizações</h2>
         <div class="updates-grid">
-          <!-- Preenchido dinamicamente por renderizar.js -->
+
+          <div class="update-card" data-app-name="Telegram" data-app-url="posts/telegram-premium.html">
+            <img src="images/app-telegram.png" alt="Telegram" onerror="this.src='https://placehold.co/56x56/0088cc/fff?text=TG'" />
+            <div class="card-title">Telegram v12.4.3 (Premium Desbloqueado)</div>
+            <a href="posts/telegram-premium.html" class="btn-download">Download</a>
+          </div>
+
+          <div class="update-card" data-app-name="Spotify" data-app-url="posts/spotify-premium.html">
+            <img src="images/app-spotify.png" alt="Spotify" onerror="this.src='https://placehold.co/56x56/1db954/fff?text=SP'" />
+            <div class="card-title">Spotify Music v9.1.22 (Premium Grátis)</div>
+            <a href="posts/spotify-premium.html" class="btn-download">Download</a>
+          </div>
+
+          <div class="update-card" data-app-name="CapCut" data-app-url="posts/capcut-pro.html">
+            <img src="images/app-capcut.png" alt="CapCut" onerror="this.src='https://placehold.co/56x56/000/fff?text=CC'" />
+            <div class="card-title">CapCut Pro v13.2.0 (Sem Marca D'água)</div>
+            <a href="posts/capcut-pro.html" class="btn-download">Download</a>
+          </div>
+
+          <div class="update-card" data-app-name="Sticker.ly" data-app-url="posts/sticker-premium.html">
+            <img src="images/app-sticker.png" alt="Sticker.ly" onerror="this.src='https://placehold.co/56x56/ff6b35/fff?text=ST'" />
+            <div class="card-title">Sticker.ly v3.29.0 (Premium Desbloqueado)</div>
+            <a href="posts/sticker-premium.html" class="btn-download">Download</a>
+          </div>
+
         </div>
       </section>
 
       <!-- Aplicativos Populares -->
       <section class="popular-section">
-        <h2 class="section-title">⭐ Destaques</h2>
-        <!-- Preenchido dinamicamente por renderizar.js -->
+        <h2 class="section-title">⭐ Aplicativos Populares</h2>
+
+        <div class="post-list-item" data-app-name="YouTube" data-app-url="posts/youtube-premium.html">
+          <img src="images/app-youtube.png" alt="YouTube" onerror="this.src='https://placehold.co/64x64/ff0000/fff?text=YT'" />
+          <div class="post-list-info">
+            <div class="post-title"><a href="posts/youtube-premium.html">YouTube Premium v19.45.36 (Sem Anúncios, Background Play)</a></div>
+            <div class="post-cat"><a href="pages/aplicativos.html">Aplicativos</a></div>
+            <a href="posts/youtube-premium.html" class="btn-download-sm">Download</a>
+          </div>
+        </div>
+
+        <div class="post-list-item" data-app-name="TubeMate" data-app-url="posts/tubemate-pro.html">
+          <img src="images/app-panda.png" alt="TubeMate" onerror="this.src='https://placehold.co/64x64/ff6f00/fff?text=TM'" />
+          <div class="post-list-info">
+            <div class="post-title"><a href="posts/tubemate-pro.html">TubeMate v3.5.8 (Pro Desbloqueado, Download HD)</a></div>
+            <div class="post-cat"><a href="pages/aplicativos.html">Aplicativos</a></div>
+            <a href="posts/tubemate-pro.html" class="btn-download-sm">Download</a>
+          </div>
+        </div>
+
+        <div class="post-list-item" data-app-name="CapCut" data-app-url="posts/capcut-pro.html">
+          <img src="images/app-capcut.png" alt="CapCut" onerror="this.src='https://placehold.co/64x64/000/fff?text=CC'" />
+          <div class="post-list-info">
+            <div class="post-title"><a href="posts/capcut-pro.html">CapCut Pro v13.2.0 (Todos os Efeitos Desbloqueados)</a></div>
+            <div class="post-cat"><a href="pages/aplicativos.html">Aplicativos</a></div>
+            <a href="posts/capcut-pro.html" class="btn-download-sm">Download</a>
+          </div>
+        </div>
+
+        <div class="post-list-item" data-app-name="Spotify" data-app-url="posts/spotify-premium.html">
+          <img src="images/app-spotify.png" alt="Spotify" onerror="this.src='https://placehold.co/64x64/1db954/fff?text=SP'" />
+          <div class="post-list-info">
+            <div class="post-title"><a href="posts/spotify-premium.html">Spotify Music v9.1.22 (Premium Desbloqueado, Sem Anúncios)</a></div>
+            <div class="post-cat"><a href="pages/aplicativos.html">Aplicativos</a></div>
+            <a href="posts/spotify-premium.html" class="btn-download-sm">Download</a>
+          </div>
+        </div>
+
+        <div class="post-list-item" data-app-name="Telegram" data-app-url="posts/telegram-premium.html">
+          <img src="images/app-telegram.png" alt="Telegram" onerror="this.src='https://placehold.co/64x64/0088cc/fff?text=TG'" />
+          <div class="post-list-info">
+            <div class="post-title"><a href="posts/telegram-premium.html">Telegram v12.4.3 (Premium Desbloqueado, Sem Limites)</a></div>
+            <div class="post-cat"><a href="pages/aplicativos.html">Aplicativos</a></div>
+            <a href="posts/telegram-premium.html" class="btn-download-sm">Download</a>
+          </div>
+        </div>
+
+        <div class="post-list-item" data-app-name="Telegram Plus" data-app-url="posts/telegram-plus.html">
+          <img src="images/app-telegram.png" alt="Telegram Plus" onerror="this.src='https://placehold.co/64x64/0055aa/fff?text=TG+'" />
+          <div class="post-list-info">
+            <div class="post-title"><a href="posts/telegram-plus.html">Telegram Plus v10.3.1 (Recursos Extras, Temas Exclusivos)</a></div>
+            <div class="post-cat"><a href="pages/aplicativos.html">Aplicativos</a></div>
+            <a href="posts/telegram-plus.html" class="btn-download-sm">Download</a>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Exclusivo -->
+      <section class="exclusive-section">
+        <h2 class="section-title">💎 Quente e Exclusivo</h2>
+        <div class="exclusive-grid">
+
+          <div class="excl-card" data-app-name="YouTube" data-app-url="posts/youtube-premium.html">
+            <img src="images/app-youtube.png" alt="YouTube" onerror="this.src='https://placehold.co/50x50/ff0000/fff?text=YT'" />
+            <div class="excl-info">
+              <div class="excl-title"><a href="posts/youtube-premium.html">YouTube Premium — Sem Anúncios</a></div>
+              <div class="excl-cat">Aplicativos</div>
+              <a href="posts/youtube-premium.html" class="btn-download-sm">Download</a>
+            </div>
+          </div>
+
+          <div class="excl-card" data-app-name="TubeMate" data-app-url="posts/tubemate-pro.html">
+            <img src="images/app-panda.png" alt="TubeMate" onerror="this.src='https://placehold.co/50x50/ff6f00/fff?text=TM'" />
+            <div class="excl-info">
+              <div class="excl-title"><a href="posts/tubemate-pro.html">TubeMate Pro — Download HD</a></div>
+              <div class="excl-cat">Aplicativos</div>
+              <a href="posts/tubemate-pro.html" class="btn-download-sm">Download</a>
+            </div>
+          </div>
+
+          <div class="excl-card" data-app-name="Telegram" data-app-url="posts/telegram-premium.html">
+            <img src="images/app-telegram.png" alt="Telegram" onerror="this.src='https://placehold.co/50x50/0088cc/fff?text=TG'" />
+            <div class="excl-info">
+              <div class="excl-title"><a href="posts/telegram-premium.html">Telegram Premium — Sem Limites</a></div>
+              <div class="excl-cat">Aplicativos</div>
+              <a href="posts/telegram-premium.html" class="btn-download-sm">Download</a>
+            </div>
+          </div>
+
+          <div class="excl-card" data-app-name="Sticker.ly" data-app-url="posts/sticker-premium.html">
+            <img src="images/app-sticker.png" alt="Sticker.ly" onerror="this.src='https://placehold.co/50x50/ff6b35/fff?text=ST'" />
+            <div class="excl-info">
+              <div class="excl-title"><a href="posts/sticker-premium.html">Sticker.ly Premium — Figurinhas Ilimitadas</a></div>
+              <div class="excl-cat">Aplicativos</div>
+              <a href="posts/sticker-premium.html" class="btn-download-sm">Download</a>
+            </div>
+          </div>
+
+          <div class="excl-card" data-app-name="Spotify" data-app-url="posts/spotify-premium.html">
+            <img src="images/app-spotify.png" alt="Spotify" onerror="this.src='https://placehold.co/50x50/1db954/fff?text=SP'" />
+            <div class="excl-info">
+              <div class="excl-title"><a href="posts/spotify-premium.html">Spotify Music Premium — Offline</a></div>
+              <div class="excl-cat">Aplicativos</div>
+              <a href="posts/spotify-premium.html" class="btn-download-sm">Download</a>
+            </div>
+          </div>
+
+          <div class="excl-card" data-app-name="Drama Pops" data-app-url="posts/drama-pops.html">
+            <img src="images/app-drama.png" alt="Drama Pops" onerror="this.src='https://placehold.co/50x50/e53935/fff?text=DP'" />
+            <div class="excl-info">
+              <div class="excl-title"><a href="posts/drama-pops.html">Drama Pops v3.0.2 — Episódios Desbloqueados</a></div>
+              <div class="excl-cat">Aplicativos</div>
+              <a href="posts/drama-pops.html" class="btn-download-sm">Download</a>
+            </div>
+          </div>
+
+          <div class="excl-card" data-app-name="Telegram" data-app-url="posts/telegram-premium.html">
+            <img src="images/app-telegram.png" alt="Telegram" onerror="this.src='https://placehold.co/50x50/0088cc/fff?text=TG'" />
+            <div class="excl-info">
+              <div class="excl-title"><a href="posts/telegram-premium.html">Telegram v12 — Recursos Ocultos</a></div>
+              <div class="excl-cat">Aplicativos</div>
+              <a href="posts/telegram-premium.html" class="btn-download-sm">Download</a>
+            </div>
+          </div>
+
+          <div class="excl-card" data-app-name="XRecorder" data-app-url="posts/xrecorder-premium.html">
+            <img src="images/app-xrecorder.png" alt="XRecorder" onerror="this.src='https://placehold.co/50x50/ff6d00/fff?text=XR'" />
+            <div class="excl-info">
+              <div class="excl-title"><a href="posts/xrecorder-premium.html">XRecorder Premium — Gravação Ultra HD</a></div>
+              <div class="excl-cat">Aplicativos</div>
+              <a href="posts/xrecorder-premium.html" class="btn-download-sm">Download</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Aplicativos -->
+      <section class="apps-section">
+        <div class="section-header">
+          <h2 class="section-title" style="margin-bottom:0">📦 Mais Aplicativos</h2>
+          <a href="pages/aplicativos.html" class="show-more">Mostrar mais</a>
+        </div>
+        <div class="apps-grid" id="apps-grid">
+
+          <div class="app-card" data-app-name="Telegram" data-app-url="posts/telegram-premium.html">
+            <div class="app-card-title"><a href="posts/telegram-premium.html">Telegram v12.4.3 (Premium Desbloqueado)</a></div>
+            <div class="app-card-cat"><span>Quente</span> · Ferramentas</div>
+            <a href="posts/telegram-premium.html" class="btn-download-sm">Download</a>
+          </div>
+
+          <div class="app-card" data-app-name="Sticker.ly" data-app-url="posts/sticker-premium.html">
+            <div class="app-card-title"><a href="posts/sticker-premium.html">Sticker.ly v3.29.0 (Premium Desbloqueado)</a></div>
+            <div class="app-card-cat">Aplicativos</div>
+            <a href="posts/sticker-premium.html" class="btn-download-sm">Download</a>
+          </div>
+
+          <div class="app-card" data-app-name="Spotify" data-app-url="posts/spotify-premium.html">
+            <div class="app-card-title"><a href="posts/spotify-premium.html">Spotify Music v9.1.22 (Premium Grátis)</a></div>
+            <div class="app-card-cat"><span>Quente</span> · Música</div>
+            <a href="posts/spotify-premium.html" class="btn-download-sm">Download</a>
+          </div>
+
+          <div class="app-card" data-app-name="YouTube" data-app-url="posts/youtube-premium.html">
+            <div class="app-card-title"><a href="posts/youtube-premium.html">YouTube Premium v19.45.36 (Sem Anúncios)</a></div>
+            <div class="app-card-cat">Vídeo</div>
+            <a href="posts/youtube-premium.html" class="btn-download-sm">Download</a>
+          </div>
+
+          <div class="app-card hidden-post" data-app-name="CapCut" data-app-url="posts/capcut-pro.html">
+            <div class="app-card-title"><a href="posts/capcut-pro.html">CapCut Pro v13.2.0 (Sem Marca D'água)</a></div>
+            <div class="app-card-cat">Edição de Vídeo</div>
+            <a href="posts/capcut-pro.html" class="btn-download-sm">Download</a>
+          </div>
+
+          <div class="app-card hidden-post" data-app-name="XRecorder" data-app-url="posts/xrecorder-premium.html">
+            <div class="app-card-title"><a href="posts/xrecorder-premium.html">XRecorder Premium v2.4.9.1 (Ultra HD)</a></div>
+            <div class="app-card-cat">Ferramentas</div>
+            <a href="posts/xrecorder-premium.html" class="btn-download-sm">Download</a>
+          </div>
+
+        </div>
+        <div class="load-more-wrap">
+          <button class="btn-load-more" id="load-more-btn">Carregar mais</button>
+        </div>
       </section>
 
       <!-- ===== SEÇÃO DE COMENTÁRIOS (SISTEMA ORIGINAL COM TRADUÇÃO COMPLETA) ===== -->
@@ -143,20 +337,29 @@ here<!DOCTYPE html>
         </a>
       </div>
 
-      <!-- WIDGET DE RSS NA SIDEBAR (PADRONIZADO) -->
-      <div class="rss-widget">
-        <div class="rss-widget-title">
-          <i class="fas fa-rss"></i> Receba Novidades!
-        </div>
-        <div class="rss-widget-text">
-          Adicione nosso feed ao seu leitor de RSS favorito e receba notificações de novos tutoriais e jogos.
-        </div>
-        <button class="rss-copy-btn" onclick="copyToClipboard('feed.xml')"><i class="fas fa-copy"></i> Copiar Link do Feed</button>
-      </div>
-
       <div class="sidebar-widget">
-        <h3 class="widget-title">🔥 Populares</h3>
-        <!-- Preenchido dinamicamente por renderizar.js -->
+        <h3 class="widget-title">🔥 Aplicativos Populares</h3>
+        <div class="sidebar-post">
+          <img src="images/app-youtube.png" alt="YouTube" onerror="this.src='https://placehold.co/56x56/ff0000/fff?text=YT'" />
+          <div class="sidebar-post-info">
+            <div class="sp-title"><a href="posts/youtube-premium.html">YouTube Premium — Sem Anúncios</a></div>
+            <div class="sp-cat">Aplicativos</div>
+          </div>
+        </div>
+        <div class="sidebar-post">
+          <img src="images/app-panda.png" alt="TubeMate" onerror="this.src='https://placehold.co/56x56/ff6f00/fff?text=TM'" />
+          <div class="sidebar-post-info">
+            <div class="sp-title"><a href="posts/tubemate-pro.html">TubeMate Pro — Download HD</a></div>
+            <div class="sp-cat">Aplicativos</div>
+          </div>
+        </div>
+        <div class="sidebar-post">
+          <img src="images/app-capcut.png" alt="CapCut" onerror="this.src='https://placehold.co/56x56/000/fff?text=CC'" />
+          <div class="sidebar-post-info">
+            <div class="sp-title"><a href="posts/capcut-pro.html">CapCut Pro — Sem Marca D'água</a></div>
+            <div class="sp-cat">Aplicativos</div>
+          </div>
+        </div>
       </div>
     </aside>
   </div>
@@ -190,6 +393,7 @@ here<!DOCTYPE html>
         <li><a href="pages/contato.html">Contate-nos</a></li>
         <li><a href="pages/privacidade.html">Política de Privacidade</a></li>
         <li><a href="pages/isencao.html">Isenção de Responsabilidade</a></li>
+        <li><a href="feed.xml">Feed RSS</a></li>
       </ul>
     </div>
   </div>
@@ -200,8 +404,9 @@ here<!DOCTYPE html>
         <a href="pages/contato.html">Contate-nos</a>
         <a href="pages/privacidade.html">Política de Privacidade</a>
         <a href="pages/isencao.html">Isenção de Responsabilidade</a>
+        <a href="feed.xml">Feed RSS</a>
       </div>
-      <p>Copyright &copy; 2025–2026 <a href="index.html">Horizonte Tutoriais</a> | Todos os direitos reservados | <a href="feed.xml" class="rss-btn"><i class="fas fa-rss"></i> RSS Feed</a></p>
+      <p>Copyright &copy; 2025–2026 <a href="index.html">Horizonte Tutoriais</a> | Todos os direitos reservados</p>
     </div>
   </div>
 </footer>
@@ -211,16 +416,6 @@ here<!DOCTYPE html>
 <script>
   // Permitir carregamento inicial
   window.cusdis_prevent_initial_load = false;
-
-  // FUNÇÃO PARA COPIAR LINK DO FEED
-  function copyToClipboard(text) {
-    var fullUrl = window.location.origin + '/' + text;
-    navigator.clipboard.writeText(fullUrl).then(function() {
-      alert('Link do feed copiado para a área de transferência!');
-    }).catch(function(err) {
-      alert('Erro ao copiar: ' + err);
-    });
-  }
 
   // TRADUÇÃO DOS TERMOS E MENSAGENS DE STATUS
   function translateCusdis() {
@@ -268,9 +463,6 @@ here<!DOCTYPE html>
   setInterval(translateCusdis, 500);
 </script>
 
-<!-- Scripts de renderização dinâmica -->
-<script src="js/dados.js"></script>
-<script src="js/renderizar.js"></script>
 <script src="js/main.js"></script>
 </body>
-                                                      </html>
+            </html>
