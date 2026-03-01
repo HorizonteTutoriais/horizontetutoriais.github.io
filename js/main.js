@@ -1,4 +1,4 @@
-here/* ============================================================
+/* ============================================================
    HORIZONTE TUTORIAIS — JavaScript Principal (INFALÍVEL)
    Adaptado para envio de comentários via E-mail com Formspree
    ============================================================ */
