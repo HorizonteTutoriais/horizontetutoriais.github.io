@@ -2,26 +2,42 @@ here<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Horizonte Tutoriais</title>
-    <link>https://seu-usuario.github.io/horizonte-tutoriais/</link>
+    <link>https://SEU-USUARIO.github.io/horizonte-tutoriais/</link>
     <description>Sua fonte definitiva para APKs e tutoriais Android</description>
     <language>pt-BR</language>
-    <lastBuildDate>Thu, 27 Feb 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://seu-usuario.github.io/horizonte-tutoriais/feed.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Fri, 21 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://SEU-USUARIO.github.io/horizonte-tutoriais/feed.xml" rel="self" type="application/rss+xml"/>
 
     <item>
-      <title>Download do APK do Resident Evil 4 Mobile</title>
-      <link>https://seu-usuario.github.io/horizonte-tutoriais/posts/jogos/resident-evil-4.html</link>
-      <description>Baixe Resident Evil 4 para Android. O classico do survival horror agora no seu celular.</description>
-      <pubDate>Thu, 27 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>https://seu-usuario.github.io/horizonte-tutoriais/posts/jogos/resident-evil-4.html</guid>
+      <title>Download do APK do XRecorder v2.4.9.1 (Premium Desbloqueado)</title>
+      <link>https://SEU-USUARIO.github.io/horizonte-tutoriais/posts/xrecorder-premium.html</link>
+      <description>Baixe o XRecorder Premium Desbloqueado para Android. Gravação de tela em Ultra HD.</description>
+      <pubDate>Sat, 08 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://SEU-USUARIO.github.io/horizonte-tutoriais/posts/xrecorder-premium.html</guid>
     </item>
 
     <item>
-      <title>Download do APK do Horizon Clicker (Automacao de Cliques)</title>
-      <link>https://seu-usuario.github.io/horizonte-tutoriais/posts/aplicativos/horizon-clicker.html</link>
-      <description>Baixe o Horizon Clicker, a melhor ferramenta de automacao de cliques para Android.</description>
-      <pubDate>Wed, 26 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>https://seu-usuario.github.io/horizonte-tutoriais/posts/aplicativos/horizon-clicker.html</guid>
+      <title>Download do APK do Telegram v12.4.3 (Premium Desbloqueado)</title>
+      <link>https://SEU-USUARIO.github.io/horizonte-tutoriais/posts/telegram-premium.html</link>
+      <description>Baixe o Telegram Premium Desbloqueado para Android.</description>
+      <pubDate>Mon, 10 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://SEU-USUARIO.github.io/horizonte-tutoriais/posts/telegram-premium.html</guid>
+    </item>
+
+    <item>
+      <title>Download do APK do Spotify Music v9.1.22 (Premium Desbloqueado)</title>
+      <link>https://SEU-USUARIO.github.io/horizonte-tutoriais/posts/spotify-premium.html</link>
+      <description>Baixe o Spotify Music Premium para Android. Sem anúncios, modo offline.</description>
+      <pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://SEU-USUARIO.github.io/horizonte-tutoriais/posts/spotify-premium.html</guid>
+    </item>
+
+    <item>
+      <title>Download do APK do YouTube Premium v19.45.36 (Sem Anúncios)</title>
+      <link>https://SEU-USUARIO.github.io/horizonte-tutoriais/posts/youtube-premium.html</link>
+      <description>Baixe o YouTube Premium para Android. Sem anúncios, background play.</description>
+      <pubDate>Sat, 14 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://SEU-USUARIO.github.io/horizonte-tutoriais/posts/youtube-premium.html</guid>
     </item>
 
   </channel>
