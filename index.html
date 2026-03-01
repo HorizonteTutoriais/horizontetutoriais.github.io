@@ -4,386 +4,275 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Horizonte Tutoriais — Sua fonte definitiva para tutoriais e APKs</title>
-  <meta name="description" content="Horizonte Tutoriais — Baixe os melhores APKs, tutoriais e jogos para Android. Atualizado diariamente." />
-  <meta name="keywords" content="horizonte tutoriais, apk, download, aplicativos, tutoriais, android, jogos" />
-  
-  <!-- Estilos -->
+  <meta name="description" content="Horizonte Tutoriais — Baixe os melhores APKs, tutoriais, aplicativos premium desbloqueados e muito mais. Atualizado diariamente." />
+  <meta name="keywords" content="horizonte tutoriais, apk, download, aplicativos, tutoriais, android, premium" />
   <link rel="stylesheet" href="css/style.css" />
+  <!-- Ícones via CDN (Font Awesome Free) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
-  
-  <!-- Ícone do Site -->
+  <!-- Favicon inline SVG -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌅</text></svg>" />
-  
-  <!-- Link do Feed RSS -->
+  <!-- Link de descoberta do Feed RSS -->
   <link rel="alternate" type="application/rss+xml" title="Horizonte Tutoriais - Feed RSS" href="feed.xml" />
-
   <style>
-    /* Estilos Originais + Ajustes para Dinâmica */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    :root {
-      --blue-primary: #2196F3;
-      --white: #fff;
-      --gray-light: #f0f0f0;
-      --gray-dark: #333;
-      --radius: 8px;
-      --shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    body {
-      font-family: Arial, sans-serif;
-      background: var(--gray-light);
-      color: var(--gray-dark);
-    }
-    .dark-mode {
-      background: #1a1a1a;
-      color: #fff;
-    }
-    .top-bar {
-      background: var(--blue-primary);
-      padding: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: #fff;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    .top-bar {
-      background: var(--blue-primary);
-      padding: 15px;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .site-logo {
-      font-size: 20px;
-      font-weight: bold;
-    }
-    .header-actions {
-      display: flex;
-      gap: 10px;
-    }
-    #dark-mode-toggle {
-      background: transparent;
-      border: none;
-      font-size: 20px;
-      cursor: pointer;
-    }
-    .search-fixed-container {
-      display: flex;
-      align-items: center;
-      background: rgba(255,255,255,0.15);
-      border-radius: 20px;
-      padding: 2px 10px;
-      border: 1px solid rgba(255,255,255,0.3);
-    }
-    #search-input-fixed {
-      background: transparent;
-      border: none;
-      outline: none;
-      color: #fff;
-      padding: 5px;
-      width: 150px;
-    }
-    #search-input-fixed::placeholder {
-      color: rgba(255,255,255,0.7);
-    }
-    #search-submit-fixed {
-      background: transparent;
-      border: none;
-      color: #fff;
-      cursor: pointer;
-    }
-    .site-nav {
-      background: #fff;
-      border-bottom: 1px solid #eee;
-    }
-    .nav-list {
-      list-style: none;
-      display: flex;
-      padding: 15px 0;
-      justify-content: center;
-      gap: 20px;
-    }
-    .nav-list li a {
-      text-decoration: none;
-      color: var(--gray-dark);
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    .nav-list li a:hover, .nav-list li a.active {
-      color: var(--blue-primary);
-    }
-    .dark-mode .site-nav {
-      background: #222;
-      border-color: #444;
-    }
-    .dark-mode .nav-list li a {
-      color: #ddd;
-    }
-    .dark-mode .nav-list li a:hover, .dark-mode .nav-list li a.active {
-      color: var(--blue-primary);
-    }
-    .section-title {
-      font-size: 22px;
-      margin: 30px 0 20px;
-      color: var(--blue-primary);
-      border-bottom: 2px solid var(--blue-primary);
-      display: inline-block;
-      padding-bottom: 5px;
-    }
-    .app-grid, .game-grid, .updates-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-    .app-card, .game-card, .update-card {
-      background: #fff;
-      padding: 20px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      text-align: center;
-    }
-    .dark-mode .app-card, .dark-mode .game-card, .dark-mode .update-card {
-      background: #2d2d2d;
-    }
-    .app-card img, .game-card img {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 15px;
-    }
-    .btn-access {
-      display: inline-block;
-      padding: 10px 20px;
-      background: var(--blue-primary);
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-top: 15px;
-      transition: background 0.3s;
-    }
-    .btn-access:hover {
-      background: #1976D2;
-    }
-    .comments-section {
-      background: #fff;
-      padding: 20px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      margin: 30px 0;
-    }
-    .dark-mode .comments-section {
-      background: #2d2d2d;
-    }
-    .comments-section h3 {
-      margin-bottom: 20px;
-      color: var(--blue-primary);
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: 500;
-    }
-    .form-group input, .form-group textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-    .dark-mode .form-group input, .dark-mode .form-group textarea {
-      background: #333;
-      border-color: #555;
-      color: #fff;
-    }
-    #submit-comment {
-      background: var(--blue-primary);
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    #submit-comment:hover {
-      background: #1976D2;
-    }
-    .form-status {
-      margin-top: 15px;
-      padding: 10px;
-      border-radius: 5px;
-      text-align: center;
-    }
-    .form-status.success {
-      background: #d4edda;
-      color: #155724;
-    }
-    .form-status.error {
-      background: #f8d7da;
-      color: #721c24;
-    }
-    .site-footer {
-      background: var(--blue-primary);
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-    .social-links a {
-      color: #fff;
-      font-size: 20px;
-      margin: 0 10px;
-      text-decoration: none;
+    /* Estilo para a barra de pesquisa sempre visível no celular */
+    .header-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .search-fixed-container { display: flex; align-items: center; background: rgba(255,255,255,0.15); border-radius: 20px; padding: 2px 10px; border: 1px solid rgba(255,255,255,0.3); }
+    .search-fixed-container input { background: transparent; border: none; color: #fff; outline: none; padding: 5px; font-size: 14px; width: 120px; }
+    .search-fixed-container input::placeholder { color: rgba(255,255,255,0.7); }
+    .search-fixed-container button { background: transparent; border: none; color: #fff; cursor: pointer; font-size: 16px; padding: 0 5px; }
+    
+    /* Estilo para a seção de comentários */
+    .custom-comments { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: var(--shadow); }
+    .widget-title { margin-top: 0; font-size: 18px; border-bottom: 2px solid var(--blue-primary); display: inline-block; margin-bottom: 15px; }
+    
+    /* Estilos para os botões RSS */
+    .rss-btn { display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; background: #ff9800; color: #fff; text-decoration: none; border-radius: 4px; font-size: 12px; font-weight: 600; transition: background 0.3s ease; }
+    .rss-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
+    
+    /* Estilo para o widget de RSS na sidebar */
+    .rss-widget { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 0; margin-top: 15px; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+    .rss-widget-title { font-size: 13px; font-weight: 700; color: #ff9800; margin-bottom: 0; display: flex; align-items: center; gap: 6px; padding: 15px 15px 10px 15px; }
+    .rss-widget-text { font-size: 12px; color: #666; margin-bottom: 0; line-height: 1.5; padding: 0 15px 15px 15px; }
+    .rss-copy-btn { display: block; width: 100%; background: #ff9800; color: #fff; text-align: center; padding: 12px 15px; border-radius: 0 0 var(--radius) var(--radius); font-size: 12px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; transition: background 0.3s ease; margin: 0; }
+    .rss-copy-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
+    
+    @media (max-width: 600px) {
+      .header-telegram { display: none; }
+      .search-fixed-container input { width: 100px; }
+      .custom-comments { padding: 15px; }
     }
   </style>
 </head>
 <body>
-  <!-- ===== TOP BAR ===== -->
-  <div class="top-bar">
-    <div class="container">
-      <div class="site-logo">🌅 Horizonte <span>Tutoriais</span></div>
-      <div class="header-actions">
-        <button id="dark-mode-toggle">🌙</button>
-        <div class="search-fixed-container">
-          <input type="text" id="search-input-fixed" placeholder="Pesquisar app/jogo..." />
-          <button id="search-submit-fixed">🔍</button>
-        </div>
+
+<!-- ===== TOP BAR ===== -->
+<div class="top-bar">
+  <div class="container">
+    <a href="pages/contato.html">Contate-Nos</a>
+    <a href="pages/privacidade.html">Política de Privacidade</a>
+    <a href="pages/isencao.html">Isenção de Responsabilidade</a>
+    <a href="feed.xml" class="rss-btn" target="_blank" rel="noopener"><i class="fas fa-rss"></i> RSS</a>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="site-logo">🌅 Horizonte <span>Tutoriais</span></a>
+    <div class="header-actions">
+      <!-- Botão Modo Noturno -->
+      <button id="dark-mode-toggle" class="header-btn" style="background:none;border:none;font-size:20px;cursor:pointer;">🌙</button>
+
+      <!-- Barra de Pesquisa Sempre Visível -->
+      <div class="search-fixed-container">
+        <input type="text" id="search-input-fixed" placeholder="Pesquisar app...">
+        <button id="search-submit-fixed">🔍</button>
       </div>
     </div>
   </div>
+</header>
 
-  <!-- ===== NAVEGAÇÃO PRINCIPAL ===== -->
-  <nav class="site-nav">
-    <div class="container">
-      <ul class="nav-list">
-        <li><a href="index.html" class="active">🏠 Lar</a></li>
-        <li><a href="pages/aplicativos.html">📱 Aplicativos</a></li>
-        <li><a href="pages/jogos.html">🎮 Jogos</a></li>
-        <li><a href="pages/tutoriais.html">📚 Tutoriais</a></li>
-        <li><a href="pages/ferramentas.html">🔧 Ferramentas</a></li>
-        <li><a href="pages/contato.html">📞 Contato</a></li>
+<!-- ===== NAVEGAÇÃO ===== -->
+<nav class="site-nav" aria-label="Navegação principal">
+  <div class="container">
+    <ul class="nav-list" id="nav-list">
+      <li><a href="index.html" class="active"><span class="nav-icon">🏠</span> Lar</a></li>
+      <li><a href="pages/aplicativos.html"><span class="nav-icon">📱</span> Aplicativos</a></li>
+      <li><a href="pages/jogos.html"><span class="nav-icon">🎮</span> Jogos</a></li>
+      <li><a href="pages/tutoriais.html"><span class="nav-icon">📚</span> Tutoriais</a></li>
+      <li><a href="pages/ferramentas.html"><span class="nav-icon">🔧</span> Ferramentas</a></li>
+      <li><a href="pages/quente.html"><span class="nav-icon">🔥</span> Quente</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== CONTEÚDO PRINCIPAL ===== -->
+<div class="container">
+  <div class="main-layout">
+
+    <!-- ===== COLUNA PRINCIPAL ===== -->
+    <main>
+
+      <!-- Atualizações -->
+      <section class="updates-section">
+        <h2 class="section-title">🔄 Últimas Atualizações</h2>
+        <div class="updates-grid">
+          <!-- Preenchido dinamicamente por renderizar.js -->
+        </div>
+      </section>
+
+      <!-- Aplicativos Populares -->
+      <section class="popular-section">
+        <h2 class="section-title">⭐ Destaques</h2>
+        <!-- Preenchido dinamicamente por renderizar.js -->
+      </section>
+
+      <!-- ===== SEÇÃO DE COMENTÁRIOS (SISTEMA ORIGINAL COM TRADUÇÃO COMPLETA) ===== -->
+      <section class="custom-comments">
+        <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
+        <p style="font-size:13px;color:#666;margin-bottom:15px;">Compartilhe sua opinião! Não é necessário fazer login.</p>
+        
+        <div id="cusdis_list">
+          <div id="cusdis_thread"
+            data-host="https://cusdis.com"
+            data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
+            data-page-id="index_horizonte"
+            data-page-url="https://horizontetutoriais.com/index.html"
+            data-page-title="Horizonte Tutoriais - Início"
+          ></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+      <div class="sidebar-widget">
+        <h3 class="widget-title">📣 Mídias Sociais</h3>
+        <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn telegram">
+          <span class="s-icon"><i class="fab fa-telegram"></i></span> Telegram
+        </a>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="social-btn whatsapp">
+          <span class="s-icon"><i class="fab fa-whatsapp"></i></span> WhatsApp
+        </a>
+        <a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener" class="social-btn instagram">
+          <span class="s-icon"><i class="fab fa-instagram"></i></span> Instagram
+        </a>
+        <a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn youtube">
+          <span class="s-icon"><i class="fab fa-youtube"></i></span> YouTube
+        </a>
+        
+      </div>
+
+      <!-- WIDGET DE RSS NA SIDEBAR -->
+      <div class="rss-widget">
+        <div class="rss-widget-title">
+          <i class="fas fa-rss"></i> Receba Novidades!
+        </div>
+        <div class="rss-widget-text">
+          Adicione nosso feed ao seu leitor de RSS favorito e receba notificações de novos tutoriais e jogos.
+        </div>
+        <!-- BOTÃO DE COPIAR LINK DO FEED -->
+        <button class="rss-copy-btn" onclick="copyToClipboard('feed.xml')"><i class="fas fa-copy"></i> Copiar Link do Feed</button>
+      </div>
+
+      <div class="sidebar-widget">
+        <h3 class="widget-title">🔥 Populares</h3>
+        <!-- Preenchido dinamicamente por renderizar.js -->
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">🌅 Horizonte Tutoriais</div>
+      <p>Horizonte Tutoriais — Sua fonte definitiva para APKs e tutoriais. Todos os direitos reservados.</p>
+      <div class="footer-social">
+        <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" title="Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener" title="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4>Links Rápidos</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="pages/aplicativos.html">Aplicativos</a></li>
+        <li><a href="pages/jogos.html">Jogos</a></li>
+        <li><a href="pages/tutoriais.html">Tutoriais</a></li>
+        <li><a href="pages/quente.html">Quente</a></li>
       </ul>
     </div>
-  </nav>
-
-  <!-- ===== CONTEÚDO PRINCIPAL ===== -->
-  <main class="container">
-    <!-- Seção de Últimas Atualizações -->
-    <section class="updates-section">
-      <h2 class="section-title">🔄 Últimas Atualizações</h2>
-      <div class="updates-grid" id="updates-grid">
-        <!-- Preenchido dinamicamente por renderizar.js -->
-      </div>
-    </section>
-
-    <!-- Seção de Aplicativos -->
-    <section class="apps-section">
-      <h2 class="section-title">📱 Aplicativos</h2>
-      <div class="app-grid" id="app-grid">
-        <!-- Preenchido dinamicamente por renderizar.js -->
-      </div>
-    </section>
-
-    <!-- Seção de Jogos -->
-    <section class="games-section">
-      <h2 class="section-title">🎮 Jogos</h2>
-      <div class="game-grid" id="game-grid">
-        <!-- Preenchido dinamicamente por renderizar.js -->
-      </div>
-    </section>
-
-    <!-- Seção de Comentários -->
-    <section class="comments-section">
-      <h2 class="section-title">💬 Comentários da Comunidade</h2>
-      <form id="direct-comment-form" action="https://formspree.io/f/SEU_ID_FORMSPREE" method="POST">
-        <div class="form-group">
-          <label for="name">Seu Nome</label>
-          <input type="text" id="name" name="name" required />
-        </div>
-        <div class="form-group">
-          <label for="email">Seu E-mail</label>
-          <input type="email" id="email" name="email" required />
-        </div>
-        <div class="form-group">
-          <label for="message">Sua Opinião</label>
-          <textarea id="message" name="message" rows="4" required></textarea>
-        </div>
-        <div id="form-status" class="form-status"></div>
-        <button type="submit" id="submit-btn">Enviar Comentário</button>
-      </form>
-    </section>
-  </main>
-
-  <!-- ===== RODAPÉ ===== -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2025-2026 Horizonte Tutoriais — Todos os direitos reservados</p>
-      <div class="social-links">
-        <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener"><i class="fab fa-telegram"></i></a>
-        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-        <a href="https://youtube.com/@horizontetutoriais" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
-      </div>
-      <p><a href="feed.xml" class="rss-btn">📰 Feed RSS</a></p>
+    <div class="footer-links">
+      <h4>Informações</h4>
+      <ul>
+        <li><a href="pages/sobre.html">Sobre</a></li>
+        <li><a href="pages/contato.html">Contate-nos</a></li>
+        <li><a href="pages/privacidade.html">Política de Privacidade</a></li>
+        <li><a href="pages/isencao.html">Isenção de Responsabilidade</a></li>
+      </ul>
     </div>
-  </footer>
-
-  <!-- ===== SCRIPTS ===== -->
-  <script src="js/dados.js"></script>
-  <script src="js/renderizar.js"></script>
-  <script src="js/main.js"></script>
-
-  <!-- Script do Cusdis (Comentários) -->
-  <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-  <div id="cusdis_thread"
-    data-host="https://cusdis.com"
-    data-app-id="SEU_ID_CUSDIS"
-    data-page-id="index"
-    data-page-url="https://horizontetutoriais.github.io/index.html"
-    data-page-title="Horizonte Tutoriais - Início">
   </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-nav">
+        <a href="pages/sobre.html">Sobre</a>
+        <a href="pages/contato.html">Contate-nos</a>
+        <a href="pages/privacidade.html">Política de Privacidade</a>
+        <a href="pages/isencao.html">Isenção de Responsabilidade</a>
+      </div>
+      <p>Copyright &copy; 2025–2026 <a href="index.html">Horizonte Tutoriais</a> | Todos os direitos reservados | <a href="feed.xml" class="rss-btn"><i class="fas fa-rss"></i> RSS Feed</a></p>
+    </div>
+  </div>
+</footer>
 
-  <script>
-    // Função de cópia do Feed RSS
-    function copyRssLink() {
-      const rssLink = document.querySelector('.rss-btn').getAttribute('href');
-      navigator.clipboard.writeText(rssLink).then(() => {
-        alert('Link do Feed RSS copiado!');
-      }).catch(err => {
-        console.error('Erro ao copiar:', err);
-      });
-    }
-    document.querySelector('.rss-btn')?.addEventListener('click', copyRssLink);
+<!-- SCRIPT CUSDIS -->
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+<script>
+  // Permitir carregamento inicial
+  window.cusdis_prevent_initial_load = false;
 
-    // Traduzir Cusdis para PT-BR
-    document.addEventListener('cusdis:loaded', function() {
-      const translations = {
-        "Nickname": "Seu Nome",
-        "Email (optional)": "E-mail (opcional)",
-        "Comment": "Comentário",
-        "Submit": "Enviar",
-        "Comment sent successfully.": "Comentário enviado com sucesso!",
-        "Please fill in the required fields.": "Preencha todos os campos obrigatórios.",
-        "Failed to send comment. Please try again later.": "Falha ao enviar. Tente novamente mais tarde."
-      };
-      const elements = document.querySelectorAll('#cusdis_thread *');
-      elements.forEach(el => {
-        if (translations[el.textContent.trim()]) {
-          el.textContent = translations[el.textContent.trim()];
-        }
-      });
+  // FUNÇÃO PARA COPIAR LINK DO FEED
+  function copyToClipboard(text) {
+    var fullUrl = window.location.origin + '/' + text;
+    navigator.clipboard.writeText(fullUrl).then(function() {
+      alert('Link do feed copiado para a área de transferência!');
+    }).catch(function(err) {
+      alert('Erro ao copiar: ' + err);
     });
-  </script>
+  }
+
+  // TRADUÇÃO DOS TERMOS E MENSAGENS DE STATUS
+  function translateCusdis() {
+    const translations = {
+      'Nickname': 'Seu Nome',
+      'Reply': 'Responder',
+      'Comment': 'Comentário',
+      'Submit': 'Enviar Comentário',
+      'Email (optional)': 'E-mail (opcional)',
+      'Reply...': 'Escreva aqui sua opinião...',
+      'Load more': 'Carregar mais',
+      'sending...': 'Enviando...',
+      'Your comment has been sent. Please wait for approval.': 'Seu comentário foi enviado! Aguarde a aprovação do administrador.'
+    };
+
+    const iframes = document.querySelectorAll('#cusdis_thread iframe');
+    iframes.forEach(iframe => {
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        
+        // Traduzir textos fixos e mensagens de status que aparecem dinamicamente
+        const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null, false);
+        let node;
+        while(node = walker.nextNode()) {
+          const text = node.nodeValue.trim();
+          if (translations[text]) {
+            node.nodeValue = translations[text];
+          }
+        }
+        
+        // Traduzir placeholders e botões
+        doc.querySelectorAll('input, textarea, button').forEach(el => {
+          if (el.placeholder && translations[el.placeholder]) {
+            el.placeholder = translations[el.placeholder];
+          }
+          if (el.innerText && translations[el.innerText.trim()]) {
+            el.innerText = translations[el.innerText.trim()];
+          }
+        });
+      } catch (e) { }
+    });
+  }
+
+  // Rodar tradução periodicamente (cada 500ms para ser mais rápido na captura do status)
+  setInterval(translateCusdis, 500);
+</script>
+
+<!-- Scripts de renderização dinâmica -->
+<script src="js/dados.js"></script>
+<script src="js/renderizar.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
