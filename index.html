@@ -1,231 +1,389 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Horizonte Tutoriais — Página Inicial</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="js/dados.js"></script>
-  <script src="js/main.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Horizonte Tutoriais — Sua fonte definitiva para tutoriais e APKs</title>
+  <meta name="description" content="Horizonte Tutoriais — Baixe os melhores APKs, tutoriais e jogos para Android. Atualizado diariamente." />
+  <meta name="keywords" content="horizonte tutoriais, apk, download, aplicativos, tutoriais, android, jogos" />
+  
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  
+  <!-- Ícone do Site -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌅</text></svg>" />
+  
+  <!-- Link do Feed RSS -->
+  <link rel="alternate" type="application/rss+xml" title="Horizonte Tutoriais - Feed RSS" href="feed.xml" />
+
   <style>
-    /* ESTILOS INTEGRADOS COMPLETOS */
+    /* Estilos Originais + Ajustes para Dinâmica */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+    }
+    :root {
+      --blue-primary: #2196F3;
+      --white: #fff;
+      --gray-light: #f0f0f0;
+      --gray-dark: #333;
+      --radius: 8px;
+      --shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     body {
-      background: #f0f0f0;
-      color: #333;
+      font-family: Arial, sans-serif;
+      background: var(--gray-light);
+      color: var(--gray-dark);
     }
     .dark-mode {
       background: #1a1a1a;
       color: #fff;
     }
     .top-bar {
+      background: var(--blue-primary);
+      padding: 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px;
-      background: #2196F3;
       color: #fff;
     }
-    #dark-mode-toggle {
-      padding: 8px 12px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
-    .search-bar {
+    .top-bar {
+      background: var(--blue-primary);
+      padding: 15px;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .site-logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .header-actions {
       display: flex;
       gap: 10px;
     }
+    #dark-mode-toggle {
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .search-fixed-container {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 2px 10px;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
     #search-input-fixed {
-      padding: 8px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      padding: 5px;
+      width: 150px;
+    }
+    #search-input-fixed::placeholder {
+      color: rgba(255,255,255,0.7);
     }
     #search-submit-fixed {
-      padding: 8px 12px;
+      background: transparent;
       border: none;
-      border-radius: 5px;
-      background: #2196F3;
       color: #fff;
       cursor: pointer;
     }
-    .hot-items-grid {
+    .site-nav {
+      background: #fff;
+      border-bottom: 1px solid #eee;
+    }
+    .nav-list {
+      list-style: none;
+      display: flex;
+      padding: 15px 0;
+      justify-content: center;
+      gap: 20px;
+    }
+    .nav-list li a {
+      text-decoration: none;
+      color: var(--gray-dark);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-list li a:hover, .nav-list li a.active {
+      color: var(--blue-primary);
+    }
+    .dark-mode .site-nav {
+      background: #222;
+      border-color: #444;
+    }
+    .dark-mode .nav-list li a {
+      color: #ddd;
+    }
+    .dark-mode .nav-list li a:hover, .dark-mode .nav-list li a.active {
+      color: var(--blue-primary);
+    }
+    .section-title {
+      font-size: 22px;
+      margin: 30px 0 20px;
+      color: var(--blue-primary);
+      border-bottom: 2px solid var(--blue-primary);
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .app-grid, .game-grid, .updates-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      padding: 20px;
+      margin-bottom: 30px;
     }
-    .app-card {
+    .app-card, .game-card, .update-card {
       background: #fff;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
     }
-    .app-card img {
-      width: 100%;
-      border-radius: 5px;
-      margin-bottom: 10px;
+    .dark-mode .app-card, .dark-mode .game-card, .dark-mode .update-card {
+      background: #2d2d2d;
+    }
+    .app-card img, .game-card img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 15px;
     }
     .btn-access {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: none;
+      display: inline-block;
+      padding: 10px 20px;
+      background: var(--blue-primary);
+      color: #fff;
+      text-decoration: none;
       border-radius: 5px;
-      background: #2196F3;
-      color: #fff;
-      cursor: pointer;
+      margin-top: 15px;
+      transition: background 0.3s;
     }
-    footer {
-      background: #2196F3;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-      margin-top: 20px;
+    .btn-access:hover {
+      background: #1976D2;
     }
-    .form-container {
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 20px;
+    .comments-section {
       background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin: 30px 0;
     }
-    .form-status {
-      text-align: center;
-      padding: 10px;
-      border-radius: 5px;
-      margin-bottom: 10px;
+    .dark-mode .comments-section {
+      background: #2d2d2d;
     }
-    .form-status.success {
-      background: #d4edda;
-      color: #0f5132;
+    .comments-section h3 {
+      margin-bottom: 20px;
+      color: var(--blue-primary);
     }
-    .form-status.error {
-      background: #f8d7da;
-      color: #842029;
+    .form-group {
+      margin-bottom: 15px;
     }
-    input, textarea {
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    .form-group input, .form-group textarea {
       width: 100%;
       padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
     }
-    #submit-btn {
-      background: #2196F3;
+    .dark-mode .form-group input, .dark-mode .form-group textarea {
+      background: #333;
+      border-color: #555;
+      color: #fff;
+    }
+    #submit-comment {
+      background: var(--blue-primary);
       color: #fff;
       border: none;
       padding: 10px 20px;
-      border-radius: 4px;
+      border-radius: 5px;
       cursor: pointer;
+      font-size: 16px;
+    }
+    #submit-comment:hover {
+      background: #1976D2;
+    }
+    .form-status {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .form-status.success {
+      background: #d4edda;
+      color: #155724;
+    }
+    .form-status.error {
+      background: #f8d7da;
+      color: #721c24;
+    }
+    .site-footer {
+      background: var(--blue-primary);
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    .social-links a {
+      color: #fff;
+      font-size: 20px;
+      margin: 0 10px;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <header class="top-bar">
-    <div class="top-bar">
-      <h1>🌐 Horizonte Tutoriais</h1>
-      <button id="dark-mode-toggle">🌙</button>
-      <div class="search-bar">
-        <input type="text" id="search-input-fixed" placeholder="Pesquisar apps/jogos...">
-        <button id="search-submit-fixed">🔍</button>
+  <!-- ===== TOP BAR ===== -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="site-logo">🌅 Horizonte <span>Tutoriais</span></div>
+      <div class="header-actions">
+        <button id="dark-mode-toggle">🌙</button>
+        <div class="search-fixed-container">
+          <input type="text" id="search-input-fixed" placeholder="Pesquisar app/jogo..." />
+          <button id="search-submit-fixed">🔍</button>
+        </div>
       </div>
     </div>
-  </header>
+  </div>
 
-  <main>
-    <section class="hot-items-grid">
-      <h2>🔥 Itens em Destaque</h2>
-      <div class="hot-items-grid">
-        <script>
-          // Carrega itens em destaque do dados.js
-          if (typeof APPS_DATA !== 'undefined') {
-            const hotItems = [
-              ...APPS_DATA.aplicativos.filter(item => item.quente),
-              ...APPS_DATA.jogos.filter(item => item.quente)
-            ];
-            hotItems.forEach(item => {
-              document.write(`
-                <div class="app-card">
-                  <img src="${obterImagemItem(item)}" alt="${item.nome}">
-                  <h3>${item.nome}</h3>
-                  <button class="btn-access">Acessar</button>
-                </div>
-              `);
-            });
-          }
-        </script>
+  <!-- ===== NAVEGAÇÃO PRINCIPAL ===== -->
+  <nav class="site-nav">
+    <div class="container">
+      <ul class="nav-list">
+        <li><a href="index.html" class="active">🏠 Lar</a></li>
+        <li><a href="pages/aplicativos.html">📱 Aplicativos</a></li>
+        <li><a href="pages/jogos.html">🎮 Jogos</a></li>
+        <li><a href="pages/tutoriais.html">📚 Tutoriais</a></li>
+        <li><a href="pages/ferramentas.html">🔧 Ferramentas</a></li>
+        <li><a href="pages/contato.html">📞 Contato</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+  <main class="container">
+    <!-- Seção de Últimas Atualizações -->
+    <section class="updates-section">
+      <h2 class="section-title">🔄 Últimas Atualizações</h2>
+      <div class="updates-grid" id="updates-grid">
+        <!-- Preenchido dinamicamente por renderizar.js -->
       </div>
     </section>
 
+    <!-- Seção de Aplicativos -->
     <section class="apps-section">
-      <h2>📱 Aplicativos</h2>
-      <div class="hot-items-grid">
-        <script>
-          if (typeof APPS_DATA !== 'undefined') {
-            APPS_DATA.aplicativos.forEach(app => {
-              document.write(`
-                <div class="app-card">
-                  <img src="${obterImagemItem(app)}" alt="${app.nome}">
-                  <h3>${app.nome}</h3>
-                  <p>${app.descricao}</p>
-                  <a href="${app.url}" class="btn-access">Ver Detalhes</a>
-                </div>
-              `);
-            });
-          }
-        </script>
+      <h2 class="section-title">📱 Aplicativos</h2>
+      <div class="app-grid" id="app-grid">
+        <!-- Preenchido dinamicamente por renderizar.js -->
       </div>
     </section>
 
+    <!-- Seção de Jogos -->
     <section class="games-section">
-      <h2>🎮 Jogos</h2>
-      <div class="hot-items-grid">
-        <script>
-          if (typeof APPS_DATA !== 'undefined') {
-            APPS_DATA.jogos.forEach(game => {
-              document.write(`
-                <div class="game-card">
-                  <img src="${obterImagemItem(game)}" alt="${game.nome}">
-                  <h3>${game.nome}</h3>
-                  <p>${game.descricao}</p>
-                  <a href="${game.url}" class="btn-access">Ver Detalhes</a>
-                </div>
-              `);
-            });
-          }
-        </script>
+      <h2 class="section-title">🎮 Jogos</h2>
+      <div class="game-grid" id="game-grid">
+        <!-- Preenchido dinamicamente por renderizar.js -->
       </div>
     </section>
 
-    <section class="form-section">
-      <h2>💬 Comentários da Comunidade</h2>
-      <div class="form-container">
-        <form id="direct-comment-form" action="https://formspree.io/f/SEU_ID_FORMSPREE" method="POST">
-          <div class="form-status"></div>
-          <input type="text" name="name" placeholder="Seu Nome" required>
-          <input type="email" name="email" placeholder="Seu E-mail" required>
-          <textarea name="message" placeholder="Escreva seu comentário..." required></textarea>
-          <button type="submit" id="submit-btn">Enviar Comentário</button>
-        </form>
-      </div>
+    <!-- Seção de Comentários -->
+    <section class="comments-section">
+      <h2 class="section-title">💬 Comentários da Comunidade</h2>
+      <form id="direct-comment-form" action="https://formspree.io/f/SEU_ID_FORMSPREE" method="POST">
+        <div class="form-group">
+          <label for="name">Seu Nome</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Seu E-mail</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Sua Opinião</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+        </div>
+        <div id="form-status" class="form-status"></div>
+        <button type="submit" id="submit-btn">Enviar Comentário</button>
+      </form>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2024-2026 Horizonte Tutoriais — Todos os direitos reservados</p>
-    <div class="social-links">
-      <a href="https://t.me/HorizonteTutoriais"><i class="fab fa-telegram"></i></a>
-      <a href="https://github.com/HorizonteTutoriais"><i class="fab fa-github"></i></a>
+  <!-- ===== RODAPÉ ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025-2026 Horizonte Tutoriais — Todos os direitos reservados</p>
+      <div class="social-links">
+        <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener"><i class="fab fa-telegram"></i></a>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com/@horizontetutoriais" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+      </div>
+      <p><a href="feed.xml" class="rss-btn">📰 Feed RSS</a></p>
     </div>
   </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="js/dados.js"></script>
+  <script src="js/renderizar.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Script do Cusdis (Comentários) -->
+  <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+  <div id="cusdis_thread"
+    data-host="https://cusdis.com"
+    data-app-id="SEU_ID_CUSDIS"
+    data-page-id="index"
+    data-page-url="https://horizontetutoriais.github.io/index.html"
+    data-page-title="Horizonte Tutoriais - Início">
+  </div>
+
+  <script>
+    // Função de cópia do Feed RSS
+    function copyRssLink() {
+      const rssLink = document.querySelector('.rss-btn').getAttribute('href');
+      navigator.clipboard.writeText(rssLink).then(() => {
+        alert('Link do Feed RSS copiado!');
+      }).catch(err => {
+        console.error('Erro ao copiar:', err);
+      });
+    }
+    document.querySelector('.rss-btn')?.addEventListener('click', copyRssLink);
+
+    // Traduzir Cusdis para PT-BR
+    document.addEventListener('cusdis:loaded', function() {
+      const translations = {
+        "Nickname": "Seu Nome",
+        "Email (optional)": "E-mail (opcional)",
+        "Comment": "Comentário",
+        "Submit": "Enviar",
+        "Comment sent successfully.": "Comentário enviado com sucesso!",
+        "Please fill in the required fields.": "Preencha todos os campos obrigatórios.",
+        "Failed to send comment. Please try again later.": "Falha ao enviar. Tente novamente mais tarde."
+      };
+      const elements = document.querySelectorAll('#cusdis_thread *');
+      elements.forEach(el => {
+        if (translations[el.textContent.trim()]) {
+          el.textContent = translations[el.textContent.trim()];
+        }
+      });
+    });
+  </script>
 </body>
 </html>
