@@ -635,3 +635,108 @@ img { max-width: 100%; height: auto; display: block; }
 .text-center { text-align: center; }
 .mt-10 { margin-top: 10px; }
 .mb-10 { margin-bottom: 10px; }
+
+/* ============================================================
+   MODO NOTURNO & PESQUISA (ADICIONADO)
+   ============================================================ */
+
+/* Variáveis do Modo Noturno */
+body.dark-mode {
+  --gray-bg:      #121212;
+  --white:        #1e1e1e;
+  --gray-border:  #333;
+  --gray-text:    #aaa;
+  color: #e0e0e0;
+}
+
+body.dark-mode .site-nav { background: #1a1a1a; border-bottom-color: #000; }
+body.dark-mode .update-card, 
+body.dark-mode .excl-card, 
+body.dark-mode .app-card { background: #252525; border-color: #333; }
+body.dark-mode .card-title, 
+body.dark-mode .post-title a, 
+body.dark-mode .excl-title a, 
+body.dark-mode .app-card-title a { color: #fff; }
+body.dark-mode .post-list-item { border-bottom-color: #333; }
+body.dark-mode .section-title { color: #ffd600; border-left-color: #ffd600; }
+body.dark-mode .sidebar-widget { background: #1e1e1e; border-color: #333; }
+body.dark-mode .widget-title { color: #ffd600; border-left-color: #ffd600; }
+body.dark-mode .footer { background: #0a0a0a; border-top-color: #333; }
+
+/* Estilos do Cabeçalho (Ações) */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-btn {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+  font-size: 16px;
+}
+
+.header-btn:hover {
+  background: rgba(255,255,255,0.3);
+  transform: scale(1.05);
+}
+
+/* Barra de Pesquisa */
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-form {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  border-radius: 20px;
+  padding: 0 15px;
+  width: 0;
+  overflow: hidden;
+  transition: width 0.3s ease, box-shadow 0.3s;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+.search-form.active {
+  width: 200px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.search-form input {
+  border: none;
+  outline: none;
+  padding: 8px 0;
+  width: 100%;
+  font-size: 14px;
+  background: transparent;
+}
+
+body.dark-mode .search-form {
+  background: #333;
+}
+
+body.dark-mode .search-form input {
+  color: #fff;
+}
+
+/* Ajuste Mobile */
+@media (max-width: 600px) {
+  .header-telegram { display: none; }
+  .search-form.active { width: 160px; }
+}
