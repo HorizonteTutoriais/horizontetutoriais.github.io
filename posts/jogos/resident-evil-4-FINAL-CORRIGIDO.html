@@ -55,6 +55,14 @@
     
     .custom-comments { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: var(--shadow); }
     .widget-title { margin-top: 0; font-size: 18px; border-bottom: 2px solid var(--blue-primary); display: inline-block; margin-bottom: 15px; }
+    
+    /* Novos estilos para os 3 botões de download */
+    .download-options { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+    .btn-download-option { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; background: #c62828; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 700; transition: all 0.3s ease; }
+    .btn-download-option:hover { background: #d32f2f; transform: scale(1.02); color: #fff; }
+    .btn-download-option.alt { background: #1565c0; }
+    .btn-download-option.alt:hover { background: #1976d2; }
+    
     @media (max-width: 600px) { .custom-comments { padding: 15px; } }
   </style>
 </head>
@@ -92,7 +100,13 @@
 
     <div class="download-box">
       <p style="font-size:14px;font-weight:700;color:#c62828;margin-bottom:12px">⬇️ Clique abaixo para baixar o jogo</p>
-      <a href="https://4br.me/BaixarResidentEvil4" class="btn-big-download" target="_blank" rel="noopener"><i class="fas fa-download"></i> DOWNLOAD</a>
+      
+      <div class="download-options">
+        <a href="https://4br.me/BaixarResidentEvil4APK" class="btn-download-option" target="_blank" rel="noopener"><i class="fas fa-file-archive"></i> BAIXAR APK (600MB)</a>
+        <a href="https://4br.me/BaixarResidentEvil4DATA1" class="btn-download-option alt" target="_blank" rel="noopener"><i class="fas fa-database"></i> BAIXAR DATA 1 (450MB)</a>
+        <a href="https://4br.me/BaixarResidentEvil4DATA2" class="btn-download-option alt" target="_blank" rel="noopener"><i class="fas fa-database"></i> BAIXAR DATA 2 (450MB)</a>
+      </div>
+
       <p style="font-size:11px;color:#666;margin-top:10px">Link seguro verificado — Horizonte Tutoriais</p>
       <a href="../../feed.xml" class="rss-btn" target="_blank" rel="noopener" style="margin-top: 15px;"><i class="fas fa-rss"></i> RSS Feed</a>
     </div>
@@ -146,48 +160,4 @@
   }
 </script>
 </body>
-</html>        <div id="cusdis_thread"
-          data-host="https://cusdis.com"
-          data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
-          data-page-id="resident_evil_4"
-          data-page-url="window.location.href"
-          data-page-title="Resident Evil 4 - Download"
-        ></div>
-      </div>
-    </section>
-  </article>
-</main>
-<aside class="sidebar">
-  <div class="sidebar-widget"><h3 class="widget-title">📣 Mídias Sociais</h3><a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn telegram"><span class="s-icon"><i class="fab fa-telegram"></i></span> Telegram</a><a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="social-btn whatsapp"><span class="s-icon"><i class="fab fa-whatsapp"></i></span> WhatsApp</a><a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener" class="social-btn instagram"><span class="s-icon"><i class="fab fa-instagram"></i></span> Instagram</a><a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn youtube"><span class="s-icon"><i class="fab fa-youtube"></i></span> YouTube</a></div>
-  <div class="sidebar-widget about-widget"><h3 class="widget-title">ℹ️ Sobre Nós</h3><p>Horizonte Tutoriais — Sua fonte definitiva para APKs e tutoriais.</p></div>
-  
-  <!-- BOTÃO DE TUTORIAL DIRETO NA SIDEBAR -->
-  <div class="tutorials-widget">
-    <a href="../../pages/tutoriais.html" class="btn-tutorial-direct">
-      <span><i class="fas fa-video"></i> TUTORIAIS</span>
-      <i class="fas fa-external-link-alt"></i>
-    </a>
-  </div>
-
-  <div class="guides-widget">
-    <div class="guides-header" onclick="toggleGuides(this)">
-      <span class="guides-header-title"><i class="fas fa-book"></i> GUIAS</span>
-      <span class="guides-header-icon">▼</span>
-    </div>
-    <div class="guides-list">
-      <div class="guide-item"><a href="https://4br.me/BaixarGuias" target="_blank" rel="noopener"><i class="fas fa-download"></i> Baixar Guias</a></div>
-    </div>
-  </div>
-</aside>
-</div></div>
-<footer class="site-footer"><div class="container footer-bottom"><p>Copyright &copy; 2025–2026 Horizonte Tutoriais</p></div></footer>
-<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-<script src="../../js/main.js"></script>
-<script>
-  function toggleGuides(header) {
-    header.classList.toggle('active');
-    header.nextElementSibling.classList.toggle('active');
-  }
-</script>
-</body>
-  </html>
+</html>
