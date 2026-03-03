@@ -87,7 +87,7 @@
     .btn-download-tutorial { background: linear-gradient(135deg, #1db954 0%, #1ed760 100%); }
     .btn-download-tutorial:hover { background: linear-gradient(135deg, #1ed760 0%, #1db954 100%); transform: translateY(-2px); box-shadow: 0 4px 8px rgba(29, 185, 84, 0.3); }
 
-    /* Estilo para a aba de rolagem de vídeos */
+    /* Estilo para a aba de rolagem vertical de vídeos */
     .video-scroll-container {
       display: none;
       margin-top: 15px;
@@ -98,32 +98,33 @@
     }
     .video-scroll-container.active { display: block; animation: fadeIn 0.3s ease; }
     .video-scroll-list {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 10px;
+      max-height: 350px;
+      overflow-y: auto;
+      padding-right: 8px;
       scrollbar-width: thin;
       scrollbar-color: #0d47a1 #f1f1f1;
     }
-    .video-scroll-list::-webkit-scrollbar { height: 6px; }
+    .video-scroll-list::-webkit-scrollbar { width: 6px; }
     .video-scroll-list::-webkit-scrollbar-track { background: #f1f1f1; }
     .video-scroll-list::-webkit-scrollbar-thumb { background-color: #0d47a1; border-radius: 10px; }
     
     .video-btn {
-      flex: 0 0 auto;
-      width: 120px;
-      padding: 10px;
+      padding: 15px 10px;
       background: #fff;
-      border: 1px solid #0d47a1;
+      border: 2px solid #0d47a1;
       border-radius: 6px;
       text-align: center;
       cursor: pointer;
       transition: all 0.3s ease;
+      font-weight: 600;
     }
-    .video-btn:hover { background: #0d47a1; color: #fff; }
-    .video-btn i { display: block; font-size: 20px; margin-bottom: 5px; color: #ff6f00; }
+    .video-btn:hover { background: #0d47a1; color: #fff; border-color: #0d47a1; }
+    .video-btn i { display: block; font-size: 24px; margin-bottom: 5px; color: #ff6f00; }
     .video-btn:hover i { color: #fff; }
-    .video-btn span { font-size: 11px; font-weight: 700; }
+    .video-btn span { font-size: 12px; font-weight: 700; display: block; }
 
     .modal {
       display: none;
@@ -172,6 +173,7 @@
       .tutorial-buttons { flex-direction: column; }
       .btn-specs, .btn-video, .btn-download-tutorial { min-width: 100%; }
       .modal-content { margin: 20% auto; width: 90%; }
+      .video-scroll-list { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -208,24 +210,48 @@
         <i class="fas fa-download"></i> Baixar
       </a>
     </div>
-    <!-- Aba de rolagem de vídeos -->
+    <!-- Aba de rolagem vertical de vídeos -->
     <div id="video-scroll-horizon-click" class="video-scroll-container">
       <div class="video-scroll-list">
-        <div class="video-btn" onclick="openVideoModal('horizon-click', 'XDhx-rdHSmY')">
+        <div class="video-btn" onclick="openVideoModal('horizon-click', 'XDhx-rdHSmY', 'Tutorial Parte 1')">
           <i class="fas fa-video"></i>
           <span>Tutorial Parte 1</span>
         </div>
-        <div class="video-btn" onclick="openVideoModal('horizon-click', 'XDhx-rdHSmY')">
+        <div class="video-btn" onclick="openVideoModal('horizon-click', 'XDhx-rdHSmY', 'Configuração')">
           <i class="fas fa-video"></i>
           <span>Configuração</span>
         </div>
-        <div class="video-btn" onclick="openVideoModal('horizon-click', 'XDhx-rdHSmY')">
+        <div class="video-btn" onclick="openVideoModal('horizon-click', 'XDhx-rdHSmY', 'Dicas Extras')">
           <i class="fas fa-video"></i>
           <span>Dicas Extras</span>
         </div>
-        <div class="video-btn" onclick="openVideoModal('horizon-click', 'XDhx-rdHSmY')">
+        <div class="video-btn" onclick="openVideoModal('horizon-click', 'XDhx-rdHSmY', 'Avançado')">
           <i class="fas fa-video"></i>
           <span>Avançado</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('horizon-click', 'XDhx-rdHSmY', 'Automação Básica')">
+          <i class="fas fa-video"></i>
+          <span>Automação Básica</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('horizon-click', 'XDhx-rdHSmY', 'Múltiplos Cliques')">
+          <i class="fas fa-video"></i>
+          <span>Múltiplos Cliques</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('horizon-click', 'XDhx-rdHSmY', 'Otimização')">
+          <i class="fas fa-video"></i>
+          <span>Otimização</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('horizon-click', 'XDhx-rdHSmY', 'Troubleshooting')">
+          <i class="fas fa-video"></i>
+          <span>Troubleshooting</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('horizon-click', 'XDhx-rdHSmY', 'Casos de Uso')">
+          <i class="fas fa-video"></i>
+          <span>Casos de Uso</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('horizon-click', 'XDhx-rdHSmY', 'FAQ')">
+          <i class="fas fa-video"></i>
+          <span>FAQ</span>
         </div>
       </div>
     </div>
@@ -254,24 +280,48 @@
         <i class="fas fa-download"></i> Baixar
       </a>
     </div>
-    <!-- Aba de rolagem de vídeos -->
+    <!-- Aba de rolagem vertical de vídeos -->
     <div id="video-scroll-resident-evil-4" class="video-scroll-container">
       <div class="video-scroll-list">
-        <div class="video-btn" onclick="openVideoModal('resident-evil-4', 'XDhx-rdHSmY')">
+        <div class="video-btn" onclick="openVideoModal('resident-evil-4', 'XDhx-rdHSmY', 'Instalação APK')">
           <i class="fas fa-video"></i>
           <span>Instalação APK</span>
         </div>
-        <div class="video-btn" onclick="openVideoModal('resident-evil-4', 'XDhx-rdHSmY')">
+        <div class="video-btn" onclick="openVideoModal('resident-evil-4', 'XDhx-rdHSmY', 'Configurar OBB')">
           <i class="fas fa-video"></i>
           <span>Configurar OBB</span>
         </div>
-        <div class="video-btn" onclick="openVideoModal('resident-evil-4', 'XDhx-rdHSmY')">
+        <div class="video-btn" onclick="openVideoModal('resident-evil-4', 'XDhx-rdHSmY', 'Gameplay')">
           <i class="fas fa-video"></i>
           <span>Gameplay</span>
         </div>
-        <div class="video-btn" onclick="openVideoModal('resident-evil-4', 'XDhx-rdHSmY')">
+        <div class="video-btn" onclick="openVideoModal('resident-evil-4', 'XDhx-rdHSmY', 'Dicas de Combate')">
           <i class="fas fa-video"></i>
           <span>Dicas de Combate</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('resident-evil-4', 'XDhx-rdHSmY', 'Controles')">
+          <i class="fas fa-video"></i>
+          <span>Controles</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('resident-evil-4', 'XDhx-rdHSmY', 'Gráficos & Performance')">
+          <i class="fas fa-video"></i>
+          <span>Gráficos & Performance</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('resident-evil-4', 'XDhx-rdHSmY', 'Melhores Armas')">
+          <i class="fas fa-video"></i>
+          <span>Melhores Armas</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('resident-evil-4', 'XDhx-rdHSmY', 'Speedrun')">
+          <i class="fas fa-video"></i>
+          <span>Speedrun</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('resident-evil-4', 'XDhx-rdHSmY', 'Troubleshooting')">
+          <i class="fas fa-video"></i>
+          <span>Troubleshooting</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('resident-evil-4', 'XDhx-rdHSmY', 'FAQ')">
+          <i class="fas fa-video"></i>
+          <span>FAQ</span>
         </div>
       </div>
     </div>
@@ -337,6 +387,21 @@
 </div>
 
 <script>
+  // Ao carregar a página, verifica se há um parâmetro de abertura automática
+  window.addEventListener('load', function() {
+    const params = new URLSearchParams(window.location.search);
+    const autoOpen = params.get('open');
+    if (autoOpen) {
+      setTimeout(() => {
+        const scroll = document.getElementById('video-scroll-' + autoOpen);
+        if (scroll) {
+          scroll.classList.add('active');
+          scroll.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 300);
+    }
+  });
+
   function openSpecsModal(tutorialId) {
     const modal = document.getElementById('modal-' + tutorialId);
     if (modal) { modal.style.display = 'block'; document.body.style.overflow = 'hidden'; }
@@ -351,13 +416,13 @@
     if (scroll) { scroll.classList.toggle('active'); }
   }
 
-  function openVideoModal(tutorialId, videoId) {
+  function openVideoModal(tutorialId, videoId, title) {
     const modal = document.getElementById('modal-video-player');
     const iframe = document.getElementById('video-iframe');
-    const title = document.getElementById('video-modal-title');
+    const titleEl = document.getElementById('video-modal-title');
     
     if (modal && iframe) {
-      title.textContent = '📺 Tutorial - ' + (tutorialId === 'horizon-click' ? 'Horizon Click' : 'Resident Evil 4');
+      titleEl.textContent = '📺 ' + title;
       iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
       modal.style.display = 'block';
       document.body.style.overflow = 'hidden';
@@ -385,4 +450,4 @@
 </script>
 <script src="../js/main.js"></script>
 </body>
-  </html>
+</html>
