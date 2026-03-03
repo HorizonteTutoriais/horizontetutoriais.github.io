@@ -3,13 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Download do APK do Horizon Clicker (Automação de Cliques) — Horizonte Tutoriais</title>
-  <meta name="description" content="Baixe o Horizon Clicker, a melhor ferramenta de automação de cliques para Android. Configure cliques automáticos com precisão e facilidade." />
+  <title>Download Resident Evil 4 Mobile — Horizonte Tutoriais</title>
+  <meta name="description" content="Baixe Resident Evil 4 para Android. O clássico do survival horror agora no seu celular." />
   <link rel="stylesheet" href="../../css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌅</text></svg>" />
   <link rel="alternate" type="application/rss+xml" title="Horizonte Tutoriais - Feed RSS" href="../../feed.xml" />
   <style>
+    /* Estilo para a aba de rolagem vertical de vídeos */
+    .video-scroll-container {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f1f1f1;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+    .video-scroll-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      max-height: 350px;
+      overflow-y: auto;
+      padding-right: 8px;
+      scrollbar-width: thin;
+      scrollbar-color: #0d47a1 #f1f1f1;
+    }
+    .video-scroll-list::-webkit-scrollbar { width: 6px; }
+    .video-scroll-list::-webkit-scrollbar-track { background: #f1f1f1; }
+    .video-scroll-list::-webkit-scrollbar-thumb { background-color: #0d47a1; border-radius: 10px; }
+    
+    .video-btn {
+      padding: 15px 10px;
+      background: #fff;
+      border: 2px solid #0d47a1;
+      border-radius: 6px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    .video-btn:hover { background: #0d47a1; color: #fff; border-color: #0d47a1; }
+    .video-btn i { display: block; font-size: 24px; margin-bottom: 5px; color: #ff6f00; }
+    .video-btn:hover i { color: #fff; }
+    .video-btn span { font-size: 12px; font-weight: 700; display: block; }
+
+    /* Modal para vídeos */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .modal-content {
+      background-color: var(--white);
+      margin: 5% auto;
+      padding: 25px;
+      border-radius: var(--radius);
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      animation: slideIn 0.3s ease;
+    }
+    @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #0d47a1;
+      padding-bottom: 10px;
+    }
+    .modal-header h2 { margin: 0; color: #0d47a1; font-size: 20px; }
+    .close-btn { background: none; border: none; font-size: 28px; cursor: pointer; color: #666; transition: color 0.3s ease; }
+    .close-btn:hover { color: #0d47a1; }
+    .video-player-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; border-radius: 6px; margin-top: 15px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); }
+    .video-player-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    
     /* Estilo para o widget de tutoriais (agora um botão direto) */
     .tutorials-widget { margin-top: 15px; }
     .btn-tutorial-direct {
@@ -26,6 +102,7 @@
       box-shadow: var(--shadow);
       transition: all 0.3s ease;
       border: 1px solid #e65100;
+      cursor: pointer;
     }
     .btn-tutorial-direct:hover {
       background: linear-gradient(135deg, #ff8f00 0%, #ffa500 100%);
@@ -54,47 +131,99 @@
     
     .custom-comments { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: var(--shadow); }
     .widget-title { margin-top: 0; font-size: 18px; border-bottom: 2px solid var(--blue-primary); display: inline-block; margin-bottom: 15px; }
-    @media (max-width: 600px) { .custom-comments { padding: 15px; } }
+    @media (max-width: 600px) { .custom-comments { padding: 15px; } .video-scroll-list { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
 <div class="top-bar"><div class="container"><a href="../../pages/contato.html">Contate-Nos</a><a href="../../pages/privacidade.html">Política de Privacidade</a><a href="../../pages/isencao.html">Isenção de Responsabilidade</a><a href="../../feed.xml" class="rss-btn" target="_blank" rel="noopener"><i class="fas fa-rss"></i> RSS</a></div></div>
 <header class="site-header"><div class="container header-inner"><a href="../../index.html" class="site-logo">🌅 Horizonte <span>Tutoriais</span></a><a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="header-telegram"><i class="fab fa-telegram"></i> Junte-Se Ao Nosso Telegram</a></div></header>
-<nav class="site-nav"><div class="container"><ul class="nav-list"><li><a href="../../index.html"><span class="nav-icon">🏠</span> Lar</a></li><li><a href="../../pages/aplicativos.html" class="active"><span class="nav-icon">📱</span> Aplicativos</a></li><li><a href="../../pages/jogos.html"><span class="nav-icon">🎮</span> Jogos</a></li><li><a href="../../pages/tutoriais.html"><span class="nav-icon">📚</span> Tutoriais</a></li><li><a href="../../pages/ferramentas.html"><span class="nav-icon">🔧</span> Ferramentas</a></li><li><a href="../../pages/quente.html"><span class="nav-icon">🔥</span> Quente</a></li></ul></div></nav>
+<nav class="site-nav"><div class="container"><ul class="nav-list"><li><a href="../../index.html"><span class="nav-icon">🏠</span> Lar</a></li><li><a href="../../pages/aplicativos.html"><span class="nav-icon">📱</span> Aplicativos</a></li><li><a href="../../pages/jogos.html" class="active"><span class="nav-icon">🎮</span> Jogos</a></li><li><a href="../../pages/tutoriais.html"><span class="nav-icon">📚</span> Tutoriais</a></li><li><a href="../../pages/ferramentas.html"><span class="nav-icon">🔧</span> Ferramentas</a></li><li><a href="../../pages/quente.html"><span class="nav-icon">🔥</span> Quente</a></li></ul></div></nav>
 <div class="container"><div class="main-layout">
 <main>
-  <div class="breadcrumb"><a href="../../index.html">Lar</a><span>›</span><a href="../../pages/aplicativos.html">Aplicativos</a><span>›</span>Horizon Clicker</div>
+  <div class="breadcrumb"><a href="../../index.html">Lar</a><span>›</span><a href="../../pages/jogos.html">Jogos</a><span>›</span>Resident Evil 4</div>
   <article class="popular-section">
     <div class="post-header">
-      <h1>Download do APK do Horizon Clicker (Automação de Cliques)</h1>
+      <h1>Download Resident Evil 4 Mobile</h1>
       <div class="post-meta"><span>Por <span class="meta-author">Equipe Horizonte</span></span><span>📅 26/02/2026</span></div>
-      <div style="margin-top:8px"><span class="badge badge-cat">Aplicativos</span><span class="badge badge-hot">Quente</span></div>
+      <div style="margin-top:8px"><span class="badge badge-cat">Jogos</span><span class="badge badge-hot">Quente</span></div>
     </div>
-    <img src="https://placehold.co/700x300/1a73e8/fff?text=Horizon+Clicker+APK" alt="Horizon Clicker" class="post-featured-img" />
+    <img src="https://placehold.co/700x300/c62828/fff?text=Resident+Evil+4" alt="Resident Evil 4" class="post-featured-img" />
     <div class="post-body">
-      <p>O Horizon Clicker é uma ferramenta poderosa para automação de tarefas repetitivas no seu dispositivo Android, permitindo configurar cliques automáticos com precisão e facilidade.</p>
-      <h2>⭐ RECURSOS PRINCIPAIS ⭐⭐⭐</h2>
-      <ul><li>✅ Interface Intuitiva e fácil de usar</li><li>✅ Cliques Rápidos e Precisos com ajuste de milissegundos</li><li>✅ Fácil de Configurar múltiplos pontos de clique</li><li>✅ Sem Necessidade de Root no dispositivo</li></ul>
+      <p>Resident Evil 4 é um dos jogos mais icônicos da franquia, agora adaptado para dispositivos móveis. Enfrente hordas de inimigos e descubra os segredos por trás do culto Los Illuminados.</p>
+      <h2>⭐ RECURSOS DO JOGO ⭐⭐⭐</h2>
+      <ul><li>✅ Gráficos Otimizados</li><li>✅ Controles Adaptados</li><li>✅ História Completa</li><li>✅ Alta Performance</li></ul>
     </div>
     
-    <h2 class="section-title" style="margin-top: 20px;">📊 ESPECIFICAÇÕES DO APLICATIVO</h2>
+    <h2 class="section-title" style="margin-top: 20px;">📊 ESPECIFICAÇÕES DO JOGO</h2>
     <table class="info-table">
-      <tr><td>Aplicativo</td><td>Horizon Clicker</td></tr>
-      <tr><td>Versão</td><td>Última Versão</td></tr>
-      <tr><td>Tamanho</td><td>Varia de acordo com o dispositivo</td></tr>
-      <tr><td>Categoria</td><td>Ferramentas / Automação</td></tr>
-      <tr><td>Desenvolvedor</td><td>Horizon Dev Team</td></tr>
-      <tr><td>Tipo do Arquivo</td><td>APK</td></tr>
-      <tr><td>Requer Android</td><td>5.0 ou superior</td></tr>
+      <tr><td>Jogo</td><td>Resident Evil 4</td></tr>
+      <tr><td>Versão</td><td>Mobile Edition</td></tr>
+      <tr><td>Tamanho Total</td><td>~1.5 GB</td></tr>
+      <tr><td>Categoria</td><td>Ação / Survival Horror</td></tr>
+      <tr><td>Desenvolvedor</td><td>Capcom</td></tr>
+      <tr><td>Tipo do Arquivo</td><td>APK + Dados (Discos)</td></tr>
+      <tr><td>Requer Android</td><td>7.0 ou superior</td></tr>
       <tr><td>Atualizado em</td><td>26/02/2026</td></tr>
     </table>
 
     <div class="download-box">
-      <p style="font-size:14px;font-weight:700;color:#0d47a1;margin-bottom:12px">⬇️ Clique abaixo para baixar o aplicativo</p>
-      <a href="https://4br.me/BaixarHorizonClicker" class="btn-big-download" target="_blank" rel="noopener"><i class="fas fa-download"></i> DOWNLOAD</a>
-      <p style="font-size:11px;color:#666;margin-top:10px">Link seguro verificado — Horizonte Tutoriais</p>
+      <p style="font-size:14px;font-weight:700;color:#0d47a1;margin-bottom:12px">⬇️ Links para Download</p>
+      <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+          <a href="https://4br.me/BaixarApkR4" class="btn-big-download" target="_blank" rel="noopener" style="width: 80%; max-width: 300px;"><i class="fas fa-download"></i> BAIXAR APK</a>
+          <a href="https://4br.me/BaixarDico1R4" class="btn-big-download" target="_blank" rel="noopener" style="width: 80%; max-width: 300px; background: #1565c0;"><i class="fas fa-compact-disc"></i> BAIXAR DISCO 1</a>
+          <a href="https://4br.me/BaixarDisco2R4" class="btn-big-download" target="_blank" rel="noopener" style="width: 80%; max-width: 300px; background: #1565c0;"><i class="fas fa-compact-disc"></i> BAIXAR DISCO 2</a>
+      </div>
+      <p style="font-size:11px;color:#666;margin-top:15px">Instale o APK e mova os dados dos discos para a pasta OBB.</p>
       <a href="../../feed.xml" class="rss-btn" target="_blank" rel="noopener" style="margin-top: 15px;"><i class="fas fa-rss"></i> RSS Feed</a>
     </div>
+
+    <!-- ABA DE ROLAGEM VERTICAL COM 10 BOTÕES DE TUTORIAIS -->
+    <div class="video-scroll-container" id="video-section">
+      <p style="font-size: 14px; font-weight: 700; color: #0d47a1; margin-bottom: 10px;"><i class="fas fa-video"></i> Tutoriais em Vídeo (Role para Ver Mais):</p>
+      <div class="video-scroll-list">
+        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'Instalação APK')">
+          <i class="fas fa-video"></i>
+          <span>Instalação APK</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'Configurar OBB')">
+          <i class="fas fa-video"></i>
+          <span>Configurar OBB</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'Gameplay')">
+          <i class="fas fa-video"></i>
+          <span>Gameplay</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'Dicas de Combate')">
+          <i class="fas fa-video"></i>
+          <span>Dicas de Combate</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'Controles')">
+          <i class="fas fa-video"></i>
+          <span>Controles</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'Gráficos & Performance')">
+          <i class="fas fa-video"></i>
+          <span>Gráficos & Performance</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'Melhores Armas')">
+          <i class="fas fa-video"></i>
+          <span>Melhores Armas</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'Speedrun')">
+          <i class="fas fa-video"></i>
+          <span>Speedrun</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'Troubleshooting')">
+          <i class="fas fa-video"></i>
+          <span>Troubleshooting</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'FAQ')">
+          <i class="fas fa-video"></i>
+          <span>FAQ</span>
+        </div>
+      </div>
+    </div>
+
     <div class="telegram-cta"><i class="fab fa-telegram" style="font-size:20px"></i><span>Junte-se ao <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener">@HorizonteTutoriais</a> no Telegram!</span></div>
 
     <section class="custom-comments">
@@ -103,9 +232,9 @@
         <div id="cusdis_thread"
           data-host="https://cusdis.com"
           data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
-          data-page-id="horizon_clicker"
+          data-page-id="resident_evil_4"
           data-page-url="window.location.href"
-          data-page-title="Horizon Clicker - Download"
+          data-page-title="Resident Evil 4 - Download"
         ></div>
       </div>
     </section>
@@ -115,12 +244,11 @@
   <div class="sidebar-widget"><h3 class="widget-title">📣 Mídias Sociais</h3><a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn telegram"><span class="s-icon"><i class="fab fa-telegram"></i></span> Telegram</a><a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="social-btn whatsapp"><span class="s-icon"><i class="fab fa-whatsapp"></i></span> WhatsApp</a><a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener" class="social-btn instagram"><span class="s-icon"><i class="fab fa-instagram"></i></span> Instagram</a><a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn youtube"><span class="s-icon"><i class="fab fa-youtube"></i></span> YouTube</a></div>
   <div class="sidebar-widget about-widget"><h3 class="widget-title">ℹ️ Sobre Nós</h3><p>Horizonte Tutoriais — Sua fonte definitiva para APKs e tutoriais.</p></div>
   
-  <!-- BOTÃO DE TUTORIAL DIRETO NA SIDEBAR -->
   <div class="tutorials-widget">
-    <a href="../../pages/tutoriais.html" class="btn-tutorial-direct">
+    <button onclick="scrollToVideos()" class="btn-tutorial-direct">
       <span><i class="fas fa-video"></i> TUTORIAIS</span>
-      <i class="fas fa-external-link-alt"></i>
-    </a>
+      <i class="fas fa-arrow-down"></i>
+    </button>
   </div>
 
   <div class="guides-widget">
@@ -135,13 +263,64 @@
 </aside>
 </div></div>
 <footer class="site-footer"><div class="container footer-bottom"><p>Copyright &copy; 2025–2026 Horizonte Tutoriais</p></div></footer>
+
+<!-- MODAL DE VÍDEO -->
+<div id="modal-video-player" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="video-modal-title">📺 Tutorial</h2>
+      <button class="close-btn" onclick="closeVideoModal()">&times;</button>
+    </div>
+    <div class="video-player-container">
+      <iframe id="video-iframe" src="" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</div>
+
 <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 <script src="../../js/main.js"></script>
 <script>
+  function scrollToVideos() {
+    const videoSection = document.getElementById('video-section');
+    if (videoSection) {
+      videoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  function openVideoModal(videoId, title) {
+    const modal = document.getElementById('modal-video-player');
+    const iframe = document.getElementById('video-iframe');
+    const titleEl = document.getElementById('video-modal-title');
+    
+    if (modal && iframe) {
+      titleEl.textContent = '📺 ' + title;
+      iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeVideoModal() {
+    const modal = document.getElementById('modal-video-player');
+    const iframe = document.getElementById('video-iframe');
+    if (modal && iframe) {
+      iframe.src = '';
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  }
+
   function toggleGuides(header) {
     header.classList.toggle('active');
     header.nextElementSibling.classList.toggle('active');
   }
+
+  window.onclick = function(event) {
+    const modal = document.getElementById('modal-video-player');
+    if (event.target === modal) {
+      closeVideoModal();
+    }
+  }
 </script>
 </body>
-</html>
+            </html>
