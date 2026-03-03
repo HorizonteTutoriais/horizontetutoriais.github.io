@@ -10,82 +10,6 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌅</text></svg>" />
   <link rel="alternate" type="application/rss+xml" title="Horizonte Tutoriais - Feed RSS" href="../../feed.xml" />
   <style>
-    /* Estilo para a aba de rolagem vertical de vídeos */
-    .video-scroll-container {
-      margin-top: 20px;
-      padding: 15px;
-      background: #f1f1f1;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-    }
-    .video-scroll-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      max-height: 350px;
-      overflow-y: auto;
-      padding-right: 8px;
-      scrollbar-width: thin;
-      scrollbar-color: #0d47a1 #f1f1f1;
-    }
-    .video-scroll-list::-webkit-scrollbar { width: 6px; }
-    .video-scroll-list::-webkit-scrollbar-track { background: #f1f1f1; }
-    .video-scroll-list::-webkit-scrollbar-thumb { background-color: #0d47a1; border-radius: 10px; }
-    
-    .video-btn {
-      padding: 15px 10px;
-      background: #fff;
-      border: 2px solid #0d47a1;
-      border-radius: 6px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 600;
-    }
-    .video-btn:hover { background: #0d47a1; color: #fff; border-color: #0d47a1; }
-    .video-btn i { display: block; font-size: 24px; margin-bottom: 5px; color: #ff6f00; }
-    .video-btn:hover i { color: #fff; }
-    .video-btn span { font-size: 12px; font-weight: 700; display: block; }
-
-    /* Modal para vídeos */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    .modal-content {
-      background-color: var(--white);
-      margin: 5% auto;
-      padding: 25px;
-      border-radius: var(--radius);
-      max-width: 600px;
-      max-height: 80vh;
-      overflow-y: auto;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      animation: slideIn 0.3s ease;
-    }
-    @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-      border-bottom: 2px solid #0d47a1;
-      padding-bottom: 10px;
-    }
-    .modal-header h2 { margin: 0; color: #0d47a1; font-size: 20px; }
-    .close-btn { background: none; border: none; font-size: 28px; cursor: pointer; color: #666; transition: color 0.3s ease; }
-    .close-btn:hover { color: #0d47a1; }
-    .video-player-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; border-radius: 6px; margin-top: 15px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); }
-    .video-player-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-    
     /* Estilo para o widget de tutoriais (agora um botão direto) */
     .tutorials-widget { margin-top: 15px; }
     .btn-tutorial-direct {
@@ -131,7 +55,7 @@
     
     .custom-comments { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: var(--shadow); }
     .widget-title { margin-top: 0; font-size: 18px; border-bottom: 2px solid var(--blue-primary); display: inline-block; margin-bottom: 15px; }
-    @media (max-width: 600px) { .custom-comments { padding: 15px; } .video-scroll-list { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .custom-comments { padding: 15px; } }
   </style>
 </head>
 <body>
@@ -173,53 +97,6 @@
       <a href="../../feed.xml" class="rss-btn" target="_blank" rel="noopener" style="margin-top: 15px;"><i class="fas fa-rss"></i> RSS Feed</a>
     </div>
 
-    <!-- ABA DE ROLAGEM VERTICAL COM 10 BOTÕES DE TUTORIAIS -->
-    <div class="video-scroll-container" id="video-section">
-      <p style="font-size: 14px; font-weight: 700; color: #0d47a1; margin-bottom: 10px;"><i class="fas fa-video"></i> Tutoriais em Vídeo (Role para Ver Mais):</p>
-      <div class="video-scroll-list">
-        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'Tutorial Parte 1')">
-          <i class="fas fa-video"></i>
-          <span>Tutorial Parte 1</span>
-        </div>
-        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'Configuração')">
-          <i class="fas fa-video"></i>
-          <span>Configuração</span>
-        </div>
-        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'Dicas Extras')">
-          <i class="fas fa-video"></i>
-          <span>Dicas Extras</span>
-        </div>
-        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'Avançado')">
-          <i class="fas fa-video"></i>
-          <span>Avançado</span>
-        </div>
-        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'Automação Básica')">
-          <i class="fas fa-video"></i>
-          <span>Automação Básica</span>
-        </div>
-        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'Múltiplos Cliques')">
-          <i class="fas fa-video"></i>
-          <span>Múltiplos Cliques</span>
-        </div>
-        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'Otimização')">
-          <i class="fas fa-video"></i>
-          <span>Otimização</span>
-        </div>
-        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'Troubleshooting')">
-          <i class="fas fa-video"></i>
-          <span>Troubleshooting</span>
-        </div>
-        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'Casos de Uso')">
-          <i class="fas fa-video"></i>
-          <span>Casos de Uso</span>
-        </div>
-        <div class="video-btn" onclick="openVideoModal('XDhx-rdHSmY', 'FAQ')">
-          <i class="fas fa-video"></i>
-          <span>FAQ</span>
-        </div>
-      </div>
-    </div>
-
     <div class="telegram-cta"><i class="fab fa-telegram" style="font-size:20px"></i><span>Junte-se ao <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener">@HorizonteTutoriais</a> no Telegram!</span></div>
 
     <section class="custom-comments">
@@ -241,10 +118,10 @@
   <div class="sidebar-widget about-widget"><h3 class="widget-title">ℹ️ Sobre Nós</h3><p>Horizonte Tutoriais — Sua fonte definitiva para APKs e tutoriais.</p></div>
   
   <div class="tutorials-widget">
-    <button onclick="scrollToVideos()" class="btn-tutorial-direct">
+    <a href="../../pages/tutoriais.html?open=horizon-click" class="btn-tutorial-direct">
       <span><i class="fas fa-video"></i> TUTORIAIS</span>
-      <i class="fas fa-arrow-down"></i>
-    </button>
+      <i class="fas fa-external-link-alt"></i>
+    </a>
   </div>
 
   <div class="guides-widget">
@@ -260,62 +137,12 @@
 </div></div>
 <footer class="site-footer"><div class="container footer-bottom"><p>Copyright &copy; 2025–2026 Horizonte Tutoriais</p></div></footer>
 
-<!-- MODAL DE VÍDEO -->
-<div id="modal-video-player" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2 id="video-modal-title">📺 Tutorial</h2>
-      <button class="close-btn" onclick="closeVideoModal()">&times;</button>
-    </div>
-    <div class="video-player-container">
-      <iframe id="video-iframe" src="" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-  </div>
-</div>
-
 <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 <script src="../../js/main.js"></script>
 <script>
-  function scrollToVideos() {
-    const videoSection = document.getElementById('video-section');
-    if (videoSection) {
-      videoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-
-  function openVideoModal(videoId, title) {
-    const modal = document.getElementById('modal-video-player');
-    const iframe = document.getElementById('video-iframe');
-    const titleEl = document.getElementById('video-modal-title');
-    
-    if (modal && iframe) {
-      titleEl.textContent = '📺 ' + title;
-      iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
-      modal.style.display = 'block';
-      document.body.style.overflow = 'hidden';
-    }
-  }
-
-  function closeVideoModal() {
-    const modal = document.getElementById('modal-video-player');
-    const iframe = document.getElementById('video-iframe');
-    if (modal && iframe) {
-      iframe.src = '';
-      modal.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-  }
-
   function toggleGuides(header) {
     header.classList.toggle('active');
     header.nextElementSibling.classList.toggle('active');
-  }
-
-  window.onclick = function(event) {
-    const modal = document.getElementById('modal-video-player');
-    if (event.target === modal) {
-      closeVideoModal();
-    }
   }
 </script>
 </body>
