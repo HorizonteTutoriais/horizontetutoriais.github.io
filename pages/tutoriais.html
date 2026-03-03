@@ -9,11 +9,237 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌅</text></svg>" />
   <style>
-    /* Estilo para a seção de comentários */
-    .custom-comments { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: var(--shadow); }
-    .widget-title { margin-top: 0; font-size: 18px; border-bottom: 2px solid var(--blue-primary); display: inline-block; margin-bottom: 15px; }
+    /* Estilos para os cards de tutoriais */
+    .tutorial-card {
+      background: var(--white);
+      border: 1px solid var(--gray-border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+    .tutorial-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+    .tutorial-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    .tutorial-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: #f0f0f0;
+    }
+    .tutorial-info h3 {
+      margin: 0 0 5px 0;
+      font-size: 18px;
+      color: #0d47a1;
+      font-weight: 700;
+    }
+    .tutorial-info p {
+      margin: 0;
+      font-size: 13px;
+      color: #666;
+      line-height: 1.4;
+    }
+    .tutorial-description {
+      background: #f9f9f9;
+      border-left: 3px solid #0d47a1;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #333;
+      line-height: 1.6;
+    }
+    .tutorial-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn-specs {
+      flex: 1;
+      min-width: 140px;
+      padding: 12px 14px;
+      background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      text-decoration: none;
+    }
+    .btn-specs:hover {
+      background: linear-gradient(135deg, #1565c0 0%, #1a73e8 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(13, 71, 161, 0.3);
+    }
+    .btn-video {
+      flex: 1;
+      min-width: 140px;
+      padding: 12px 14px;
+      background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      text-decoration: none;
+    }
+    .btn-video:hover {
+      background: linear-gradient(135deg, #ff8f00 0%, #ffa500 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(255, 111, 0, 0.3);
+    }
+    .btn-download-tutorial {
+      flex: 1;
+      min-width: 140px;
+      padding: 12px 14px;
+      background: linear-gradient(135deg, #1db954 0%, #1ed760 100%);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      text-decoration: none;
+    }
+    .btn-download-tutorial:hover {
+      background: linear-gradient(135deg, #1ed760 0%, #1db954 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(29, 185, 84, 0.3);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal-content {
+      background-color: var(--white);
+      margin: 5% auto;
+      padding: 25px;
+      border-radius: var(--radius);
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      animation: slideIn 0.3s ease;
+    }
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #0d47a1;
+      padding-bottom: 10px;
+    }
+    .modal-header h2 {
+      margin: 0;
+      color: #0d47a1;
+      font-size: 20px;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: #666;
+      transition: color 0.3s ease;
+    }
+    .close-btn:hover {
+      color: #0d47a1;
+    }
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    .specs-table td {
+      padding: 10px;
+      border-bottom: 1px solid #e0e0e0;
+      font-size: 13px;
+    }
+    .specs-table td:first-child {
+      font-weight: 700;
+      color: #0d47a1;
+      width: 40%;
+      background: #f9f9f9;
+    }
+    .video-player-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      background: #000;
+      border-radius: 6px;
+      margin-top: 15px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    .video-player-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
     @media (max-width: 600px) {
-      .custom-comments { padding: 15px; }
+      .tutorial-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .tutorial-icon {
+        width: 100%;
+        height: 150px;
+      }
+      .tutorial-buttons {
+        flex-direction: column;
+      }
+      .btn-specs, .btn-video, .btn-download-tutorial {
+        min-width: 100%;
+      }
+      .modal-content {
+        margin: 20% auto;
+        width: 90%;
+      }
     }
   </style>
 </head>
@@ -26,56 +252,58 @@
   <div class="breadcrumb"><a href="../index.html">Lar</a><span>›</span>Tutoriais</div>
   <section class="popular-section">
   <h1 class="section-title">📚 Tutoriais</h1>
-  <div class="post-list-item">
-    <img src="https://placehold.co/64x64/1a73e8/fff?text=T1" alt="Tutorial" />
-    <div class="post-list-info">
-      <div class="post-title"><a href="#">Como instalar APKs no Android sem erros — Guia Completo 2026</a></div>
-      <div class="post-cat">Tutoriais</div>
-      <a href="#" class="btn-download-sm">Ler mais</a>
-    </div>
-  </div>
-  <div class="post-list-item">
-    <img src="https://placehold.co/64x64/0d47a1/fff?text=T2" alt="Tutorial" />
-    <div class="post-list-info">
-      <div class="post-title"><a href="#">Como usar o Telegram Premium gratuitamente em 2026</a></div>
-      <div class="post-cat">Tutoriais</div>
-      <a href="#" class="btn-download-sm">Ler mais</a>
-    </div>
-  </div>
-  <div class="post-list-item">
-    <img src="https://placehold.co/64x64/1565c0/fff?text=T3" alt="Tutorial" />
-    <div class="post-list-info">
-      <div class="post-title"><a href="#">Como gravar a tela do Android em Ultra HD — Tutorial Passo a Passo</a></div>
-      <div class="post-cat">Tutoriais</div>
-      <a href="#" class="btn-download-sm">Ler mais</a>
-    </div>
-  </div>
-  <div class="post-list-item">
-    <img src="https://placehold.co/64x64/283593/fff?text=T4" alt="Tutorial" />
-    <div class="post-list-info">
-      <div class="post-title"><a href="#">Como editar vídeos profissionais no celular com CapCut Pro</a></div>
-      <div class="post-cat">Tutoriais</div>
-      <a href="#" class="btn-download-sm">Ler mais</a>
-    </div>
-  </div>
-</section>
 
-<!-- ===== SEÇÃO DE COMENTÁRIOS COMPARTILHADA ===== -->
-<section class="custom-comments">
-  <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
-  <p style="font-size:13px;color:#666;margin-bottom:15px;">Compartilhe sua opinião! Não é necessário fazer login.</p>
-  
-  <div id="cusdis_list">
-    <div id="cusdis_thread"
-      data-host="https://cusdis.com"
-      data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
-      data-page-id="index_horizonte"
-      data-page-url="https://horizontetutoriais.com/index.html"
-      data-page-title="Horizonte Tutoriais - Comentários"
-    ></div>
+  <!-- TUTORIAL 1: HORIZON CLICK -->
+  <div class="tutorial-card">
+    <div class="tutorial-header">
+      <img src="https://placehold.co/80x80/1a73e8/fff?text=HC" alt="Horizon Click" class="tutorial-icon" />
+      <div class="tutorial-info">
+        <h3>🖱️ Como Usar o Horizon Click</h3>
+        <p>Aprenda a automatizar cliques no seu Android com precisão e facilidade usando o Horizon Clicker.</p>
+      </div>
+    </div>
+    <div class="tutorial-description">
+      Neste tutorial completo, você aprenderá como instalar, configurar e usar o Horizon Clicker para automatizar tarefas repetitivas no seu dispositivo Android. Perfeito para jogos, aplicativos e qualquer tarefa que envolva cliques repetidos.
+    </div>
+    <div class="tutorial-buttons">
+      <button class="btn-specs" onclick="openSpecsModal('horizon-click')">
+        <i class="fas fa-info-circle"></i> Specs
+      </button>
+      <button class="btn-video" onclick="openVideoModal('horizon-click')">
+        <i class="fas fa-play-circle"></i> Assistir
+      </button>
+      <a href="../posts/aplicativos/horizon-clicker-FINAL-CORRIGIDO.html" class="btn-download-tutorial">
+        <i class="fas fa-download"></i> Baixar
+      </a>
+    </div>
   </div>
-</section>
 
+  <!-- TUTORIAL 2: RESIDENT EVIL 4 -->
+  <div class="tutorial-card">
+    <div class="tutorial-header">
+      <img src="https://placehold.co/80x80/c62828/fff?text=RE4" alt="Resident Evil 4" class="tutorial-icon" />
+      <div class="tutorial-info">
+        <h3>🎮 Como Jogar Resident Evil 4 Mobile</h3>
+        <p>Guia completo para instalar e dominar o clássico survival horror no seu celular.</p>
+      </div>
+    </div>
+    <div class="tutorial-description">
+      Descubra como instalar Resident Evil 4 no seu Android, configure os controles para melhor experiência, e aprenda as melhores estratégias para vencer o jogo. Um tutorial passo a passo para iniciantes e veteranos.
+    </div>
+    <div class="tutorial-buttons">
+      <button class="btn-specs" onclick="openSpecsModal('resident-evil-4')">
+        <i class="fas fa-info-circle"></i> Specs
+      </button>
+      <button class="btn-video" onclick="openVideoModal('resident-evil-4')">
+        <i class="fas fa-play-circle"></i> Assistir
+      </button>
+      <a href="../posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html" class="btn-download-tutorial">
+        <i class="fas fa-download"></i> Baixar
+      </a>
+    </div>
+  </div>
+
+</section>
 </main>
 <aside class="sidebar">
   <div class="sidebar-widget"><h3 class="widget-title">📣 Mídias Sociais</h3>
@@ -89,40 +317,179 @@
 </div></div>
 <footer class="site-footer"><div class="container footer-top"><div class="footer-about"><h3>🌅 Horizonte Tutoriais</h3><p>Sua fonte definitiva para APKs e tutoriais.</p><div class="footer-social"><a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener"><i class="fab fa-telegram"></i></a><a href="https://wa.me/5500000000000" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a><a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a><a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a></div></div><div class="footer-links"><h4>Links Rápidos</h4><ul><li><a href="../index.html">Início</a></li><li><a href="aplicativos.html">Aplicativos</a></li><li><a href="jogos.html">Jogos</a></li></ul></div><div class="footer-links"><h4>Informações</h4><ul><li><a href="sobre.html">Sobre</a></li><li><a href="contato.html">Contate-nos</a></li><li><a href="privacidade.html">Política de Privacidade</a></li><li><a href="isencao.html">Isenção de Responsabilidade</a></li></ul></div></div><div class="footer-bottom"><div class="container"><div class="footer-nav"><a href="sobre.html">Sobre</a><a href="contato.html">Contate-nos</a><a href="privacidade.html">Política de Privacidade</a><a href="isencao.html">Isenção de Responsabilidade</a></div><p>Copyright &copy; 2025–2026 <a href="../index.html">Horizonte Tutoriais</a> | Todos os direitos reservados</p></div></div></footer>
 
-<!-- SCRIPT CUSDIS -->
-<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+<!-- MODAIS DE ESPECIFICAÇÕES -->
+
+<!-- Modal: Horizon Click -->
+<div id="modal-horizon-click" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>🖱️ Especificações - Horizon Click</h2>
+      <button class="close-btn" onclick="closeSpecsModal('horizon-click')">&times;</button>
+    </div>
+    <table class="specs-table">
+      <tr>
+        <td>Aplicativo</td>
+        <td>Horizon Clicker</td>
+      </tr>
+      <tr>
+        <td>Versão</td>
+        <td>Última Versão</td>
+      </tr>
+      <tr>
+        <td>Tamanho</td>
+        <td>Varia de acordo com o dispositivo</td>
+      </tr>
+      <tr>
+        <td>Categoria</td>
+        <td>Ferramentas / Automação</td>
+      </tr>
+      <tr>
+        <td>Desenvolvedor</td>
+        <td>Horizon Dev Team</td>
+      </tr>
+      <tr>
+        <td>Tipo do Arquivo</td>
+        <td>APK</td>
+      </tr>
+      <tr>
+        <td>Requer Android</td>
+        <td>5.0 ou superior</td>
+      </tr>
+      <tr>
+        <td>Atualizado em</td>
+        <td>26/02/2026</td>
+      </tr>
+      <tr>
+        <td>Recursos</td>
+        <td>Interface Intuitiva, Cliques Rápidos e Precisos, Sem Necessidade de Root</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- Modal: Resident Evil 4 -->
+<div id="modal-resident-evil-4" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>🎮 Especificações - Resident Evil 4</h2>
+      <button class="close-btn" onclick="closeSpecsModal('resident-evil-4')">&times;</button>
+    </div>
+    <table class="specs-table">
+      <tr>
+        <td>Jogo</td>
+        <td>Resident Evil 4</td>
+      </tr>
+      <tr>
+        <td>Versão</td>
+        <td>Mobile Edition</td>
+      </tr>
+      <tr>
+        <td>Tamanho Total</td>
+        <td>~1.5 GB</td>
+      </tr>
+      <tr>
+        <td>Categoria</td>
+        <td>Ação / Survival Horror</td>
+      </tr>
+      <tr>
+        <td>Desenvolvedor</td>
+        <td>Capcom</td>
+      </tr>
+      <tr>
+        <td>Tipo do Arquivo</td>
+        <td>APK + Dados (Discos)</td>
+      </tr>
+      <tr>
+        <td>Requer Android</td>
+        <td>7.0 ou superior</td>
+      </tr>
+      <tr>
+        <td>Atualizado em</td>
+        <td>26/02/2026</td>
+      </tr>
+      <tr>
+        <td>Recursos</td>
+        <td>Gráficos Otimizados, Controles Adaptados, História Completa, Alta Performance</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- MODAIS DE VÍDEOS -->
+
+<!-- Modal: Vídeo Horizon Click -->
+<div id="modal-video-horizon-click" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>🖱️ Tutorial - Horizon Click</h2>
+      <button class="close-btn" onclick="closeVideoModal('horizon-click')">&times;</button>
+    </div>
+    <div class="video-player-container">
+      <iframe src="https://www.youtube.com/embed/XDhx-rdHSmY?autoplay=1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Vídeo Resident Evil 4 -->
+<div id="modal-video-resident-evil-4" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>🎮 Tutorial - Resident Evil 4</h2>
+      <button class="close-btn" onclick="closeVideoModal('resident-evil-4')">&times;</button>
+    </div>
+    <div class="video-player-container">
+      <iframe src="https://www.youtube.com/embed/XDhx-rdHSmY?autoplay=1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</div>
+
 <script>
-  function translateCusdis() {
-    const translations = {
-      'Nickname': 'Seu Nome',
-      'Reply': 'Responder',
-      'Comment': 'Comentário',
-      'Submit': 'Enviar Comentário',
-      'Email (optional)': 'E-mail (opcional)',
-      'Reply...': 'Escreva aqui sua opinião...',
-      'Load more': 'Carregar mais',
-      'sending...': 'Enviando...',
-      'Your comment has been sent. Please wait for approval.': 'Seu comentário foi enviado! Aguarde a aprovação do administrador.'
-    };
-    const iframes = document.querySelectorAll('#cusdis_thread iframe');
-    iframes.forEach(iframe => {
-      try {
-        const doc = iframe.contentDocument || iframe.contentWindow.document;
-        const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null, false);
-        let node;
-        while(node = walker.nextNode()) {
-          const text = node.nodeValue.trim();
-          if (translations[text]) node.nodeValue = translations[text];
-        }
-        doc.querySelectorAll('input, textarea, button').forEach(el => {
-          if (el.placeholder && translations[el.placeholder]) el.placeholder = translations[el.placeholder];
-          if (el.innerText && translations[el.innerText.trim()]) el.innerText = translations[el.innerText.trim()];
-        });
-      } catch (e) { }
+  function openSpecsModal(tutorialId) {
+    const modalId = 'modal-' + tutorialId;
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeSpecsModal(tutorialId) {
+    const modalId = 'modal-' + tutorialId;
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  }
+
+  function openVideoModal(tutorialId) {
+    const modalId = 'modal-video-' + tutorialId;
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeVideoModal(tutorialId) {
+    const modalId = 'modal-video-' + tutorialId;
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  }
+
+  window.onclick = function(event) {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
     });
   }
-  setInterval(translateCusdis, 500);
 </script>
 <script src="../js/main.js"></script>
 </body>
-</html>
+        </html>
