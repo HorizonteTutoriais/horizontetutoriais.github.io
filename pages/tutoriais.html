@@ -63,12 +63,10 @@
       gap: 10px;
       flex-wrap: wrap;
     }
-    .btn-specs {
+    .btn-specs, .btn-video, .btn-download-tutorial {
       flex: 1;
       min-width: 140px;
       padding: 12px 14px;
-      background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
-      color: #fff;
       border: none;
       border-radius: 6px;
       font-size: 12px;
@@ -80,58 +78,53 @@
       justify-content: center;
       gap: 5px;
       text-decoration: none;
-    }
-    .btn-specs:hover {
-      background: linear-gradient(135deg, #1565c0 0%, #1a73e8 100%);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(13, 71, 161, 0.3);
-    }
-    .btn-video {
-      flex: 1;
-      min-width: 140px;
-      padding: 12px 14px;
-      background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%);
       color: #fff;
-      border: none;
+    }
+    .btn-specs { background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%); }
+    .btn-specs:hover { background: linear-gradient(135deg, #1565c0 0%, #1a73e8 100%); transform: translateY(-2px); box-shadow: 0 4px 8px rgba(13, 71, 161, 0.3); }
+    .btn-video { background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%); }
+    .btn-video:hover { background: linear-gradient(135deg, #ff8f00 0%, #ffa500 100%); transform: translateY(-2px); box-shadow: 0 4px 8px rgba(255, 111, 0, 0.3); }
+    .btn-download-tutorial { background: linear-gradient(135deg, #1db954 0%, #1ed760 100%); }
+    .btn-download-tutorial:hover { background: linear-gradient(135deg, #1ed760 0%, #1db954 100%); transform: translateY(-2px); box-shadow: 0 4px 8px rgba(29, 185, 84, 0.3); }
+
+    /* Estilo para a aba de rolagem de vídeos */
+    .video-scroll-container {
+      display: none;
+      margin-top: 15px;
+      padding: 15px;
+      background: #f1f1f1;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+    .video-scroll-container.active { display: block; animation: fadeIn 0.3s ease; }
+    .video-scroll-list {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      scrollbar-width: thin;
+      scrollbar-color: #0d47a1 #f1f1f1;
+    }
+    .video-scroll-list::-webkit-scrollbar { height: 6px; }
+    .video-scroll-list::-webkit-scrollbar-track { background: #f1f1f1; }
+    .video-scroll-list::-webkit-scrollbar-thumb { background-color: #0d47a1; border-radius: 10px; }
+    
+    .video-btn {
+      flex: 0 0 auto;
+      width: 120px;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #0d47a1;
       border-radius: 6px;
-      font-size: 12px;
-      font-weight: 700;
+      text-align: center;
       cursor: pointer;
       transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      text-decoration: none;
     }
-    .btn-video:hover {
-      background: linear-gradient(135deg, #ff8f00 0%, #ffa500 100%);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(255, 111, 0, 0.3);
-    }
-    .btn-download-tutorial {
-      flex: 1;
-      min-width: 140px;
-      padding: 12px 14px;
-      background: linear-gradient(135deg, #1db954 0%, #1ed760 100%);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      text-decoration: none;
-    }
-    .btn-download-tutorial:hover {
-      background: linear-gradient(135deg, #1ed760 0%, #1db954 100%);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(29, 185, 84, 0.3);
-    }
+    .video-btn:hover { background: #0d47a1; color: #fff; }
+    .video-btn i { display: block; font-size: 20px; margin-bottom: 5px; color: #ff6f00; }
+    .video-btn:hover i { color: #fff; }
+    .video-btn span { font-size: 11px; font-weight: 700; }
+
     .modal {
       display: none;
       position: fixed;
@@ -143,10 +136,7 @@
       background-color: rgba(0, 0, 0, 0.5);
       animation: fadeIn 0.3s ease;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     .modal-content {
       background-color: var(--white);
       margin: 5% auto;
@@ -158,10 +148,7 @@
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       animation: slideIn 0.3s ease;
     }
-    @keyframes slideIn {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
+    @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     .modal-header {
       display: flex;
       justify-content: space-between;
@@ -170,76 +157,21 @@
       border-bottom: 2px solid #0d47a1;
       padding-bottom: 10px;
     }
-    .modal-header h2 {
-      margin: 0;
-      color: #0d47a1;
-      font-size: 20px;
-    }
-    .close-btn {
-      background: none;
-      border: none;
-      font-size: 28px;
-      cursor: pointer;
-      color: #666;
-      transition: color 0.3s ease;
-    }
-    .close-btn:hover {
-      color: #0d47a1;
-    }
-    .specs-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-    .specs-table td {
-      padding: 10px;
-      border-bottom: 1px solid #e0e0e0;
-      font-size: 13px;
-    }
-    .specs-table td:first-child {
-      font-weight: 700;
-      color: #0d47a1;
-      width: 40%;
-      background: #f9f9f9;
-    }
-    .video-player-container {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      background: #000;
-      border-radius: 6px;
-      margin-top: 15px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    }
-    .video-player-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+    .modal-header h2 { margin: 0; color: #0d47a1; font-size: 20px; }
+    .close-btn { background: none; border: none; font-size: 28px; cursor: pointer; color: #666; transition: color 0.3s ease; }
+    .close-btn:hover { color: #0d47a1; }
+    .specs-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    .specs-table td { padding: 10px; border-bottom: 1px solid #e0e0e0; font-size: 13px; }
+    .specs-table td:first-child { font-weight: 700; color: #0d47a1; width: 40%; background: #f9f9f9; }
+    .video-player-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; border-radius: 6px; margin-top: 15px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); }
+    .video-player-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    
     @media (max-width: 600px) {
-      .tutorial-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .tutorial-icon {
-        width: 100%;
-        height: 150px;
-      }
-      .tutorial-buttons {
-        flex-direction: column;
-      }
-      .btn-specs, .btn-video, .btn-download-tutorial {
-        min-width: 100%;
-      }
-      .modal-content {
-        margin: 20% auto;
-        width: 90%;
-      }
+      .tutorial-header { flex-direction: column; align-items: flex-start; }
+      .tutorial-icon { width: 100%; height: 150px; }
+      .tutorial-buttons { flex-direction: column; }
+      .btn-specs, .btn-video, .btn-download-tutorial { min-width: 100%; }
+      .modal-content { margin: 20% auto; width: 90%; }
     }
   </style>
 </head>
@@ -269,12 +201,33 @@
       <button class="btn-specs" onclick="openSpecsModal('horizon-click')">
         <i class="fas fa-info-circle"></i> Specs
       </button>
-      <button class="btn-video" onclick="openVideoModal('horizon-click')">
+      <button class="btn-video" onclick="toggleVideoScroll('horizon-click')">
         <i class="fas fa-play-circle"></i> Assistir
       </button>
       <a href="../posts/aplicativos/horizon-clicker-FINAL-CORRIGIDO.html" class="btn-download-tutorial">
         <i class="fas fa-download"></i> Baixar
       </a>
+    </div>
+    <!-- Aba de rolagem de vídeos -->
+    <div id="video-scroll-horizon-click" class="video-scroll-container">
+      <div class="video-scroll-list">
+        <div class="video-btn" onclick="openVideoModal('horizon-click', 'XDhx-rdHSmY')">
+          <i class="fas fa-video"></i>
+          <span>Tutorial Parte 1</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('horizon-click', 'XDhx-rdHSmY')">
+          <i class="fas fa-video"></i>
+          <span>Configuração</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('horizon-click', 'XDhx-rdHSmY')">
+          <i class="fas fa-video"></i>
+          <span>Dicas Extras</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('horizon-click', 'XDhx-rdHSmY')">
+          <i class="fas fa-video"></i>
+          <span>Avançado</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -294,12 +247,33 @@
       <button class="btn-specs" onclick="openSpecsModal('resident-evil-4')">
         <i class="fas fa-info-circle"></i> Specs
       </button>
-      <button class="btn-video" onclick="openVideoModal('resident-evil-4')">
+      <button class="btn-video" onclick="toggleVideoScroll('resident-evil-4')">
         <i class="fas fa-play-circle"></i> Assistir
       </button>
       <a href="../posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html" class="btn-download-tutorial">
         <i class="fas fa-download"></i> Baixar
       </a>
+    </div>
+    <!-- Aba de rolagem de vídeos -->
+    <div id="video-scroll-resident-evil-4" class="video-scroll-container">
+      <div class="video-scroll-list">
+        <div class="video-btn" onclick="openVideoModal('resident-evil-4', 'XDhx-rdHSmY')">
+          <i class="fas fa-video"></i>
+          <span>Instalação APK</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('resident-evil-4', 'XDhx-rdHSmY')">
+          <i class="fas fa-video"></i>
+          <span>Configurar OBB</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('resident-evil-4', 'XDhx-rdHSmY')">
+          <i class="fas fa-video"></i>
+          <span>Gameplay</span>
+        </div>
+        <div class="video-btn" onclick="openVideoModal('resident-evil-4', 'XDhx-rdHSmY')">
+          <i class="fas fa-video"></i>
+          <span>Dicas de Combate</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -318,163 +292,83 @@
 <footer class="site-footer"><div class="container footer-top"><div class="footer-about"><h3>🌅 Horizonte Tutoriais</h3><p>Sua fonte definitiva para APKs e tutoriais.</p><div class="footer-social"><a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener"><i class="fab fa-telegram"></i></a><a href="https://wa.me/5500000000000" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a><a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a><a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a></div></div><div class="footer-links"><h4>Links Rápidos</h4><ul><li><a href="../index.html">Início</a></li><li><a href="aplicativos.html">Aplicativos</a></li><li><a href="jogos.html">Jogos</a></li></ul></div><div class="footer-links"><h4>Informações</h4><ul><li><a href="sobre.html">Sobre</a></li><li><a href="contato.html">Contate-nos</a></li><li><a href="privacidade.html">Política de Privacidade</a></li><li><a href="isencao.html">Isenção de Responsabilidade</a></li></ul></div></div><div class="footer-bottom"><div class="container"><div class="footer-nav"><a href="sobre.html">Sobre</a><a href="contato.html">Contate-nos</a><a href="privacidade.html">Política de Privacidade</a><a href="isencao.html">Isenção de Responsabilidade</a></div><p>Copyright &copy; 2025–2026 <a href="../index.html">Horizonte Tutoriais</a> | Todos os direitos reservados</p></div></div></footer>
 
 <!-- MODAIS DE ESPECIFICAÇÕES -->
-
-<!-- Modal: Horizon Click -->
 <div id="modal-horizon-click" class="modal">
   <div class="modal-content">
-    <div class="modal-header">
-      <h2>🖱️ Especificações - Horizon Click</h2>
-      <button class="close-btn" onclick="closeSpecsModal('horizon-click')">&times;</button>
-    </div>
+    <div class="modal-header"><h2>🖱️ Especificações - Horizon Click</h2><button class="close-btn" onclick="closeSpecsModal('horizon-click')">&times;</button></div>
     <table class="specs-table">
-      <tr>
-        <td>Aplicativo</td>
-        <td>Horizon Clicker</td>
-      </tr>
-      <tr>
-        <td>Versão</td>
-        <td>Última Versão</td>
-      </tr>
-      <tr>
-        <td>Tamanho</td>
-        <td>Varia de acordo com o dispositivo</td>
-      </tr>
-      <tr>
-        <td>Categoria</td>
-        <td>Ferramentas / Automação</td>
-      </tr>
-      <tr>
-        <td>Desenvolvedor</td>
-        <td>Horizon Dev Team</td>
-      </tr>
-      <tr>
-        <td>Tipo do Arquivo</td>
-        <td>APK</td>
-      </tr>
-      <tr>
-        <td>Requer Android</td>
-        <td>5.0 ou superior</td>
-      </tr>
-      <tr>
-        <td>Atualizado em</td>
-        <td>26/02/2026</td>
-      </tr>
-      <tr>
-        <td>Recursos</td>
-        <td>Interface Intuitiva, Cliques Rápidos e Precisos, Sem Necessidade de Root</td>
-      </tr>
+      <tr><td>Aplicativo</td><td>Horizon Clicker</td></tr>
+      <tr><td>Versão</td><td>Última Versão</td></tr>
+      <tr><td>Tamanho</td><td>Varia de acordo com o dispositivo</td></tr>
+      <tr><td>Categoria</td><td>Ferramentas / Automação</td></tr>
+      <tr><td>Desenvolvedor</td><td>Horizon Dev Team</td></tr>
+      <tr><td>Tipo do Arquivo</td><td>APK</td></tr>
+      <tr><td>Requer Android</td><td>5.0 ou superior</td></tr>
+      <tr><td>Atualizado em</td><td>26/02/2026</td></tr>
+      <tr><td>Recursos</td><td>Interface Intuitiva, Cliques Rápidos e Precisos, Sem Necessidade de Root</td></tr>
     </table>
   </div>
 </div>
 
-<!-- Modal: Resident Evil 4 -->
 <div id="modal-resident-evil-4" class="modal">
   <div class="modal-content">
-    <div class="modal-header">
-      <h2>🎮 Especificações - Resident Evil 4</h2>
-      <button class="close-btn" onclick="closeSpecsModal('resident-evil-4')">&times;</button>
-    </div>
+    <div class="modal-header"><h2>🎮 Especificações - Resident Evil 4</h2><button class="close-btn" onclick="closeSpecsModal('resident-evil-4')">&times;</button></div>
     <table class="specs-table">
-      <tr>
-        <td>Jogo</td>
-        <td>Resident Evil 4</td>
-      </tr>
-      <tr>
-        <td>Versão</td>
-        <td>Mobile Edition</td>
-      </tr>
-      <tr>
-        <td>Tamanho Total</td>
-        <td>~1.5 GB</td>
-      </tr>
-      <tr>
-        <td>Categoria</td>
-        <td>Ação / Survival Horror</td>
-      </tr>
-      <tr>
-        <td>Desenvolvedor</td>
-        <td>Capcom</td>
-      </tr>
-      <tr>
-        <td>Tipo do Arquivo</td>
-        <td>APK + Dados (Discos)</td>
-      </tr>
-      <tr>
-        <td>Requer Android</td>
-        <td>7.0 ou superior</td>
-      </tr>
-      <tr>
-        <td>Atualizado em</td>
-        <td>26/02/2026</td>
-      </tr>
-      <tr>
-        <td>Recursos</td>
-        <td>Gráficos Otimizados, Controles Adaptados, História Completa, Alta Performance</td>
-      </tr>
+      <tr><td>Jogo</td><td>Resident Evil 4</td></tr>
+      <tr><td>Versão</td><td>Mobile Edition</td></tr>
+      <tr><td>Tamanho Total</td><td>~1.5 GB</td></tr>
+      <tr><td>Categoria</td><td>Ação / Survival Horror</td></tr>
+      <tr><td>Desenvolvedor</td><td>Capcom</td></tr>
+      <tr><td>Tipo do Arquivo</td><td>APK + Dados (Discos)</td></tr>
+      <tr><td>Requer Android</td><td>7.0 ou superior</td></tr>
+      <tr><td>Atualizado em</td><td>26/02/2026</td></tr>
+      <tr><td>Recursos</td><td>Gráficos Otimizados, Controles Adaptados, História Completa, Alta Performance</td></tr>
     </table>
   </div>
 </div>
 
-<!-- MODAIS DE VÍDEOS -->
-
-<!-- Modal: Vídeo Horizon Click -->
-<div id="modal-video-horizon-click" class="modal">
+<!-- MODAL DE VÍDEO GENÉRICO -->
+<div id="modal-video-player" class="modal">
   <div class="modal-content">
-    <div class="modal-header">
-      <h2>🖱️ Tutorial - Horizon Click</h2>
-      <button class="close-btn" onclick="closeVideoModal('horizon-click')">&times;</button>
-    </div>
+    <div class="modal-header"><h2 id="video-modal-title">📺 Tutorial</h2><button class="close-btn" onclick="closeVideoModal()">&times;</button></div>
     <div class="video-player-container">
-      <iframe src="https://www.youtube.com/embed/XDhx-rdHSmY?autoplay=1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-  </div>
-</div>
-
-<!-- Modal: Vídeo Resident Evil 4 -->
-<div id="modal-video-resident-evil-4" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>🎮 Tutorial - Resident Evil 4</h2>
-      <button class="close-btn" onclick="closeVideoModal('resident-evil-4')">&times;</button>
-    </div>
-    <div class="video-player-container">
-      <iframe src="https://www.youtube.com/embed/XDhx-rdHSmY?autoplay=1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe id="video-iframe" src="" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 </div>
 
 <script>
   function openSpecsModal(tutorialId) {
-    const modalId = 'modal-' + tutorialId;
-    const modal = document.getElementById(modalId);
-    if (modal) {
-      modal.style.display = 'block';
-      document.body.style.overflow = 'hidden';
-    }
+    const modal = document.getElementById('modal-' + tutorialId);
+    if (modal) { modal.style.display = 'block'; document.body.style.overflow = 'hidden'; }
   }
-
   function closeSpecsModal(tutorialId) {
-    const modalId = 'modal-' + tutorialId;
-    const modal = document.getElementById(modalId);
-    if (modal) {
-      modal.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
+    const modal = document.getElementById('modal-' + tutorialId);
+    if (modal) { modal.style.display = 'none'; document.body.style.overflow = 'auto'; }
+  }
+  
+  function toggleVideoScroll(tutorialId) {
+    const scroll = document.getElementById('video-scroll-' + tutorialId);
+    if (scroll) { scroll.classList.toggle('active'); }
   }
 
-  function openVideoModal(tutorialId) {
-    const modalId = 'modal-video-' + tutorialId;
-    const modal = document.getElementById(modalId);
-    if (modal) {
+  function openVideoModal(tutorialId, videoId) {
+    const modal = document.getElementById('modal-video-player');
+    const iframe = document.getElementById('video-iframe');
+    const title = document.getElementById('video-modal-title');
+    
+    if (modal && iframe) {
+      title.textContent = '📺 Tutorial - ' + (tutorialId === 'horizon-click' ? 'Horizon Click' : 'Resident Evil 4');
+      iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
       modal.style.display = 'block';
       document.body.style.overflow = 'hidden';
     }
   }
 
-  function closeVideoModal(tutorialId) {
-    const modalId = 'modal-video-' + tutorialId;
-    const modal = document.getElementById(modalId);
-    if (modal) {
+  function closeVideoModal() {
+    const modal = document.getElementById('modal-video-player');
+    const iframe = document.getElementById('video-iframe');
+    if (modal && iframe) {
+      iframe.src = '';
       modal.style.display = 'none';
       document.body.style.overflow = 'auto';
     }
@@ -482,14 +376,13 @@
 
   window.onclick = function(event) {
     const modals = document.querySelectorAll('.modal');
-    modals.forEach(modal => {
-      if (event.target === modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-      }
-    });
+    modals.forEach(modal => { if (event.target === modal) {
+      if (modal.id === 'modal-video-player') closeVideoModal();
+      else modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }});
   }
 </script>
 <script src="../js/main.js"></script>
 </body>
-        </html>
+  </html>
