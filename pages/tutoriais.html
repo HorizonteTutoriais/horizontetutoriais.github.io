@@ -251,7 +251,23 @@
 </head>
 <body>
 <div class="top-bar"><div class="container"><a href="contato.html">Contate-Nos</a><a href="privacidade.html">Política de Privacidade</a><a href="isencao.html">Isenção de Responsabilidade</a>    <a href="../feed.xml" class="rss-btn" target="_blank" rel="noopener"><i class="fas fa-rss"></i> RSS</a></div></div>
-<header class="site-header"><div class="container header-inner"><a href="../index.html" class="site-logo">🌅 Horizonte <span>Tutoriais</span></a><a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="header-telegram"><i class="fab fa-telegram"></i> Junte-Se Ao Nosso Telegram</a></div></header>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../index.html" class="site-logo">🌅 Horizonte <span>Tutoriais</span></a>
+    <div class="header-actions">
+      <button id="dark-mode-toggle" class="header-btn" title="Alternar modo noturno">🌙</button>
+      <div class="search-fixed-container">
+        <input type="text" id="search-input-fixed" placeholder="Pesquisar..." autocomplete="off">
+        <button id="search-submit-fixed" title="Pesquisar">🔍</button>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Painel de Resultados de Pesquisa -->
+<div id="search-results-panel" class="search-results-panel">
+  <div class="search-results-close"><button id="search-results-close-btn" title="Fechar">✕</button></div>
+  <div id="search-results-list"></div>
+</div>
 <nav class="site-nav"><div class="container"><ul class="nav-list"><li><a href="../index.html"><span class="nav-icon">🏠</span> Lar</a></li><li><a href="aplicativos.html"><span class="nav-icon">📱</span> Aplicativos</a></li><li><a href="jogos.html"><span class="nav-icon">🎮</span> Jogos</a></li><li><a href="tutoriais.html" class="active"><span class="nav-icon">📚</span> Tutoriais</a></li><li><a href="ferramentas.html"><span class="nav-icon">🔧</span> Ferramentas</a></li><li><a href="quente.html"><span class="nav-icon">🔥</span> Quente</a></li></ul></div></nav>
 <div class="container"><div class="main-layout">
 <main>
@@ -552,6 +568,7 @@
     }});
   }
 </script>
+<script src="../js/dados.js"></script>
 <script src="../js/main.js"></script>
 <script>
   // FUNÇÃO PARA COPIAR LINK DO FEED
@@ -694,4 +711,4 @@
 </script>
 
 </body>
-  </html>
+</html>
