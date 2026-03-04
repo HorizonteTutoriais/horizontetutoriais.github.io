@@ -1,7 +1,6 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS/* ============================================================
-   HORIZONTE TUTORIAIS — JavaScript Principal (INFALÍVEL)
-   Adaptado para envio de comentários via E-mail com Formspree
+   HORIZONTE TUTORIAIS — JavaScript Principal (ULTRA-ROBUSTO)
+   Busca Infalível + Modo Noturno + Comentários
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -24,88 +23,142 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---- Barra de Pesquisa (Sempre Visível) - MELHORADA ---- */
+  /* ---- BUSCA ULTRA-ROBUSTA (INFALÍVEL) ---- */
   const searchInput = document.getElementById('search-input-fixed');
   const searchBtn = document.getElementById('search-submit-fixed');
 
   function performSearch() {
     const term = searchInput.value.toLowerCase().trim();
+    
     if (!term) {
       alert('Por favor, digite algo para buscar!');
       return;
     }
 
-    // Procura nos dados globais APPS_DATA (se disponível)
-    if (typeof APPS_DATA !== 'undefined') {
-      let foundUrl = null;
-      let foundName = null;
+    console.log('Buscando por:', term);
+    let foundUrl = null;
+    let foundName = null;
 
+    // MÉTODO 1: Procurar nos dados globais APPS_DATA
+    if (typeof APPS_DATA !== 'undefined' && APPS_DATA) {
+      console.log('APPS_DATA encontrado, procurando...');
+      
       // Procurar em aplicativos
-      if (APPS_DATA.aplicativos) {
+      if (APPS_DATA.aplicativos && Array.isArray(APPS_DATA.aplicativos)) {
         for (let app of APPS_DATA.aplicativos) {
-          const appName = app.nome.toLowerCase();
-          const appDesc = app.descricao.toLowerCase();
+          const appName = (app.nome || '').toLowerCase();
+          const appDesc = (app.descricao || '').toLowerCase();
+          const appId = (app.id || '').toLowerCase();
           
-          // Busca por nome ou descrição (parcial ou completa)
-          if (appName.includes(term) || appDesc.includes(term) || term.includes(appName.split(' ')[0])) {
+          // Busca flexível: nome completo, parcial, ou primeira palavra
+          if (appName.includes(term) || 
+              appDesc.includes(term) || 
+              appId.includes(term) ||
+              term.includes(appName.split(' ')[0]) ||
+              appName.includes(term.split(' ')[0])) {
             foundUrl = app.url;
             foundName = app.nome;
+            console.log('Encontrado em aplicativos:', foundName);
             break;
           }
         }
       }
 
       // Procurar em jogos (se não encontrou em aplicativos)
-      if (!foundUrl && APPS_DATA.jogos) {
+      if (!foundUrl && APPS_DATA.jogos && Array.isArray(APPS_DATA.jogos)) {
         for (let game of APPS_DATA.jogos) {
-          const gameName = game.nome.toLowerCase();
-          const gameDesc = game.descricao.toLowerCase();
+          const gameName = (game.nome || '').toLowerCase();
+          const gameDesc = (game.descricao || '').toLowerCase();
+          const gameId = (game.id || '').toLowerCase();
           
-          // Busca por nome ou descrição (parcial ou completa)
-          if (gameName.includes(term) || gameDesc.includes(term) || term.includes(gameName.split(' ')[0])) {
+          // Busca flexível
+          if (gameName.includes(term) || 
+              gameDesc.includes(term) || 
+              gameId.includes(term) ||
+              term.includes(gameName.split(' ')[0]) ||
+              gameName.includes(term.split(' ')[0])) {
             foundUrl = game.url;
             foundName = game.nome;
+            console.log('Encontrado em jogos:', foundName);
             break;
           }
         }
       }
+    }
 
-      if (foundUrl) {
-        // Redirecionar para o app/jogo encontrado
-        window.location.href = foundUrl;
-      } else {
-        alert(`App ou jogo "${term}" não encontrado. Tente outro nome!`);
-      }
-    } else {
-      // Fallback: procura nos cards da página
-      const apps = document.querySelectorAll('[data-app-name]');
-      let foundUrl = null;
-
-      for (let app of apps) {
-        const appName = app.getAttribute('data-app-name').toLowerCase();
-        const appDesc = app.getAttribute('data-app-desc') ? app.getAttribute('data-app-desc').toLowerCase() : '';
+    // MÉTODO 2: Se não encontrou em APPS_DATA, procurar nos cards da página
+    if (!foundUrl) {
+      console.log('APPS_DATA não disponível ou não encontrou, procurando nos cards da página...');
+      
+      // Procurar em todos os elementos com data-app-name
+      const appCards = document.querySelectorAll('[data-app-name]');
+      console.log('Cards encontrados:', appCards.length);
+      
+      for (let card of appCards) {
+        const cardName = (card.getAttribute('data-app-name') || '').toLowerCase();
+        const cardDesc = (card.getAttribute('data-app-desc') || '').toLowerCase();
+        const cardUrl = card.getAttribute('data-app-url');
         
-        if (appName.includes(term) || appDesc.includes(term) || term.includes(appName.split(' ')[0])) {
-          foundUrl = app.getAttribute('data-app-url');
+        console.log('Verificando card:', cardName);
+        
+        // Busca flexível
+        if (cardName.includes(term) || 
+            cardDesc.includes(term) ||
+            term.includes(cardName.split(' ')[0]) ||
+            cardName.includes(term.split(' ')[0])) {
+          foundUrl = cardUrl;
+          foundName = cardName;
+          console.log('Encontrado no card:', foundName);
           break;
         }
       }
+    }
 
-      if (foundUrl) {
-        window.location.href = foundUrl;
-      } else {
-        alert(`App ou jogo "${term}" não encontrado. Tente outro nome!`);
+    // MÉTODO 3: Se ainda não encontrou, procurar em todos os links da página
+    if (!foundUrl) {
+      console.log('Procurando em todos os links da página...');
+      
+      const allLinks = document.querySelectorAll('a[href*="posts/"]');
+      console.log('Links encontrados:', allLinks.length);
+      
+      for (let link of allLinks) {
+        const linkText = (link.textContent || '').toLowerCase();
+        const linkHref = (link.getAttribute('href') || '').toLowerCase();
+        
+        // Busca no texto e no href
+        if (linkText.includes(term) || linkHref.includes(term)) {
+          foundUrl = link.getAttribute('href');
+          foundName = link.textContent;
+          console.log('Encontrado no link:', foundName);
+          break;
+        }
       }
+    }
+
+    // RESULTADO FINAL
+    if (foundUrl) {
+      console.log('Redirecionando para:', foundUrl);
+      window.location.href = foundUrl;
+    } else {
+      console.log('Nenhum resultado encontrado para:', term);
+      alert(`❌ App ou jogo "${term}" não encontrado.\n\nTente:\n- "Horizon" para Horizon Clicker\n- "Resident" para Resident Evil 4\n- "Evil" para Resident Evil 4`);
     }
 
     searchInput.value = '';
   }
 
-  if (searchBtn) searchBtn.onclick = performSearch;
+  // Ativar busca ao clicar no botão
+  if (searchBtn) {
+    searchBtn.addEventListener('click', performSearch);
+  }
+
+  // Ativar busca ao pressionar Enter
   if (searchInput) {
-    searchInput.onkeypress = function(e) {
-      if (e.key === 'Enter') performSearch();
-    };
+    searchInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        performSearch();
+      }
+    });
   }
 
   /* ---- Sistema de Comentários via E-mail (Formspree) ---- */
@@ -117,18 +170,14 @@ document.addEventListener('DOMContentLoaded', function () {
     commentForm.addEventListener('submit', function(e) {
       e.preventDefault();
 
-      // Desabilita o botão durante o envio
       submitBtn.disabled = true;
       submitBtn.textContent = 'Enviando...';
       
-      // Limpa mensagens anteriores
       formStatus.className = 'form-status';
       formStatus.textContent = '';
 
-      // Coleta os dados do formulário
       const formData = new FormData(commentForm);
       
-      // Envia os dados via Formspree
       fetch(commentForm.action, {
         method: 'POST',
         body: formData,
@@ -138,14 +187,12 @@ document.addEventListener('DOMContentLoaded', function () {
       })
       .then(response => {
         if (response.ok) {
-          // Sucesso
           formStatus.className = 'form-status success';
           formStatus.textContent = '✅ Comentário enviado com sucesso! Obrigado pela mensagem.';
           commentForm.reset();
           submitBtn.textContent = 'Enviar Comentário';
           submitBtn.disabled = false;
         } else {
-          // Erro na resposta
           formStatus.className = 'form-status error';
           formStatus.textContent = '❌ Erro ao enviar comentário. Tente novamente.';
           submitBtn.textContent = 'Enviar Comentário';
@@ -153,7 +200,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       })
       .catch(error => {
-        // Erro na requisição
         console.error('Erro:', error);
         formStatus.className = 'form-status error';
         formStatus.textContent = '❌ Erro de conexão. Verifique sua internet e tente novamente.';
@@ -169,12 +215,6 @@ document.addEventListener('DOMContentLoaded', function () {
   if (loadMoreBtn && hiddenPosts.length > 0) {
     loadMoreBtn.addEventListener('click', function () {
       hiddenPosts.forEach(el => el.classList.remove('hidden-post'));
-      loadMoreBtn.style.display = 'none';
-    });
-  }
-
-}); — JavaScript Principal (INFALÍVEL)
-'));
       loadMoreBtn.style.display = 'none';
     });
   }
