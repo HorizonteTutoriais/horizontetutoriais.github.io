@@ -1,4 +1,5 @@
 /* ============================================================
+   HORIZONTE TUTORIAIS/* ============================================================
    HORIZONTE TUTORIAIS — JavaScript Principal (INFALÍVEL)
    Adaptado para envio de comentários via E-mail com Formspree
    ============================================================ */
@@ -23,31 +24,80 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---- Barra de Pesquisa (Sempre Visível) ---- */
+  /* ---- Barra de Pesquisa (Sempre Visível) - MELHORADA ---- */
   const searchInput = document.getElementById('search-input-fixed');
   const searchBtn = document.getElementById('search-submit-fixed');
 
   function performSearch() {
     const term = searchInput.value.toLowerCase().trim();
-    if (!term) return;
+    if (!term) {
+      alert('Por favor, digite algo para buscar!');
+      return;
+    }
 
-    // Procura o app nos cards e redireciona
-    const apps = document.querySelectorAll('[data-app-name]');
-    let foundUrl = null;
+    // Procura nos dados globais APPS_DATA (se disponível)
+    if (typeof APPS_DATA !== 'undefined') {
+      let foundUrl = null;
+      let foundName = null;
 
-    for (let app of apps) {
-      const appName = app.getAttribute('data-app-name').toLowerCase();
-      if (appName.includes(term) || term.includes(appName)) {
-        foundUrl = app.getAttribute('data-app-url');
-        break;
+      // Procurar em aplicativos
+      if (APPS_DATA.aplicativos) {
+        for (let app of APPS_DATA.aplicativos) {
+          const appName = app.nome.toLowerCase();
+          const appDesc = app.descricao.toLowerCase();
+          
+          // Busca por nome ou descrição (parcial ou completa)
+          if (appName.includes(term) || appDesc.includes(term) || term.includes(appName.split(' ')[0])) {
+            foundUrl = app.url;
+            foundName = app.nome;
+            break;
+          }
+        }
+      }
+
+      // Procurar em jogos (se não encontrou em aplicativos)
+      if (!foundUrl && APPS_DATA.jogos) {
+        for (let game of APPS_DATA.jogos) {
+          const gameName = game.nome.toLowerCase();
+          const gameDesc = game.descricao.toLowerCase();
+          
+          // Busca por nome ou descrição (parcial ou completa)
+          if (gameName.includes(term) || gameDesc.includes(term) || term.includes(gameName.split(' ')[0])) {
+            foundUrl = game.url;
+            foundName = game.nome;
+            break;
+          }
+        }
+      }
+
+      if (foundUrl) {
+        // Redirecionar para o app/jogo encontrado
+        window.location.href = foundUrl;
+      } else {
+        alert(`App ou jogo "${term}" não encontrado. Tente outro nome!`);
+      }
+    } else {
+      // Fallback: procura nos cards da página
+      const apps = document.querySelectorAll('[data-app-name]');
+      let foundUrl = null;
+
+      for (let app of apps) {
+        const appName = app.getAttribute('data-app-name').toLowerCase();
+        const appDesc = app.getAttribute('data-app-desc') ? app.getAttribute('data-app-desc').toLowerCase() : '';
+        
+        if (appName.includes(term) || appDesc.includes(term) || term.includes(appName.split(' ')[0])) {
+          foundUrl = app.getAttribute('data-app-url');
+          break;
+        }
+      }
+
+      if (foundUrl) {
+        window.location.href = foundUrl;
+      } else {
+        alert(`App ou jogo "${term}" não encontrado. Tente outro nome!`);
       }
     }
 
-    if (foundUrl) {
-      window.location.href = foundUrl;
-    } else {
-      alert('App não encontrado. Tente outro nome!');
-    }
     searchInput.value = '';
   }
 
@@ -119,6 +169,12 @@ document.addEventListener('DOMContentLoaded', function () {
   if (loadMoreBtn && hiddenPosts.length > 0) {
     loadMoreBtn.addEventListener('click', function () {
       hiddenPosts.forEach(el => el.classList.remove('hidden-post'));
+      loadMoreBtn.style.display = 'none';
+    });
+  }
+
+}); — JavaScript Principal (INFALÍVEL)
+'));
       loadMoreBtn.style.display = 'none';
     });
   }
