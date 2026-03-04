@@ -54,7 +54,23 @@
 </head>
 <body>
 <div class="top-bar"><div class="container"><a href="contato.html">Contate-Nos</a><a href="privacidade.html">Política de Privacidade</a><a href="isencao.html">Isenção de Responsabilidade</a>    <a href="../feed.xml" class="rss-btn" target="_blank" rel="noopener"><i class="fas fa-rss"></i> RSS</a></div></div>
-<header class="site-header"><div class="container header-inner"><a href="../index.html" class="site-logo">🌅 Horizonte <span>Tutoriais</span></a><a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="header-telegram"><i class="fab fa-telegram"></i> Junte-Se Ao Nosso Telegram</a></div></header>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../index.html" class="site-logo">🌅 Horizonte <span>Tutoriais</span></a>
+    <div class="header-actions">
+      <button id="dark-mode-toggle" class="header-btn" title="Alternar modo noturno">🌙</button>
+      <div class="search-fixed-container">
+        <input type="text" id="search-input-fixed" placeholder="Pesquisar..." autocomplete="off">
+        <button id="search-submit-fixed" title="Pesquisar">🔍</button>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Painel de Resultados de Pesquisa -->
+<div id="search-results-panel" class="search-results-panel">
+  <div class="search-results-close"><button id="search-results-close-btn" title="Fechar">✕</button></div>
+  <div id="search-results-list"></div>
+</div>
 <nav class="site-nav"><div class="container"><ul class="nav-list"><li><a href="../index.html" class="active"><span class="nav-icon">🏠</span> Lar</a></li><li><a href="aplicativos.html"><span class="nav-icon">📱</span> Aplicativos</a></li><li><a href="jogos.html"><span class="nav-icon">🎮</span> Jogos</a></li><li><a href="tutoriais.html"><span class="nav-icon">📚</span> Tutoriais</a></li><li><a href="ferramentas.html"><span class="nav-icon">🔧</span> Ferramentas</a></li><li><a href="quente.html"><span class="nav-icon">🔥</span> Quente</a></li></ul></div></nav>
 <div class="container"><div class="main-layout">
 <main>
@@ -142,6 +158,7 @@
 </aside>
 </div></div>
 <footer class="site-footer"><div class="container footer-top"><div class="footer-about"><h3>🌅 Horizonte Tutoriais</h3><p>Sua fonte definitiva para APKs e tutoriais.</p><div class="footer-social"><a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener"><i class="fab fa-telegram"></i></a><a href="https://wa.me/5500000000000" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a><a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a><a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a></div></div><div class="footer-links"><h4>Links Rápidos</h4><ul><li><a href="../index.html">Início</a></li><li><a href="aplicativos.html">Aplicativos</a></li><li><a href="jogos.html">Jogos</a></li></ul></div><div class="footer-links"><h4>Informações</h4><ul><li><a href="sobre.html">Sobre</a></li><li><a href="contato.html">Contate-nos</a></li><li><a href="privacidade.html">Política de Privacidade</a></li><li><a href="isencao.html">Isenção de Responsabilidade</a></li></ul></div></div><div class="footer-bottom"><div class="container"><div class="footer-nav"><a href="sobre.html">Sobre</a><a href="contato.html">Contate-nos</a><a href="privacidade.html">Política de Privacidade</a><a href="isencao.html">Isenção de Responsabilidade</a></div><p>Copyright &copy; 2025–2026 <a href="../index.html">Horizonte Tutoriais</a> | Todos os direitos reservados | <a href="../feed.xml" class="rss-btn"><i class="fas fa-rss"></i> RSS Feed</a></p></div></div></footer>
+<script src="../js/dados.js"></script>
 <script src="../js/main.js"></script>
 <script>
   // FUNÇÃO PARA COPIAR LINK DO FEED
@@ -284,4 +301,4 @@
 </script>
 
 </body>
-</html>
+  </html>
