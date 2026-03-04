@@ -61,6 +61,17 @@
     .footer-bottom .footer-nav a:hover { color: #fff; text-decoration: none; }
     .footer-bottom p { font-size: 12px; color: #90caf9; margin: 0; }
     .footer-bottom p a { color: #ffd600; font-weight: 700; }
+    
+    /* Estilos para os botões RSS */
+    .rss-btn { display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; background: #ff9800; color: #fff; text-decoration: none; border-radius: 4px; font-size: 12px; font-weight: 600; transition: background 0.3s ease; }
+    .rss-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
+    
+    /* Estilo para o widget de RSS na sidebar */
+    .rss-widget { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 0; margin-top: 15px; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+    .rss-widget-title { font-size: 13px; font-weight: 700; color: #ff9800; margin-bottom: 0; display: flex; align-items: center; gap: 6px; padding: 15px 15px 10px 15px; }
+    .rss-widget-text { font-size: 12px; color: #666; margin-bottom: 0; line-height: 1.5; padding: 0 15px 15px 15px; }
+    .rss-copy-btn { display: block; width: 100%; background: #ff9800; color: #fff; text-align: center; padding: 12px 15px; border-radius: 0 0 var(--radius) var(--radius); font-size: 12px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; transition: background 0.3s ease; margin: 0; }
+    .rss-copy-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
 
   </style>
 </head>
@@ -128,24 +139,25 @@
         <!-- Preenchido dinamicamente por renderizar.js -->
       </section>
 
+      <!-- ===== SEÇÃO DE COMENTÁRIOS (SISTEMA ORIGINAL COM TRADUÇÃO COMPLETA) ===== -->
       
 
     
-      <!-- ===== SEÇÃO DE COMENTÁRIOS (SISTEMA UNIFICADO) ===== -->
-      <section class="custom-comments">
-        <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
-        <p style="font-size:13px;color:#666;margin-bottom:15px;">Compartilhe sua opinião! Não é necessário fazer login.</p>
-        
-        <div id="cusdis_list">
-          <div id="cusdis_thread"
-            data-host="https://cusdis.com"
-            data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
-            data-page-id="horizonte_tutoriais_geral"
-            data-page-url="https://horizontetutoriais.com"
-            data-page-title="Horizonte Tutoriais"
-          ></div>
-        </div>
-      </section>
+    <section class="custom-comments">
+      <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
+      <p style="font-size:13px;color:#666;margin-bottom:15px;">Compartilhe sua opinião! Não é necessário fazer login.</p>
+      
+      <div id="cusdis_list">
+        <div id="cusdis_thread"
+          data-host="https://cusdis.com"
+          data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
+          data-page-id="index_horizonte"
+          data-page-url="https://horizontetutoriais.com/index.html"
+          data-page-title="Horizonte Tutoriais - Início"
+        ></div>
+      </div>
+    </section>
+
 </main>
 
     <!-- ===== SIDEBAR ===== -->
@@ -231,66 +243,8 @@
   </div>
 </footer>
 
+<!-- SCRIPT CUSDIS -->
 
-<script>
-  // Permitir carregamento inicial
-  window.cusdis_prevent_initial_load = false;
-
-  // FUNÇÃO PARA COPIAR LINK DO FEED
-  function copyToClipboard(text) {
-    var fullUrl = window.location.origin + '/' + text;
-    navigator.clipboard.writeText(fullUrl).then(function() {
-      alert('Link do feed copiado para a área de transferência!');
-    }).catch(function(err) {
-      alert('Erro ao copiar: ' + err);
-    });
-  }
-
-  // TRADUÇÃO DOS TERMOS E MENSAGENS DE STATUS
-  function translateCusdis() {
-    const translations = {
-      'Nickname': 'Seu Nome',
-      'Reply': 'Responder',
-      'Comment': 'Comentário',
-      'Submit': 'Enviar Comentário',
-      'Email (optional)': 'E-mail (opcional)',
-      'Reply...': 'Escreva aqui sua opinião...',
-      'Load more': 'Carregar mais',
-      'sending...': 'Enviando...',
-      'Your comment has been sent. Please wait for approval.': 'Seu comentário foi enviado! Aguarde a aprovação do administrador.'
-    };
-
-    const iframes = document.querySelectorAll('#cusdis_thread iframe');
-    iframes.forEach(iframe => {
-      try {
-        const doc = iframe.contentDocument || iframe.contentWindow.document;
-        
-        // Traduzir textos fixos e mensagens de status que aparecem dinamicamente
-        const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null, false);
-        let node;
-        while(node = walker.nextNode()) {
-          const text = node.nodeValue.trim();
-          if (translations[text]) {
-            node.nodeValue = translations[text];
-          }
-        }
-        
-        // Traduzir placeholders e botões
-        doc.querySelectorAll('input, textarea, button').forEach(el => {
-          if (el.placeholder && translations[el.placeholder]) {
-            el.placeholder = translations[el.placeholder];
-          }
-          if (el.innerText && translations[el.innerText.trim()]) {
-            el.innerText = translations[el.innerText.trim()];
-          }
-        });
-      } catch (e) { }
-    });
-  }
-
-  // Rodar tradução periodicamente (cada 500ms para ser mais rápido na captura do status)
-  setInterval(translateCusdis, 500);
-</script>
 
 <!-- Scripts de renderização dinâmica -->
 <script src="js/dados.js"></script>
@@ -359,5 +313,16 @@
   setInterval(translateCusdis, 500);
 </script>
 
+<script>
+  // FUNÇÃO PARA COPIAR LINK DO FEED
+  function copyToClipboard(text) {
+    var fullUrl = window.location.origin + '/' + text;
+    navigator.clipboard.writeText(fullUrl).then(function() {
+      alert('Link do feed copiado para a área de transferência!');
+    }).catch(function(err) {
+      alert('Erro ao copiar: ' + err);
+    });
+  }
+</script>
 </body>
 </html>
