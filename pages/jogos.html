@@ -65,6 +65,24 @@
     <!-- Preenchido dinamicamente por renderizar.js -->
   </div>
 </section>
+
+      
+
+      <!-- ===== SEÇÃO DE COMENTÁRIOS (SISTEMA UNIFICADO COM INDEX) ===== -->
+      <section class="custom-comments">
+        <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
+        <p style="font-size:13px;color:#666;margin-bottom:15px;">Compartilhe sua opinião! Não é necessário fazer login.</p>
+        
+        <div id="cusdis_list">
+          <div id="cusdis_thread"
+            data-host="https://cusdis.com"
+            data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
+            data-page-id="index_horizonte"
+            data-page-url="https://horizontetutoriais.com"
+            data-page-title="Horizonte Tutoriais"
+          ></div>
+        </div>
+      </section>
 </main>
 <aside class="sidebar">
   <div class="sidebar-widget"><h3 class="widget-title">📣 Mídias Sociais</h3>
@@ -105,5 +123,71 @@
     });
   }
 </script>
+
+
+
+
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+<script>
+  // Permitir carregamento inicial
+  window.cusdis_prevent_initial_load = false;
+
+  // TRADUÇÃO COMPLETA DOS TERMOS E MENSAGENS DE STATUS
+  function translateCusdis() {
+    const translations = {
+      'Nickname': 'Seu Nome',
+      'Reply': 'Responder',
+      'Comment': 'Comentário',
+      'Submit': 'Enviar Comentário',
+      'Email (optional)': 'E-mail (opcional)',
+      'Reply...': 'Escreva aqui sua opinião...',
+      'Load more': 'Carregar mais',
+      'sending...': 'Enviando...',
+      'Your comment has been sent. Please wait for approval.': 'Seu comentário foi enviado! Aguarde a aprovação do administrador.',
+      'Replying to': 'Respondendo a',
+      'Delete': 'Deletar',
+      'Edit': 'Editar',
+      'Cancel': 'Cancelar',
+      'Save': 'Salvar',
+      'Anonymous': 'Anônimo',
+      'Markdown is supported': 'Markdown é suportado',
+      'Powered by': 'Desenvolvido por'
+    };
+
+    const iframes = document.querySelectorAll('#cusdis_thread iframe');
+    iframes.forEach(iframe => {
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        
+        // Traduzir textos fixos e mensagens de status que aparecem dinamicamente
+        const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null, false);
+        let node;
+        while(node = walker.nextNode()) {
+          const text = node.nodeValue.trim();
+          if (translations[text]) {
+            node.nodeValue = translations[text];
+          }
+        }
+        
+        // Traduzir placeholders e botões
+        doc.querySelectorAll('input, textarea, button').forEach(el => {
+          if (el.placeholder && translations[el.placeholder]) {
+            el.placeholder = translations[el.placeholder];
+          }
+          if (el.innerText && translations[el.innerText.trim()]) {
+            el.innerText = translations[el.innerText.trim()];
+          }
+          if (el.value && translations[el.value]) {
+            el.value = translations[el.value];
+          }
+        });
+      } catch (e) { }
+    });
+  }
+
+  // Rodar tradução periodicamente (cada 500ms para capturar mudanças dinâmicas)
+  setInterval(translateCusdis, 500);
+</script>
+
 </body>
 </html>
