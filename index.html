@@ -3,119 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Como Jogar Resident Evil 4 Mobile — Horizonte Tutoriais</title>
-  <meta name="description" content="Guia completo para instalar e dominar Resident Evil 4 no seu celular Android. Aprenda os melhores controles e estratégias." />
-  <link rel="stylesheet" href="../../css/style.css" />
+  <title>Horizonte Tutoriais — Sua fonte definitiva para tutoriais e APKs</title>
+  <meta name="description" content="Horizonte Tutoriais — Baixe os melhores APKs, tutoriais, aplicativos premium desbloqueados e muito mais. Atualizado diariamente." />
+  <meta name="keywords" content="horizonte tutoriais, apk, download, aplicativos, tutoriais, android, premium" />
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Ícones via CDN (Font Awesome Free) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <!-- Favicon inline SVG -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌅</text></svg>" />
-  <link rel="alternate" type="application/rss+xml" title="Horizonte Tutoriais - Feed RSS" href="../../feed.xml" />
+  <!-- Link de descoberta do Feed RSS -->
+  <link rel="alternate" type="application/rss+xml" title="Horizonte Tutoriais - Feed RSS" href="feed.xml" />
   <style>
-    /* Estilo para o widget de tutoriais (agora um botão direto) */
-    .tutorials-widget { margin-top: 15px; }
-    .btn-tutorial-direct {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 15px;
-      background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%);
-      color: #fff;
-      text-decoration: none;
-      border-radius: var(--radius);
-      font-weight: 700;
-      font-size: 14px;
-      box-shadow: var(--shadow);
-      transition: all 0.3s ease;
-      border: 1px solid #e65100;
-      cursor: pointer;
-    }
-    .btn-tutorial-direct:hover {
-      background: linear-gradient(135deg, #ff8f00 0%, #ffa500 100%);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(255, 111, 0, 0.3);
-      color: #fff;
-    }
-    .btn-tutorial-direct i { font-size: 16px; }
+    /* Estilo para a barra de pesquisa sempre visível no celular */
+    .header-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .search-fixed-container { display: flex; align-items: center; background: rgba(255,255,255,0.15); border-radius: 20px; padding: 2px 10px; border: 1px solid rgba(255,255,255,0.3); }
+    .search-fixed-container input { background: transparent; border: none; color: #fff; outline: none; padding: 5px; font-size: 14px; width: 120px; }
+    .search-fixed-container input::placeholder { color: rgba(255,255,255,0.7); }
+    .search-fixed-container button { background: transparent; border: none; color: #fff; cursor: pointer; font-size: 16px; padding: 0 5px; }
     
-    /* Estilos para o widget de guias retrátil */
-    .guides-widget { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 15px; margin-top: 15px; box-shadow: var(--shadow); }
-    .guides-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding: 10px; background: #f5f5f5; border-radius: 6px; border: 1px solid #e0e0e0; transition: all 0.3s ease; }
-    .guides-header:hover { background: #efefef; border-color: #c62828; }
-    .guides-header-title { font-size: 14px; font-weight: 700; color: #c62828; display: flex; align-items: center; gap: 6px; }
-    .guides-header-icon { font-size: 14px; transition: transform 0.3s ease; }
-    .guides-header.active .guides-header-icon { transform: rotate(180deg); }
-    .guides-list { display: none; margin-top: 10px; }
-    .guides-list.active { display: block; }
-    .guide-item { background: #f9f9f9; border-left: 3px solid #d32f2f; padding: 8px 10px; margin-bottom: 6px; cursor: pointer; border-radius: 3px; transition: all 0.3s ease; font-size: 12px; }
-    .guide-item:hover { background: #f0f0f0; transform: translateX(3px); }
-    .guide-item a { color: #c62828; text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 5px; }
-    .guide-item a:hover { color: #d32f2f; }
-    
-    .rss-btn { display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; background: #ff9800; color: #fff; text-decoration: none; border-radius: 4px; font-size: 12px; font-weight: 600; transition: background 0.3s ease; }
-    .rss-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
-    
+    /* Estilo para a seção de comentários */
     .custom-comments { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: var(--shadow); }
     .widget-title { margin-top: 0; font-size: 18px; border-bottom: 2px solid var(--blue-primary); display: inline-block; margin-bottom: 15px; }
     
-    /* Novos estilos para os 3 botões de download */
-    .download-options { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
-    .btn-download-option { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; background: #c62828; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 700; transition: all 0.3s ease; }
-    .btn-download-option:hover { background: #d32f2f; transform: scale(1.02); color: #fff; }
-    .btn-download-option.alt { background: #1565c0; }
-    .btn-download-option.alt:hover { background: #1976d2; }
+    /* Estilos para os botões RSS */
+    .rss-btn { display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; background: #ff9800; color: #fff; text-decoration: none; border-radius: 4px; font-size: 12px; font-weight: 600; transition: background 0.3s ease; }
+    .rss-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
     
-    @media (max-width: 600px) { .custom-comments { padding: 15px; } }
+    /* Estilo para o widget de RSS na sidebar */
+    .rss-widget { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 0; margin-top: 15px; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+    .rss-widget-title { font-size: 13px; font-weight: 700; color: #ff9800; margin-bottom: 0; display: flex; align-items: center; gap: 6px; padding: 15px 15px 10px 15px; }
+    .rss-widget-text { font-size: 12px; color: #666; margin-bottom: 0; line-height: 1.5; padding: 0 15px 15px 15px; }
+    .rss-copy-btn { display: block; width: 100%; background: #ff9800; color: #fff; text-align: center; padding: 12px 15px; border-radius: 0 0 var(--radius) var(--radius); font-size: 12px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; transition: background 0.3s ease; margin: 0; }
+    .rss-copy-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
+    
+    @media (max-width: 600px) {
+      .header-telegram { display: none; }
+      .search-fixed-container input { width: 100px; }
+      .custom-comments { padding: 15px; }
+    }
   </style>
 </head>
 <body>
-<div class="top-bar"><div class="container"><a href="../../pages/contato.html">Contate-Nos</a><a href="../../pages/privacidade.html">Política de Privacidade</a><a href="../../pages/isencao.html">Isenção de Responsabilidade</a><a href="../../feed.xml" class="rss-btn" target="_blank" rel="noopener"><i class="fas fa-rss"></i> RSS</a></div></div>
-<header class="site-header"><div class="container header-inner"><a href="../../index.html" class="site-logo">🌅 Horizonte <span>Tutoriais</span></a><a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="header-telegram"><i class="fab fa-telegram"></i> Junte-Se Ao Nosso Telegram</a></div></header>
-<nav class="site-nav"><div class="container"><ul class="nav-list"><li><a href="../../index.html"><span class="nav-icon">🏠</span> Lar</a></li><li><a href="../../pages/aplicativos.html"><span class="nav-icon">📱</span> Aplicativos</a></li><li><a href="../../pages/jogos.html" class="active"><span class="nav-icon">🎮</span> Jogos</a></li><li><a href="../../pages/tutoriais.html"><span class="nav-icon">📚</span> Tutoriais</a></li><li><a href="../../pages/ferramentas.html"><span class="nav-icon">🔧</span> Ferramentas</a></li><li><a href="../../pages/quente.html"><span class="nav-icon">🔥</span> Quente</a></li></ul></div></nav>
-<div class="container"><div class="main-layout">
-<main>
-  <div class="breadcrumb"><a href="../../index.html">Lar</a><span>›</span><a href="../../pages/jogos.html">Jogos</a><span>›</span>Resident Evil 4</div>
-  <article class="popular-section">
-    <div class="post-header">
-      <h1>Como Jogar Resident Evil 4 Mobile</h1>
-      <div class="post-meta"><span>Por <span class="meta-author">Equipe Horizonte</span></span><span>📅 26/02/2026</span></div>
-      <div style="margin-top:8px"><span class="badge badge-cat">Jogos</span><span class="badge badge-hot">Quente</span></div>
-    </div>
-    <img src="https://placehold.co/700x300/c62828/fff?text=Resident+Evil+4+Mobile" alt="Resident Evil 4" class="post-featured-img" />
-    <div class="post-body">
-      <p>Resident Evil 4 é um clássico do survival horror que agora está disponível para Android. Descubra como instalar e dominar este jogo épico no seu celular.</p>
-      <h2>🎮 CARACTERÍSTICAS PRINCIPAIS 🎮</h2>
-      <ul><li>✅ Gráficos Otimizados para dispositivos móveis</li><li>✅ Controles Adaptados para tela sensível ao toque</li><li>✅ História Completa do jogo original</li><li>✅ Alta Performance em diversos dispositivos</li></ul>
-    </div>
-    
-    <h2 class="section-title" style="margin-top: 20px;">📊 ESPECIFICAÇÕES DO JOGO</h2>
-    <table class="info-table">
-      <tr><td>Jogo</td><td>Resident Evil 4</td></tr>
-      <tr><td>Versão</td><td>Mobile Edition</td></tr>
-      <tr><td>Tamanho Total</td><td>~1.5 GB</td></tr>
-      <tr><td>Categoria</td><td>Ação / Survival Horror</td></tr>
-      <tr><td>Desenvolvedor</td><td>Capcom</td></tr>
-      <tr><td>Tipo do Arquivo</td><td>APK + Dados (Discos)</td></tr>
-      <tr><td>Requer Android</td><td>7.0 ou superior</td></tr>
-      <tr><td>Atualizado em</td><td>26/02/2026</td></tr>
-    </table>
 
-    <div class="download-box">
-      <p style="font-size:14px;font-weight:700;color:#c62828;margin-bottom:12px">⬇️ Clique abaixo para baixar o jogo</p>
-      
-      <div class="download-options">
-        <a href="https://4br.me/BaixarApkR4" class="btn-download-option" target="_blank" rel="noopener"><i class="fas fa-file-archive"></i> BAIXAR APK (600MB)</a>
-        <a href="https://4br.me/BaixarDico1R4" class="btn-download-option alt" target="_blank" rel="noopener"><i class="fas fa-database"></i> BAIXAR DATA 1 (450MB)</a>
-        <a href="https://4br.me/BaixarDisco2R4" class="btn-download-option alt" target="_blank" rel="noopener"><i class="fas fa-database"></i> BAIXAR DATA 2 (450MB)</a>
+<!-- ===== TOP BAR ===== -->
+<div class="top-bar">
+  <div class="container">
+    <a href="pages/contato.html">Contate-Nos</a>
+    <a href="pages/privacidade.html">Política de Privacidade</a>
+    <a href="pages/isencao.html">Isenção de Responsabilidade</a>
+    <a href="feed.xml" class="rss-btn" target="_blank" rel="noopener"><i class="fas fa-rss"></i> RSS</a>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="site-logo">🌅 Horizonte <span>Tutoriais</span></a>
+    <div class="header-actions">
+      <!-- Botão Modo Noturno -->
+      <button id="dark-mode-toggle" class="header-btn" style="background:none;border:none;font-size:20px;cursor:pointer;">🌙</button>
+
+      <!-- Barra de Pesquisa Sempre Visível -->
+      <div class="search-fixed-container">
+        <input type="text" id="search-input-fixed" placeholder="Pesquisar app...">
+        <button id="search-submit-fixed">🔍</button>
       </div>
-
-      <p style="font-size:11px;color:#666;margin-top:10px">Link seguro verificado — Horizonte Tutoriais</p>
-      <a href="../../feed.xml" class="rss-btn" target="_blank" rel="noopener" style="margin-top: 15px;"><i class="fas fa-rss"></i> RSS Feed</a>
     </div>
+  </div>
+</header>
 
-    <div class="telegram-cta"><i class="fab fa-telegram" style="font-size:20px"></i><span>Junte-se ao <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener">@HorizonteTutoriais</a> no Telegram!</span></div>
+<!-- ===== NAVEGAÇÃO ===== -->
+<nav class="site-nav" aria-label="Navegação principal">
+  <div class="container">
+    <ul class="nav-list" id="nav-list">
+      <li><a href="index.html" class="active"><span class="nav-icon">🏠</span> Lar</a></li>
+      <li><a href="pages/aplicativos.html"><span class="nav-icon">📱</span> Aplicativos</a></li>
+      <li><a href="pages/jogos.html"><span class="nav-icon">🎮</span> Jogos</a></li>
+      <li><a href="pages/tutoriais.html"><span class="nav-icon">📚</span> Tutoriais</a></li>
+      <li><a href="pages/ferramentas.html"><span class="nav-icon">🔧</span> Ferramentas</a></li>
+      <li><a href="pages/quente.html"><span class="nav-icon">🔥</span> Quente</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== CONTEÚDO PRINCIPAL ===== -->
+<div class="container">
+  <div class="main-layout">
+
+    <!-- ===== COLUNA PRINCIPAL ===== -->
+    <main>
+
+      <!-- Atualizações -->
+      <section class="updates-section">
+        <h2 class="section-title">🔄 Últimas Atualizações</h2>
+        <div class="updates-grid">
+          <!-- Preenchido dinamicamente por renderizar.js -->
+        </div>
+      </section>
+
+      <!-- Aplicativos Populares -->
+      <section class="popular-section">
+        <h2 class="section-title">⭐ Destaques</h2>
+        <!-- Preenchido dinamicamente por renderizar.js -->
+      </section>
+
+      <!-- ===== SEÇÃO DE COMENTÁRIOS (SISTEMA ORIGINAL COM TRADUÇÃO COMPLETA) ===== -->
+      
 
     
-  </article>
-
     <section class="custom-comments">
       <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
       <p style="font-size:13px;color:#666;margin-bottom:15px;">Compartilhe sua opinião! Não é necessário fazer login.</p>
@@ -132,50 +127,79 @@
     </section>
 
 </main>
-<aside class="sidebar">
-  <div class="sidebar-widget"><h3 class="widget-title">📣 Mídias Sociais</h3><a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn telegram"><span class="s-icon"><i class="fab fa-telegram"></i></span> Telegram</a><a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="social-btn whatsapp"><span class="s-icon"><i class="fab fa-whatsapp"></i></span> WhatsApp</a><a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener" class="social-btn instagram"><span class="s-icon"><i class="fab fa-instagram"></i></span> Instagram</a><a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn youtube"><span class="s-icon"><i class="fab fa-youtube"></i></span> YouTube</a></div>
-  <div class="sidebar-widget about-widget"><h3 class="widget-title">ℹ️ Sobre Nós</h3><p>Horizonte Tutoriais — Sua fonte definitiva para APKs e tutoriais.</p></div>
-  
-  <div class="tutorials-widget">
-    <a href="../../pages/tutoriais.html?open=resident-evil-4" class="btn-tutorial-direct">
-      <span><i class="fas fa-video"></i> TUTORIAIS</span>
-      <i class="fas fa-external-link-alt"></i>
-    </a>
-  </div>
 
-  <div class="guides-widget">
-    <div class="guides-header" onclick="toggleGuides(this)">
-      <span class="guides-header-title"><i class="fas fa-book"></i> GUIAS</span>
-      <span class="guides-header-icon">▼</span>
-    </div>
-    <div class="guides-list">
-      <div class="guide-item"><a href="https://4br.me/BaixarGuias" target="_blank" rel="noopener"><i class="fas fa-download"></i> Baixar Guias</a></div>
-    </div>
-  </div>
-
-      <!-- WIDGET DE RSS NA SIDEBAR -->
-      <div class="rss-widget">
-        <div class="rss-widget-title">
-          <i class="fas fa-rss"></i> Receba Novidades!
-        </div>
-        <div class="rss-widget-text">
-          Adicione nosso feed ao seu leitor de RSS favorito e receba notificações de novos tutoriais e jogos.
-        </div>
-        <!-- BOTÃO DE COPIAR LINK DO FEED -->
-        <button class="rss-copy-btn" onclick="copyToClipboard('../../feed.xml')"><i class="fas fa-copy"></i> Copiar Link do Feed</button>
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+      <div class="sidebar-widget">
+        <h3 class="widget-title">📣 Mídias Sociais</h3>
+        <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn telegram">
+          <span class="s-icon"><i class="fab fa-telegram"></i></span> Telegram
+        </a>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="social-btn whatsapp">
+          <span class="s-icon"><i class="fab fa-whatsapp"></i></span> WhatsApp
+        </a>
+        <a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener" class="social-btn instagram">
+          <span class="s-icon"><i class="fab fa-instagram"></i></span> Instagram
+        </a>
+        <a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn youtube">
+          <span class="s-icon"><i class="fab fa-youtube"></i></span> YouTube
+        </a>
+        
       </div>
 
-</aside>
-</div></div>
-<footer class="site-footer"><div class="container footer-bottom"><p>Copyright &copy; 2025–2026 Horizonte Tutoriais</p></div></footer>
+      
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">🌅 Horizonte Tutoriais</div>
+      <p>Horizonte Tutoriais — Sua fonte definitiva para APKs e tutoriais. Todos os direitos reservados.</p>
+      <div class="footer-social">
+        <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" title="Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener" title="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4>Links Rápidos</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="pages/aplicativos.html">Aplicativos</a></li>
+        <li><a href="pages/jogos.html">Jogos</a></li>
+        <li><a href="pages/tutoriais.html">Tutoriais</a></li>
+        <li><a href="pages/quente.html">Quente</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Informações</h4>
+      <ul>
+        <li><a href="pages/sobre.html">Sobre</a></li>
+        <li><a href="pages/contato.html">Contate-nos</a></li>
+        <li><a href="pages/privacidade.html">Política de Privacidade</a></li>
+        <li><a href="pages/isencao.html">Isenção de Responsabilidade</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-nav">
+        <a href="pages/sobre.html">Sobre</a>
+        <a href="pages/contato.html">Contate-nos</a>
+        <a href="pages/privacidade.html">Política de Privacidade</a>
+        <a href="pages/isencao.html">Isenção de Responsabilidade</a>
+      </div>
+      <p>Copyright &copy; 2025–2026 <a href="index.html">Horizonte Tutoriais</a> | Todos os direitos reservados | <a href="feed.xml" class="rss-btn"><i class="fas fa-rss"></i> RSS Feed</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- SCRIPT CUSDIS -->
 
 
-<script>
-  function toggleGuides(header) {
-    header.classList.toggle('active');
-    header.nextElementSibling.classList.toggle('active');
-  }
-</script>
+<!-- Scripts de renderização dinâmica -->
+<script src="js/dados.js"></script>
+<script src="js/renderizar.js"></script>
+<script src="js/main.js"></script>
 
 <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 <script>
@@ -245,4 +269,4 @@
 </script>
 
 </body>
-</html>
+    </html>
