@@ -1,19 +1,25 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS — JavaScript Principal (ULTRA-ROBUSTO)
-   Busca Infalível + Modo Noturno + Comentários
+   HORIZONTE TUTORIAIS — JavaScript Principal
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ---- Modo Noturno (Dark Mode) ---- */
+  /* ================================================================
+     MODO NOTURNO (Dark Mode)
+     Funciona em todas as páginas — lê e salva preferência no localStorage
+  ================================================================ */
   const darkModeToggle = document.getElementById('dark-mode-toggle');
   const body = document.body;
 
+  // Aplica o tema salvo ao carregar a página
   if (localStorage.getItem('theme') === 'dark') {
     body.classList.add('dark-mode');
     if (darkModeToggle) darkModeToggle.textContent = '☀️';
+  } else {
+    if (darkModeToggle) darkModeToggle.textContent = '🌙';
   }
 
+  // Alterna o tema ao clicar no botão
   if (darkModeToggle) {
     darkModeToggle.addEventListener('click', function () {
       body.classList.toggle('dark-mode');
@@ -23,183 +29,184 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---- BUSCA ULTRA-ROBUSTA (INFALÍVEL) ---- */
-  const searchInput = document.getElementById('search-input-fixed');
-  const searchBtn = document.getElementById('search-submit-fixed');
+  /* ================================================================
+     PESQUISA FUNCIONAL
+     Busca nos dados do APPS_DATA e exibe resultados em painel dropdown.
+     Funciona em todas as páginas — redireciona para a URL correta do item.
+  ================================================================ */
+  const searchInput  = document.getElementById('search-input-fixed');
+  const searchBtn    = document.getElementById('search-submit-fixed');
+  const resultsPanel = document.getElementById('search-results-panel');
+  const resultsList  = document.getElementById('search-results-list');
+  const closeBtn     = document.getElementById('search-results-close-btn');
 
-  function performSearch() {
-    const term = searchInput.value.toLowerCase().trim();
-    
-    if (!term) {
-      alert('Por favor, digite algo para buscar!');
+  // Determina o prefixo de caminho com base na localização atual da página
+  function getPrefixo() {
+    const path = window.location.pathname;
+    if (path.includes('/posts/aplicativos/') || path.includes('/posts/jogos/')) {
+      return '../../';
+    }
+    if (path.includes('/pages/') || path.includes('/posts/')) {
+      return '../';
+    }
+    // Pasta Index ou raiz
+    if (path.includes('/Index/')) {
+      return '../';
+    }
+    return '';
+  }
+
+  // Coleta todos os itens pesquisáveis do APPS_DATA (definido em dados.js)
+  function getTodosItens() {
+    if (typeof APPS_DATA === 'undefined') return [];
+    const itens = [];
+    (APPS_DATA.aplicativos || []).forEach(function(app) {
+      itens.push({
+        nome:      app.nome,
+        descricao: app.descricao || '',
+        categoria: app.categoria || 'Aplicativos',
+        imagem:    app.imagem || app.imagemGrande || '',
+        url:       app.url
+      });
+    });
+    (APPS_DATA.jogos || []).forEach(function(jogo) {
+      itens.push({
+        nome:      jogo.nome,
+        descricao: jogo.descricao || '',
+        categoria: jogo.categoria || 'Jogos',
+        imagem:    jogo.imagem || jogo.imagemGrande || '',
+        url:       jogo.url
+      });
+    });
+    return itens;
+  }
+
+  // Executa a busca e exibe resultados no painel
+  function realizarBusca() {
+    if (!searchInput || !resultsPanel || !resultsList) return;
+
+    const termo = searchInput.value.trim().toLowerCase();
+
+    // Fecha o painel se o campo estiver vazio
+    if (!termo) {
+      fecharPainel();
       return;
     }
 
-    console.log('Buscando por:', term);
-    let foundUrl = null;
-    let foundName = null;
+    const itens = getTodosItens();
+    const prefixo = getPrefixo();
 
-    // MÉTODO 1: Procurar nos dados globais APPS_DATA
-    if (typeof APPS_DATA !== 'undefined' && APPS_DATA) {
-      console.log('APPS_DATA encontrado, procurando...');
-      
-      // Procurar em aplicativos
-      if (APPS_DATA.aplicativos && Array.isArray(APPS_DATA.aplicativos)) {
-        for (let app of APPS_DATA.aplicativos) {
-          const appName = (app.nome || '').toLowerCase();
-          const appDesc = (app.descricao || '').toLowerCase();
-          const appId = (app.id || '').toLowerCase();
-          
-          // Busca flexível: nome completo, parcial, ou primeira palavra
-          if (appName.includes(term) || 
-              appDesc.includes(term) || 
-              appId.includes(term) ||
-              term.includes(appName.split(' ')[0]) ||
-              appName.includes(term.split(' ')[0])) {
-            foundUrl = app.url;
-            foundName = app.nome;
-            console.log('Encontrado em aplicativos:', foundName);
-            break;
-          }
-        }
-      }
+    // Filtra por nome ou descrição contendo o termo buscado
+    const encontrados = itens.filter(function(item) {
+      return item.nome.toLowerCase().includes(termo) ||
+             item.descricao.toLowerCase().includes(termo) ||
+             item.categoria.toLowerCase().includes(termo);
+    });
 
-      // Procurar em jogos (se não encontrou em aplicativos)
-      if (!foundUrl && APPS_DATA.jogos && Array.isArray(APPS_DATA.jogos)) {
-        for (let game of APPS_DATA.jogos) {
-          const gameName = (game.nome || '').toLowerCase();
-          const gameDesc = (game.descricao || '').toLowerCase();
-          const gameId = (game.id || '').toLowerCase();
-          
-          // Busca flexível
-          if (gameName.includes(term) || 
-              gameDesc.includes(term) || 
-              gameId.includes(term) ||
-              term.includes(gameName.split(' ')[0]) ||
-              gameName.includes(term.split(' ')[0])) {
-            foundUrl = game.url;
-            foundName = game.nome;
-            console.log('Encontrado em jogos:', foundName);
-            break;
-          }
-        }
-      }
-    }
+    resultsList.innerHTML = '';
 
-    // MÉTODO 2: Se não encontrou em APPS_DATA, procurar nos cards da página
-    if (!foundUrl) {
-      console.log('APPS_DATA não disponível ou não encontrou, procurando nos cards da página...');
-      
-      // Procurar em todos os elementos com data-app-name
-      const appCards = document.querySelectorAll('[data-app-name]');
-      console.log('Cards encontrados:', appCards.length);
-      
-      for (let card of appCards) {
-        const cardName = (card.getAttribute('data-app-name') || '').toLowerCase();
-        const cardDesc = (card.getAttribute('data-app-desc') || '').toLowerCase();
-        const cardUrl = card.getAttribute('data-app-url');
-        
-        console.log('Verificando card:', cardName);
-        
-        // Busca flexível
-        if (cardName.includes(term) || 
-            cardDesc.includes(term) ||
-            term.includes(cardName.split(' ')[0]) ||
-            cardName.includes(term.split(' ')[0])) {
-          foundUrl = cardUrl;
-          foundName = cardName;
-          console.log('Encontrado no card:', foundName);
-          break;
-        }
-      }
-    }
-
-    // MÉTODO 3: Se ainda não encontrou, procurar em todos os links da página
-    if (!foundUrl) {
-      console.log('Procurando em todos os links da página...');
-      
-      const allLinks = document.querySelectorAll('a[href*="posts/"]');
-      console.log('Links encontrados:', allLinks.length);
-      
-      for (let link of allLinks) {
-        const linkText = (link.textContent || '').toLowerCase();
-        const linkHref = (link.getAttribute('href') || '').toLowerCase();
-        
-        // Busca no texto e no href
-        if (linkText.includes(term) || linkHref.includes(term)) {
-          foundUrl = link.getAttribute('href');
-          foundName = link.textContent;
-          console.log('Encontrado no link:', foundName);
-          break;
-        }
-      }
-    }
-
-    // RESULTADO FINAL
-    if (foundUrl) {
-      console.log('Redirecionando para:', foundUrl);
-      window.location.href = foundUrl;
+    if (encontrados.length === 0) {
+      resultsList.innerHTML = '<div class="search-no-result">Nenhum resultado encontrado para "<strong>' + searchInput.value + '</strong>".</div>';
     } else {
-      console.log('Nenhum resultado encontrado para:', term);
-      alert(`❌ App ou jogo "${term}" não encontrado.\n\nTente:\n- "Horizon" para Horizon Clicker\n- "Resident" para Resident Evil 4\n- "Evil" para Resident Evil 4`);
+      encontrados.forEach(function(item) {
+        const link = document.createElement('a');
+        link.className = 'search-result-item';
+        link.href = prefixo + item.url;
+        link.innerHTML =
+          '<img src="' + item.imagem + '" alt="' + item.nome + '" />' +
+          '<div class="search-result-info">' +
+            '<div class="sri-title">' + item.nome + '</div>' +
+            '<div class="sri-cat">' + item.categoria + (item.descricao ? ' · ' + item.descricao : '') + '</div>' +
+          '</div>';
+        resultsList.appendChild(link);
+      });
     }
 
-    searchInput.value = '';
+    resultsPanel.classList.add('active');
   }
 
-  // Ativar busca ao clicar no botão
+  // Fecha o painel de resultados
+  function fecharPainel() {
+    if (resultsPanel) resultsPanel.classList.remove('active');
+  }
+
+  // Eventos de pesquisa
   if (searchBtn) {
-    searchBtn.addEventListener('click', performSearch);
+    searchBtn.addEventListener('click', realizarBusca);
   }
-
-  // Ativar busca ao pressionar Enter
   if (searchInput) {
-    searchInput.addEventListener('keypress', function(e) {
+    // Busca em tempo real conforme o usuário digita
+    searchInput.addEventListener('input', realizarBusca);
+    // Busca ao pressionar Enter
+    searchInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
-        performSearch();
+        e.preventDefault();
+        realizarBusca();
+      }
+      // Fecha com Escape
+      if (e.key === 'Escape') {
+        fecharPainel();
+        searchInput.value = '';
       }
     });
   }
 
-  /* ---- Sistema de Comentários via E-mail (Formspree) ---- */
+  // Fechar painel pelo botão X
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function() {
+      fecharPainel();
+      if (searchInput) searchInput.value = '';
+    });
+  }
+
+  // Fechar painel ao clicar fora dele
+  document.addEventListener('click', function(e) {
+    if (!resultsPanel) return;
+    const container = document.querySelector('.search-fixed-container');
+    if (
+      resultsPanel.classList.contains('active') &&
+      !resultsPanel.contains(e.target) &&
+      container && !container.contains(e.target)
+    ) {
+      fecharPainel();
+    }
+  });
+
+  /* ================================================================
+     SISTEMA DE COMENTÁRIOS VIA E-MAIL (Formspree)
+  ================================================================ */
   const commentForm = document.getElementById('direct-comment-form');
-  const formStatus = document.getElementById('form-status');
-  const submitBtn = document.getElementById('submit-btn');
+  const formStatus  = document.getElementById('form-status');
+  const submitBtn   = document.getElementById('submit-btn');
 
   if (commentForm) {
     commentForm.addEventListener('submit', function(e) {
       e.preventDefault();
-
       submitBtn.disabled = true;
       submitBtn.textContent = 'Enviando...';
-      
       formStatus.className = 'form-status';
       formStatus.textContent = '';
 
       const formData = new FormData(commentForm);
-      
+
       fetch(commentForm.action, {
         method: 'POST',
         body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
+        headers: { 'Accept': 'application/json' }
       })
-      .then(response => {
+      .then(function(response) {
         if (response.ok) {
           formStatus.className = 'form-status success';
           formStatus.textContent = '✅ Comentário enviado com sucesso! Obrigado pela mensagem.';
           commentForm.reset();
-          submitBtn.textContent = 'Enviar Comentário';
-          submitBtn.disabled = false;
         } else {
           formStatus.className = 'form-status error';
           formStatus.textContent = '❌ Erro ao enviar comentário. Tente novamente.';
-          submitBtn.textContent = 'Enviar Comentário';
-          submitBtn.disabled = false;
         }
+        submitBtn.textContent = 'Enviar Comentário';
+        submitBtn.disabled = false;
       })
-      .catch(error => {
+      .catch(function(error) {
         console.error('Erro:', error);
         formStatus.className = 'form-status error';
         formStatus.textContent = '❌ Erro de conexão. Verifique sua internet e tente novamente.';
@@ -209,12 +216,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---- Botão Carregar Mais ---- */
-  const loadMoreBtn = document.getElementById('load-more-btn');
-  const hiddenPosts = document.querySelectorAll('.app-card.hidden-post');
+  /* ================================================================
+     BOTÃO CARREGAR MAIS
+  ================================================================ */
+  const loadMoreBtn  = document.getElementById('load-more-btn');
+  const hiddenPosts  = document.querySelectorAll('.app-card.hidden-post');
   if (loadMoreBtn && hiddenPosts.length > 0) {
     loadMoreBtn.addEventListener('click', function () {
-      hiddenPosts.forEach(el => el.classList.remove('hidden-post'));
+      hiddenPosts.forEach(function(el) { el.classList.remove('hidden-post'); });
       loadMoreBtn.style.display = 'none';
     });
   }
