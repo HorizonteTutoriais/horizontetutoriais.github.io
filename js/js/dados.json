@@ -1,0 +1,46 @@
+here{
+  "aplicativos": [
+    {
+      "id": "horizon-clicker",
+      "nome": "Horizon Clicker",
+      "descricao": "Jogo de clicker divertido",
+      "categoria": "Aplicativos",
+      "imagem": "https://via.placeholder.com/150",
+      "url": "posts/aplicativos/horizon-clicker.html",
+      "destaque": true
+    }
+  ],
+  "jogos": [
+    {
+      "id": "resident-evil-4",
+      "nome": "Resident Evil 4",
+      "descricao": "Jogo de ação e horror",
+      "categoria": "Jogos",
+      "imagem": "https://via.placeholder.com/150",
+      "url": "posts/jogos/resident-evil-4.html",
+      "destaque": true
+    }
+  ],
+  "tutoriais": [
+    {
+      "id": "tutorial-1",
+      "nome": "Tutorial 1",
+      "descricao": "Primeiro tutorial",
+      "categoria": "Tutoriais",
+      "imagem": "https://via.placeholder.com/150",
+      "url": "posts/tutoriais/tutorial-1.html",
+      "destaque": false
+    }
+  ],
+  "ferramentas": [
+    {
+      "id": "ferramenta-1",
+      "nome": "Ferramenta 1",
+      "descricao": "Primeira ferramenta",
+      "categoria": "Ferramentas",
+      "imagem": "https://via.placeholder.com/150",
+      "url": "posts/ferramentas/ferramenta-1.html",
+      "destaque": false
+    }
+  ]
+}
