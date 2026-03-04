@@ -64,6 +64,18 @@
     .btn-download-option.alt:hover { background: #1976d2; }
     
     @media (max-width: 600px) { .custom-comments { padding: 15px; } }
+  
+    /* Estilos para os botões RSS */
+    .rss-btn { display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; background: #ff9800; color: #fff; text-decoration: none; border-radius: 4px; font-size: 12px; font-weight: 600; transition: background 0.3s ease; }
+    .rss-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
+    
+    /* Estilo para o widget de RSS na sidebar */
+    .rss-widget { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 0; margin-top: 15px; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+    .rss-widget-title { font-size: 13px; font-weight: 700; color: #ff9800; margin-bottom: 0; display: flex; align-items: center; gap: 6px; padding: 15px 15px 10px 15px; }
+    .rss-widget-text { font-size: 12px; color: #666; margin-bottom: 0; line-height: 1.5; padding: 0 15px 15px 15px; }
+    .rss-copy-btn { display: block; width: 100%; background: #ff9800; color: #fff; text-align: center; padding: 12px 15px; border-radius: 0 0 var(--radius) var(--radius); font-size: 12px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; transition: background 0.3s ease; margin: 0; }
+    .rss-copy-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
+
   </style>
 </head>
 <body>
@@ -105,6 +117,85 @@
         <a href="https://4br.me/BaixarApkR4" class="btn-download-option" target="_blank" rel="noopener"><i class="fas fa-file-archive"></i> BAIXAR APK (600MB)</a>
         <a href="https://4br.me/BaixarDico1R4" class="btn-download-option alt" target="_blank" rel="noopener"><i class="fas fa-database"></i> BAIXAR DATA 1 (450MB)</a>
         <a href="https://4br.me/BaixarDisco2R4" class="btn-download-option alt" target="_blank" rel="noopener"><i class="fas fa-database"></i> BAIXAR DATA 2 (450MB)</a>
+      </div>
+
+      <p style="font-size:11px;color:#666;margin-top:10px">Link seguro verificado — Horizonte Tutoriais</p>
+      <a href="../../feed.xml" class="rss-btn" target="_blank" rel="noopener" style="margin-top: 15px;"><i class="fas fa-rss"></i> RSS Feed</a>
+    </div>
+
+    <div class="telegram-cta"><i class="fab fa-telegram" style="font-size:20px"></i><span>Junte-se ao <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener">@HorizonteTutoriais</a> no Telegram!</span></div>
+
+    <section class="custom-comments">
+      <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
+      <div id="cusdis_list">
+        <div id="cusdis_thread"
+          data-host="https://cusdis.com"
+          data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
+          data-page-id="resident_evil_4"
+          data-page-url="window.location.href"
+          data-page-title="Resident Evil 4 - Download"
+        ></div>
+      </div>
+    </section>
+  </article>
+</main>
+<aside class="sidebar">
+  <div class="sidebar-widget"><h3 class="widget-title">📣 Mídias Sociais</h3><a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn telegram"><span class="s-icon"><i class="fab fa-telegram"></i></span> Telegram</a><a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="social-btn whatsapp"><span class="s-icon"><i class="fab fa-whatsapp"></i></span> WhatsApp</a><a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener" class="social-btn instagram"><span class="s-icon"><i class="fab fa-instagram"></i></span> Instagram</a><a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn youtube"><span class="s-icon"><i class="fab fa-youtube"></i></span> YouTube</a></div>
+  <div class="sidebar-widget about-widget"><h3 class="widget-title">ℹ️ Sobre Nós</h3><p>Horizonte Tutoriais — Sua fonte definitiva para APKs e tutoriais.</p></div>
+  
+  <div class="tutorials-widget">
+    <a href="../../pages/tutoriais.html?open=resident-evil-4" class="btn-tutorial-direct">
+      <span><i class="fas fa-video"></i> TUTORIAIS</span>
+      <i class="fas fa-external-link-alt"></i>
+    </a>
+  </div>
+
+  <div class="guides-widget">
+    <div class="guides-header" onclick="toggleGuides(this)">
+      <span class="guides-header-title"><i class="fas fa-book"></i> GUIAS</span>
+      <span class="guides-header-icon">▼</span>
+    </div>
+    <div class="guides-list">
+      <div class="guide-item"><a href="https://4br.me/BaixarGuias" target="_blank" rel="noopener"><i class="fas fa-download"></i> Baixar Guias</a></div>
+    </div>
+  </div>
+
+      <!-- WIDGET DE RSS NA SIDEBAR -->
+      <div class="rss-widget">
+        <div class="rss-widget-title">
+          <i class="fas fa-rss"></i> Receba Novidades!
+        </div>
+        <div class="rss-widget-text">
+          Adicione nosso feed ao seu leitor de RSS favorito e receba notificações de novos tutoriais e jogos.
+        </div>
+        <!-- BOTÃO DE COPIAR LINK DO FEED -->
+        <button class="rss-copy-btn" onclick="copyToClipboard('../../feed.xml')"><i class="fas fa-copy"></i> Copiar Link do Feed</button>
+      </div>
+</aside>
+</div></div>
+<footer class="site-footer"><div class="container footer-bottom"><p>Copyright &copy; 2025–2026 Horizonte Tutoriais</p></div></footer>
+
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+<script src="../../js/main.js"></script>
+<script>
+  function toggleGuides(header) {
+    header.classList.toggle('active');
+    header.nextElementSibling.classList.toggle('active');
+  }
+</script>
+<script>
+  // FUNÇÃO PARA COPIAR LINK DO FEED
+  function copyToClipboard(text) {
+    var fullUrl = window.location.origin + '/' + text;
+    navigator.clipboard.writeText(fullUrl).then(function() {
+      alert('Link do feed copiado para a área de transferência!');
+    }).catch(function(err) {
+      alert('Erro ao copiar: ' + err);
+    });
+  }
+</script>
+</body>
+</html>        <a href="https://4br.me/BaixarDisco2R4" class="btn-download-option alt" target="_blank" rel="noopener"><i class="fas fa-database"></i> BAIXAR DATA 2 (450MB)</a>
       </div>
 
       <p style="font-size:11px;color:#666;margin-top:10px">Link seguro verificado — Horizonte Tutoriais</p>
