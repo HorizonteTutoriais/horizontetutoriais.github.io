@@ -7,6 +7,7 @@
   <meta name="description" content="Horizonte Tutoriais — Baixe os melhores APKs, tutoriais, aplicativos premium desbloqueados e muito mais. Atualizado diariamente." />
   <meta name="keywords" content="horizonte tutoriais, apk, download, aplicativos, tutoriais, android, premium" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/rss-styles.css" />
   <!-- Ícones via CDN (Font Awesome Free) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
   <!-- Favicon inline SVG -->
@@ -14,31 +15,12 @@
   <!-- Link de descoberta do Feed RSS -->
   <link rel="alternate" type="application/rss+xml" title="Horizonte Tutoriais - Feed RSS" href="feed.xml" />
   <style>
-    /* Estilo para a barra de pesquisa sempre visível no celular */
-    .header-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
-    .search-fixed-container { display: flex; align-items: center; background: rgba(255,255,255,0.15); border-radius: 20px; padding: 2px 10px; border: 1px solid rgba(255,255,255,0.3); }
-    .search-fixed-container input { background: transparent; border: none; color: #fff; outline: none; padding: 5px; font-size: 14px; width: 120px; }
-    .search-fixed-container input::placeholder { color: rgba(255,255,255,0.7); }
-    .search-fixed-container button { background: transparent; border: none; color: #fff; cursor: pointer; font-size: 16px; padding: 0 5px; }
-    
     /* Estilo para a seção de comentários */
     .custom-comments { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: var(--shadow); }
     .widget-title { margin-top: 0; font-size: 18px; border-bottom: 2px solid var(--blue-primary); display: inline-block; margin-bottom: 15px; }
     
-    /* Estilos para os botões RSS */
-    .rss-btn { display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; background: #ff9800; color: #fff; text-decoration: none; border-radius: 4px; font-size: 12px; font-weight: 600; transition: background 0.3s ease; }
-    .rss-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
-    
-    /* Estilo para o widget de RSS na sidebar */
-    .rss-widget { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 0; margin-top: 15px; box-shadow: var(--shadow); display: flex; flex-direction: column; }
-    .rss-widget-title { font-size: 13px; font-weight: 700; color: #ff9800; margin-bottom: 0; display: flex; align-items: center; gap: 6px; padding: 15px 15px 10px 15px; }
-    .rss-widget-text { font-size: 12px; color: #666; margin-bottom: 0; line-height: 1.5; padding: 0 15px 15px 15px; }
-    .rss-copy-btn { display: block; width: 100%; background: #ff9800; color: #fff; text-align: center; padding: 12px 15px; border-radius: 0 0 var(--radius) var(--radius); font-size: 12px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; transition: background 0.3s ease; margin: 0; }
-    .rss-copy-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
-    
     @media (max-width: 600px) {
       .header-telegram { display: none; }
-      .search-fixed-container input { width: 100px; }
       .custom-comments { padding: 15px; }
     }
   </style>
@@ -180,7 +162,7 @@
       <ul>
         <li><a href="index.html">Início</a></li>
         <li><a href="pages/aplicativos.html">Aplicativos</a></li>
-        <li><a href="pages/jogos.html">Jogos</a></li>
+        <li><a href="jogos.html">Jogos</a></li>
         <li><a href="pages/tutoriais.html">Tutoriais</a></li>
         <li><a href="pages/quente.html">Quente</a></li>
       </ul>
@@ -199,9 +181,9 @@
     <div class="container">
       <div class="footer-nav">
         <a href="pages/sobre.html">Sobre</a>
-        <a href="pages/contato.html">Contate-nos</a>
-        <a href="pages/privacidade.html">Política de Privacidade</a>
-        <a href="pages/isencao.html">Isenção de Responsabilidade</a>
+        <a href="contato.html">Contate-nos</a>
+        <a href="privacidade.html">Política de Privacidade</a>
+        <a href="isencao.html">Isenção de Responsabilidade</a>
       </div>
       <p>Copyright &copy; 2025–2026 <a href="index.html">Horizonte Tutoriais</a> | Todos os direitos reservados | <a href="feed.xml" class="rss-btn"><i class="fas fa-rss"></i> RSS Feed</a></p>
     </div>
