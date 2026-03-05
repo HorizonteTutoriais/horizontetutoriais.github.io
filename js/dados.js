@@ -36,7 +36,7 @@ window.APPS_DATA = {
         "recursosEspecificacoes": "Interface Intuitiva, Cliques Rápidos e Precisos, Sem Necessidade de Root"
       },
       "linkDownload": "https://4br.me/BaixarHorizonClikerApk",
-      "imagemCapa": "https://placehold.co/700x300/1a73e8/fff?text=Horizon+Clicker+APK",
+      "imagemCapa": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/AShzdwWGghpbeWBY.png",
       "tutorialTitulo": "🖱️ Como Usar o Horizon Click",
       "tutorialSubtitulo": "Aprenda a automatizar cliques no seu Android com precisão e facilidade usando o Horizon Clicker.",
       "tutorialDescricao": "Neste tutorial completo, você aprenderá como instalar, configurar e usar o Horizon Clicker para automatizar tarefas repetitivas no seu dispositivo Android. Perfeito para jogos, aplicativos e qualquer tarefa que envolva cliques repetidos.",
@@ -84,7 +84,7 @@ window.APPS_DATA = {
         "recursosEspecificacoes": "Interface Intuitiva, Controle Ajustável, Sem Necessidade de Root"
       },
       "linkDownload": "https://4br.me/BaixarHorizonTelaLigada",
-      "imagemCapa": "https://placehold.co/700x300/ffd700/000?text=Horizon+Tela+Ligada+APK",
+      "imagemCapa": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/ySlUmmMGFwaupDCT.png",
       "tutorialTitulo": "📱 Como Usar o Horizon Tela Ligada",
       "tutorialSubtitulo": "Aprenda a manter a tela do seu Android sempre ligada com o Horizon Tela Ligada.",
       "tutorialDescricao": "Neste tutorial completo, você aprenderá como instalar, configurar e usar o Horizon Tela Ligada para manter a tela do seu dispositivo Android sempre ativa. Perfeito para leitura, vídeos e qualquer tarefa que necessite da tela sempre ligada.",
@@ -170,4 +170,4 @@ if (document.readyState === 'loading') {
   });
 } else {
   document.dispatchEvent(new CustomEvent('dadosProntos', { detail: window.APPS_DATA }));
-}
+         }
