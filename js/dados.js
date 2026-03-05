@@ -1,5 +1,5 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS — Banco de Dados
+   HORIZONTE TUTORIAIS — Banco de Dados (Sistema Automático)
    Dados embutidos diretamente (sem fetch)
    ============================================================ */
 
@@ -17,6 +17,7 @@ window.APPS_DATA = {
       "tutorial": "pages/tutoriais.html?open=horizon-clicker",
       "data": "2026-03-04",
       "destaque": true,
+      "popular": true,
       "titulo": "Download do APK do Horizon Clicker (Automação de Cliques)",
       "descricaoLonga": "O Horizon Clicker é uma ferramenta poderosa para automação de tarefas repetitivas no seu dispositivo Android, permitindo configurar cliques automáticos com precisão e facilidade.",
       "recursos": [
@@ -39,18 +40,10 @@ window.APPS_DATA = {
       "imagemCapa": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/AShzdwWGghpbeWBY.png",
       "tutorialTitulo": "🖱️ Como Usar o Horizon Click",
       "tutorialSubtitulo": "Aprenda a automatizar cliques no seu Android com precisão e facilidade usando o Horizon Clicker.",
-      "tutorialDescricao": "Neste tutorial completo, você aprenderá como instalar, configurar e usar o Horizon Clicker para automatizar tarefas repetitivas no seu dispositivo Android. Perfeito para jogos, aplicativos e qualquer tarefa que envolva cliques repetidos.",
+      "tutorialDescricao": "Neste tutorial completo, você aprenderá como instalar, configurar e usar o Horizon Clicker para automatizar tarefas repetitivas no seu dispositivo Android.",
       "videos": [
         { "titulo": "Tutorial Parte 1", "id": "XDhx-rdHSmY" },
-        { "titulo": "Configuração", "id": "XDhx-rdHSmY" },
-        { "titulo": "Dicas Extras", "id": "XDhx-rdHSmY" },
-        { "titulo": "Avançado", "id": "XDhx-rdHSmY" },
-        { "titulo": "Automação Básica", "id": "XDhx-rdHSmY" },
-        { "titulo": "Múltiplos Cliques", "id": "XDhx-rdHSmY" },
-        { "titulo": "Otimização", "id": "XDhx-rdHSmY" },
-        { "titulo": "Troubleshooting", "id": "XDhx-rdHSmY" },
-        { "titulo": "Casos de Uso", "id": "XDhx-rdHSmY" },
-        { "titulo": "FAQ", "id": "XDhx-rdHSmY" }
+        { "titulo": "Configuração", "id": "XDhx-rdHSmY" }
       ],
       "icone": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/AShzdwWGghpbeWBY.png"
     },
@@ -65,13 +58,12 @@ window.APPS_DATA = {
       "tutorial": "pages/tutoriais.html?open=horizon-tela-ligada",
       "data": "2026-03-05",
       "destaque": false,
+      "popular": false,
       "titulo": "Download do APK do Horizon Tela Ligada",
-      "descricaoLonga": "O Horizon Tela Ligada é uma ferramenta poderosa para manter a tela do seu dispositivo Android sempre ativa, permitindo configurar a duração com precisão e facilidade.",
+      "descricaoLonga": "O Horizon Tela Ligada é uma ferramenta poderosa para manter a tela do seu dispositivo Android sempre ativa.",
       "recursos": [
         "Interface Intuitiva e fácil de usar",
-        "Controle de tempo ajustável",
-        "Fácil de Configurar múltiplas opções",
-        "Sem Necessidade de Root no dispositivo"
+        "Controle de tempo ajustável"
       ],
       "especificacoes": {
         "versao": "Última Versão",
@@ -81,24 +73,15 @@ window.APPS_DATA = {
         "tipoArquivo": "APK",
         "androidMin": "5.0 ou superior",
         "atualizadoEm": "05/03/2026",
-        "recursosEspecificacoes": "Interface Intuitiva, Controle Ajustável, Sem Necessidade de Root"
+        "recursosEspecificacoes": "Interface Intuitiva, Controle Ajustável"
       },
       "linkDownload": "https://4br.me/BaixarHorizonTelaLigada",
-      "imagemCapa": "https://placehold.co/700x300/ffd700/000?text=Horizon+Tela+Ligada+APK",
+      "imagemCapa": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/ySlUmmMGFwaupDCT.png",
       "tutorialTitulo": "📱 Como Usar o Horizon Tela Ligada",
-      "tutorialSubtitulo": "Aprenda a manter a tela do seu Android sempre ligada com o Horizon Tela Ligada.",
-      "tutorialDescricao": "Neste tutorial completo, você aprenderá como instalar, configurar e usar o Horizon Tela Ligada para manter a tela do seu dispositivo Android sempre ativa. Perfeito para leitura, vídeos e qualquer tarefa que necessite da tela sempre ligada.",
+      "tutorialSubtitulo": "Aprenda a manter a tela do seu Android sempre ligada.",
+      "tutorialDescricao": "Neste tutorial completo, você aprenderá como instalar e configurar o Horizon Tela Ligada.",
       "videos": [
-        { "titulo": "Tutorial Parte 1", "id": "XDhx-rdHSmY" },
-        { "titulo": "Configuração", "id": "XDhx-rdHSmY" },
-        { "titulo": "Dicas Extras", "id": "XDhx-rdHSmY" },
-        { "titulo": "Avançado", "id": "XDhx-rdHSmY" },
-        { "titulo": "Automação Básica", "id": "XDhx-rdHSmY" },
-        { "titulo": "Múltiplos Cliques", "id": "XDhx-rdHSmY" },
-        { "titulo": "Otimização", "id": "XDhx-rdHSmY" },
-        { "titulo": "Troubleshooting", "id": "XDhx-rdHSmY" },
-        { "titulo": "Casos de Uso", "id": "XDhx-rdHSmY" },
-        { "titulo": "FAQ", "id": "XDhx-rdHSmY" }
+        { "titulo": "Tutorial Parte 1", "id": "XDhx-rdHSmY" }
       ],
       "icone": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/ySlUmmMGFwaupDCT.png"
     }
@@ -115,13 +98,12 @@ window.APPS_DATA = {
       "tutorial": "pages/tutoriais.html?open=resident-evil-4",
       "data": "2026-03-04",
       "destaque": true,
+      "popular": true,
       "titulo": "Como Jogar Resident Evil 4 Mobile",
-      "descricaoLonga": "Resident Evil 4 é um clássico do survival horror que agora está disponível para Android. Descubra como instalar e dominar este jogo épico no seu celular.",
+      "descricaoLonga": "Resident Evil 4 é um clássico do survival horror que agora está disponível para Android.",
       "recursos": [
         "Gráficos Otimizados para dispositivos móveis",
-        "Controles Adaptados para tela sensível ao toque",
-        "História Completa do jogo original",
-        "Alta Performance em diversos dispositivos"
+        "Controles Adaptados para tela sensível ao toque"
       ],
       "especificacoes": {
         "versao": "Mobile Edition",
@@ -131,26 +113,17 @@ window.APPS_DATA = {
         "tipoArquivo": "APK + Dados (Discos)",
         "androidMin": "7.0 ou superior",
         "atualizadoEm": "26/02/2026",
-        "recursosEspecificacoes": "Gráficos Otimizados, Controles Adaptados, História Completa, Alta Performance"
+        "recursosEspecificacoes": "Gráficos Otimizados, Controles Adaptados"
       },
       "linkDownload": "https://4br.me/BaixarApkR4",
       "linkDownloadData1": "https://4br.me/BaixarDico1R4",
       "linkDownloadData2": "https://4br.me/BaixarDisco2R4",
       "imagemCapa": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404250136/zdklqMSlQEbwtgnX.jpeg",
       "tutorialTitulo": "🎮 Como Jogar Resident Evil 4 Mobile",
-      "tutorialSubtitulo": "Guia completo para instalar e dominar o clássico survival horror no seu celular.",
-      "tutorialDescricao": "Descubra como instalar Resident Evil 4 no seu Android, configure os controles para melhor experiência, e aprenda as melhores estratégias para vencer o jogo. Um tutorial passo a passo para iniciantes e veteranos.",
+      "tutorialSubtitulo": "Guia completo para instalar e dominar o clássico survival horror.",
+      "tutorialDescricao": "Descubra como instalar Resident Evil 4 no seu Android e configure os controles para melhor experiência.",
       "videos": [
-        { "titulo": "Instalação APK", "id": "XDhx-rdHSmY" },
-        { "titulo": "Configurar OBB", "id": "XDhx-rdHSmY" },
-        { "titulo": "Gameplay", "id": "XDhx-rdHSmY" },
-        { "titulo": "Dicas de Combate", "id": "XDhx-rdHSmY" },
-        { "titulo": "Controles", "id": "XDhx-rdHSmY" },
-        { "titulo": "Gráficos & Performance", "id": "XDhx-rdHSmY" },
-        { "titulo": "Melhores Armas", "id": "XDhx-rdHSmY" },
-        { "titulo": "Speedrun", "id": "XDhx-rdHSmY" },
-        { "titulo": "Troubleshooting", "id": "XDhx-rdHSmY" },
-        { "titulo": "FAQ", "id": "XDhx-rdHSmY" }
+        { "titulo": "Instalação APK", "id": "XDhx-rdHSmY" }
       ],
       "icone": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404250136/zdklqMSlQEbwtgnX.jpeg",
       "tipoDownload": "multiplo"
