@@ -1,4 +1,4 @@
-/* ============================================================
+here/* ============================================================
    HORIZONTE TUTORIAIS — Banco de Dados
    Dados embutidos diretamente (sem fetch)
    ============================================================ */
@@ -170,4 +170,4 @@ if (document.readyState === 'loading') {
   });
 } else {
   document.dispatchEvent(new CustomEvent('dadosProntos', { detail: window.APPS_DATA }));
-}
+       }
