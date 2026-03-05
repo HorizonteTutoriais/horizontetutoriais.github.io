@@ -67,13 +67,13 @@ function renderizarDestaques() {
 
   container.innerHTML = `<h2 class="section-title">⭐ Destaques</h2>`; // Limpa e adiciona o título novamente
 
-  // Filtrar itens que são destaque, ou quentes, ou populares
+  // REGRAS DO USUÁRIO: Destaques = item.tipo === "popular"
   const destaques = [
     ...(APPS_DATA.aplicativos || []),
     ...(APPS_DATA.jogos || []),
     ...(APPS_DATA.tutoriais || []),
     ...(APPS_DATA.ferramentas || [])
-  ].filter(item => item.destaque || item.quente || item.tipo === "popular").sort((a, b) => new Date(b.data) - new Date(a.data));
+  ].filter(item => item.tipo === "popular").sort((a, b) => new Date(b.data) - new Date(a.data));
 
   // Renderiza destaques
   destaques.forEach(item => {
@@ -211,13 +211,13 @@ function renderizarSidebar() {
     container.appendChild(h3Title);
   }
 
-  // Combinar todos os itens populares e quentes
+  // REGRAS DO USUÁRIO: Populares = item.tipo === "popular"
   const itensPopulares = [
     ...(APPS_DATA.aplicativos || []),
     ...(APPS_DATA.jogos || []),
     ...(APPS_DATA.tutoriais || []),
     ...(APPS_DATA.ferramentas || [])
-  ].filter(item => item.tipo === "popular" || item.quente).sort((a, b) => new Date(b.data) - new Date(a.data));
+  ].filter(item => item.tipo === "popular").sort((a, b) => new Date(b.data) - new Date(a.data));
 
   itensPopulares.forEach(item => {
     const sidebarItem = document.createElement("div");
