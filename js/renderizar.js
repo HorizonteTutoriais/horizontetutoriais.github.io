@@ -17,6 +17,8 @@
     function getIdFromUrl() {
         const params = new URLSearchParams(window.location.search);
         let id = params.get('id');
+        
+        // Fallback: Se não houver ID na URL, tenta identificar pelo nome do arquivo
         if (!id) {
             const path = window.location.pathname;
             if (path.includes('horizon-clicker')) id = 'horizon-clicker';
@@ -56,26 +58,39 @@
 
             if (postItem) {
                 document.title = postItem.titulo + ' — Horizonte Tutoriais';
+                
+                // Renderizar Corpo do Post
                 const postBody = document.querySelector('.post-body');
                 if (postBody) {
                     let rec = postItem.recursos && postItem.recursos.length ? `<h2>⭐ RECURSOS PRINCIPAIS ⭐⭐⭐</h2><ul>${postItem.recursos.map(r => `<li>✅ ${r}</li>`).join('')}</ul>` : '';
                     postBody.innerHTML = `<p>${postItem.descricaoLonga || ''}</p>${rec}`;
                 }
 
+                // Renderizar Especificações com Ícone
                 const infoTable = document.querySelector('.info-table');
                 if (infoTable && postItem.especificacoes) {
                     const s = postItem.especificacoes;
                     const containerPai = infoTable.parentElement;
+                    
+                    // Remover headers antigos para não duplicar
                     document.querySelectorAll('.specs-header-custom').forEach(e => e.remove());
+                    
                     const specsHeader = document.createElement('div');
                     specsHeader.className = 'specs-header-custom';
                     specsHeader.style.cssText = `display: flex; align-items: center; gap: 15px; margin-top: 25px; margin-bottom: 15px; padding: 12px; background: #f0f4ff; border-radius: 8px; border-left: 4px solid var(--blue-primary);`;
                     specsHeader.innerHTML = `<img src="${postItem.icone || postItem.imagem}" style="width: 70px; height: 70px; border-radius: 8px; object-fit: cover; box-shadow: 0 2px 6px rgba(0,0,0,0.15); background: #fff;"><div><h2 style="margin: 0; font-size: 16px; font-weight: 700; color: var(--blue-dark);">📊 ESPECIFICAÇÕES DO ${postItem.categoria.toUpperCase()}</h2></div>`;
+                    
                     containerPai.insertBefore(specsHeader, infoTable);
-                    containerPai.querySelectorAll('h2.section-title').forEach(t => { if (t.textContent.includes('ESPECIFICAÇÕES')) t.remove(); });
+                    
+                    // Remover título H2 original para evitar duplicação
+                    containerPai.querySelectorAll('h2.section-title').forEach(t => { 
+                        if (t.textContent.includes('ESPECIFICAÇÕES')) t.remove(); 
+                    });
+
                     infoTable.innerHTML = `<tr><td>${postItem.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo'}</td><td>${postItem.nome}</td></tr><tr><td>Versão</td><td>${s.versao}</td></tr><tr><td>Tamanho</td><td>${s.tamanho}</td></tr><tr><td>Categoria</td><td>${s.categoria}</td></tr><tr><td>Desenvolvedor</td><td>${s.desenvolvedor}</td></tr><tr><td>Tipo do Arquivo</td><td>${s.tipoArquivo}</td></tr><tr><td>Requer Android</td><td>${s.androidMin}</td></tr><tr><td>Atualizado em</td><td>${s.atualizadoEm}</td></tr>`;
                 }
 
+                // Renderizar Download
                 const downloadBox = document.querySelector('.download-box');
                 if (downloadBox) {
                     if (postItem.tipoDownload === 'multiplo') {
@@ -85,17 +100,20 @@
                     }
                 }
 
-                const h1 = document.querySelector('.post-header h1');
-                if (h1) h1.textContent = postItem.titulo;
+                // Renderizar Imagem de Capa (Banner)
                 const img = document.querySelector('.post-featured-img');
                 if (img) {
                     img.src = postItem.imagemCapa;
                     img.style.cssText = `width: 100%; max-height: 320px; object-fit: contain; background: #1a73e8; border-radius: var(--radius); margin-bottom: 16px;`;
                 }
+                
+                const h1 = document.querySelector('.post-header h1');
+                if (h1) h1.textContent = postItem.titulo;
             }
             return;
         }
 
+        // Renderizar Listagens
         const container = document.querySelector('.popular-section');
         if (container) {
             let dados = [];
