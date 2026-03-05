@@ -58,14 +58,12 @@
             if (postItem) {
                 document.title = postItem.titulo + ' — Horizonte Tutoriais';
                 
-                // Renderizar Corpo do Post
                 const postBody = document.querySelector('.post-body');
                 if (postBody) {
                     let rec = postItem.recursos && postItem.recursos.length ? `<h2>⭐ RECURSOS PRINCIPAIS ⭐⭐⭐</h2><ul>${postItem.recursos.map(r => `<li>✅ ${r}</li>`).join('')}</ul>` : '';
                     postBody.innerHTML = `<p>${postItem.descricaoLonga || ''}</p>${rec}`;
                 }
 
-                // Renderizar Especificações com Ícone
                 const infoTable = document.querySelector('.info-table');
                 if (infoTable && postItem.especificacoes) {
                     const s = postItem.especificacoes;
@@ -80,7 +78,6 @@
                     infoTable.innerHTML = `<tr><td>${postItem.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo'}</td><td>${postItem.nome}</td></tr><tr><td>Versão</td><td>${s.versao}</td></tr><tr><td>Tamanho</td><td>${s.tamanho}</td></tr><tr><td>Categoria</td><td>${s.categoria}</td></tr><tr><td>Desenvolvedor</td><td>${s.desenvolvedor}</td></tr><tr><td>Tipo do Arquivo</td><td>${s.tipoArquivo}</td></tr><tr><td>Requer Android</td><td>${s.androidMin}</td></tr><tr><td>Atualizado em</td><td>${s.atualizadoEm}</td></tr>`;
                 }
 
-                // Renderizar Download
                 const downloadBox = document.querySelector('.download-box');
                 if (downloadBox) {
                     if (postItem.tipoDownload === 'multiplo') {
@@ -90,10 +87,10 @@
                     }
                 }
 
-                // Renderizar Banner (Imagem de Capa)
                 const img = document.querySelector('.post-featured-img');
                 if (img) {
                     img.src = postItem.imagemCapa;
+                    // AJUSTE PARA IMAGEM INTEIRA SEM CORTES
                     img.style.cssText = `width: 100%; max-height: 320px; object-fit: contain; background: #1a73e8; border-radius: var(--radius); margin-bottom: 16px;`;
                 }
                 const h1 = document.querySelector('.post-header h1');
@@ -102,7 +99,7 @@
             return;
         }
 
-        // 2. LÓGICA DO MOTOR DE AUTOMAÇÃO (LISTAGENS E FILTROS)
+        // 2. LÓGICA DO MOTOR DE AUTOMAÇÃO (DISTRIBUIÇÃO AUTOMÁTICA)
         const container = document.querySelector('.popular-section');
         if (container) {
             let dadosFiltrados = [];
@@ -126,13 +123,15 @@
             }
             // FILTRO: Populares (Exemplo 1 e 2)
             else if (path.includes('index.html') || path === '/' || path.includes('index')) {
-                // Na Home, podemos mostrar os Populares ou Últimas Atualizações
-                dadosFiltrados = todosItens.filter(item => item.popular === true);
-                tituloSecao = '⭐ Aplicativos Populares';
+                // Na Home mostra os Populares e Destaques
+                dadosFiltrados = todosItens.filter(item => item.popular === true || item.destaque === true);
+                tituloSecao = '⭐ Aplicativos e Jogos em Destaque';
             }
 
             if (dadosFiltrados.length > 0) {
                 container.innerHTML = `<h1 class="section-title">${tituloSecao}</h1>`;
+                // Ordenar por data (Últimas Atualizações)
+                dadosFiltrados.sort((a, b) => new Date(b.data) - new Date(a.data));
                 dadosFiltrados.forEach(item => {
                     container.appendChild(criarCard(item, prefixo));
                 });
