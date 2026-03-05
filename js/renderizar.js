@@ -1,16 +1,18 @@
 // ===== RENDERIZADOR DINÂMICO DO SITE =====
-// Este arquivo monta automaticamente as listas de apps e jogos
+// Este arquivo monta automaticamente as listas de apps, jogos, tutoriais e ferramentas
 
 function obterPrefixoCaminho() {
   const path = window.location.pathname;
   
-  // Se estiver em uma subpasta (pages, posts, Index com Cusdis)
-  if (path.includes('/pages/') || path.includes('/posts/') || path.includes('/Index%20com%20Cusdis/') || path.includes('/Index com Cusdis/')) {
-    // Se for um post (que está em posts/aplicativos/ ou posts/jogos/), precisa subir 2 níveis
-    if (path.includes('/posts/aplicativos/') || path.includes('/posts/jogos/')) {
+  // Se estiver em uma subpasta (pages, posts, Index)
+  if (path.includes('/pages/') || path.includes('/posts/') || path.includes('/Index/')) {
+    // Se for um post (que está em posts/aplicativos/, posts/jogos/, etc), precisa subir 2 níveis
+    if (path.includes('/posts/aplicativos/') || path.includes('/posts/jogos/') || 
+        path.includes('/posts/tutoriais/') || path.includes('/posts/ferramentas/') ||
+        path.includes('/posts/quente/')) {
         return '../../';
     }
-    // Para as outras subpastas, sobe 1 nível
+    // Para as outras subpastas (pages), sobe 1 nível
     return '../';
   }
   
@@ -25,26 +27,22 @@ function renderizarAtualizacoes() {
   const prefixo = obterPrefixoCaminho();
   container.innerHTML = '';
   
-  // Renderiza aplicativos
-  APPS_DATA.aplicativos.forEach(app => {
-    const card = document.createElement('div');
-    card.className = 'update-card';
-    card.innerHTML = `
-      <img src="${app.imagemGrande}" alt="${app.nome}" />
-      <div class="card-title">${app.nome} (${app.descricao})</div>
-      <a href="${prefixo}${app.url}" class="btn-download">Download</a>
-    `;
-    container.appendChild(card);
-  });
+  // Combinar todos os itens e ordenar por data (mais recentes primeiro)
+  const todosItens = [
+    ...(APPS_DATA.aplicativos || []),
+    ...(APPS_DATA.jogos || []),
+    ...(APPS_DATA.tutoriais || []),
+    ...(APPS_DATA.ferramentas || [])
+  ].sort((a, b) => new Date(b.data) - new Date(a.data));
 
-  // Renderiza jogos
-  APPS_DATA.jogos.forEach(jogo => {
+  // Renderiza todos os itens
+  todosItens.forEach(item => {
     const card = document.createElement('div');
     card.className = 'update-card';
     card.innerHTML = `
-      <img src="${jogo.imagemGrande}" alt="${jogo.nome}" />
-      <div class="card-title">${jogo.nome}</div>
-      <a href="${prefixo}${jogo.url}" class="btn-download">Download</a>
+      <img src="${item.imagemGrande}" alt="${item.nome}" />
+      <div class="card-title">${item.nome} (${item.descricao})</div>
+      <a href="${prefixo}${item.url}" class="btn-download">Download</a>
     `;
     container.appendChild(card);
   });
@@ -61,34 +59,27 @@ function renderizarDestaques() {
   const itensAntigos = container.querySelectorAll('.post-list-item');
   itensAntigos.forEach(item => item.remove());
 
-  // Aplicativos
-  APPS_DATA.aplicativos.forEach(app => {
-    const item = document.createElement('div');
-    item.className = 'post-list-item';
-    item.innerHTML = `
-      <img src="${app.imagem}" alt="${app.nome}" />
-      <div class="post-list-info">
-        <div class="post-title"><a href="${prefixo}${app.url}">${app.nome} (${app.descricao})</a></div>
-        <div class="post-cat"><a href="${prefixo}pages/aplicativos.html">${app.categoria}</a></div>
-        <a href="${prefixo}${app.url}" class="btn-download-sm">Download</a>
-      </div>
-    `;
-    container.appendChild(item);
-  });
+  // Filtrar apenas itens marcados como destaque
+  const destaques = [
+    ...(APPS_DATA.aplicativos || []),
+    ...(APPS_DATA.jogos || []),
+    ...(APPS_DATA.tutoriais || []),
+    ...(APPS_DATA.ferramentas || [])
+  ].filter(item => item.destaque).sort((a, b) => new Date(b.data) - new Date(a.data));
 
-  // Jogos
-  APPS_DATA.jogos.forEach(jogo => {
-    const item = document.createElement('div');
-    item.className = 'post-list-item';
-    item.innerHTML = `
-      <img src="${jogo.imagem}" alt="${jogo.nome}" />
+  // Renderiza destaques
+  destaques.forEach(item => {
+    const link = document.createElement('div');
+    link.className = 'post-list-item';
+    link.innerHTML = `
+      <img src="${item.imagem}" alt="${item.nome}" />
       <div class="post-list-info">
-        <div class="post-title"><a href="${prefixo}${jogo.url}">${jogo.nome}</a></div>
-        <div class="post-cat"><a href="${prefixo}pages/jogos.html">${jogo.categoria}</a></div>
-        <a href="${prefixo}${jogo.url}" class="btn-download-sm">Download</a>
+        <div class="post-title"><a href="${prefixo}${item.url}">${item.nome} (${item.descricao})</a></div>
+        <div class="post-cat"><a href="${prefixo}pages/${item.categoria.toLowerCase()}.html">${item.categoria}</a></div>
+        <a href="${prefixo}${item.url}" class="btn-download-sm">Download</a>
       </div>
     `;
-    container.appendChild(item);
+    container.appendChild(link);
   });
 }
 
@@ -100,7 +91,9 @@ function renderizarPaginaAplicativos() {
   const itensAntigos = container.querySelectorAll('.post-list-item');
   itensAntigos.forEach(item => item.remove());
 
-  APPS_DATA.aplicativos.forEach(app => {
+  const apps = (APPS_DATA.aplicativos || []).sort((a, b) => new Date(b.data) - new Date(a.data));
+
+  apps.forEach(app => {
     const item = document.createElement('div');
     item.className = 'post-list-item';
     item.innerHTML = `
@@ -122,13 +115,84 @@ function renderizarPaginaJogos() {
   const prefixo = obterPrefixoCaminho();
   container.innerHTML = '';
 
-  APPS_DATA.jogos.forEach(jogo => {
+  const jogos = (APPS_DATA.jogos || []).sort((a, b) => new Date(b.data) - new Date(a.data));
+
+  jogos.forEach(jogo => {
     const card = document.createElement('div');
     card.className = 'app-card';
     card.innerHTML = `
       <div class="app-card-title"><a href="${prefixo}${jogo.url}">${jogo.nome}</a></div>
       <div class="app-card-cat"><span>${jogo.quente ? 'Quente' : ''}</span> · ${jogo.descricao}</div>
       <a href="${prefixo}${jogo.url}" class="btn-download-sm">Download</a>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function renderizarPaginaTutoriais() {
+  const container = document.querySelector('.apps-grid');
+  if (!container) return;
+
+  const prefixo = obterPrefixoCaminho();
+  container.innerHTML = '';
+
+  const tutoriais = (APPS_DATA.tutoriais || []).sort((a, b) => new Date(b.data) - new Date(a.data));
+
+  tutoriais.forEach(tutorial => {
+    const card = document.createElement('div');
+    card.className = 'app-card';
+    card.innerHTML = `
+      <div class="app-card-title"><a href="${prefixo}${tutorial.url}">${tutorial.nome}</a></div>
+      <div class="app-card-cat">${tutorial.descricao}</div>
+      <a href="${prefixo}${tutorial.url}" class="btn-download-sm">Acessar</a>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function renderizarPaginaFerramentas() {
+  const container = document.querySelector('.apps-grid');
+  if (!container) return;
+
+  const prefixo = obterPrefixoCaminho();
+  container.innerHTML = '';
+
+  const ferramentas = (APPS_DATA.ferramentas || []).sort((a, b) => new Date(b.data) - new Date(a.data));
+
+  ferramentas.forEach(ferramenta => {
+    const card = document.createElement('div');
+    card.className = 'app-card';
+    card.innerHTML = `
+      <div class="app-card-title"><a href="${prefixo}${ferramenta.url}">${ferramenta.nome}</a></div>
+      <div class="app-card-cat">${ferramenta.descricao}</div>
+      <a href="${prefixo}${ferramenta.url}" class="btn-download-sm">Usar</a>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function renderizarPaginaQuente() {
+  const container = document.querySelector('.apps-grid');
+  if (!container) return;
+
+  const prefixo = obterPrefixoCaminho();
+  container.innerHTML = '';
+
+  // Filtrar apenas itens marcados como quente
+  const itensQuentes = [
+    ...(APPS_DATA.aplicativos || []),
+    ...(APPS_DATA.jogos || []),
+    ...(APPS_DATA.tutoriais || []),
+    ...(APPS_DATA.ferramentas || [])
+  ].filter(item => item.quente).sort((a, b) => new Date(b.data) - new Date(a.data));
+
+  itensQuentes.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'app-card';
+    card.innerHTML = `
+      <div class="app-card-title"><a href="${prefixo}${item.url}">${item.nome}</a></div>
+      <div class="app-card-cat">${item.categoria} · ${item.descricao}</div>
+      <a href="${prefixo}${item.url}" class="btn-download-sm">Abrir</a>
     `;
     container.appendChild(card);
   });
@@ -151,37 +215,32 @@ function renderizarSidebar() {
   const itensAntigos = container.querySelectorAll('.sidebar-post');
   itensAntigos.forEach(item => item.remove());
 
-  APPS_DATA.aplicativos.forEach(app => {
-    const item = document.createElement('div');
-    item.className = 'sidebar-post';
-    item.innerHTML = `
-      <img src="${app.imagem}" alt="${app.nome}" />
-      <div class="sidebar-post-info">
-        <div class="sp-title"><a href="${prefixo}${app.url}">${app.nome}</a></div>
-        <div class="sp-cat">${app.categoria}</div>
-      </div>
-    `;
-    container.appendChild(item);
-  });
+  // Combinar todos os itens populares e quentes
+  const itensPopulares = [
+    ...(APPS_DATA.aplicativos || []),
+    ...(APPS_DATA.jogos || []),
+    ...(APPS_DATA.tutoriais || []),
+    ...(APPS_DATA.ferramentas || [])
+  ].filter(item => item.tipo === 'popular' || item.quente).sort((a, b) => new Date(b.data) - new Date(a.data));
 
-  APPS_DATA.jogos.forEach(jogo => {
-    const item = document.createElement('div');
-    item.className = 'sidebar-post';
-    item.innerHTML = `
-      <img src="${jogo.imagem}" alt="${jogo.nome}" />
+  itensPopulares.forEach(item => {
+    const sidebarItem = document.createElement('div');
+    sidebarItem.className = 'sidebar-post';
+    sidebarItem.innerHTML = `
+      <img src="${item.imagem}" alt="${item.nome}" />
       <div class="sidebar-post-info">
-        <div class="sp-title"><a href="${prefixo}${jogo.url}">${jogo.nome}</a></div>
-        <div class="sp-cat">${jogo.categoria}</div>
+        <div class="sp-title"><a href="${prefixo}${item.url}">${item.nome}</a></div>
+        <div class="sp-cat">${item.categoria}</div>
       </div>
     `;
-    container.appendChild(item);
+    container.appendChild(sidebarItem);
   });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
   const path = window.location.pathname;
 
-  if (path.includes('index.html') || path.endsWith('/') || path.includes('INDEX_FINAL_TRADUCAO_COMPLETA.html')) {
+  if (path.includes('index.html') || path.endsWith('/') || path.includes('INDEX')) {
     renderizarAtualizacoes();
     renderizarDestaques();
     renderizarSidebar();
@@ -190,6 +249,15 @@ document.addEventListener('DOMContentLoaded', function() {
     renderizarSidebar();
   } else if (path.includes('jogos.html')) {
     renderizarPaginaJogos();
+    renderizarSidebar();
+  } else if (path.includes('tutoriais.html')) {
+    renderizarPaginaTutoriais();
+    renderizarSidebar();
+  } else if (path.includes('ferramentas.html')) {
+    renderizarPaginaFerramentas();
+    renderizarSidebar();
+  } else if (path.includes('quente.html')) {
+    renderizarPaginaQuente();
     renderizarSidebar();
   } else {
     renderizarSidebar();
