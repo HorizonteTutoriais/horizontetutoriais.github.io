@@ -36,7 +36,6 @@ window.APPS_DATA = {
         "recursosEspecificacoes": "Interface Intuitiva, Cliques Rápidos e Precisos, Sem Necessidade de Root"
       },
       "linkDownload": "https://4br.me/BaixarHorizonClikerApk",
-      "imagemCapa": "https://placehold.co/700x300/1a73e8/fff?text=Horizon+Clicker+APK",
       "tutorialTitulo": "🖱️ Como Usar o Horizon Click",
       "tutorialSubtitulo": "Aprenda a automatizar cliques no seu Android com precisão e facilidade usando o Horizon Clicker.",
       "tutorialDescricao": "Neste tutorial completo, você aprenderá como instalar, configurar e usar o Horizon Clicker para automatizar tarefas repetitivas no seu dispositivo Android. Perfeito para jogos, aplicativos e qualquer tarefa que envolva cliques repetidos.",
@@ -88,7 +87,6 @@ window.APPS_DATA = {
       "linkDownload": "https://4br.me/BaixarApkR4",
       "linkDownloadData1": "https://4br.me/BaixarDico1R4",
       "linkDownloadData2": "https://4br.me/BaixarDisco2R4",
-      "imagemCapa": "https://placehold.co/700x300/c62828/fff?text=Resident+Evil+4+Mobile",
       "tutorialTitulo": "🎮 Como Jogar Resident Evil 4 Mobile",
       "tutorialSubtitulo": "Guia completo para instalar e dominar o clássico survival horror no seu celular.",
       "tutorialDescricao": "Descubra como instalar Resident Evil 4 no seu Android, configure os controles para melhor experiênca, e aprenda as melhores estratégias para vencer o jogo. Um tutorial passo a passo para iniciantes e veteranos.",
@@ -122,4 +120,4 @@ if (document.readyState === 'loading') {
   });
 } else {
   document.dispatchEvent(new CustomEvent('dadosProntos', { detail: window.APPS_DATA }));
-}
+         }
