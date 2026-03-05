@@ -202,11 +202,26 @@ function renderizarSidebar() {
   const widgets = document.querySelectorAll('.sidebar-widget');
   let container = null;
   
+  // Busca robusta pelo widget de populares/quente
   widgets.forEach(w => {
     const h3 = w.querySelector('h3');
-    if (h3 && (h3.innerText.toLowerCase().includes(\'populares\') || h3.innerText.toLowerCase().includes(\'quente\'))) {   container = w;
+    const h2 = w.querySelector('h2');
+    const title = (h3 ? h3.innerText : (h2 ? h2.innerText : "")).toLowerCase();
+    
+    if (title.includes('populares') || title.includes('quente') || title.includes('pop')) {
+      container = w;
     }
   });
+
+  // Se não encontrar pelo título, tenta encontrar pela classe ou ID
+  if (!container) {
+    container = document.querySelector('.sidebar-popular') || document.querySelector('#sidebar-popular');
+  }
+
+  // Se ainda não encontrar, usa o último widget da sidebar como plano B
+  if (!container && widgets.length > 0) {
+    container = widgets[widgets.length - 1];
+  }
 
   if (!container) return;
 
