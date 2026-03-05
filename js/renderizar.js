@@ -1,6 +1,6 @@
 /* ============================================================
    HORIZONTE TUTORIAIS — Renderizador Dinâmico 100% Automático
-   Sistema Inteligente de Distribuição por Tipo e Categoria
+   Sistema de Filtragem Rigorosa por Categoria e Tipo
    ============================================================ */
 
 (function() {
@@ -21,48 +21,6 @@
     function getIdFromUrl() {
         const params = new URLSearchParams(window.location.search);
         return params.get('id');
-    }
-
-    // Função para distribuir itens inteligentemente
-    function distribuirItens() {
-        if (!window.APPS_DATA) return;
-
-        const todosItens = [
-            ...(window.APPS_DATA.aplicativos || []),
-            ...(window.APPS_DATA.jogos || [])
-        ];
-
-        // Limpar arrays de distribuição
-        window.APPS_DATA.quente = [];
-        window.APPS_DATA.populares = [];
-        window.APPS_DATA.destaques = [];
-        window.APPS_DATA.ultimasAtualizacoes = [];
-
-        // Distribuir cada item
-        for (let i = 0; i < todosItens.length; i++) {
-            const item = todosItens[i];
-
-            // Sempre adiciona em Últimas Atualizações
-            window.APPS_DATA.ultimasAtualizacoes.push(item);
-
-            // Se tipo é "quente", adiciona em Quente
-            if (item.tipo === 'quente') {
-                window.APPS_DATA.quente.push(item);
-            }
-
-            // Se tipo é "popular", adiciona em Populares
-            if (item.tipo === 'popular') {
-                window.APPS_DATA.populares.push(item);
-            }
-
-            // Se destaque é true, adiciona em Destaques
-            if (item.destaque === true) {
-                window.APPS_DATA.destaques.push(item);
-            }
-        }
-
-        // Ordenar Últimas Atualizações por data (mais recente primeiro)
-        window.APPS_DATA.ultimasAtualizacoes.sort((a, b) => new Date(b.data) - new Date(a.data));
     }
 
     // Criar card reutilizável
@@ -158,9 +116,6 @@
             console.warn('APPS_DATA não está disponível ainda');
             return;
         }
-
-        // Distribuir itens inteligentemente
-        distribuirItens();
 
         const path = window.location.pathname;
         const urlId = getIdFromUrl();
@@ -286,51 +241,59 @@
         let dados = [];
         let titulo = '';
 
+        // PÁGINA DE APLICATIVOS - Mostrar APENAS itens com categoria "Aplicativos"
         if (path.includes('/pages/aplicativos.html')) {
-            dados = window.APPS_DATA.aplicativos || [];
+            dados = (window.APPS_DATA.aplicativos || []).filter(item => item.categoria === 'Aplicativos');
             titulo = '📱 Aplicativos';
-        } else if (path.includes('/pages/jogos.html')) {
-            dados = window.APPS_DATA.jogos || [];
+        } 
+        // PÁGINA DE JOGOS - Mostrar APENAS itens com categoria "Jogos"
+        else if (path.includes('/pages/jogos.html')) {
+            dados = (window.APPS_DATA.jogos || []).filter(item => item.categoria === 'Jogos');
             titulo = '🎮 Jogos';
-        } else if (path.includes('/pages/quente.html')) {
-            dados = window.APPS_DATA.quente || [];
+        } 
+        // PÁGINA QUENTE - Mostrar APENAS itens com tipo "quente"
+        else if (path.includes('/pages/quente.html')) {
+            const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
+            dados = todosItens.filter(item => item.tipo === 'quente');
             titulo = '🔥 Quente';
-        } else if (path.includes('/pages/ferramentas.html')) {
+        } 
+        // PÁGINA FERRAMENTAS
+        else if (path.includes('/pages/ferramentas.html')) {
             dados = window.APPS_DATA.ferramentas || [];
             titulo = '🔧 Ferramentas';
-        } else if (path.includes('/Index/index.html') || path === '/' || path.endsWith('/index.html')) {
-            // Página inicial - renderizar múltiplas seções
+        } 
+        // PÁGINA INICIAL
+        else if (path.includes('/Index/index.html') || path === '/' || path.endsWith('/index.html')) {
+            const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
+            
+            // Últimas Atualizações - TODOS os itens, ordenados por data
             const updateContainer = document.querySelector('.updates-grid');
-            const popularContainer = document.querySelector('.popular-section');
-            const sidebarPopulares = document.getElementById('sidebar-populares');
-            const destaqueContainer = document.querySelector('.destaque-section');
-            const quenteContainer = document.querySelector('.quente-section');
-
-            // Últimas atualizações
             if (updateContainer) {
                 updateContainer.innerHTML = '';
-                const ultimasAtualizacoes = window.APPS_DATA.ultimasAtualizacoes || [];
+                const ultimasAtualizacoes = todosItens.sort((a, b) => new Date(b.data) - new Date(a.data));
                 for (let i = 0; i < ultimasAtualizacoes.length; i++) {
                     updateContainer.appendChild(criarCard(ultimasAtualizacoes[i], prefixo));
                 }
             }
 
-            // Destaques
+            // Destaques - APENAS itens com destaque: true
+            const popularContainer = document.querySelector('.popular-section');
             if (popularContainer) {
                 popularContainer.innerHTML = '';
-                const destaques = window.APPS_DATA.destaques || [];
+                const destaques = todosItens.filter(item => item.destaque === true);
                 for (let i = 0; i < destaques.length; i++) {
                     popularContainer.appendChild(criarCard(destaques[i], prefixo));
                 }
             }
 
-            // Populares (sidebar)
+            // Sidebar Populares - APENAS itens com tipo: "popular"
+            const sidebarPopulares = document.getElementById('sidebar-populares');
             if (sidebarPopulares) {
                 sidebarPopulares.innerHTML = '<h3 class="widget-title">🔥 Populares</h3>';
                 const ul = document.createElement('ul');
                 ul.style.listStyle = 'none';
                 ul.style.padding = '0';
-                const populares = window.APPS_DATA.populares || [];
+                const populares = todosItens.filter(item => item.tipo === 'popular');
                 
                 for (let i = 0; i < Math.min(populares.length, 5); i++) {
                     const li = document.createElement('li');
@@ -341,10 +304,11 @@
                 sidebarPopulares.appendChild(ul);
             }
 
-            // Seção Quente (se existir)
+            // Seção Quente - APENAS itens com tipo: "quente"
+            const quenteContainer = document.querySelector('.quente-section');
             if (quenteContainer) {
                 quenteContainer.innerHTML = '<h2 class="section-title">🔥 Quente Agora</h2>';
-                const quentes = window.APPS_DATA.quente || [];
+                const quentes = todosItens.filter(item => item.tipo === 'quente');
                 for (let i = 0; i < quentes.length; i++) {
                     quenteContainer.appendChild(criarCard(quentes[i], prefixo));
                 }
@@ -353,6 +317,7 @@
             return;
         }
 
+        // Renderizar cards na página de listagem
         if (container && dados.length > 0) {
             container.innerHTML = '<h1 class="section-title">' + titulo + '</h1>';
             for (let i = 0; i < dados.length; i++) {
