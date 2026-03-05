@@ -1,4 +1,4 @@
-/* ============================================================
+here/* ============================================================
    HORIZONTE TUTORIAIS — Renderizador Dinâmico 100% Automático
    Sistema de Filtragem Rigorosa por Categoria e Tipo
    ============================================================ */
@@ -285,7 +285,20 @@
                 if (h1) h1.textContent = postItem.titulo;
 
                 const img = document.querySelector('.post-featured-img');
-                if (img) img.src = postItem.imagemCapa;
+                if (img) {
+                    img.src = postItem.imagemCapa;
+                    // Ajuste de exibição para a imagem de capa (menininho loiro)
+                    // Usamos 'contain' para mostrar a imagem inteira sem cortes, 
+                    // com um fundo azul para combinar com o site.
+                    img.style.cssText = `
+                        width: 100%;
+                        max-height: 320px;
+                        object-fit: contain;
+                        background: #1a73e8;
+                        border-radius: var(--radius);
+                        margin-bottom: 16px;
+                    `;
+                }
 
                 const postDate = document.querySelector('.post-date');
                 if (postDate) postDate.textContent = '📅 ' + postItem.data;
