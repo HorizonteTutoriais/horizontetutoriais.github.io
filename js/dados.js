@@ -1,4 +1,4 @@
-here/* ============================================================
+/* ============================================================
    HORIZONTE TUTORIAIS — Banco de Dados
    Dados embutidos diretamente (sem fetch)
    ============================================================ */
@@ -13,7 +13,7 @@ window.APPS_DATA = {
       "categoria": "Aplicativos",
       "tipo": "quente",
       "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/AShzdwWGghpbeWBY.png",
-      "url": "posts/aplicativos/app.html?id=horizon-clicker",
+      "url": "posts/aplicativos/horizon-clicker-FINAL-CORRIGIDO.html?id=horizon-clicker",
       "tutorial": "pages/tutoriais.html?open=horizon-clicker",
       "data": "2026-03-04",
       "destaque": true,
@@ -37,21 +37,6 @@ window.APPS_DATA = {
       },
       "linkDownload": "https://4br.me/BaixarHorizonClikerApk",
       "imagemCapa": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/AShzdwWGghpbeWBY.png",
-      "tutorialTitulo": "🖱️ Como Usar o Horizon Click",
-      "tutorialSubtitulo": "Aprenda a automatizar cliques no seu Android com precisão e facilidade usando o Horizon Clicker.",
-      "tutorialDescricao": "Neste tutorial completo, você aprenderá como instalar, configurar e usar o Horizon Clicker para automatizar tarefas repetitivas no seu dispositivo Android. Perfeito para jogos, aplicativos e qualquer tarefa que envolva cliques repetidos.",
-      "videos": [
-        { "titulo": "Tutorial Parte 1", "id": "XDhx-rdHSmY" },
-        { "titulo": "Configuração", "id": "XDhx-rdHSmY" },
-        { "titulo": "Dicas Extras", "id": "XDhx-rdHSmY" },
-        { "titulo": "Avançado", "id": "XDhx-rdHSmY" },
-        { "titulo": "Automação Básica", "id": "XDhx-rdHSmY" },
-        { "titulo": "Múltiplos Cliques", "id": "XDhx-rdHSmY" },
-        { "titulo": "Otimização", "id": "XDhx-rdHSmY" },
-        { "titulo": "Troubleshooting", "id": "XDhx-rdHSmY" },
-        { "titulo": "Casos de Uso", "id": "XDhx-rdHSmY" },
-        { "titulo": "FAQ", "id": "XDhx-rdHSmY" }
-      ],
       "icone": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/AShzdwWGghpbeWBY.png"
     },
     {
@@ -61,7 +46,7 @@ window.APPS_DATA = {
       "categoria": "Aplicativos",
       "tipo": "normal",
       "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/ySlUmmMGFwaupDCT.png",
-      "url": "posts/aplicativos/app.html?id=horizon-tela-ligada",
+      "url": "posts/aplicativos/horizon-tela-ligada.html?id=horizon-tela-ligada",
       "tutorial": "pages/tutoriais.html?open=horizon-tela-ligada",
       "data": "2026-03-05",
       "destaque": false,
@@ -85,21 +70,6 @@ window.APPS_DATA = {
       },
       "linkDownload": "https://4br.me/BaixarHorizonTelaLigada",
       "imagemCapa": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/ySlUmmMGFwaupDCT.png",
-      "tutorialTitulo": "📱 Como Usar o Horizon Tela Ligada",
-      "tutorialSubtitulo": "Aprenda a manter a tela do seu Android sempre ligada com o Horizon Tela Ligada.",
-      "tutorialDescricao": "Neste tutorial completo, você aprenderá como instalar, configurar e usar o Horizon Tela Ligada para manter a tela do seu dispositivo Android sempre ativa. Perfeito para leitura, vídeos e qualquer tarefa que necessite da tela sempre ligada.",
-      "videos": [
-        { "titulo": "Tutorial Parte 1", "id": "XDhx-rdHSmY" },
-        { "titulo": "Configuração", "id": "XDhx-rdHSmY" },
-        { "titulo": "Dicas Extras", "id": "XDhx-rdHSmY" },
-        { "titulo": "Avançado", "id": "XDhx-rdHSmY" },
-        { "titulo": "Automação Básica", "id": "XDhx-rdHSmY" },
-        { "titulo": "Múltiplos Cliques", "id": "XDhx-rdHSmY" },
-        { "titulo": "Otimização", "id": "XDhx-rdHSmY" },
-        { "titulo": "Troubleshooting", "id": "XDhx-rdHSmY" },
-        { "titulo": "Casos de Uso", "id": "XDhx-rdHSmY" },
-        { "titulo": "FAQ", "id": "XDhx-rdHSmY" }
-      ],
       "icone": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/ySlUmmMGFwaupDCT.png"
     }
   ],
@@ -110,8 +80,8 @@ window.APPS_DATA = {
       "descricao": "Jogo de ação e horror",
       "categoria": "Jogos",
       "tipo": "popular",
-      "imagem": "https://via.placeholder.com/150",
-      "url": "posts/jogos/jogo.html?id=resident-evil-4",
+      "imagem": "https://placehold.co/150x150/c62828/fff?text=RE4",
+      "url": "posts/jogos/resident-evil-4.html?id=resident-evil-4",
       "tutorial": "pages/tutoriais.html?open=resident-evil-4",
       "data": "2026-03-04",
       "destaque": true,
@@ -137,21 +107,6 @@ window.APPS_DATA = {
       "linkDownloadData1": "https://4br.me/BaixarDico1R4",
       "linkDownloadData2": "https://4br.me/BaixarDisco2R4",
       "imagemCapa": "https://placehold.co/700x300/c62828/fff?text=Resident+Evil+4+Mobile",
-      "tutorialTitulo": "🎮 Como Jogar Resident Evil 4 Mobile",
-      "tutorialSubtitulo": "Guia completo para instalar e dominar o clássico survival horror no seu celular.",
-      "tutorialDescricao": "Descubra como instalar Resident Evil 4 no seu Android, configure os controles para melhor experiência, e aprenda as melhores estratégias para vencer o jogo. Um tutorial passo a passo para iniciantes e veteranos.",
-      "videos": [
-        { "titulo": "Instalação APK", "id": "XDhx-rdHSmY" },
-        { "titulo": "Configurar OBB", "id": "XDhx-rdHSmY" },
-        { "titulo": "Gameplay", "id": "XDhx-rdHSmY" },
-        { "titulo": "Dicas de Combate", "id": "XDhx-rdHSmY" },
-        { "titulo": "Controles", "id": "XDhx-rdHSmY" },
-        { "titulo": "Gráficos & Performance", "id": "XDhx-rdHSmY" },
-        { "titulo": "Melhores Armas", "id": "XDhx-rdHSmY" },
-        { "titulo": "Speedrun", "id": "XDhx-rdHSmY" },
-        { "titulo": "Troubleshooting", "id": "XDhx-rdHSmY" },
-        { "titulo": "FAQ", "id": "XDhx-rdHSmY" }
-      ],
       "icone": "https://placehold.co/80x80/c62828/fff?text=RE4",
       "tipoDownload": "multiplo"
     }
@@ -160,8 +115,6 @@ window.APPS_DATA = {
   "ferramentas": [],
   "quente": []
 };
-
-console.log('Dados carregados com sucesso:', window.APPS_DATA);
 
 // Notifica que os dados estão prontos
 if (document.readyState === 'loading') {
