@@ -1,255 +1,294 @@
-// ===== RENDERIZADOR DINÂMICO DO SITE =====
-// Este arquivo monta automaticamente as listas de apps, jogos, tutoriais e ferramentas
-
-function obterPrefixoCaminho() {
-  const path = window.location.pathname;
-  
-  // Se estiver em uma subpasta (pages, posts, Index)
-  if (path.includes("/pages/") || path.includes("/posts/") || path.includes("/Index/")) {
-    // Se for um post (que está em posts/aplicativos/, posts/jogos/, etc), precisa subir 2 níveis
-    if (path.includes("/posts/aplicativos/") || path.includes("/posts/jogos/") || 
-        path.includes("/posts/tutoriais/") || path.includes("/posts/ferramentas/") ||
-        path.includes("/posts/quente/")) {
-        return "../../";
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Horizonte Tutoriais — Sua fonte definitiva para tutoriais e APKs</title>
+  <meta name="description" content="Horizonte Tutoriais — Baixe os melhores APKs, tutoriais, aplicativos premium desbloqueados e muito mais. Atualizado diariamente." />
+  <meta name="keywords" content="horizonte tutoriais, apk, download, aplicativos, tutoriais, android, premium" />
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Ícones via CDN (Font Awesome Free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <!-- Favicon inline SVG -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌅</text></svg>" />
+  <!-- Link de descoberta do Feed RSS -->
+  <link rel="alternate" type="application/rss+xml" title="Horizonte Tutoriais - Feed RSS" href="feed.xml" />
+  <style>
+    /* Estilo para a seção de comentários */
+    .custom-comments { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: var(--shadow); }
+    .widget-title { margin-top: 0; font-size: 18px; border-bottom: 2px solid var(--blue-primary); display: inline-block; margin-bottom: 15px; }
+    
+    /* Estilos para os botões RSS */
+    .rss-btn { display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; background: #ff9800; color: #fff; text-decoration: none; border-radius: 4px; font-size: 12px; font-weight: 600; transition: background 0.3s ease; }
+    .rss-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
+    
+    /* Estilo para o widget de RSS na sidebar */
+    .rss-widget { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 0; margin-top: 15px; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+    .rss-widget-title { font-size: 13px; font-weight: 700; color: #ff9800; margin-bottom: 0; display: flex; align-items: center; gap: 6px; padding: 15px 15px 10px 15px; }
+    .rss-widget-text { font-size: 12px; color: #666; margin-bottom: 0; line-height: 1.5; padding: 0 15px 15px 15px; }
+    .rss-copy-btn { display: block; width: 100%; background: #ff9800; color: #fff; text-align: center; padding: 12px 15px; border-radius: 0 0 var(--radius) var(--radius); font-size: 12px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; transition: background 0.3s ease; margin: 0; }
+    .rss-copy-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
+    
+    @media (max-width: 600px) {
+      .custom-comments { padding: 15px; }
     }
-    // Para as outras subpastas (pages), sobe 1 nível
-    return "../";
-  }
   
-  // Se estiver na raiz
-  return "";
-}
+    /* Restaurar Rodapé Azul Completo */
+    .site-footer { background: var(--blue-dark); color: #cce5ff; margin-top: 30px; padding: 0; }
+    .footer-grid, .footer-top { padding: 30px 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 30px; flex-wrap: wrap; }
+    .footer-brand .footer-logo { color: #fff; font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+    .footer-brand p { font-size: 13px; max-width: 350px; color: #cce5ff; line-height: 1.6; }
+    .footer-social { display: flex; gap: 12px; margin-top: 15px; }
+    .footer-social a { background: rgba(255,255,255,0.1); color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+    .footer-social a:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); }
+    .footer-links h4 { color: #fff; font-size: 15px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; }
+    .footer-links ul { list-style: none; padding: 0; }
+    .footer-links ul li { margin-bottom: 8px; }
+    .footer-links ul li a { color: #cce5ff; font-size: 13px; transition: color 0.2s; }
+    .footer-links ul li a:hover { color: #fff; text-decoration: none; }
+    .footer-bottom { background: rgba(0,0,0,0.2); padding: 20px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-bottom .footer-nav { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 10px; }
+    .footer-bottom .footer-nav a { color: #cce5ff; font-size: 12px; transition: color 0.2s; }
+    .footer-bottom .footer-nav a:hover { color: #fff; text-decoration: none; }
+    .footer-bottom p { font-size: 12px; color: #90caf9; margin: 0; }
+    .footer-bottom p a { color: #ffd600; font-weight: 700; }
 
-function renderizarAtualizacoes() {
-  const container = document.querySelector(".updates-grid");
-  if (!container) return;
+  </style>
+</head>
+<body>
 
-  const prefixo = obterPrefixoCaminho();
-  container.innerHTML = "";
-  
-  // Combinar todos os itens e ordenar por data (mais recentes primeiro)
-  const todosItens = [
-    ...(APPS_DATA.aplicativos || []),
-    ...(APPS_DATA.jogos || []),
-    ...(APPS_DATA.tutoriais || []),
-    ...(APPS_DATA.ferramentas || [])
-  ].sort((a, b) => new Date(b.data) - new Date(a.data));
+<!-- ===== TOP BAR ===== -->
+<div class="top-bar">
+  <div class="container">
+    <a href="pages/contato.html">Contate-Nos</a>
+    <a href="pages/privacidade.html">Política de Privacidade</a>
+    <a href="pages/isencao.html">Isenção de Responsabilidade</a>
+    <a href="feed.xml" class="rss-btn" target="_blank" rel="noopener"><i class="fas fa-rss"></i> RSS</a>
+  </div>
+</div>
 
-  // Renderiza todos os itens
-  todosItens.forEach(item => {
-    const card = document.createElement("div");
-    card.className = "update-card";
-    card.innerHTML = `
-      <img src="${item.imagemGrande}" alt="${item.nome}" />
-      <div class="card-title">${item.nome} (${item.descricao})</div>
-      <a href="${prefixo}${item.url}" class="btn-download">Download</a>
-    `;
-    container.appendChild(card);
-  });
-}
-
-function renderizarDestaques() {
-  const container = document.querySelector(".popular-section");
-  if (!container) return;
-
-  const prefixo = obterPrefixoCaminho();
-  const titulo = container.querySelector(".section-title");
-  if (!titulo) return;
-
-  const itensAntigos = container.querySelectorAll(".post-list-item");
-  itensAntigos.forEach(item => item.remove());
-
-  // Filtrar apenas itens marcados como destaque
-  const destaques = [
-    ...(APPS_DATA.aplicativos || []),
-    ...(APPS_DATA.jogos || []),
-    ...(APPS_DATA.tutoriais || []),
-    ...(APPS_DATA.ferramentas || [])
-  ].filter(item => item.destaque).sort((a, b) => new Date(b.data) - new Date(a.data));
-
-  // Renderiza destaques
-  destaques.forEach(item => {
-    const link = document.createElement("div");
-    link.className = "post-list-item";
-    link.innerHTML = `
-      <img src="${item.imagem}" alt="${item.nome}" />
-      <div class="post-list-info">
-        <div class="post-title"><a href="${prefixo}${item.url}">${item.nome} (${item.descricao})</a></div>
-        <div class="post-cat"><a href="${prefixo}pages/${item.categoria.toLowerCase()}.html">${item.categoria}</a></div>
-        <a href="${prefixo}${item.url}" class="btn-download-sm">Download</a>
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="site-logo">🌅 Horizonte <span>Tutoriais</span></a>
+    <div class="header-actions">
+      <!-- Botão Modo Noturno -->
+      <button id="dark-mode-toggle" class="header-btn" title="Alternar modo noturno">🌙</button>
+      <!-- Barra de Pesquisa -->
+      <div class="search-fixed-container">
+        <input type="text" id="search-input-fixed" placeholder="Pesquisar..." autocomplete="off">
+        <button id="search-submit-fixed" title="Pesquisar">🔍</button>
       </div>
-    `;
-    container.appendChild(link);
-  });
-}
+    </div>
+  </div>
+</header>
+<!-- Painel de Resultados de Pesquisa -->
+<div id="search-results-panel" class="search-results-panel">
+  <div class="search-results-close"><button id="search-results-close-btn" title="Fechar">✕</button></div>
+  <div id="search-results-list"></div>
+</div>
 
-function renderizarPaginaAplicativos() {
-  const container = document.querySelector(".popular-section"); // Usando popular-section como container principal
-  if (!container) return;
+<!-- ===== NAVEGAÇÃO ===== -->
+<nav class="site-nav" aria-label="Navegação principal">
+  <div class="container">
+    <ul class="nav-list" id="nav-list">
+      <li><a href="index.html" class="active"><span class="nav-icon">🏠</span> Lar</a></li>
+      <li><a href="pages/aplicativos.html"><span class="nav-icon">📱</span> Aplicativos</a></li>
+      <li><a href="pages/jogos.html"><span class="nav-icon">🎮</span> Jogos</a></li>
+      <li><a href="pages/tutoriais.html"><span class="nav-icon">📚</span> Tutoriais</a></li>
+      <li><a href="pages/ferramentas.html"><span class="nav-icon">🔧</span> Ferramentas</a></li>
+      <li><a href="pages/quente.html"><span class="nav-icon">🔥</span> Quente</a></li>
+    </ul>
+  </div>
+</nav>
 
-  const prefixo = obterPrefixoCaminho();
-  const itensAntigos = container.querySelectorAll(".post-list-item");
-  itensAntigos.forEach(item => item.remove());
+<!-- ===== CONTEÚDO PRINCIPAL ===== -->
+<div class="container">
+  <div class="main-layout">
 
-  const apps = (APPS_DATA.aplicativos || []).sort((a, b) => new Date(b.data) - new Date(a.data));
+    <!-- ===== COLUNA PRINCIPAL ===== -->
+    <main>
 
-  apps.forEach(app => {
-    const item = document.createElement("div");
-    item.className = "post-list-item";
-    item.innerHTML = `
-      <img src="${app.imagem}" alt="${app.nome}" />
-      <div class="post-list-info">
-        <div class="post-title"><a href="${prefixo}${app.url}">${app.nome} (${app.descricao})</a></div>
-        <div class="post-cat"><a href="aplicativos.html">${app.categoria}</a> · <span style="color:#e53935;font-weight:700">${app.quente ? "Quente" : ""}</span></div>
-        <a href="${prefixo}${app.url}" class="btn-download-sm">Download</a>
+      <!-- Atualizações -->
+      <section class="updates-section">
+        <h2 class="section-title">🔄 Últimas Atualizações</h2>
+        <div class="updates-grid">
+          <!-- Preenchido dinamicamente por renderizar.js -->
+        </div>
+      </section>
+
+      <!-- Aplicativos Populares -->
+      <section class="popular-section">
+        <h2 class="section-title">⭐ Destaques</h2>
+        <!-- Preenchido dinamicamente por renderizar.js -->
+      </section>
+
+      <!-- ===== SEÇÃO DE COMENTÁRIOS (SISTEMA ORIGINAL COM TRADUÇÃO COMPLETA) ===== -->
+      <section class="custom-comments">
+        <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
+        <p style="font-size:13px;color:#666;margin-bottom:15px;">Compartilhe sua opinião! Não é necessário fazer login.</p>
+        
+        <div id="cusdis_list">
+          <div id="cusdis_thread"
+            data-host="https://cusdis.com"
+            data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
+            data-page-id="index_horizonte"
+            data-page-url="https://horizontetutoriais.com/index.html"
+            data-page-title="Horizonte Tutoriais - Início"
+          ></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+      <div class="sidebar-widget">
+        <h3 class="widget-title">📣 Mídias Sociais</h3>
+        <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn telegram">
+          <span class="s-icon"><i class="fab fa-telegram"></i></span> Telegram
+        </a>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="social-btn whatsapp">
+          <span class="s-icon"><i class="fab fa-whatsapp"></i></span> WhatsApp
+        </a>
+        <a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener" class="social-btn instagram">
+          <span class="s-icon"><i class="fab fa-instagram"></i></span> Instagram
+        </a>
+        <a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn youtube">
+          <span class="s-icon"><i class="fab fa-youtube"></i></span> YouTube
+        </a>
+        
       </div>
-    `;
-    container.appendChild(item);
-  });
-}
 
-function renderizarPaginaJogos() {
-  const container = document.querySelector(".apps-grid");
-  if (!container) return;
-
-  const prefixo = obterPrefixoCaminho();
-  container.innerHTML = "";
-
-  const jogos = (APPS_DATA.jogos || []).sort((a, b) => new Date(b.data) - new Date(a.data));
-
-  jogos.forEach(jogo => {
-    const card = document.createElement("div");
-    card.className = "app-card";
-    card.innerHTML = `
-      <div class="app-card-title"><a href="${prefixo}${jogo.url}">${jogo.nome}</a></div>
-      <div class="app-card-cat"><span>${jogo.quente ? "Quente" : ""}</span> · ${jogo.descricao}</div>
-      <a href="${prefixo}${jogo.url}" class="btn-download-sm">Download</a>
-    `;
-    container.appendChild(card);
-  });
-}
-
-function renderizarPaginaTutoriais() {
-  const container = document.querySelector(".apps-grid");
-  if (!container) return;
-
-  const prefixo = obterPrefixoCaminho();
-  container.innerHTML = "";
-
-  const tutoriais = (APPS_DATA.tutoriais || []).sort((a, b) => new Date(b.data) - new Date(a.data));
-
-  tutoriais.forEach(tutorial => {
-    const card = document.createElement("div");
-    card.className = "app-card";
-    card.innerHTML = `
-      <div class="app-card-title"><a href="${prefixo}${tutorial.url}">${tutorial.nome}</a></div>
-      <div class="app-card-cat">${tutorial.descricao}</div>
-      <a href="${prefixo}${tutorial.url}" class="btn-download-sm">Acessar</a>
-    `;
-    container.appendChild(card);
-  });
-}
-
-function renderizarPaginaFerramentas() {
-  const container = document.querySelector(".apps-grid");
-  if (!container) return;
-
-  const prefixo = obterPrefixoCaminho();
-  container.innerHTML = "";
-
-  const ferramentas = (APPS_DATA.ferramentas || []).sort((a, b) => new Date(b.data) - new Date(a.data));
-
-  ferramentas.forEach(ferramenta => {
-    const card = document.createElement("div");
-    card.className = "app-card";
-    card.innerHTML = `
-      <div class="app-card-title"><a href="${prefixo}${ferramenta.url}">${ferramenta.nome}</a></div>
-      <div class="app-card-cat">${ferramenta.descricao}</div>
-      <a href="${prefixo}${ferramenta.url}" class="btn-download-sm">Usar</a>
-    `;
-    container.appendChild(card);
-  });
-}
-
-function renderizarPaginaQuente() {
-  const container = document.querySelector(".apps-grid");
-  if (!container) return;
-
-  const prefixo = obterPrefixoCaminho();
-  container.innerHTML = "";
-
-  // Filtrar apenas itens marcados como quente
-  const itensQuentes = [
-    ...(APPS_DATA.aplicativos || []),
-    ...(APPS_DATA.jogos || []),
-    ...(APPS_DATA.tutoriais || []),
-    ...(APPS_DATA.ferramentas || [])
-  ].filter(item => item.quente).sort((a, b) => new Date(b.data) - new Date(a.data));
-
-  itensQuentes.forEach(item => {
-    const card = document.createElement("div");
-    card.className = "app-card";
-    card.innerHTML = `
-      <div class="app-card-title"><a href="${prefixo}${item.url}">${item.nome}</a></div>
-      <div class="app-card-cat">${item.categoria} · ${item.descricao}</div>
-      <a href="${prefixo}${item.url}" class="btn-download-sm">Abrir</a>
-    `;
-    container.appendChild(card);
-  });
-}
-
-function renderizarSidebar() {
-  const container = document.getElementById("sidebar-populares"); // Alvo direto pelo ID
-  if (!container) return;
-
-  const prefixo = obterPrefixoCaminho();
-  container.innerHTML = ""; // Limpa o conteúdo existente
-
-  // Combinar todos os itens populares e quentes
-  const itensPopulares = [
-    ...(APPS_DATA.aplicativos || []),
-    ...(APPS_DATA.jogos || []),
-    ...(APPS_DATA.tutoriais || []),
-    ...(APPS_DATA.ferramentas || [])
-  ].filter(item => item.tipo === "popular" || item.quente).sort((a, b) => new Date(b.data) - new Date(a.data));
-
-  itensPopulares.forEach(item => {
-    const sidebarItem = document.createElement("div");
-    sidebarItem.className = "sidebar-post";
-    sidebarItem.innerHTML = `
-      <img src="${item.imagem}" alt="${item.nome}" />
-      <div class="sidebar-post-info">
-        <div class="sp-title"><a href="${prefixo}${item.url}">${item.nome}</a></div>
-        <div class="sp-cat">${item.categoria}</div>
+      <!-- WIDGET DE RSS NA SIDEBAR -->
+      <div class="rss-widget">
+        <div class="rss-widget-title">
+          <i class="fas fa-rss"></i> Receba Novidades!
+        </div>
+        <div class="rss-widget-text">
+          Adicione nosso feed ao seu leitor de RSS favorito e receba notificações de novos tutoriais e jogos.
+        </div>
+        <!-- BOTÃO DE COPIAR LINK DO FEED -->
+        <button class="rss-copy-btn" onclick="copyToClipboard('feed.xml')"><i class="fas fa-copy"></i> Copiar Link do Feed</button>
       </div>
-    `;
-    container.appendChild(sidebarItem);
-  });
-}
 
-document.addEventListener("DOMContentLoaded", function() {
-  const path = window.location.pathname;
+      <div class="sidebar-widget" id="sidebar-populares">
+        <h3 class="widget-title">🔥 Populares</h3>
+        <!-- Preenchido dinamicamente por renderizar.js -->
+      </div>
+    </aside>
+  </div>
+</div>
 
-  if (path.includes("index.html") || path.endsWith("/") || path.includes("INDEX")) {
-    renderizarAtualizacoes();
-    renderizarDestaques();
-    renderizarSidebar();
-  } else if (path.includes("aplicativos.html")) {
-    renderizarPaginaAplicativos();
-    renderizarSidebar();
-  } else if (path.includes("jogos.html")) {
-    renderizarPaginaJogos();
-    renderizarSidebar();
-  } else if (path.includes("tutoriais.html")) {
-    renderizarPaginaTutoriais();
-    renderizarSidebar();
-  } else if (path.includes("ferramentas.html")) {
-    renderizarPaginaFerramentas();
-    renderizarSidebar();
-  } else if (path.includes("quente.html")) {
-    renderizarPaginaQuente();
-    renderizarSidebar();
-  } else {
-    renderizarSidebar();
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">🌅 Horizonte Tutoriais</div>
+      <p>Horizonte Tutoriais — Sua fonte definitiva para APKs e tutoriais. Todos os direitos reservados.</p>
+      <div class="footer-social">
+        <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" title="Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener" title="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4>Links Rápidos</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="pages/aplicativos.html">Aplicativos</a></li>
+        <li><a href="pages/jogos.html">Jogos</a></li>
+        <li><a href="pages/tutoriais.html">Tutoriais</a></li>
+        <li><a href="pages/quente.html">Quente</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Informações</h4>
+      <ul>
+        <li><a href="pages/sobre.html">Sobre</a></li>
+        <li><a href="pages/contato.html">Contate-nos</a></li>
+        <li><a href="pages/privacidade.html">Política de Privacidade</a></li>
+        <li><a href="pages/isencao.html">Isenção de Responsabilidade</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-nav">
+        <a href="pages/sobre.html">Sobre</a>
+        <a href="pages/contato.html">Contate-nos</a>
+        <a href="pages/privacidade.html">Política de Privacidade</a>
+        <a href="pages/isencao.html">Isenção de Responsabilidade</a>
+      </div>
+      <p>Copyright &copy; 2025–2026 <a href="index.html">Horizonte Tutoriais</a> | Todos os direitos reservados | <a href="feed.xml" class="rss-btn"><i class="fas fa-rss"></i> RSS Feed</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- SCRIPT CUSDIS -->
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+<script>
+  // Permitir carregamento inicial
+  window.cusdis_prevent_initial_load = false;
+
+  // FUNÇÃO PARA COPIAR LINK DO FEED
+  function copyToClipboard(text) {
+    var fullUrl = window.location.origin + '/' + text;
+    navigator.clipboard.writeText(fullUrl).then(function() {
+      alert('Link do feed copiado para a área de transferência!');
+    }).catch(function(err) {
+      alert('Erro ao copiar: ' + err);
+    });
   }
-});
+
+  // TRADUÇÃO DOS TERMOS E MENSAGENS DE STATUS
+  function translateCusdis() {
+    const translations = {
+      'Nickname': 'Seu Nome',
+      'Reply': 'Responder',
+      'Comment': 'Comentário',
+      'Submit': 'Enviar Comentário',
+      'Email (optional)': 'E-mail (opcional)',
+      'Reply...': 'Escreva aqui sua opinião...',
+      'Load more': 'Carregar mais',
+      'sending...': 'Enviando...',
+      'Your comment has been sent. Please wait for approval.': 'Seu comentário foi enviado! Aguarde a aprovação do administrador.'
+    };
+
+    const iframes = document.querySelectorAll('#cusdis_thread iframe');
+    iframes.forEach(iframe => {
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        
+        // Traduzir textos fixos e mensagens de status que aparecem dinamicamente
+        const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null, false);
+        let node;
+        while(node = walker.nextNode()) {
+          const text = node.nodeValue.trim();
+          if (translations[text]) {
+            node.nodeValue = translations[text];
+          }
+        }
+        
+        // Traduzir placeholders e botões
+        doc.querySelectorAll('input, textarea, button').forEach(el => {
+          if (el.placeholder && translations[el.placeholder]) {
+            el.placeholder = translations[el.placeholder];
+          }
+          if (el.innerText && translations[el.innerText.trim()]) {
+            el.innerText = translations[el.innerText.trim()];
+          }
+        });
+      } catch (e) { }
+    });
+  }
+
+  // Rodar tradução periodicamente (cada 500ms para ser mais rápido na captura do status)
+  setInterval(translateCusdis, 500);
+</script>
+
+<!-- Scripts de renderização dinâmica -->
+<script src="../js/dados.js"></script>
+<script src="../js/renderizar.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>
