@@ -432,7 +432,11 @@
                 if (h1) h1.textContent = postItem.titulo;
 
                 const img = document.querySelector('.post-featured-img');
-                if (img) img.src = postItem.imagemCapa;
+                if (img) {
+                    // Usar imagemCapa se disponível, senão usar ícone
+                    const imagemFinal = postItem.imagemCapa || postItem.icone || postItem.imagem || 'https://via.placeholder.com/700x300';
+                    img.src = imagemFinal;
+                }
 
                 const postDate = document.querySelector('.post-date');
                 if (postDate) postDate.textContent = '📅 ' + postItem.data;
