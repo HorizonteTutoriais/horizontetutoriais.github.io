@@ -9,15 +9,15 @@ const APPS_DATA = {
       nome: "Horizon Clicker",
       descricao: "Automação de Cliques",
       categoria: "Aplicativos",
-      tipo: "normal", // <-- Alterado para normal para não aparecer em populares
-      quente: true,    // <-- Marcado como quente
+      tipo: "normal", // Para não aparecer em Populares (Exemplo 3)
+      quente: true,    // Marcado como quente (Exemplo 3)
       imagem: "https://placehold.co/64x64/1a73e8/fff?text=HC",
       imagemGrande: "https://placehold.co/150x150/1a73e8/fff?text=HC",
       url: "posts/aplicativos/horizon-clicker-FINAL-CORRIGIDO.html",
       linkDownload: "https://4br.me/BaixarHorizonClicker",
       tutorial: "pages/tutoriais.html#horizon-clicker",
       data: "2026-03-04",
-      destaque: true
+      destaque: false // Deixado como false para testar a automação do renderizar.js
     }
   ],
   jogos: [
@@ -26,15 +26,15 @@ const APPS_DATA = {
       nome: "Resident Evil 4 Mobile Edition",
       descricao: "Ação / Survival Horror",
       categoria: "Jogos",
-      tipo: "popular", // <-- Marcado como popular
-      quente: false,   // <-- Alterado para false para não aparecer em quente
+      tipo: "popular", // Marcado como popular (Exemplo 1)
+      quente: false,   // Para não aparecer em Quente (Exemplo 1)
       imagem: "https://placehold.co/64x64/c62828/fff?text=RE4",
       imagemGrande: "https://placehold.co/150x150/c62828/fff?text=RE4",
       url: "posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html",
       linkDownload: "https://4br.me/BaixarResidentEvil4",
       tutorial: "pages/tutoriais.html#resident-evil-4",
       data: "2026-03-04",
-      destaque: true
+      destaque: false // Deixado como false para testar a automação do renderizar.js
     }
   ],
   tutoriais: [
