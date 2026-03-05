@@ -1,218 +1,163 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS — Motor de Automação Total v11 (Final)
-   Lógica: Injeção Segura + Propagação Multi-Seção + Tutoriais
+   HORIZONTE TUTORIAIS — Renderizador Dinâmico 100% Automático
+   Sistema de Filtragem Rigorosa por Categoria e Tipo
    ============================================================ */
 
 (function() {
     'use strict';
 
+    // Determina o prefixo de caminho com base na localização atual
     function getPrefixo() {
         const path = window.location.pathname;
         if (path.includes('/posts/')) return '../../';
         if (path.includes('/pages/')) return '../';
+        if (path.includes('/Index/')) return '../';
         return '';
     }
 
     const prefixo = getPrefixo();
 
+    // Obter ID da URL (para páginas mestras dinâmicas)
     function getIdFromUrl() {
         const params = new URLSearchParams(window.location.search);
-        let id = params.get('id');
-        if (!id) {
-            const path = window.location.pathname;
-            if (path.includes('horizon-clicker')) id = 'horizon-clicker';
-            if (path.includes('resident-evil-4')) id = 'resident-evil-4';
-        }
-        return id;
+        return params.get('id');
     }
 
-    // Função para criar o Card padrão do site
+    // Criar card reutilizável
     function criarCard(item, prefixo) {
         const card = document.createElement('div');
         card.className = 'app-card';
-        card.style.cssText = `background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 15px; margin-bottom: 15px; box-shadow: var(--shadow); transition: all 0.3s ease; display: flex; gap: 15px; cursor: pointer;`;
-        
+        card.style.cssText = `
+            background: var(--white);
+            border: 1px solid var(--gray-border);
+            border-radius: var(--radius);
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            gap: 15px;
+            cursor: pointer;
+        `;
+
+        card.onmouseover = function() {
+            this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+            this.style.transform = 'translateY(-2px)';
+        };
+
+        card.onmouseout = function() {
+            this.style.boxShadow = 'var(--shadow)';
+            this.style.transform = 'translateY(0)';
+        };
+
+        // Imagem
         const img = document.createElement('img');
-        img.src = item.icone || item.imagem || 'https://via.placeholder.com/80';
-        img.style.cssText = `width: 80px; height: 80px; border-radius: 6px; object-fit: cover; flex-shrink: 0;`;
-        
+        img.src = item.imagem || item.icone || 'https://via.placeholder.com/80';
+        img.alt = item.nome;
+        img.style.cssText = `
+            width: 80px;
+            height: 80px;
+            border-radius: 6px;
+            object-fit: cover;
+            flex-shrink: 0;
+        `;
+
+        // Conteúdo
         const content = document.createElement('div');
         content.style.flex = '1';
-        content.innerHTML = `<h3 style="margin: 0 0 5px 0; font-size: 16px; color: #0d47a1; font-weight: 700;">${item.nome}</h3><p style="margin: 0 0 8px 0; font-size: 13px; color: #666; line-height: 1.4;">${item.descricao}</p><span class="badge badge-cat" style="display: inline-block; background: #0d47a1; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-right: 8px;">${item.categoria}</span><span style="font-size: 11px; color: #999;">📅 ${item.data || 'Recente'}</span>`;
-        
+
+        const title = document.createElement('h3');
+        title.style.cssText = 'margin: 0 0 5px 0; font-size: 16px; color: #0d47a1; font-weight: 700;';
+        title.textContent = item.nome;
+
+        const desc = document.createElement('p');
+        desc.style.cssText = 'margin: 0 0 8px 0; font-size: 13px; color: #666; line-height: 1.4;';
+        desc.textContent = item.descricao;
+
+        const categoria = document.createElement('span');
+        categoria.className = 'badge badge-cat';
+        categoria.style.cssText = `
+            display: inline-block;
+            background: #0d47a1;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 8px;
+        `;
+        categoria.textContent = item.categoria;
+
+        const data = document.createElement('span');
+        data.style.cssText = 'font-size: 11px; color: #999;';
+        data.textContent = '📅 ' + (item.data || 'Recente');
+
+        content.appendChild(title);
+        content.appendChild(desc);
+        content.appendChild(categoria);
+        content.appendChild(data);
+
         card.appendChild(img);
         card.appendChild(content);
-        card.onclick = () => window.location.href = prefixo + item.url;
+
+        // Clique no card redireciona para o app
+        card.onclick = function(e) {
+            if (e.target.tagName !== 'A') {
+                window.location.href = prefixo + item.url;
+            }
+        };
+
         return card;
     }
 
-    // Função para criar a seção de Tutoriais (Restaurando layout original fiel)
-    function criarTutorialCard(item) {
-        const div = document.createElement('div');
-        div.className = 'tutorial-card';
-        div.innerHTML = `
-            <div class="tutorial-header">
-                <img src="${item.icone || item.imagem}" class="tutorial-icon" alt="${item.nome}">
-                <div class="tutorial-info">
-                    <h3>${item.tutorialTitulo || item.nome}</h3>
-                    <p>${item.tutorialSubtitulo || ''}</p>
-                </div>
-            </div>
-            <div class="tutorial-description">${item.tutorialDescricao || item.descricaoLonga || ''}</div>
-            <div class="tutorial-buttons">
-                <button class="btn-specs" onclick="openModal('${item.id}')"><i class="fas fa-list-ul"></i> ESPECIFICAÇÕES</button>
-                <button class="btn-video" onclick="toggleVideo('${item.id}')"><i class="fas fa-play-circle"></i> VÍDEOS</button>
-                <a href="${prefixo}${item.url}" class="btn-download-tutorial"><i class="fas fa-download"></i> DOWNLOAD</a>
-            </div>
-            <div id="video-container-${item.id}" class="video-scroll-container">
-                <div class="video-scroll-list">
-                    ${(item.videos || []).map((v, index) => `
-                        <div class="video-btn" onclick="playVideo('${v.id}', '${item.id}')">
-                            <i class="fab fa-youtube"></i>
-                            <span>${v.titulo || 'Parte ' + (index + 1)}</span>
-                        </div>
-                    `).join('')}
-                </div>
-                <div id="player-${item.id}" class="video-player-container" style="display:none;"></div>
-            </div>
-        `;
-        return div;
-    }
-
+    // Função principal de renderização
     window.renderizarTudo = function() {
-        if (!window.APPS_DATA) return;
-        const path = window.location.pathname;
-        const urlId = getIdFromUrl();
-        const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
-
-        // 1. PÁGINA DE DETALHES (POST)
-        if (urlId) {
-            const postItem = todosItens.find(i => i.id === urlId);
-            if (postItem) {
-                const img = document.querySelector('.post-featured-img');
-                if (img) {
-                    img.src = postItem.imagemCapa;
-                    img.style.cssText = `width: 100%; max-height: 320px; object-fit: contain; background: #1a73e8; border-radius: var(--radius); margin-bottom: 16px;`;
-                }
-                const infoTable = document.querySelector('.info-table');
-                if (infoTable && postItem.especificacoes) {
-                    const containerPai = infoTable.parentElement;
-                    document.querySelectorAll('.specs-header-custom').forEach(e => e.remove());
-                    const specsHeader = document.createElement('div');
-                    specsHeader.className = 'specs-header-custom';
-                    specsHeader.style.cssText = `display: flex; align-items: center; gap: 15px; margin-top: 25px; margin-bottom: 15px; padding: 12px; background: #f0f4ff; border-radius: 8px; border-left: 4px solid var(--blue-primary);`;
-                    specsHeader.innerHTML = `<img src="${postItem.icone || postItem.imagem}" style="width: 70px; height: 70px; border-radius: 8px; object-fit: cover; box-shadow: 0 2px 6px rgba(0,0,0,0.15); background: #fff;"><div><h2 style="margin: 0; font-size: 16px; font-weight: 700; color: var(--blue-dark);">📊 ESPECIFICAÇÕES DO ${postItem.categoria.toUpperCase()}</h2></div>`;
-                    containerPai.insertBefore(specsHeader, infoTable);
-                    containerPai.querySelectorAll('h2.section-title').forEach(t => { if (t.textContent.includes('ESPECIFICAÇÕES')) t.remove(); });
-                }
-                const downloadBox = document.querySelector('.download-box');
-                if (downloadBox) {
-                    downloadBox.innerHTML = '';
-                    if (postItem.categoria === 'Jogos' || postItem.tipoDownload === 'multiplo') {
-                        downloadBox.innerHTML = `<p style="font-size:14px;font-weight:700;color:#c62828;margin-bottom:12px">⬇️ Clique abaixo para baixar o jogo</p><div class="download-options"><a href="${postItem.linkDownload}" class="btn-download-option" target="_blank"><i class="fas fa-file-archive"></i> BAIXAR APK</a><a href="${postItem.linkDownloadData1 || '#'}" class="btn-download-option alt" target="_blank"><i class="fas fa-database"></i> DATA 1</a><a href="${postItem.linkDownloadData2 || '#'}" class="btn-download-option alt" target="_blank"><i class="fas fa-database"></i> DATA 2</a></div>`;
-                    } else {
-                        downloadBox.innerHTML = `<p style="font-size:14px;font-weight:700;color:#0d47a1;margin-bottom:12px">⬇️ Clique abaixo para baixar o aplicativo</p><a href="${postItem.linkDownload}" class="btn-big-download" target="_blank"><i class="fas fa-download"></i> DOWNLOAD</a>`;
-                    }
-                }
-            }
+        if (!window.APPS_DATA) {
+            console.warn('APPS_DATA não está disponível ainda');
             return;
         }
 
-        // 2. MOTOR DE LISTAGENS (DISTRIBUIÇÃO AUTOMÁTICA)
-        const updatesGrid = document.querySelector('.updates-grid');
-        const popularSection = document.querySelector('.popular-section');
-        const appsGrid = document.querySelector('.apps-grid');
-        const sidebarPopulares = document.querySelector('#sidebar-populares');
+        const path = window.location.pathname;
+        const urlId = getIdFromUrl();
 
-        // Limpar APENAS o conteúdo gerado dinamicamente para evitar duplicação e sumiço
-        if (updatesGrid) updatesGrid.innerHTML = '';
-        if (appsGrid) appsGrid.innerHTML = '';
-        if (sidebarPopulares) {
-            const list = sidebarPopulares.querySelector('.populares-list') || sidebarPopulares;
-            // Remover apenas cards injetados anteriormente
-            list.querySelectorAll('.app-card').forEach(c => c.remove());
-        }
-        if (popularSection) {
-            const grid = popularSection.querySelector('.apps-grid') || popularSection;
-            // Remover apenas cards injetados anteriormente, preservando títulos
-            grid.querySelectorAll('.app-card').forEach(c => c.remove());
-        }
-
-        todosItens.forEach(item => {
-            // REGRA: Sempre em Últimas Atualizações (na Index)
-            if (updatesGrid) updatesGrid.appendChild(criarCard(item, prefixo));
-
-            // REGRA: Filtro de Categorias (Aplicativos.html e Jogos.html)
-            if (path.includes('aplicativos.html') && item.categoria === 'Aplicativos' && (appsGrid || popularSection)) {
-                let target = appsGrid || popularSection.querySelector('.apps-grid') || popularSection;
-                target.appendChild(criarCard(item, prefixo));
-            }
-            if (path.includes('jogos.html') && item.categoria === 'Jogos' && (appsGrid || popularSection)) {
-                let target = appsGrid || popularSection.querySelector('.apps-grid') || popularSection;
-                target.appendChild(criarCard(item, prefixo));
-            }
-
-            // REGRA: Filtro Quente (Quente.html)
-            if (path.includes('quente.html') && item.tipo === 'quente' && (appsGrid || popularSection)) {
-                let target = appsGrid || popularSection.querySelector('.apps-grid') || popularSection;
-                target.appendChild(criarCard(item, prefixo));
-            }
-
-            // REGRA: POPULAR (Exemplo 1) -> Aparece em Popular e Destaques na Index
-            if (item.tipo === 'popular' || item.popular === true) {
-                if (popularSection && (path.includes('index.html') || path === '/' || path.endsWith('/'))) {
-                    let target = popularSection.querySelector('.apps-grid') || popularSection;
-                    target.appendChild(criarCard(item, prefixo));
-                }
-                if (sidebarPopulares) {
-                    let target = sidebarPopulares.querySelector('.populares-list') || sidebarPopulares;
-                    target.appendChild(criarCard(item, prefixo));
+        // ============= RENDERIZAR PÁGINA MESTRA DINÂMICA =============
+        if (urlId) {
+            let postItem = null;
+            const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
+            
+            for (let i = 0; i < todosItens.length; i++) {
+                if (todosItens[i].id === urlId) {
+                    postItem = todosItens[i];
+                    break;
                 }
             }
-        });
 
-        // 3. TUTORIAIS (PÁGINA TUTORIAIS)
-        if (path.includes('tutoriais.html')) {
-            const tutorialContainer = document.querySelector('.popular-section, #tutoriais-list');
-            if (tutorialContainer) {
-                const grid = tutorialContainer.querySelector('.apps-grid') || tutorialContainer;
-                // Preservar o título original da seção se existir
-                if (!grid.querySelector('.section-title')) {
-                    grid.innerHTML = '<h1 class="section-title">📖 Tutoriais Completos</h1>';
-                } else {
-                    // Se já houver título, apenas remove cards antigos
-                    grid.querySelectorAll('.tutorial-card').forEach(c => c.remove());
+            if (postItem) {
+                // Atualizar título e meta
+                document.title = postItem.titulo + ' — Horizonte Tutoriais';
+                const metaDesc = document.querySelector('meta[name="description"]');
+                if (metaDesc) metaDesc.setAttribute('content', postItem.descricaoLonga);
+
+                // Renderizar conteúdo do post
+                const postBody = document.querySelector('.post-body');
+                if (postBody) {
+                    let recursosHtml = '';
+                    if (postItem.recursos && postItem.recursos.length > 0) {
+                        recursosHtml = '<h2>⭐ RECURSOS PRINCIPAIS ⭐⭐⭐</h2><ul>';
+                        for (let i = 0; i < postItem.recursos.length; i++) {
+                            recursosHtml += '<li>✅ ' + postItem.recursos[i] + '</li>';
+                        }
+                        recursosHtml += '</ul>';
+                    }
+                    postBody.innerHTML = '<p>' + (postItem.descricaoLonga || '') + '</p>' + recursosHtml;
                 }
-                todosItens.forEach(item => grid.appendChild(criarTutorialCard(item)));
-            }
-        }
-    };
 
-    // Funções Globais para Tutoriais
-    window.toggleVideo = function(id) {
-        const container = document.getElementById(`video-container-${id}`);
-        if (container) container.classList.toggle('active');
-    };
-
-    window.playVideo = function(videoId, itemId) {
-        const player = document.getElementById(`player-${itemId}`);
-        if (player) {
-            player.style.display = 'block';
-            player.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allowfullscreen></iframe>`;
-        }
-    };
-
-    window.openModal = function(id) {
-        const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
-        const item = todosItens.find(i => i.id === id);
-        if (item) {
-            const modal = document.getElementById('specsModal');
-            const content = document.getElementById('modalSpecsContent');
-            if (modal && content) {
-                const s = item.especificacoes;
-                content.innerHTML = `
-                    <table class="specs-table">
-                        <tr><td>Nome</td><td>${item.nome}</td></tr>
+                // Renderizar tabela de especificações
+                const infoTable = document.querySelector('.info-table');
+                if (infoTable && postItem.especificacoes) {
+                    const s = postItem.especificacoes;
+                    infoTable.innerHTML = `
+                        <tr><td>${postItem.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo'}</td><td>${postItem.nome}</td></tr>
                         <tr><td>Versão</td><td>${s.versao}</td></tr>
                         <tr><td>Tamanho</td><td>${s.tamanho}</td></tr>
                         <tr><td>Categoria</td><td>${s.categoria}</td></tr>
@@ -220,14 +165,269 @@
                         <tr><td>Tipo do Arquivo</td><td>${s.tipoArquivo}</td></tr>
                         <tr><td>Requer Android</td><td>${s.androidMin}</td></tr>
                         <tr><td>Atualizado em</td><td>${s.atualizadoEm}</td></tr>
-                    </table>
-                `;
-                modal.style.display = 'block';
+                    `;
+                }
+
+                // Renderizar botões de download
+                const downloadBox = document.querySelector('.download-box');
+                if (downloadBox) {
+                    if (postItem.tipoDownload === 'multiplo') {
+                        downloadBox.innerHTML = `
+                            <p style="font-size:14px;font-weight:700;color:#c62828;margin-bottom:12px">⬇️ Clique abaixo para baixar o jogo</p>
+                            <div class="download-options">
+                                <a href="${postItem.linkDownload}" class="btn-download-option" target="_blank" rel="noopener">
+                                    <i class="fas fa-file-archive"></i> BAIXAR APK
+                                </a>
+                                <a href="${postItem.linkDownloadData1}" class="btn-download-option alt" target="_blank" rel="noopener">
+                                    <i class="fas fa-database"></i> BAIXAR DATA 1
+                                </a>
+                                <a href="${postItem.linkDownloadData2}" class="btn-download-option alt" target="_blank" rel="noopener">
+                                    <i class="fas fa-database"></i> BAIXAR DATA 2
+                                </a>
+                            </div>
+                            <p style="font-size:11px;color:#666;margin-top:10px">Link seguro verificado — Horizonte Tutoriais</p>
+                        `;
+                    } else {
+                        downloadBox.innerHTML = `
+                            <p style="font-size:14px;font-weight:700;color:#0d47a1;margin-bottom:12px">⬇️ Clique abaixo para baixar o aplicativo</p>
+                            <a href="${postItem.linkDownload}" class="btn-big-download" target="_blank" rel="noopener">
+                                <i class="fas fa-download"></i> DOWNLOAD
+                            </a>
+                            <p style="font-size:11px;color:#666;margin-top:10px">Link seguro verificado — Horizonte Tutoriais</p>
+                        `;
+                    }
+                }
+
+                // Renderizar botão de tutorial
+                const tutorialsWidget = document.querySelector('.tutorials-widget');
+                if (tutorialsWidget) {
+                    tutorialsWidget.innerHTML = `
+                        <a href="${prefixo}pages/tutoriais.html?open=${postItem.id}" class="btn-tutorial-direct">
+                            <span><i class="fas fa-video"></i> TUTORIAIS</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    `;
+                }
+
+                // Renderizar breadcrumb
+                const breadcrumb = document.querySelector('.breadcrumb');
+                if (breadcrumb) {
+                    breadcrumb.innerHTML = `
+                        <a href="${prefixo}index.html">Lar</a>
+                        <span>›</span>
+                        <a href="${prefixo}pages/${postItem.categoria === 'Jogos' ? 'jogos' : 'aplicativos'}.html">
+                            ${postItem.categoria === 'Jogos' ? 'Jogos' : 'Aplicativos'}
+                        </a>
+                        <span>›</span>
+                        ${postItem.nome}
+                    `;
+                }
+
+                // Atualizar título, imagem e data
+                const h1 = document.querySelector('.post-header h1');
+                if (h1) h1.textContent = postItem.titulo;
+
+                const img = document.querySelector('.post-featured-img');
+                if (img) img.src = postItem.imagemCapa;
+
+                const postDate = document.querySelector('.post-date');
+                if (postDate) postDate.textContent = '📅 ' + postItem.data;
+            }
+            return;
+        }
+
+        // ============= RENDERIZAR CARDS NAS PÁGINAS DE LISTAGEM =============
+        let container = document.querySelector('.popular-section');
+        let dados = [];
+        let titulo = '';
+
+        // PÁGINA DE APLICATIVOS - Mostrar APENAS itens com categoria "Aplicativos"
+        if (path.includes('/pages/aplicativos.html')) {
+            dados = (window.APPS_DATA.aplicativos || []).filter(item => item.categoria === 'Aplicativos');
+            titulo = '📱 Aplicativos';
+        } 
+        // PÁGINA DE JOGOS - Mostrar APENAS itens com categoria "Jogos"
+        else if (path.includes('/pages/jogos.html')) {
+            dados = (window.APPS_DATA.jogos || []).filter(item => item.categoria === 'Jogos');
+            titulo = '🎮 Jogos';
+        } 
+        // PÁGINA QUENTE - Mostrar APENAS itens com tipo "quente"
+        else if (path.includes('/pages/quente.html')) {
+            const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
+            dados = todosItens.filter(item => item.tipo === 'quente');
+            titulo = '🔥 Quente';
+        } 
+        // PÁGINA FERRAMENTAS
+        else if (path.includes('/pages/ferramentas.html')) {
+            dados = window.APPS_DATA.ferramentas || [];
+            titulo = '🔧 Ferramentas';
+        } 
+        // PÁGINA INICIAL
+        else if (path.includes('/Index/index.html') || path === '/' || path.endsWith('/index.html')) {
+            const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
+            
+            // Últimas Atualizações - TODOS os itens, ordenados por data
+            const updateContainer = document.querySelector('.updates-grid');
+            if (updateContainer) {
+                updateContainer.innerHTML = '';
+                const ultimasAtualizacoes = todosItens.sort((a, b) => new Date(b.data) - new Date(a.data));
+                for (let i = 0; i < ultimasAtualizacoes.length; i++) {
+                    updateContainer.appendChild(criarCard(ultimasAtualizacoes[i], prefixo));
+                }
+            }
+
+            // Destaques - APENAS itens com destaque: true
+            const popularContainer = document.querySelector('.popular-section');
+            if (popularContainer) {
+                popularContainer.innerHTML = '';
+                const destaques = todosItens.filter(item => item.destaque === true);
+                for (let i = 0; i < destaques.length; i++) {
+                    popularContainer.appendChild(criarCard(destaques[i], prefixo));
+                }
+            }
+
+            // Sidebar Populares - APENAS itens com tipo: "popular"
+            const sidebarPopulares = document.getElementById('sidebar-populares');
+            if (sidebarPopulares) {
+                sidebarPopulares.innerHTML = '<h3 class="widget-title">🔥 Populares</h3>';
+                const populares = todosItens.filter(item => item.tipo === 'popular');
+                
+                for (let i = 0; i < Math.min(populares.length, 5); i++) {
+                    sidebarPopulares.appendChild(criarCard(populares[i], prefixo));
+                }
+            }
+
+            // Seção Quente - APENAS itens com tipo: "quente"
+            const quenteContainer = document.querySelector('.quente-section');
+            if (quenteContainer) {
+                quenteContainer.innerHTML = '<h2 class="section-title">🔥 Quente Agora</h2>';
+                const quentes = todosItens.filter(item => item.tipo === 'quente');
+                for (let i = 0; i < quentes.length; i++) {
+                    quenteContainer.appendChild(criarCard(quentes[i], prefixo));
+                }
+            }
+
+            return;
+        }
+
+        // Renderizar cards na página de listagem
+        if (container && dados.length > 0) {
+            container.innerHTML = '<h1 class="section-title">' + titulo + '</h1>';
+            for (let i = 0; i < dados.length; i++) {
+                container.appendChild(criarCard(dados[i], prefixo));
+            }
+        }
+
+        // ============= RENDERIZAR TUTORIAIS =============
+        if (path.includes('/pages/tutoriais.html')) {
+            const tutoriaisContainer = document.querySelector('.popular-section');
+            if (tutoriaisContainer) {
+                tutoriaisContainer.innerHTML = '<h1 class="section-title">📚 Tutoriais</h1>';
+                const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
+                
+                for (let i = 0; i < todosItens.length; i++) {
+                    const item = todosItens[i];
+                    if (!item.tutorialTitulo) continue;
+
+                    const tutorialCard = document.createElement('div');
+                    tutorialCard.className = 'tutorial-card';
+                    
+                    let videosHtml = '';
+                    if (item.videos && item.videos.length > 0) {
+                        for (let v = 0; v < item.videos.length; v++) {
+                            const video = item.videos[v];
+                            videosHtml += `<div class="video-btn" onclick="openVideoModal('${item.id}', '${video.id}', '${video.titulo}')"><i class="fas fa-video"></i><span>${video.titulo}</span></div>`;
+                        }
+                    }
+
+                    tutorialCard.innerHTML = `
+                        <div class="tutorial-header"><img src="${item.icone || item.imagem}" alt="${item.nome}" class="tutorial-icon" /><div class="tutorial-info"><h3>${item.tutorialTitulo}</h3><p>${item.tutorialSubtitulo}</p></div></div>
+                        <div class="tutorial-description">${item.tutorialDescricao}</div>
+                        <div class="tutorial-buttons">
+                            <button class="btn-specs" onclick="openSpecsModal('${item.id}')"><i class="fas fa-info-circle"></i> Specs</button>
+                            <button class="btn-video" onclick="toggleVideoScroll('${item.id}')"><i class="fas fa-play-circle"></i> Assistir</button>
+                            <a href="${prefixo}posts/${item.categoria === 'Jogos' ? 'jogos' : 'aplicativos'}/${item.categoria === 'Jogos' ? 'jogo' : 'app'}.html?id=${item.id}" class="btn-download-tutorial"><i class="fas fa-download"></i> Baixar</a>
+                        </div>
+                        <div id="video-scroll-${item.id}" class="video-scroll-container"><div class="video-scroll-list">${videosHtml}</div></div>
+                    `;
+                    tutoriaisContainer.appendChild(tutorialCard);
+
+                    // Modal de Specs
+                    const modal = document.createElement('div');
+                    modal.id = `modal-${item.id}`;
+                    modal.className = 'modal';
+                    modal.style.display = 'none';
+                    const s = item.especificacoes;
+                    modal.innerHTML = `<div class="modal-content"><div class="modal-header"><h2>${item.nome} - Specs</h2><button class="close-btn" onclick="closeSpecsModal('${item.id}')">&times;</button></div><table class="specs-table"><tr><td>${item.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo'}</td><td>${item.nome}</td></tr><tr><td>Versão</td><td>${s.versao}</td></tr><tr><td>Tamanho</td><td>${s.tamanho}</td></tr><tr><td>Categoria</td><td>${s.categoria}</td></tr><tr><td>Desenvolvedor</td><td>${s.desenvolvedor}</td></tr><tr><td>Tipo do Arquivo</td><td>${s.tipoArquivo}</td></tr><tr><td>Requer Android</td><td>${s.androidMin}</td></tr><tr><td>Atualizado em</td><td>${s.atualizadoEm}</td></tr><tr><td>Recursos</td><td>${s.recursosEspecificacoes}</td></tr></table></div>`;
+                    document.body.appendChild(modal);
+                }
+                
+                // Auto-open
+                const params = new URLSearchParams(window.location.search);
+                const autoOpen = params.get('open');
+                if (autoOpen) {
+                    setTimeout(() => {
+                        const scroll = document.getElementById('video-scroll-' + autoOpen);
+                        if (scroll) { 
+                            scroll.classList.add('active'); 
+                            scroll.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
+                        }
+                    }, 300);
+                }
             }
         }
     };
 
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', window.renderizarTudo);
-    else window.renderizarTudo();
+    // Funções Globais
+    window.openSpecsModal = function(id) { 
+        const m = document.getElementById('modal-' + id); 
+        if (m) { 
+            m.style.display = 'block'; 
+            document.body.style.overflow = 'hidden'; 
+        } 
+    };
+    
+    window.closeSpecsModal = function(id) { 
+        const m = document.getElementById('modal-' + id); 
+        if (m) { 
+            m.style.display = 'none'; 
+            document.body.style.overflow = 'auto'; 
+        } 
+    };
+    
+    window.toggleVideoScroll = function(id) { 
+        const s = document.getElementById('video-scroll-' + id); 
+        if (s) s.classList.toggle('active'); 
+    };
+    
+    window.openVideoModal = function(tid, vid, title) {
+        const m = document.getElementById('modal-video-player');
+        const i = document.getElementById('video-iframe');
+        const t = document.getElementById('video-modal-title');
+        if (m && i) { 
+            t.textContent = '📺 ' + title; 
+            i.src = 'https://www.youtube.com/embed/' + vid + '?autoplay=1'; 
+            m.style.display = 'block'; 
+            document.body.style.overflow = 'hidden'; 
+        }
+    };
+    
+    window.closeVideoModal = function() {
+        const m = document.getElementById('modal-video-player');
+        const i = document.getElementById('video-iframe');
+        if (m && i) { 
+            i.src = ''; 
+            m.style.display = 'none'; 
+            document.body.style.overflow = 'auto'; 
+        }
+    };
+
+    // Inicialização
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', window.renderizarTudo);
+    } else {
+        window.renderizarTudo();
+    }
+    
     document.addEventListener('dadosProntos', window.renderizarTudo);
 })();
