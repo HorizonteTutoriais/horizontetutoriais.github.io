@@ -120,4 +120,4 @@ if (document.readyState === 'loading') {
   });
 } else {
   document.dispatchEvent(new CustomEvent('dadosProntos', { detail: window.APPS_DATA }));
-           }
+}
