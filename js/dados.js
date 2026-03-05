@@ -1,938 +1,123 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS — Folha de Estilos Principal
+   HORIZONTE TUTORIAIS — Banco de Dados
+   Dados embutidos diretamente (sem fetch)
    ============================================================ */
 
-/* ---------- Reset & Base ---------- */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --blue-primary: #1a73e8;
-  --blue-dark:    #0d47a1;
-  --blue-nav:     #1565c0;
-  --green-btn:    #2e7d32;
-  --green-hover:  #1b5e20;
-  --orange-btn:   #e65100;
-  --gray-bg:      #f5f5f5;
-  --gray-border:  #ddd;
-  --gray-text:    #555;
-  --white:        #fff;
-  --font-main:    'Segoe UI', Arial, sans-serif;
-  --radius:       6px;
-  --shadow:       0 2px 6px rgba(0,0,0,.12);
-  --text-main:    #222;
-  --text-body:    #333;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--font-main);
-  background: var(--gray-bg);
-  color: var(--text-main);
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-a { color: var(--blue-primary); text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-img { max-width: 100%; height: auto; display: block; }
-
-/* ---------- Top Bar ---------- */
-.top-bar {
-  background: var(--blue-dark);
-  color: #fff;
-  font-size: 12px;
-  padding: 4px 0;
-}
-.top-bar .container {
-  display: flex;
-  justify-content: flex-end;
-  gap: 20px;
-}
-.top-bar a { color: #cce5ff; font-size: 12px; }
-.top-bar a:hover { color: #fff; text-decoration: none; }
-
-/* ---------- Header ---------- */
-.site-header {
-  background: var(--blue-primary);
-  padding: 10px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0,0,0,.3);
-}
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-.site-logo {
-  font-size: 22px;
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: -0.5px;
-  white-space: nowrap;
-}
-.site-logo span { color: #ffd600; }
-.site-logo:hover { text-decoration: none; color: #fff; }
-
-.header-telegram {
-  background: #0088cc;
-  color: #fff;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-}
-.header-telegram:hover { background: #006fa3; text-decoration: none; color: #fff; }
-
-/* ---------- Navigation ---------- */
-.site-nav {
-  background: var(--blue-nav);
-  border-bottom: 3px solid var(--blue-dark);
-}
-.nav-list {
-  display: flex;
-  list-style: none;
-  gap: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.nav-list::-webkit-scrollbar { display: none; }
-.nav-list li a {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  color: #fff;
-  padding: 10px 16px;
-  font-size: 13px;
-  font-weight: 600;
-  white-space: nowrap;
-  transition: background .2s;
-}
-.nav-list li a:hover,
-.nav-list li a.active { background: rgba(255,255,255,.15); text-decoration: none; }
-.nav-list li a .nav-icon { font-size: 14px; }
-
-/* ---------- Container ---------- */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 12px;
-}
-
-/* ---------- Layout Principal ---------- */
-.main-layout {
-  display: grid;
-  grid-template-columns: 1fr 280px;
-  gap: 20px;
-  padding: 20px 0;
-}
-
-/* ---------- Seção de Atualizações (topo) ---------- */
-.updates-section {
-  background: var(--white);
-  border: 1px solid var(--gray-border);
-  border-radius: var(--radius);
-  padding: 14px;
-  margin-bottom: 20px;
-  box-shadow: var(--shadow);
-}
-.section-title {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--blue-dark);
-  border-left: 4px solid var(--blue-primary);
-  padding-left: 10px;
-  margin-bottom: 14px;
-  text-transform: uppercase;
-  letter-spacing: .3px;
-}
-.updates-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-}
-.update-card {
-  background: var(--gray-bg);
-  border: 1px solid var(--gray-border);
-  border-radius: var(--radius);
-  padding: 10px;
-  text-align: center;
-  transition: box-shadow .2s, transform .2s;
-}
-.update-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
-.update-card img {
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
-  margin: 0 auto 8px;
-  object-fit: cover;
-}
-.update-card .card-title {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-main);
-  margin-bottom: 6px;
-  line-height: 1.3;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.btn-download {
-  display: inline-block;
-  background: var(--green-btn);
-  color: #fff;
-  padding: 4px 12px;
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 700;
-  cursor: pointer;
-  border: none;
-  transition: background .2s;
-  text-align: center;
-}
-.btn-download:hover { background: var(--green-hover); text-decoration: none; color: #fff; }
-
-/* ---------- Posts Populares (lista) ---------- */
-.popular-section {
-  background: var(--white);
-  border: 1px solid var(--gray-border);
-  border-radius: var(--radius);
-  padding: 14px;
-  margin-bottom: 20px;
-  box-shadow: var(--shadow);
-}
-.post-list-item {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  padding: 10px 0;
-  border-bottom: 1px solid #eee;
-}
-.post-list-item:last-child { border-bottom: none; }
-.post-list-item img {
-  width: 64px;
-  height: 64px;
-  border-radius: 10px;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-.post-list-info { flex: 1; }
-.post-list-info .post-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text-main);
-  margin-bottom: 2px;
-  line-height: 1.4;
-}
-.post-list-info .post-title a { color: var(--text-main); }
-.post-list-info .post-title a:hover { color: var(--blue-primary); text-decoration: none; }
-.post-list-info .post-cat {
-  font-size: 11px;
-  color: var(--gray-text);
-}
-.post-list-info .post-cat a { color: var(--blue-primary); font-size: 11px; }
-.btn-download-sm {
-  display: inline-block;
-  background: var(--green-btn);
-  color: #fff;
-  padding: 3px 10px;
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 700;
-  margin-top: 6px;
-  transition: background .2s;
-}
-.btn-download-sm:hover { background: var(--green-hover); text-decoration: none; color: #fff; }
-
-/* ---------- Seção Exclusivo (grid) ---------- */
-.exclusive-section {
-  background: var(--white);
-  border: 1px solid var(--gray-border);
-  border-radius: var(--radius);
-  padding: 14px;
-  margin-bottom: 20px;
-  box-shadow: var(--shadow);
-}
-.exclusive-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-.excl-card {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  background: var(--gray-bg);
-  border: 1px solid var(--gray-border);
-  border-radius: var(--radius);
-  padding: 8px;
-  transition: box-shadow .2s;
-}
-.excl-card:hover { box-shadow: var(--shadow); }
-.excl-card img {
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-.excl-info .excl-title {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text-main);
-  margin-bottom: 2px;
-  line-height: 1.3;
-}
-.excl-info .excl-title a { color: var(--text-main); }
-.excl-info .excl-title a:hover { color: var(--blue-primary); text-decoration: none; }
-.excl-info .excl-cat { font-size: 10px; color: var(--gray-text); margin-bottom: 4px; }
-
-/* ---------- Aplicativos (grid com "Mostrar mais") ---------- */
-.apps-section {
-  background: var(--white);
-  border: 1px solid var(--gray-border);
-  border-radius: var(--radius);
-  padding: 14px;
-  margin-bottom: 20px;
-  box-shadow: var(--shadow);
-}
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
-}
-.section-header .show-more {
-  font-size: 12px;
-  color: var(--blue-primary);
-  font-weight: 600;
-}
-.apps-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-.app-card {
-  background: var(--gray-bg);
-  border: 1px solid var(--gray-border);
-  border-radius: var(--radius);
-  padding: 10px;
-  transition: box-shadow .2s;
-}
-.app-card:hover { box-shadow: var(--shadow); }
-.app-card-title {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--text-main);
-  margin-bottom: 2px;
-  line-height: 1.3;
-}
-.app-card-title a { color: var(--text-main); }
-.app-card-title a:hover { color: var(--blue-primary); text-decoration: none; }
-.app-card-cat { font-size: 10px; color: var(--gray-text); margin-bottom: 6px; }
-.app-card-cat span { color: var(--orange-btn); font-weight: 700; }
-
-/* ---------- Botão Carregar Mais ---------- */
-.load-more-wrap { text-align: center; margin: 10px 0 20px; }
-.btn-load-more {
-  background: var(--blue-primary);
-  color: #fff;
-  padding: 10px 30px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  transition: background .2s;
-}
-.btn-load-more:hover { background: var(--blue-dark); text-decoration: none; color: #fff; }
-
-/* ---------- Sidebar ---------- */
-.sidebar { display: flex; flex-direction: column; gap: 20px; }
-
-.sidebar-widget {
-  background: var(--white);
-  border: 1px solid var(--gray-border);
-  border-radius: var(--radius);
-  padding: 14px;
-  box-shadow: var(--shadow);
-}
-.widget-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--blue-dark);
-  border-left: 4px solid var(--blue-primary);
-  padding-left: 8px;
-  margin-bottom: 12px;
-  text-transform: uppercase;
-}
-
-/* Mídias Sociais */
-.social-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 14px;
-  border-radius: var(--radius);
-  color: #fff;
-  font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  transition: opacity .2s;
-}
-.social-btn:hover { opacity: .88; text-decoration: none; color: #fff; }
-.social-btn.telegram  { background: #0088cc; }
-.social-btn.whatsapp  { background: #25d366; }
-.social-btn.instagram { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
-.social-btn.youtube   { background: #ff0000; }
-.social-btn .s-icon { font-size: 18px; }
-
-/* Posts Populares Sidebar */
-.sidebar-post {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
-}
-.sidebar-post:last-child { border-bottom: none; }
-.sidebar-post img {
-  width: 56px;
-  height: 56px;
-  border-radius: 8px;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-.sidebar-post-info .sp-title {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text-main);
-  line-height: 1.3;
-  margin-bottom: 2px;
-}
-.sidebar-post-info .sp-title a { color: var(--text-main); }
-.sidebar-post-info .sp-title a:hover { color: var(--blue-primary); text-decoration: none; }
-.sidebar-post-info .sp-cat { font-size: 10px; color: var(--gray-text); }
-
-/* ---------- Tags / Badges ---------- */
-.badge {
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 3px;
-  font-size: 10px;
-  font-weight: 700;
-  margin-right: 4px;
-  color: #fff;
-}
-.badge-cat  { background: var(--blue-primary); }
-.badge-hot  { background: #e53935; }
-.badge-new  { background: #43a047; }
-.badge-free { background: #fb8c00; }
-
-/* ---------- Sobre Nós (rodapé lateral) ---------- */
-.about-widget p {
-  font-size: 12px;
-  color: var(--gray-text);
-  line-height: 1.6;
-}
-
-/* ---------- Footer ---------- */
-.site-footer {
-  background: var(--blue-dark);
-  color: #cce5ff;
-  margin-top: 30px;
-}
-.footer-top {
-  padding: 20px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.footer-about h3 { color: #fff; font-size: 16px; margin-bottom: 6px; }
-.footer-about p  { font-size: 12px; max-width: 320px; }
-.footer-social { display: flex; gap: 10px; margin-top: 10px; }
-.footer-social a {
-  background: rgba(255,255,255,.15);
-  color: #fff;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  transition: background .2s;
-}
-.footer-social a:hover { background: rgba(255,255,255,.3); text-decoration: none; }
-
-.footer-links h4 { color: #fff; font-size: 13px; margin-bottom: 8px; }
-.footer-links ul { list-style: none; }
-.footer-links ul li { margin-bottom: 5px; }
-.footer-links ul li a { color: #cce5ff; font-size: 12px; }
-.footer-links ul li a:hover { color: #fff; }
-
-.footer-bottom {
-  background: rgba(0,0,0,.2);
-  padding: 12px 0;
-  text-align: center;
-  font-size: 12px;
-}
-.footer-bottom a { color: #ffd600; font-weight: 700; }
-.footer-bottom .footer-nav { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 6px; }
-.footer-bottom .footer-nav a { color: #cce5ff; font-size: 12px; }
-.footer-bottom .footer-nav a:hover { color: #fff; }
-
-/* ---------- Post Single ---------- */
-.post-header { margin-bottom: 16px; }
-.post-header h1 { font-size: 20px; font-weight: 800; color: var(--text-main); line-height: 1.3; margin-bottom: 8px; }
-.post-meta { font-size: 12px; color: var(--gray-text); display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-.post-meta .meta-author { font-weight: 600; color: var(--blue-primary); }
-.post-featured-img { width: 100%; height: 320px; border-radius: var(--radius); margin-bottom: 16px; object-fit: cover; object-position: center top; max-height: 320px; }
-
-.info-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
-.info-table tr:nth-child(even) { background: #f0f4ff; }
-.info-table td { padding: 8px 12px; border: 1px solid var(--gray-border); font-size: 13px; color: var(--text-body); }
-.info-table td:first-child { font-weight: 700; color: var(--blue-dark); width: 40%; }
-
-.download-box {
-  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-  border: 2px solid var(--blue-primary);
-  border-radius: var(--radius);
-  padding: 20px;
-  text-align: center;
-  margin: 20px 0;
-}
-.btn-big-download {
-  display: inline-block;
-  background: var(--green-btn);
-  color: #fff;
-  padding: 14px 40px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: .5px;
-  transition: background .2s, transform .1s;
-  border: none;
-  cursor: pointer;
-}
-.btn-big-download:hover { background: var(--green-hover); transform: scale(1.03); text-decoration: none; color: #fff; }
-
-.post-body { font-size: 14px; line-height: 1.8; color: var(--text-body); }
-.post-body h2 { font-size: 17px; color: var(--blue-dark); margin: 20px 0 10px; border-bottom: 2px solid #e3f2fd; padding-bottom: 6px; }
-.post-body h3 { font-size: 15px; color: var(--blue-primary); margin: 16px 0 8px; }
-.post-body p  { margin-bottom: 12px; }
-.post-body ul, .post-body ol { padding-left: 20px; margin-bottom: 12px; }
-.post-body li { margin-bottom: 4px; }
-.post-body strong { color: var(--text-main); }
-
-.telegram-cta {
-  background: #0088cc;
-  color: #fff;
-  border-radius: var(--radius);
-  padding: 12px 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13px;
-  font-weight: 700;
-  margin: 16px 0;
-}
-.telegram-cta a { color: #fff; }
-
-/* ---------- Comentários ---------- */
-.comments-section {
-  background: var(--white);
-  border: 1px solid var(--gray-border);
-  border-radius: var(--radius);
-  padding: 16px;
-  margin-top: 20px;
-  box-shadow: var(--shadow);
-}
-.comments-section h3 { font-size: 15px; color: var(--blue-dark); margin-bottom: 12px; }
-.comment-form textarea {
-  width: 100%;
-  border: 1px solid var(--gray-border);
-  border-radius: var(--radius);
-  padding: 10px;
-  font-size: 13px;
-  resize: vertical;
-  min-height: 80px;
-  font-family: var(--font-main);
-  background: var(--white);
-  color: var(--text-main);
-}
-.comment-form input[type="text"],
-.comment-form input[type="email"] {
-  width: 100%;
-  border: 1px solid var(--gray-border);
-  border-radius: var(--radius);
-  padding: 8px 10px;
-  font-size: 13px;
-  margin-bottom: 8px;
-  font-family: var(--font-main);
-  background: var(--white);
-  color: var(--text-main);
-}
-.comment-form .btn-comment {
-  background: var(--blue-primary);
-  color: #fff;
-  padding: 8px 20px;
-  border-radius: var(--radius);
-  border: none;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  margin-top: 8px;
-}
-.comment-form .btn-comment:hover { background: var(--blue-dark); }
-.no-comments { font-size: 13px; color: var(--gray-text); margin-bottom: 16px; }
-
-/* ---------- Breadcrumb ---------- */
-.breadcrumb {
-  font-size: 12px;
-  color: var(--gray-text);
-  padding: 8px 0;
-  margin-bottom: 4px;
-}
-.breadcrumb a { color: var(--blue-primary); }
-.breadcrumb span { margin: 0 5px; }
-
-/* ---------- Página estática (Sobre, Privacidade, Contato) ---------- */
-.static-page {
-  background: var(--white);
-  border: 1px solid var(--gray-border);
-  border-radius: var(--radius);
-  padding: 24px;
-  box-shadow: var(--shadow);
-}
-.static-page h1 { font-size: 22px; color: var(--blue-dark); margin-bottom: 16px; }
-.static-page h2 { font-size: 17px; color: var(--blue-primary); margin: 20px 0 10px; }
-.static-page p  { font-size: 14px; color: var(--text-body); margin-bottom: 12px; line-height: 1.8; }
-.static-page ul { padding-left: 20px; margin-bottom: 12px; }
-.static-page ul li { font-size: 14px; color: var(--text-body); margin-bottom: 4px; }
-
-/* ---------- Responsividade ---------- */
-@media (max-width: 900px) {
-  .main-layout { grid-template-columns: 1fr; }
-  .sidebar { order: -1; }
-  .updates-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 600px) {
-  .updates-grid { grid-template-columns: repeat(2, 1fr); }
-  .exclusive-grid, .apps-grid { grid-template-columns: 1fr; }
-  .site-logo { font-size: 17px; }
-  .post-header h1 { font-size: 17px; }
-  .footer-top { flex-direction: column; }
-}
-
-/* ---------- Utilitários ---------- */
-.hidden { display: none !important; }
-.text-center { text-align: center; }
-.mt-10 { margin-top: 10px; }
-.mb-10 { margin-bottom: 10px; }
-
-/* ============================================================
-   MODO NOTURNO
-   ============================================================ */
-
-body.dark-mode {
-  --gray-bg:      #121212;
-  --white:        #1e1e1e;
-  --gray-border:  #3a3a3a;
-  --gray-text:    #aaa;
-  --text-main:    #e8e8e8;
-  --text-body:    #d0d0d0;
-  --blue-dark:    #90caf9;
-  --blue-primary: #64b5f6;
-  color: #e8e8e8;
-  background: #121212;
-}
-
-/* Nav e header no dark mode */
-body.dark-mode .top-bar { background: #0a0a0a; }
-body.dark-mode .top-bar a { color: #fff; }
-body.dark-mode .top-bar a:hover { color: #ffd600; }
-body.dark-mode .site-nav { background: #1a1a1a; border-bottom-color: #000; }
-body.dark-mode .site-header { background: #0d47a1; }
-body.dark-mode .nav-list li a { color: #fff; }
-body.dark-mode .nav-list li a:hover,
-body.dark-mode .nav-list li a.active { background: rgba(255,255,255,.2); }
-body.dark-mode .search-fixed-container input { color: #fff; }
-body.dark-mode .search-fixed-container input::placeholder { color: rgba(255,255,255,0.9); }
-body.dark-mode .search-fixed-container button { color: #fff; }
-body.dark-mode .search-fixed-container { background: rgba(255,255,255,0.1); }
-body.dark-mode .search-fixed-container:focus-within { background: rgba(255,255,255,0.2); }
-
-/* Cards */
-body.dark-mode .update-card,
-body.dark-mode .excl-card,
-body.dark-mode .app-card { background: #252525; border-color: #3a3a3a; }
-
-/* Títulos de seção */
-body.dark-mode .section-title { color: #ffd600; border-left-color: #ffd600; }
-body.dark-mode .widget-title  { color: #ffd600; border-left-color: #ffd600; }
-
-/* Separadores de lista */
-body.dark-mode .post-list-item { border-bottom-color: #3a3a3a; }
-body.dark-mode .sidebar-post   { border-bottom-color: #3a3a3a; }
-
-/* Sidebar */
-body.dark-mode .sidebar-widget { background: #1e1e1e; border-color: #3a3a3a; }
-
-/* Seções principais */
-body.dark-mode .updates-section,
-body.dark-mode .popular-section,
-body.dark-mode .exclusive-section,
-body.dark-mode .apps-section,
-body.dark-mode .comments-section,
-body.dark-mode .static-page { background: #1e1e1e; border-color: #3a3a3a; }
-
-/* Tabela de informações do post */
-body.dark-mode .info-table tr:nth-child(even) { background: #252525; }
-body.dark-mode .info-table td { border-color: #3a3a3a; color: #d0d0d0; }
-body.dark-mode .info-table td:first-child { color: #90caf9; }
-
-/* Caixa de download */
-body.dark-mode .download-box {
-  background: linear-gradient(135deg, #1a2a3a, #1e3a5a);
-  border-color: #64b5f6;
-}
-
-/* Corpo do post */
-body.dark-mode .post-body h2 { color: #90caf9; border-bottom-color: #2a3a4a; }
-body.dark-mode .post-body h3 { color: #64b5f6; }
-body.dark-mode .post-body strong { color: #e8e8e8; }
-
-/* Cabeçalho do post */
-body.dark-mode .post-header h1 { color: #e8e8e8; }
-
-/* Formulário de comentários */
-body.dark-mode .comment-form textarea,
-body.dark-mode .comment-form input[type="text"],
-body.dark-mode .comment-form input[type="email"] {
-  background: #252525;
-  border-color: #3a3a3a;
-  color: #e8e8e8;
-}
-
-/* Página estática */
-body.dark-mode .static-page h1 { color: #90caf9; }
-body.dark-mode .static-page h2 { color: #64b5f6; }
-
-/* Breadcrumb */
-body.dark-mode .breadcrumb { color: #aaa; }
-
-/* Footer */
-body.dark-mode .site-footer { background: #0a0a0a; border-top-color: #333; }
-
-/* Sobre widget */
-body.dark-mode .about-widget p { color: #aaa; }
-
-/* RSS widget */
-body.dark-mode .rss-widget { background: #1e1e1e; border-color: #3a3a3a; }
-body.dark-mode .rss-widget-text { color: #aaa; }
-
-/* Custom comments */
-body.dark-mode .custom-comments { background: #1e1e1e; border-color: #3a3a3a; }
-body.dark-mode .custom-comments p { color: #aaa; }
-body.dark-mode .custom-comments h3 { color: #e8e8e8; }
-
-/* Cusdis Comments Dark Mode */
-body.dark-mode #cusdis_thread iframe {
-  filter: invert(1) hue-rotate(180deg);
-}
-
-body.dark-mode #cusdis_list {
-  background: #1e1e1e;
-  border-color: #3a3a3a;
-}
-
-/* Cusdis iframe text colors */
-body.dark-mode #cusdis_thread {
-  color: #e8e8e8;
-}
-
-/* Ensure text is visible in dark mode */
-body.dark-mode .custom-comments .widget-title {
-  color: #e8e8e8;
-}
-
-body.dark-mode .custom-comments input,
-body.dark-mode .custom-comments textarea {
-  background: #252525;
-  color: #e8e8e8;
-  border-color: #3a3a3a;
-}
-
-body.dark-mode .custom-comments button {
-  background: #1a73e8;
-  color: #fff;
-}
-
-/* Tutorial cards (página tutoriais) */
-body.dark-mode .tutorial-card { background: #1e1e1e; border-color: #3a3a3a; }
-body.dark-mode .tutorial-info h3 { color: #90caf9; }
-body.dark-mode .tutorial-info p { color: #aaa; }
-body.dark-mode .tutorial-description { background: #252525; border-left-color: #64b5f6; color: #d0d0d0; }
-body.dark-mode .video-scroll-container { background: #252525; border-color: #3a3a3a; }
-body.dark-mode .video-btn { background: #1e1e1e; border-color: #64b5f6; color: #e8e8e8; }
-
-/* ============================================================
-   HEADER ACTIONS — Botão Modo Noturno + Pesquisa
-   ============================================================ */
-
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
-}
-
-/* Botão modo noturno */
-.header-btn {
-  background: rgba(255,255,255,0.15);
-  border: none;
-  color: #fff;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s, transform 0.2s;
-  font-size: 18px;
-  flex-shrink: 0;
-}
-.header-btn:hover {
-  background: rgba(255,255,255,0.3);
-  transform: scale(1.05);
-}
-
-/* Barra de pesquisa fixa no header */
-.search-fixed-container {
-  display: flex;
-  align-items: center;
-  background: rgba(255,255,255,0.15);
-  border-radius: 20px;
-  padding: 2px 10px;
-  border: 1px solid rgba(255,255,255,0.3);
-  transition: background 0.2s;
-}
-.search-fixed-container:focus-within {
-  background: rgba(255,255,255,0.25);
-}
-.search-fixed-container input {
-  background: transparent;
-  border: none;
-  color: #fff;
-  outline: none;
-  padding: 5px;
-  font-size: 13px;
-  width: 130px;
-}
-.search-fixed-container input::placeholder { color: rgba(255,255,255,0.7); }
-.search-fixed-container button {
-  background: transparent;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 0 4px;
-  display: flex;
-  align-items: center;
-}
-
-/* Painel de resultados de pesquisa */
-.search-results-panel {
-  position: fixed;
-  top: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 600px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
-  z-index: 9999;
-  max-height: 400px;
-  overflow-y: auto;
-  display: none;
-}
-.search-results-panel.active { display: block; }
-.search-result-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 14px;
-  border-bottom: 1px solid #eee;
-  cursor: pointer;
-  transition: background 0.15s;
-  text-decoration: none;
-  color: #222;
-}
-.search-result-item:last-child { border-bottom: none; }
-.search-result-item:hover { background: #f0f4ff; text-decoration: none; color: #222; }
-.search-result-item img {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-.search-result-info .sri-title { font-size: 13px; font-weight: 700; color: #222; }
-.search-result-info .sri-cat   { font-size: 11px; color: #666; }
-.search-no-result {
-  padding: 16px;
-  text-align: center;
-  color: #888;
-  font-size: 13px;
-}
-.search-results-close {
-  display: flex;
-  justify-content: flex-end;
-  padding: 6px 10px 0;
-}
-.search-results-close button {
-  background: none;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  color: #888;
-  line-height: 1;
-}
-
-/* Dark mode no painel de resultados */
-body.dark-mode .search-results-panel {
-  background: #1e1e1e;
-  border-color: #3a3a3a;
-}
-body.dark-mode .search-result-item {
-  color: #e8e8e8;
-  border-bottom-color: #3a3a3a;
-}
-body.dark-mode .search-result-item:hover { background: #252525; color: #e8e8e8; }
-body.dark-mode .search-result-info .sri-title { color: #e8e8e8; }
-body.dark-mode .search-result-info .sri-cat   { color: #aaa; }
-body.dark-mode .search-no-result { color: #aaa; }
-body.dark-mode .search-results-close button { color: #aaa; }
-
-/* Ajuste Mobile */
-@media (max-width: 600px) {
-  .header-telegram { display: none; }
-  .search-fixed-container input { width: 90px; }
-  .search-results-panel { top: 56px; width: 95%; }
-}
+// Dados do site - EDITE AQUI para adicionar novos apps e jogos
+window.APPS_DATA = {
+  "aplicativos": [
+    {
+      "id": "horizon-clicker",
+      "nome": "Horizon Clicker",
+      "descricao": "Jogo de clicker divertido",
+      "categoria": "Aplicativos",
+      "tipo": "quente",
+      "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/AShzdwWGghpbeWBY.png",
+      "url": "posts/aplicativos/app.html?id=horizon-clicker",
+      "tutorial": "pages/tutoriais.html?open=horizon-clicker",
+      "data": "2026-03-04",
+      "destaque": true,
+      "titulo": "Download do APK do Horizon Clicker (Automação de Cliques)",
+      "descricaoLonga": "O Horizon Clicker é uma ferramenta poderosa para automação de tarefas repetitivas no seu dispositivo Android, permitindo configurar cliques automáticos com precisão e facilidade.",
+      "recursos": [
+        "Interface Intuitiva e fácil de usar",
+        "Cliques Rápidos e Precisos com ajuste de milissegundos",
+        "Fácil de Configurar múltiplos pontos de clique",
+        "Sem Necessidade de Root no dispositivo"
+      ],
+      "especificacoes": {
+        "versao": "Última Versão",
+        "tamanho": "Varia de acordo com o dispositivo",
+        "categoria": "Ferramentas / Automação",
+        "desenvolvedor": "Horizon Dev Team",
+        "tipoArquivo": "APK",
+        "androidMin": "5.0 ou superior",
+        "atualizadoEm": "26/02/2026",
+        "recursosEspecificacoes": "Interface Intuitiva, Cliques Rápidos e Precisos, Sem Necessidade de Root"
+      },
+      "linkDownload": "https://4br.me/BaixarHorizonClikerApk",
+      "tutorialTitulo": "🖱️ Como Usar o Horizon Click",
+      "tutorialSubtitulo": "Aprenda a automatizar cliques no seu Android com precisão e facilidade usando o Horizon Clicker.",
+      "tutorialDescricao": "Neste tutorial completo, você aprenderá como instalar, configurar e usar o Horizon Clicker para automatizar tarefas repetitivas no seu dispositivo Android. Perfeito para jogos, aplicativos e qualquer tarefa que envolva cliques repetidos.",
+      "videos": [
+        { "titulo": "Tutorial Parte 1", "id": "XDhx-rdHSmY" },
+        { "titulo": "Configuração", "id": "XDhx-rdHSmY" },
+        { "titulo": "Dicas Extras", "id": "XDhx-rdHSmY" },
+        { "titulo": "Avançado", "id": "XDhx-rdHSmY" },
+        { "titulo": "Automação Básica", "id": "XDhx-rdHSmY" },
+        { "titulo": "Múltiplos Cliques", "id": "XDhx-rdHSmY" },
+        { "titulo": "Otimização", "id": "XDhx-rdHSmY" },
+        { "titulo": "Troubleshooting", "id": "XDhx-rdHSmY" },
+        { "titulo": "Casos de Uso", "id": "XDhx-rdHSmY" },
+        { "titulo": "FAQ", "id": "XDhx-rdHSmY" }
+      ],
+      "icone": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/AShzdwWGghpbeWBY.png"
+    }
+  ],
+  "jogos": [
+    {
+      "id": "resident-evil-4",
+      "nome": "Resident Evil 4",
+      "descricao": "Jogo de ação e horror",
+      "categoria": "Jogos",
+      "tipo": "popular",
+      "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663407143234/rIfxPWmplfZKmpdU.jpg",
+      "url": "posts/jogos/jogo.html?id=resident-evil-4",
+      "tutorial": "pages/tutoriais.html?open=resident-evil-4",
+      "data": "2026-03-04",
+      "destaque": true,
+      "titulo": "Como Jogar Resident Evil 4 Mobile",
+      "descricaoLonga": "Resident Evil 4 é um clássico do survival horror que agora está disponível para Android. Descubra como instalar e dominar este jogo épico no seu celular.",
+      "recursos": [
+        "Gráficos Otimizados para dispositivos móveis",
+        "Controles Adaptados para tela sensível ao toque",
+        "História Completa do jogo original",
+        "Alta Performance em diversos dispositivos"
+      ],
+      "especificacoes": {
+        "versao": "Mobile Edition",
+        "tamanho": "~1.5 GB",
+        "categoria": "Ação / Survival Horror",
+        "desenvolvedor": "Capcom",
+        "tipoArquivo": "APK + Dados (Discos)",
+        "androidMin": "7.0 ou superior",
+        "atualizadoEm": "26/02/2026",
+        "recursosEspecificacoes": "Gráficos Otimizados, Controles Adaptados, História Completa, Alta Performance"
+      },
+      "linkDownload": "https://4br.me/BaixarApkR4",
+      "linkDownloadData1": "https://4br.me/BaixarDico1R4",
+      "linkDownloadData2": "https://4br.me/BaixarDisco2R4",
+      "tutorialTitulo": "🎮 Como Jogar Resident Evil 4 Mobile",
+      "tutorialSubtitulo": "Guia completo para instalar e dominar o clássico survival horror no seu celular.",
+      "tutorialDescricao": "Descubra como instalar Resident Evil 4 no seu Android, configure os controles para melhor experiênca, e aprenda as melhores estratégias para vencer o jogo. Um tutorial passo a passo para iniciantes e veteranos.",
+      "videos": [
+        { "titulo": "Instalação APK", "id": "XDhx-rdHSmY" },
+        { "titulo": "Configurar OBB", "id": "XDhx-rdHSmY" },
+        { "titulo": "Gameplay", "id": "XDhx-rdHSmY" },
+        { "titulo": "Dicas de Combate", "id": "XDhx-rdHSmY" },
+        { "titulo": "Controles", "id": "XDhx-rdHSmY" },
+        { "titulo": "Gráficos & Performance", "id": "XDhx-rdHSmY" },
+        { "titulo": "Melhores Armas", "id": "XDhx-rdHSmY" },
+        { "titulo": "Speedrun", "id": "XDhx-rdHSmY" },
+        { "titulo": "Troubleshooting", "id": "XDhx-rdHSmY" },
+        { "titulo": "FAQ", "id": "XDhx-rdHSmY" }
+      ],
+      "icone": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663407143234/rIfxPWmplfZKmpdU.jpg",
+      "tipoDownload": "multiplo"
+    }
+  ],
+  "tutoriais": [],
+  "ferramentas": [],
+  "quente": []
+};
+
+console.log('Dados carregados com sucesso:', window.APPS_DATA);
+
+// Notifica que os dados estão prontos
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() {
+    document.dispatchEvent(new CustomEvent('dadosProntos', { detail: window.APPS_DATA }));
+  });
+} else {
+  document.dispatchEvent(new CustomEvent('dadosProntos', { detail: window.APPS_DATA }));
+           }
