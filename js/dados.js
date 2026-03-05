@@ -9,8 +9,8 @@ const APPS_DATA = {
       nome: "Horizon Clicker",
       descricao: "Automação de Cliques",
       categoria: "Aplicativos",
-      tipo: "popular",
-      quente: true,
+      tipo: "normal", // <-- Alterado para normal para não aparecer em populares
+      quente: true,    // <-- Marcado como quente
       imagem: "https://placehold.co/64x64/1a73e8/fff?text=HC",
       imagemGrande: "https://placehold.co/150x150/1a73e8/fff?text=HC",
       url: "posts/aplicativos/horizon-clicker-FINAL-CORRIGIDO.html",
@@ -26,8 +26,8 @@ const APPS_DATA = {
       nome: "Resident Evil 4 Mobile Edition",
       descricao: "Ação / Survival Horror",
       categoria: "Jogos",
-      tipo: "popular",
-      quente: true,
+      tipo: "popular", // <-- Marcado como popular
+      quente: false,   // <-- Alterado para false para não aparecer em quente
       imagem: "https://placehold.co/64x64/c62828/fff?text=RE4",
       imagemGrande: "https://placehold.co/150x150/c62828/fff?text=RE4",
       url: "posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html",
