@@ -660,7 +660,19 @@ body.dark-mode {
 }
 
 /* Nav e header no dark mode */
+body.dark-mode .top-bar { background: #0a0a0a; }
+body.dark-mode .top-bar a { color: #fff; }
+body.dark-mode .top-bar a:hover { color: #ffd600; }
 body.dark-mode .site-nav { background: #1a1a1a; border-bottom-color: #000; }
+body.dark-mode .site-header { background: #0d47a1; }
+body.dark-mode .nav-list li a { color: #fff; }
+body.dark-mode .nav-list li a:hover,
+body.dark-mode .nav-list li a.active { background: rgba(255,255,255,.2); }
+body.dark-mode .search-fixed-container input { color: #fff; }
+body.dark-mode .search-fixed-container input::placeholder { color: rgba(255,255,255,0.9); }
+body.dark-mode .search-fixed-container button { color: #fff; }
+body.dark-mode .search-fixed-container { background: rgba(255,255,255,0.1); }
+body.dark-mode .search-fixed-container:focus-within { background: rgba(255,255,255,0.2); }
 
 /* Cards */
 body.dark-mode .update-card,
