@@ -1,6 +1,6 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS — Motor de Automação Total v10 (Final)
-   Lógica: Propagação por Seletores Reais + Restauração de Tutoriais
+   HORIZONTE TUTORIAIS — Motor de Automação Total v11 (Final)
+   Lógica: Injeção Segura + Propagação Multi-Seção + Tutoriais
    ============================================================ */
 
 (function() {
@@ -118,26 +118,24 @@
             return;
         }
 
-        // 2. MOTOR DE LISTAGENS (DISTRIBUIÇÃO AUTOMÁTICA POR SELETORES REAIS)
+        // 2. MOTOR DE LISTAGENS (DISTRIBUIÇÃO AUTOMÁTICA)
         const updatesGrid = document.querySelector('.updates-grid');
         const popularSection = document.querySelector('.popular-section');
         const appsGrid = document.querySelector('.apps-grid');
         const sidebarPopulares = document.querySelector('#sidebar-populares');
 
-        // Limpar para evitar duplicação
+        // Limpar APENAS o conteúdo gerado dinamicamente para evitar duplicação e sumiço
         if (updatesGrid) updatesGrid.innerHTML = '';
-        if (popularSection) {
-            const grid = popularSection.querySelector('.apps-grid');
-            if (grid) grid.innerHTML = '';
-            else {
-                // Se não houver apps-grid dentro de popular-section, cria um ou usa o próprio
-                popularSection.querySelectorAll('.app-card').forEach(c => c.remove());
-            }
-        }
         if (appsGrid) appsGrid.innerHTML = '';
         if (sidebarPopulares) {
             const list = sidebarPopulares.querySelector('.populares-list') || sidebarPopulares;
+            // Remover apenas cards injetados anteriormente
             list.querySelectorAll('.app-card').forEach(c => c.remove());
+        }
+        if (popularSection) {
+            const grid = popularSection.querySelector('.apps-grid') || popularSection;
+            // Remover apenas cards injetados anteriormente, preservando títulos
+            grid.querySelectorAll('.app-card').forEach(c => c.remove());
         }
 
         todosItens.forEach(item => {
@@ -145,11 +143,20 @@
             if (updatesGrid) updatesGrid.appendChild(criarCard(item, prefixo));
 
             // REGRA: Filtro de Categorias (Aplicativos.html e Jogos.html)
-            if (path.includes('aplicativos.html') && item.categoria === 'Aplicativos' && appsGrid) appsGrid.appendChild(criarCard(item, prefixo));
-            if (path.includes('jogos.html') && item.categoria === 'Jogos' && appsGrid) appsGrid.appendChild(criarCard(item, prefixo));
+            if (path.includes('aplicativos.html') && item.categoria === 'Aplicativos' && (appsGrid || popularSection)) {
+                let target = appsGrid || popularSection.querySelector('.apps-grid') || popularSection;
+                target.appendChild(criarCard(item, prefixo));
+            }
+            if (path.includes('jogos.html') && item.categoria === 'Jogos' && (appsGrid || popularSection)) {
+                let target = appsGrid || popularSection.querySelector('.apps-grid') || popularSection;
+                target.appendChild(criarCard(item, prefixo));
+            }
 
             // REGRA: Filtro Quente (Quente.html)
-            if (path.includes('quente.html') && item.tipo === 'quente' && appsGrid) appsGrid.appendChild(criarCard(item, prefixo));
+            if (path.includes('quente.html') && item.tipo === 'quente' && (appsGrid || popularSection)) {
+                let target = appsGrid || popularSection.querySelector('.apps-grid') || popularSection;
+                target.appendChild(criarCard(item, prefixo));
+            }
 
             // REGRA: POPULAR (Exemplo 1) -> Aparece em Popular e Destaques na Index
             if (item.tipo === 'popular' || item.popular === true) {
@@ -162,16 +169,6 @@
                     target.appendChild(criarCard(item, prefixo));
                 }
             }
-            
-            // REGRA: DESTAQUE -> Aparece em Destaques na Index
-            if (item.destaque === true && popularSection && (path.includes('index.html') || path === '/')) {
-                // Destaques e Populares costumam compartilhar a mesma seção na sua index
-                let target = popularSection.querySelector('.apps-grid') || popularSection;
-                // Evitar duplicar se já foi inserido como popular
-                if (!target.innerText.includes(item.nome)) {
-                    target.appendChild(criarCard(item, prefixo));
-                }
-            }
         });
 
         // 3. TUTORIAIS (PÁGINA TUTORIAIS)
@@ -179,13 +176,19 @@
             const tutorialContainer = document.querySelector('.popular-section, #tutoriais-list');
             if (tutorialContainer) {
                 const grid = tutorialContainer.querySelector('.apps-grid') || tutorialContainer;
-                grid.innerHTML = '<h1 class="section-title">📖 Tutoriais Completos</h1>';
+                // Preservar o título original da seção se existir
+                if (!grid.querySelector('.section-title')) {
+                    grid.innerHTML = '<h1 class="section-title">📖 Tutoriais Completos</h1>';
+                } else {
+                    // Se já houver título, apenas remove cards antigos
+                    grid.querySelectorAll('.tutorial-card').forEach(c => c.remove());
+                }
                 todosItens.forEach(item => grid.appendChild(criarTutorialCard(item)));
             }
         }
     };
 
-    // Funções Globais para Tutoriais (Restaurando funcionalidade original fiel)
+    // Funções Globais para Tutoriais
     window.toggleVideo = function(id) {
         const container = document.getElementById(`video-container-${id}`);
         if (container) container.classList.toggle('active');
