@@ -12,7 +12,7 @@ window.APPS_DATA = {
       "descricao": "Jogo de clicker divertido",
       "categoria": "Aplicativos",
       "tipo": "quente",
-      "imagem": "https://via.placeholder.com/150",
+      "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/AShzdwWGghpbeWBY.png",
       "url": "posts/aplicativos/app.html?id=horizon-clicker",
       "tutorial": "pages/tutoriais.html?open=horizon-clicker",
       "data": "2026-03-04",
@@ -52,55 +52,7 @@ window.APPS_DATA = {
         { "titulo": "Casos de Uso", "id": "XDhx-rdHSmY" },
         { "titulo": "FAQ", "id": "XDhx-rdHSmY" }
       ],
-      "icone": "https://placehold.co/80x80/1a73e8/fff?text=HC"
-    },
-    {
-      "id": "horizon-tela-ligada",
-      "nome": "Horizon Tela Ligada",
-      "descricao": "Mantém a tela do seu Android sempre ligada",
-      "categoria": "Aplicativos",
-      "tipo": "normal",
-      "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/ySlUmmMGFwaupDCT.png",
-      "url": "posts/aplicativos/app.html?id=horizon-tela-ligada",
-      "tutorial": "pages/tutoriais.html?open=horizon-tela-ligada",
-      "data": "2026-03-05",
-      "destaque": false,
-      "titulo": "Download do APK do Horizon Tela Ligada",
-      "descricaoLonga": "O Horizon Tela Ligada é uma ferramenta poderosa para manter a tela do seu dispositivo Android sempre ativa, permitindo configurar a duração com precisão e facilidade.",
-      "recursos": [
-        "Interface Intuitiva e fácil de usar",
-        "Controle de tempo ajustável",
-        "Fácil de Configurar múltiplas opções",
-        "Sem Necessidade de Root no dispositivo"
-      ],
-      "especificacoes": {
-        "versao": "Última Versão",
-        "tamanho": "Varia de acordo com o dispositivo",
-        "categoria": "Ferramentas / Utilitários",
-        "desenvolvedor": "Horizon Dev Team",
-        "tipoArquivo": "APK",
-        "androidMin": "5.0 ou superior",
-        "atualizadoEm": "05/03/2026",
-        "recursosEspecificacoes": "Interface Intuitiva, Controle Ajustável, Sem Necessidade de Root"
-      },
-      "linkDownload": "https://4br.me/BaixarHorizonTelaLigada",
-      "imagemCapa": "https://placehold.co/700x300/ffd700/000?text=Horizon+Tela+Ligada+APK",
-      "tutorialTitulo": "📱 Como Usar o Horizon Tela Ligada",
-      "tutorialSubtitulo": "Aprenda a manter a tela do seu Android sempre ligada com o Horizon Tela Ligada.",
-      "tutorialDescricao": "Neste tutorial completo, você aprenderá como instalar, configurar e usar o Horizon Tela Ligada para manter a tela do seu dispositivo Android sempre ativa. Perfeito para leitura, vídeos e qualquer tarefa que necessite da tela sempre ligada.",
-      "videos": [
-        { "titulo": "Tutorial Parte 1", "id": "XDhx-rdHSmY" },
-        { "titulo": "Configuração", "id": "XDhx-rdHSmY" },
-        { "titulo": "Dicas Extras", "id": "XDhx-rdHSmY" },
-        { "titulo": "Avançado", "id": "XDhx-rdHSmY" },
-        { "titulo": "Automação Básica", "id": "XDhx-rdHSmY" },
-        { "titulo": "Múltiplos Cliques", "id": "XDhx-rdHSmY" },
-        { "titulo": "Otimização", "id": "XDhx-rdHSmY" },
-        { "titulo": "Troubleshooting", "id": "XDhx-rdHSmY" },
-        { "titulo": "Casos de Uso", "id": "XDhx-rdHSmY" },
-        { "titulo": "FAQ", "id": "XDhx-rdHSmY" }
-      ],
-      "icone": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/ySlUmmMGFwaupDCT.png"
+      "icone": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/AShzdwWGghpbeWBY.png"
     }
   ],
   "jogos": [
@@ -139,7 +91,7 @@ window.APPS_DATA = {
       "imagemCapa": "https://placehold.co/700x300/c62828/fff?text=Resident+Evil+4+Mobile",
       "tutorialTitulo": "🎮 Como Jogar Resident Evil 4 Mobile",
       "tutorialSubtitulo": "Guia completo para instalar e dominar o clássico survival horror no seu celular.",
-      "tutorialDescricao": "Descubra como instalar Resident Evil 4 no seu Android, configure os controles para melhor experiência, e aprenda as melhores estratégias para vencer o jogo. Um tutorial passo a passo para iniciantes e veteranos.",
+      "tutorialDescricao": "Descubra como instalar Resident Evil 4 no seu Android, configure os controles para melhor experiênca, e aprenda as melhores estratégias para vencer o jogo. Um tutorial passo a passo para iniciantes e veteranos.",
       "videos": [
         { "titulo": "Instalação APK", "id": "XDhx-rdHSmY" },
         { "titulo": "Configurar OBB", "id": "XDhx-rdHSmY" },
