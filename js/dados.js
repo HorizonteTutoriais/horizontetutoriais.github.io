@@ -1,4 +1,4 @@
-/* ============================================================
+here/* ============================================================
    HORIZONTE TUTORIAIS — Banco de Dados
    Dados embutidos diretamente (sem fetch)
    ============================================================ */
@@ -80,8 +80,8 @@ window.APPS_DATA = {
       "descricao": "Jogo de ação e horror",
       "categoria": "Jogos",
       "tipo": "popular",
-      "imagem": "https://placehold.co/150x150/c62828/fff?text=RE4",
-      "url": "posts/jogos/resident-evil-4.html?id=resident-evil-4",
+      "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404250136/zdklqMSlQEbwtgnX.jpeg",
+      "url": "posts/jogos/resident-evil-4-FINAL-CORRIGIDO.html?id=resident-evil-4",
       "tutorial": "pages/tutoriais.html?open=resident-evil-4",
       "data": "2026-03-04",
       "destaque": true,
@@ -106,8 +106,8 @@ window.APPS_DATA = {
       "linkDownload": "https://4br.me/BaixarApkR4",
       "linkDownloadData1": "https://4br.me/BaixarDico1R4",
       "linkDownloadData2": "https://4br.me/BaixarDisco2R4",
-      "imagemCapa": "https://placehold.co/700x300/c62828/fff?text=Resident+Evil+4+Mobile",
-      "icone": "https://placehold.co/80x80/c62828/fff?text=RE4",
+      "imagemCapa": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404250136/zdklqMSlQEbwtgnX.jpeg",
+      "icone": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404250136/zdklqMSlQEbwtgnX.jpeg",
       "tipoDownload": "multiplo"
     }
   ],
