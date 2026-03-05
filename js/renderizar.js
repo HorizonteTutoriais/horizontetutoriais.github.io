@@ -204,8 +204,7 @@ function renderizarSidebar() {
   
   widgets.forEach(w => {
     const h3 = w.querySelector('h3');
-    if (h3 && (h3.innerText.includes('Populares') || h3.innerText.includes('Quente'))) {
-      container = w;
+    if (h3 && (h3.innerText.toLowerCase().includes(\'populares\') || h3.innerText.toLowerCase().includes(\'quente\'))) {   container = w;
     }
   });
 
