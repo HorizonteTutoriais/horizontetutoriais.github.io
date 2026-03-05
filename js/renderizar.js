@@ -437,11 +437,25 @@
                     const imagemFinal = postItem.imagemCapa || postItem.icone || postItem.imagem || 'https://via.placeholder.com/700x300';
                     img.src = imagemFinal;
                     
-                    // Aplicar cor de fundo dinâmica: Azul para Apps, Vermelho para Jogos
+                    // Aplicar cor de fundo dinamica: Azul para Apps, Vermelho para Jogos
                     const corFundo = postItem.categoria === 'Jogos' 
                         ? 'linear-gradient(135deg, #c62828 0%, #d32f2f 100%)' 
                         : 'linear-gradient(135deg, #1a73e8 0%, #1565c0 100%)';
                     img.style.background = corFundo;
+                    
+                    // Detectar se eh icone (quadrado) ou banner (retangular) e ajustar tamanho
+                    img.onload = function() {
+                        const ratio = this.naturalWidth / this.naturalHeight;
+                        // Se a proporcao for proxima de 1 (quadrado = icone), usar contain
+                        if (ratio >= 0.8 && ratio <= 1.2) {
+                            img.style.objectFit = 'contain';
+                            img.style.objectPosition = 'center center';
+                        } else {
+                            // Se for retangular (banner), usar cover com foco no topo
+                            img.style.objectFit = 'cover';
+                            img.style.objectPosition = 'center top';
+                        }
+                    };
                 }
 
                 const postDate = document.querySelector('.post-date');
