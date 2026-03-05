@@ -290,18 +290,11 @@
             const sidebarPopulares = document.getElementById('sidebar-populares');
             if (sidebarPopulares) {
                 sidebarPopulares.innerHTML = '<h3 class="widget-title">🔥 Populares</h3>';
-                const ul = document.createElement('ul');
-                ul.style.listStyle = 'none';
-                ul.style.padding = '0';
                 const populares = todosItens.filter(item => item.tipo === 'popular');
                 
                 for (let i = 0; i < Math.min(populares.length, 5); i++) {
-                    const li = document.createElement('li');
-                    li.style.marginBottom = '8px';
-                    li.innerHTML = `<a href="${prefixo + populares[i].url}" style="color:#0d47a1;text-decoration:none;font-size:13px;font-weight:600;">${populares[i].nome}</a>`;
-                    ul.appendChild(li);
+                    sidebarPopulares.appendChild(criarCard(populares[i], prefixo));
                 }
-                sidebarPopulares.appendChild(ul);
             }
 
             // Seção Quente - APENAS itens com tipo: "quente"
