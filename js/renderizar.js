@@ -23,30 +23,6 @@
         return params.get('id');
     }
 
-    // Detecção inteligente de ID: tenta extrair do nome do arquivo ou URL
-    function getIdFromFile() {
-        const path = window.location.pathname;
-        const filename = path.split('/').pop().replace('.html', '');
-        
-        // Se o arquivo é app.html ou jogo.html, procura pelo ID na URL
-        if (filename === 'app' || filename === 'jogo') {
-            const urlId = getIdFromUrl();
-            if (urlId) return urlId;
-            
-            // Se não houver ID na URL, tenta extrair do nome do arquivo anterior
-            // Exemplo: /posts/aplicativos/horizon-clicker.html -> horizon-clicker
-            const pathParts = path.split('/');
-            if (pathParts.length > 2) {
-                const possibleId = pathParts[pathParts.length - 1].replace('.html', '');
-                if (possibleId !== 'app' && possibleId !== 'jogo') {
-                    return possibleId;
-                }
-            }
-        }
-        
-        return urlId;
-    }
-
     // ============================================================
     // TEMPLATES DE HERANÇA AUTOMÁTICA PARA TUTORIAIS
     // ============================================================
@@ -320,7 +296,7 @@
         }
 
         const path = window.location.pathname;
-        const urlId = getIdFromFile(); // Usa detecção inteligente
+        const urlId = getIdFromUrl();
 
         // ============= RENDERIZAR PÁGINA MESTRA DINÂMICA =============
         if (urlId) {
@@ -361,7 +337,6 @@
                     const iconeUrl = postItem.icone || postItem.imagem || '';
 
                     // Inserir ícone acima da tabela se existir
-                    const specSection = infoTable.closest('article') || infoTable.parentElement;
                     let iconWrapper = document.getElementById('spec-icon-wrapper');
                     if (!iconWrapper && iconeUrl) {
                         iconWrapper = document.createElement('div');
