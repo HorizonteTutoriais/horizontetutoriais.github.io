@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jogo — Horizonte Tutoriais</title>
-  <meta name="description" content="Baixe o jogo no Horizonte Tutoriais." />
+  <title>Aplicativo — Horizonte Tutoriais</title>
+  <meta name="description" content="Baixe o aplicativo no Horizonte Tutoriais." />
   <link rel="stylesheet" href="../../css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌅</text></svg>" />
@@ -50,6 +50,12 @@
     
     .rss-btn { display: inline-flex; align-items: center; gap: 5px; padding: 8px 12px; background: #ff9800; color: #fff; text-decoration: none; border-radius: 4px; font-size: 12px; font-weight: 600; transition: background 0.3s ease; }
     .rss-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
+    
+    .rss-widget { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 0; margin-top: 15px; box-shadow: var(--shadow); display: flex; flex-direction: column; }
+    .rss-widget-title { font-size: 13px; font-weight: 700; color: #ff9800; margin-bottom: 0; display: flex; align-items: center; gap: 6px; padding: 15px 15px 10px 15px; }
+    .rss-widget-text { font-size: 12px; color: #666; margin-bottom: 0; line-height: 1.5; padding: 0 15px 15px 15px; }
+    .rss-copy-btn { display: block; width: 100%; background: #ff9800; color: #fff; text-align: center; padding: 12px 15px; border-radius: 0 0 var(--radius) var(--radius); font-size: 12px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; transition: background 0.3s ease; margin: 0; }
+    .rss-copy-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
     
     .custom-comments { background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 20px; margin-top: 20px; box-shadow: var(--shadow); }
     .widget-title { margin-top: 0; font-size: 18px; border-bottom: 2px solid var(--blue-primary); display: inline-block; margin-bottom: 15px; }
@@ -107,7 +113,7 @@
   <div class="search-results-close"><button id="search-results-close-btn" title="Fechar">✕</button></div>
   <div id="search-results-list"></div>
 </div>
-<nav class="site-nav"><div class="container"><ul class="nav-list"><li><a href="../../index.html"><span class="nav-icon">🏠</span> Lar</a></li><li><a href="../../pages/aplicativos.html"><span class="nav-icon">📱</span> Aplicativos</a></li><li><a href="../../pages/jogos.html" class="active"><span class="nav-icon">🎮</span> Jogos</a></li><li><a href="../../pages/tutoriais.html"><span class="nav-icon">📚</span> Tutoriais</a></li><li><a href="../../pages/ferramentas.html"><span class="nav-icon">🔧</span> Ferramentas</a></li><li><a href="../../pages/quente.html"><span class="nav-icon">🔥</span> Quente</a></li></ul></div></nav>
+<nav class="site-nav"><div class="container"><ul class="nav-list"><li><a href="../../index.html"><span class="nav-icon">🏠</span> Lar</a></li><li><a href="../../pages/aplicativos.html" class="active"><span class="nav-icon">📱</span> Aplicativos</a></li><li><a href="../../pages/jogos.html"><span class="nav-icon">🎮</span> Jogos</a></li><li><a href="../../pages/tutoriais.html"><span class="nav-icon">📚</span> Tutoriais</a></li><li><a href="../../pages/ferramentas.html"><span class="nav-icon">🔧</span> Ferramentas</a></li><li><a href="../../pages/quente.html"><span class="nav-icon">🔥</span> Quente</a></li></ul></div></nav>
 <div class="container"><div class="main-layout">
 <main>
   <div class="breadcrumb"></div>
@@ -115,12 +121,12 @@
     <div class="post-header">
       <h1></h1>
       <div class="post-meta"><span>Por <span class="meta-author">Equipe Horizonte</span></span><span class="post-date">📅 </span></div>
-      <div style="margin-top:8px"><span class="badge badge-cat">Jogos</span><span class="badge badge-hot">Quente</span></div>
+      <div style="margin-top:8px"><span class="badge badge-cat">Aplicativos</span><span class="badge badge-hot">Quente</span></div>
     </div>
     <img src="" alt="" class="post-featured-img" />
     <div class="post-body"></div>
     
-    <h2 class="section-title" style="margin-top: 20px;">📊 ESPECIFICAÇÕES DO JOGO</h2>
+    <h2 class="section-title" style="margin-top: 20px;">📊 ESPECIFICAÇÕES DO APLICATIVO</h2>
     <table class="info-table"></table>
 
     <div class="download-box"></div>
