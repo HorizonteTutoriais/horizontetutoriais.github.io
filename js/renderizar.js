@@ -20,7 +20,15 @@
     // Obter ID da URL (para páginas mestras dinâmicas)
     function getIdFromUrl() {
         const params = new URLSearchParams(window.location.search);
-        return params.get('id');
+        let id = params.get('id');
+        
+        // Fallback: Se não houver ID na URL, tenta identificar pelo nome do arquivo HTML
+        if (!id) {
+            const path = window.location.pathname;
+            if (path.includes('horizon-clicker')) id = 'horizon-clicker';
+            if (path.includes('horizon-tela-ligada')) id = 'horizon-tela-ligada';
+        }
+        return id;
     }
 
     // Criar card reutilizável
