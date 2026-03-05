@@ -164,47 +164,4 @@
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', window.renderizarTudo);
     else window.renderizarTudo();
     document.addEventListener('dadosProntos', window.renderizarTudo);
-})();        const container = document.querySelector('.popular-section');
-        if (container) {
-            let dadosFiltrados = [];
-            let tituloSecao = '';
-            const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
-
-            // PÁGINA: Aplicativos (aplicativos.html)
-            if (path.includes('aplicativos.html')) {
-                dadosFiltrados = window.APPS_DATA.aplicativos || [];
-                tituloSecao = '📱 Aplicativos';
-            } 
-            // PÁGINA: Jogos (jogos.html)
-            else if (path.includes('jogos.html')) {
-                dadosFiltrados = window.APPS_DATA.jogos || [];
-                tituloSecao = '🎮 Jogos';
-            }
-            // PÁGINA: Quente (quente.html)
-            else if (path.includes('quente.html')) {
-                // PROPAGAÇÃO: Aparece aqui se tipo for "quente"
-                dadosFiltrados = todosItens.filter(item => item.tipo === 'quente');
-                tituloSecao = '🔥 Conteúdo Quente';
-            }
-            // PÁGINA: Inicial (index.html)
-            else if (path.includes('index.html') || path === '/' || path.endsWith('/')) {
-                // PROPAGAÇÃO: Aparece aqui se tipo for "popular" ou "quente"
-                dadosFiltrados = todosItens.filter(item => item.tipo === 'popular' || item.tipo === 'quente' || item.popular === true || item.destaque === true);
-                tituloSecao = '⭐ Populares e Destaques';
-            }
-
-            if (dadosFiltrados.length > 0) {
-                container.innerHTML = `<h1 class="section-title">${tituloSecao}</h1>`;
-                // Ordenar por data (Últimas Atualizações) - Sempre Propaga para Últimas Atualizações
-                dadosFiltrados.sort((a, b) => new Date(b.data) - new Date(a.data));
-                dadosFiltrados.forEach(item => {
-                    container.appendChild(criarCard(item, prefixo));
-                });
-            }
-        }
-    };
-
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', window.renderizarTudo);
-    else window.renderizarTudo();
-    document.addEventListener('dadosProntos', window.renderizarTudo);
 })();
