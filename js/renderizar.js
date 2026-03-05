@@ -1,6 +1,6 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS — Motor de Automação Total v7
-   Lógica: Herança de Template + Propagação + Tutoriais Automáticos
+   HORIZONTE TUTORIAIS — Motor de Automação Total v8 (Final)
+   Lógica: Herança de Template + Propagação + Sem Duplicação
    ============================================================ */
 
 (function() {
@@ -86,6 +86,8 @@
             const postItem = todosItens.find(i => i.id === urlId);
             if (postItem) {
                 document.title = postItem.titulo + ' — Horizonte Tutoriais';
+                
+                // Título e Banner
                 const h1 = document.querySelector('.post-header h1');
                 if (h1) h1.textContent = postItem.titulo;
                 const img = document.querySelector('.post-featured-img');
@@ -93,26 +95,38 @@
                     img.src = postItem.imagemCapa;
                     img.style.cssText = `width: 100%; max-height: 320px; object-fit: contain; background: #1a73e8; border-radius: var(--radius); margin-bottom: 16px;`;
                 }
+
+                // Corpo do Post
                 const postBody = document.querySelector('.post-body');
                 if (postBody) {
                     let rec = postItem.recursos && postItem.recursos.length ? `<h2>⭐ RECURSOS PRINCIPAIS ⭐⭐⭐</h2><ul>${postItem.recursos.map(r => `<li>✅ ${r}</li>`).join('')}</ul>` : '';
                     postBody.innerHTML = `<p>${postItem.descricaoLonga || ''}</p>${rec}`;
                 }
+
+                // ESPECIFICAÇÕES (Com Ícone)
                 const infoTable = document.querySelector('.info-table');
                 if (infoTable && postItem.especificacoes) {
                     const s = postItem.especificacoes;
                     const containerPai = infoTable.parentElement;
+                    
+                    // Limpar headers antigos para evitar duplicação
                     document.querySelectorAll('.specs-header-custom').forEach(e => e.remove());
+                    
                     const specsHeader = document.createElement('div');
                     specsHeader.className = 'specs-header-custom';
                     specsHeader.style.cssText = `display: flex; align-items: center; gap: 15px; margin-top: 25px; margin-bottom: 15px; padding: 12px; background: #f0f4ff; border-radius: 8px; border-left: 4px solid var(--blue-primary);`;
                     specsHeader.innerHTML = `<img src="${postItem.icone || postItem.imagem}" style="width: 70px; height: 70px; border-radius: 8px; object-fit: cover; box-shadow: 0 2px 6px rgba(0,0,0,0.15); background: #fff;"><div><h2 style="margin: 0; font-size: 16px; font-weight: 700; color: var(--blue-dark);">📊 ESPECIFICAÇÕES DO ${postItem.categoria.toUpperCase()}</h2></div>`;
+                    
                     containerPai.insertBefore(specsHeader, infoTable);
                     containerPai.querySelectorAll('h2.section-title').forEach(t => { if (t.textContent.includes('ESPECIFICAÇÕES')) t.remove(); });
+                    
                     infoTable.innerHTML = `<tr><td>${postItem.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo'}</td><td>${postItem.nome}</td></tr><tr><td>Versão</td><td>${s.versao}</td></tr><tr><td>Tamanho</td><td>${s.tamanho}</td></tr><tr><td>Categoria</td><td>${s.categoria}</td></tr><tr><td>Desenvolvedor</td><td>${s.desenvolvedor}</td></tr><tr><td>Tipo do Arquivo</td><td>${s.tipoArquivo}</td></tr><tr><td>Requer Android</td><td>${s.androidMin}</td></tr><tr><td>Atualizado em</td><td>${s.atualizadoEm}</td></tr>`;
                 }
+
+                // DOWNLOAD (Limpar antes de injetar)
                 const downloadBox = document.querySelector('.download-box');
                 if (downloadBox) {
+                    downloadBox.innerHTML = ''; // LIMPA PARA EVITAR DUPLICAÇÃO
                     if (postItem.categoria === 'Jogos' || postItem.tipoDownload === 'multiplo') {
                         downloadBox.innerHTML = `<p style="font-size:14px;font-weight:700;color:#c62828;margin-bottom:12px">⬇️ Clique abaixo para baixar o jogo</p><div class="download-options"><a href="${postItem.linkDownload}" class="btn-download-option" target="_blank"><i class="fas fa-file-archive"></i> BAIXAR APK</a><a href="${postItem.linkDownloadData1 || '#'}" class="btn-download-option alt" target="_blank"><i class="fas fa-database"></i> DATA 1</a><a href="${postItem.linkDownloadData2 || '#'}" class="btn-download-option alt" target="_blank"><i class="fas fa-database"></i> DATA 2</a></div>`;
                     } else {
@@ -123,41 +137,41 @@
             return;
         }
 
-        // 2. MOTOR DE TUTORIAIS AUTOMÁTICO (PÁGINA TUTORIAIS)
+        // 2. MOTOR DE LISTAGENS (DISTRIBUIÇÃO AUTOMÁTICA)
+        const genericContainer = document.querySelector('.popular-section');
+        if (genericContainer) {
+            let dadosFiltrados = [];
+            let tituloSecao = '';
+
+            if (path.includes('aplicativos.html')) {
+                dadosFiltrados = window.APPS_DATA.aplicativos || [];
+                tituloSecao = '📱 Aplicativos';
+            } else if (path.includes('jogos.html')) {
+                dadosFiltrados = window.APPS_DATA.jogos || [];
+                tituloSecao = '🎮 Jogos';
+            } else if (path.includes('quente.html')) {
+                dadosFiltrados = todosItens.filter(item => item.tipo === 'quente');
+                tituloSecao = '🔥 Conteúdo Quente';
+            } else if (path.includes('index.html') || path === '/' || path.endsWith('/')) {
+                // Na Home mostra Populares e Destaques
+                dadosFiltrados = todosItens.filter(item => item.tipo === 'popular' || item.popular === true || item.destaque === true);
+                tituloSecao = '⭐ Populares e Destaques';
+            }
+
+            if (dadosFiltrados.length > 0) {
+                genericContainer.innerHTML = `<h1 class="section-title">${tituloSecao}</h1>`;
+                dadosFiltrados.sort((a, b) => new Date(b.data) - new Date(a.data));
+                dadosFiltrados.forEach(item => genericContainer.appendChild(criarCard(item, prefixo)));
+            }
+        }
+
+        // 3. TUTORIAIS (Limpar antes de injetar)
         if (path.includes('tutoriais.html')) {
             const tutorialContainer = document.querySelector('.popular-section, #tutoriais-container');
             if (tutorialContainer) {
                 tutorialContainer.innerHTML = '<h1 class="section-title">📖 Tutoriais Completos</h1>';
-                todosItens.forEach(item => {
-                    tutorialContainer.appendChild(criarTutorialSection(item));
-                });
+                todosItens.forEach(item => tutorialContainer.appendChild(criarTutorialSection(item)));
             }
-            return;
-        }
-
-        // 3. MOTOR DE INJEÇÃO MÚLTIPLA (PÁGINAS DE LISTAGEM)
-        const genericContainer = document.querySelector('.popular-section');
-        const containers = {
-            quente: document.querySelector('.quente-section, #quente-container'),
-            popular: document.querySelector('.popular-section, #popular-container'),
-            destaque: document.querySelector('.destaque-section, #destaque-container'),
-            recentes: document.querySelector('.recentes-section, #recentes-container')
-        };
-
-        if (genericContainer) {
-            todosItens.forEach(item => {
-                // Filtro por Categoria Física
-                if (path.includes('aplicativos.html') && item.categoria === 'Aplicativos') genericContainer.appendChild(criarCard(item, prefixo));
-                if (path.includes('jogos.html') && item.categoria === 'Jogos') genericContainer.appendChild(criarCard(item, prefixo));
-                
-                // Filtro por Tipo Quente
-                if (path.includes('quente.html') && item.tipo === 'quente') genericContainer.appendChild(criarCard(item, prefixo));
-                
-                // Filtro por Index (Popular e Destaque)
-                if ((path.includes('index.html') || path === '/' || path.endsWith('/')) && (item.tipo === 'popular' || item.tipo === 'quente' || item.popular === true || item.destaque === true)) {
-                    genericContainer.appendChild(criarCard(item, prefixo));
-                }
-            });
         }
     };
 
