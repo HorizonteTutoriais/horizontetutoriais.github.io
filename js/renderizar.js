@@ -354,11 +354,30 @@
 
                     // Modal de Specs
                     const modal = document.createElement('div');
-                    modal.id = `modal-${item.id}`;
+                    modal.id = 'modal-' + item.id;
                     modal.className = 'modal';
                     modal.style.display = 'none';
                     const s = item.especificacoes;
-                    modal.innerHTML = `<div class="modal-content"><div class="modal-header"><h2>${item.nome} - Specs</h2><button class="close-btn" onclick="closeSpecsModal('${item.id}')">&times;</button></div><div style="text-align:center;padding:15px;"><img src="${item.icone || item.imagem}" alt="${item.nome}" style="width:100px;height:100px;border-radius:8px;object-fit:cover;"></div><table class="specs-table"><tr><td>${item.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo'}</td><td>${item.nome}</td></tr><tr><td>Versão</td><td>${s.versao}</td></tr><tr><td>Tamanho</td><td>${s.tamanho}</td></tr><tr><td>Categoria</td><td>${s.categoria}</td></tr><tr><td>Desenvolvedor</td><td>${s.desenvolvedor}</td></tr><tr><td>Tipo do Arquivo</td><td>${s.tipoArquivo}</td></tr><tr><td>Requer Android</td><td>${s.androidMin}</td></tr><tr><td>Atualizado em</td><td>${s.atualizadoEm}</td></tr><tr><td>Recursos</td><td>${s.recursosEspecificacoes}</td></tr></table></div>`;
+                    
+                    let modalHTML = '<div class="modal-content">';
+                    modalHTML += '<div class="modal-header"><h2>' + item.nome + ' - Specs</h2>';
+                    modalHTML += '<button class="close-btn" onclick="closeSpecsModal(\'' + item.id + '\')">&times;</button></div>';
+                    modalHTML += '<div style="text-align:center;padding:15px;">';
+                    modalHTML += '<img src="' + (item.icone || item.imagem) + '" alt="' + item.nome + '" style="width:100px;height:100px;border-radius:8px;object-fit:cover;">';
+                    modalHTML += '</div>';
+                    modalHTML += '<table class="specs-table">';
+                    modalHTML += '<tr><td>' + (item.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo') + '</td><td>' + item.nome + '</td></tr>';
+                    modalHTML += '<tr><td>Versão</td><td>' + s.versao + '</td></tr>';
+                    modalHTML += '<tr><td>Tamanho</td><td>' + s.tamanho + '</td></tr>';
+                    modalHTML += '<tr><td>Categoria</td><td>' + s.categoria + '</td></tr>';
+                    modalHTML += '<tr><td>Desenvolvedor</td><td>' + s.desenvolvedor + '</td></tr>';
+                    modalHTML += '<tr><td>Tipo do Arquivo</td><td>' + s.tipoArquivo + '</td></tr>';
+                    modalHTML += '<tr><td>Requer Android</td><td>' + s.androidMin + '</td></tr>';
+                    modalHTML += '<tr><td>Atualizado em</td><td>' + s.atualizadoEm + '</td></tr>';
+                    modalHTML += '<tr><td>Recursos</td><td>' + s.recursosEspecificacoes + '</td></tr>';
+                    modalHTML += '</table></div>';
+                    
+                    modal.innerHTML = modalHTML;
                     document.body.appendChild(modal);
                 }
                 
