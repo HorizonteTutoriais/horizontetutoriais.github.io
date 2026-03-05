@@ -23,7 +23,60 @@
         return params.get('id');
     }
 
-    // Criar card reutilizável
+    // ============================================================
+    // TEMPLATES DE HERANÇA AUTOMÁTICA PARA TUTORIAIS
+    // ============================================================
+    const tutorialTemplates = {
+        aplicativos: {
+            titulo: "📱 Como Usar o {nome}",
+            subtitulo: "Aprenda a usar {nome} no seu Android com dicas práticas e fáceis de seguir.",
+            descricao: "Neste tutorial completo, você aprenderá como instalar, configurar e usar {nome} no seu dispositivo Android. Perfeito para aproveitar ao máximo todas as funcionalidades do aplicativo.",
+            videos: [
+                { "titulo": "Tutorial Parte 1", "id": "XDhx-rdHSmY" },
+                { "titulo": "Configuração", "id": "XDhx-rdHSmY" },
+                { "titulo": "Dicas Extras", "id": "XDhx-rdHSmY" },
+                { "titulo": "Avançado", "id": "XDhx-rdHSmY" },
+                { "titulo": "Troubleshooting", "id": "XDhx-rdHSmY" },
+                { "titulo": "FAQ", "id": "XDhx-rdHSmY" }
+            ]
+        },
+        jogos: {
+            titulo: "🎮 Como Jogar {nome}",
+            subtitulo: "Guia completo para instalar e dominar {nome} no seu celular.",
+            descricao: "Descubra como instalar {nome} no seu Android, configure os controles para melhor experiência, e aprenda as melhores estratégias para vencer. Um tutorial passo a passo para iniciantes e veteranos.",
+            videos: [
+                { "titulo": "Instalação APK", "id": "XDhx-rdHSmY" },
+                { "titulo": "Configurar Dados", "id": "XDhx-rdHSmY" },
+                { "titulo": "Gameplay", "id": "XDhx-rdHSmY" },
+                { "titulo": "Dicas de Combate", "id": "XDhx-rdHSmY" },
+                { "titulo": "Controles", "id": "XDhx-rdHSmY" },
+                { "titulo": "Gráficos & Performance", "id": "XDhx-rdHSmY" },
+                { "titulo": "Troubleshooting", "id": "XDhx-rdHSmY" },
+                { "titulo": "FAQ", "id": "XDhx-rdHSmY" }
+            ]
+        }
+    };
+
+    // Função para gerar tutorial automático se não existir
+    function gerarTutorialAutomatico(item) {
+        if (item.tutorialTitulo) {
+            return item; // Já tem tutorial customizado
+        }
+
+        const template = item.categoria === 'Jogos' ? tutorialTemplates.jogos : tutorialTemplates.aplicativos;
+        
+        return {
+            ...item,
+            tutorialTitulo: template.titulo.replace('{nome}', item.nome),
+            tutorialSubtitulo: template.subtitulo.replace('{nome}', item.nome),
+            tutorialDescricao: template.descricao.replace('{nome}', item.nome),
+            videos: template.videos
+        };
+    }
+
+    // ============================================================
+    // CARD PADRÃO — usado em Destaques, Aplicativos, Jogos, etc.
+    // ============================================================
     function criarCard(item, prefixo) {
         const card = document.createElement('div');
         card.className = 'app-card';
@@ -52,14 +105,15 @@
 
         // Imagem
         const img = document.createElement('img');
-        img.src = item.imagem || item.icone || 'https://via.placeholder.com/80';
+        img.src = item.icone || item.imagem || 'https://via.placeholder.com/80';
         img.alt = item.nome;
         img.style.cssText = `
             width: 80px;
             height: 80px;
-            border-radius: 6px;
+            border-radius: 14px;
             object-fit: cover;
             flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.13);
         `;
 
         // Conteúdo
@@ -110,6 +164,130 @@
         return card;
     }
 
+    // ============================================================
+    // UPDATE CARD — estilo moderno para "Últimas Atualizações"
+    // Grade de 4 colunas com ícone centralizado + badge + botão
+    // ============================================================
+    function criarUpdateCard(item, prefixo) {
+        const card = document.createElement('div');
+        card.className = 'update-card';
+        card.style.cssText = `
+            background: var(--white);
+            border: 1px solid var(--gray-border);
+            border-radius: var(--radius);
+            padding: 14px 10px 12px;
+            text-align: center;
+            transition: box-shadow 0.25s, transform 0.25s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        `;
+
+        card.onmouseover = function() {
+            this.style.boxShadow = '0 6px 18px rgba(0,0,0,0.13)';
+            this.style.transform = 'translateY(-3px)';
+        };
+        card.onmouseout = function() {
+            this.style.boxShadow = 'var(--shadow)';
+            this.style.transform = 'translateY(0)';
+        };
+
+        // Ícone
+        const img = document.createElement('img');
+        img.src = item.icone || item.imagem || 'https://via.placeholder.com/56';
+        img.alt = item.nome;
+        img.style.cssText = `
+            width: 64px;
+            height: 64px;
+            border-radius: 14px;
+            object-fit: cover;
+            margin: 0 auto 10px;
+            display: block;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+        `;
+
+        // Badge de categoria
+        const badge = document.createElement('span');
+        badge.style.cssText = `
+            display: inline-block;
+            background: ${item.categoria === 'Jogos' ? '#c62828' : '#0d47a1'};
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        `;
+        badge.textContent = item.categoria;
+
+        // Título
+        const title = document.createElement('div');
+        title.className = 'card-title';
+        title.style.cssText = `
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            width: 100%;
+        `;
+        title.textContent = item.nome;
+
+        // Data
+        const data = document.createElement('div');
+        data.style.cssText = `
+            font-size: 10px;
+            color: #999;
+            margin-bottom: 10px;
+        `;
+        data.textContent = '📅 ' + (item.data || 'Recente');
+
+        // Botão de download
+        const btn = document.createElement('a');
+        btn.href = prefixo + item.url;
+        btn.className = 'btn-download';
+        btn.style.cssText = `
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            background: var(--green-btn);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s;
+            width: 100%;
+            margin-top: auto;
+        `;
+        btn.innerHTML = '<i class="fas fa-download" style="font-size:10px"></i> Baixar';
+        btn.onclick = function(e) { e.stopPropagation(); };
+
+        card.appendChild(img);
+        card.appendChild(badge);
+        card.appendChild(title);
+        card.appendChild(data);
+        card.appendChild(btn);
+
+        // Clique no card (fora do botão) também navega
+        card.onclick = function(e) {
+            if (e.target.tagName !== 'A' && !e.target.closest('a')) {
+                window.location.href = prefixo + item.url;
+            }
+        };
+
+        return card;
+    }
+
     // Função principal de renderização
     window.renderizarTudo = function() {
         if (!window.APPS_DATA) {
@@ -152,10 +330,37 @@
                     postBody.innerHTML = '<p>' + (postItem.descricaoLonga || '') + '</p>' + recursosHtml;
                 }
 
-                // Renderizar tabela de especificações
+                // Renderizar ícone + tabela de especificações
                 const infoTable = document.querySelector('.info-table');
                 if (infoTable && postItem.especificacoes) {
                     const s = postItem.especificacoes;
+                    const iconeUrl = postItem.icone || postItem.imagem || '';
+
+                    // Inserir ícone acima da tabela se existir
+                    const specSection = infoTable.closest('article') || infoTable.parentElement;
+                    let iconWrapper = document.getElementById('spec-icon-wrapper');
+                    if (!iconWrapper && iconeUrl) {
+                        iconWrapper = document.createElement('div');
+                        iconWrapper.id = 'spec-icon-wrapper';
+                        iconWrapper.style.cssText = `
+                            text-align: center;
+                            margin-bottom: 14px;
+                        `;
+                        const iconImg = document.createElement('img');
+                        iconImg.src = iconeUrl;
+                        iconImg.alt = postItem.nome;
+                        iconImg.style.cssText = `
+                            width: 90px;
+                            height: 90px;
+                            border-radius: 18px;
+                            object-fit: cover;
+                            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+                            display: inline-block;
+                        `;
+                        iconWrapper.appendChild(iconImg);
+                        infoTable.parentElement.insertBefore(iconWrapper, infoTable);
+                    }
+
                     infoTable.innerHTML = `
                         <tr><td>${postItem.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo'}</td><td>${postItem.nome}</td></tr>
                         <tr><td>Versão</td><td>${s.versao}</td></tr>
@@ -232,6 +437,23 @@
 
                 const postDate = document.querySelector('.post-date');
                 if (postDate) postDate.textContent = '📅 ' + postItem.data;
+
+                // Atualizar badges de categoria/tipo
+                const badgeCat = document.querySelector('.badge-cat');
+                if (badgeCat) badgeCat.textContent = postItem.categoria;
+
+                const badgeHot = document.querySelector('.badge-hot');
+                if (badgeHot) {
+                    if (postItem.tipo === 'quente') {
+                        badgeHot.textContent = '🔥 Quente';
+                        badgeHot.style.display = 'inline-block';
+                    } else if (postItem.tipo === 'popular') {
+                        badgeHot.textContent = '⭐ Popular';
+                        badgeHot.style.display = 'inline-block';
+                    } else {
+                        badgeHot.style.display = 'none';
+                    }
+                }
             }
             return;
         }
@@ -266,13 +488,13 @@
         else if (path.includes('/Index/index.html') || path === '/' || path.endsWith('/index.html')) {
             const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
             
-            // Últimas Atualizações - TODOS os itens, ordenados por data
+            // Últimas Atualizações — usa criarUpdateCard (estilo grade moderno)
             const updateContainer = document.querySelector('.updates-grid');
             if (updateContainer) {
                 updateContainer.innerHTML = '';
-                const ultimasAtualizacoes = todosItens.sort((a, b) => new Date(b.data) - new Date(a.data));
+                const ultimasAtualizacoes = todosItens.slice().sort((a, b) => new Date(b.data) - new Date(a.data));
                 for (let i = 0; i < ultimasAtualizacoes.length; i++) {
-                    updateContainer.appendChild(criarCard(ultimasAtualizacoes[i], prefixo));
+                    updateContainer.appendChild(criarUpdateCard(ultimasAtualizacoes[i], prefixo));
                 }
             }
 
@@ -326,8 +548,10 @@
                 const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
                 
                 for (let i = 0; i < todosItens.length; i++) {
-                    const item = todosItens[i];
-                    if (!item.tutorialTitulo) continue;
+                    let item = todosItens[i];
+                    
+                    // Aplicar herança automática de tutorial se não tiver customizado
+                    item = gerarTutorialAutomatico(item);
 
                     const tutorialCard = document.createElement('div');
                     tutorialCard.className = 'tutorial-card';
@@ -340,25 +564,54 @@
                         }
                     }
 
+                    const iconeUrl = item.icone || item.imagem || 'https://via.placeholder.com/80';
+
                     tutorialCard.innerHTML = `
-                        <div class="tutorial-header"><img src="${item.icone || item.imagem}" alt="${item.nome}" class="tutorial-icon" /><div class="tutorial-info"><h3>${item.tutorialTitulo}</h3><p>${item.tutorialSubtitulo}</p></div></div>
+                        <div class="tutorial-header">
+                            <img src="${iconeUrl}" alt="${item.nome}" class="tutorial-icon" />
+                            <div class="tutorial-info">
+                                <h3>${item.tutorialTitulo}</h3>
+                                <p>${item.tutorialSubtitulo}</p>
+                            </div>
+                        </div>
                         <div class="tutorial-description">${item.tutorialDescricao}</div>
                         <div class="tutorial-buttons">
                             <button class="btn-specs" onclick="openSpecsModal('${item.id}')"><i class="fas fa-info-circle"></i> Specs</button>
                             <button class="btn-video" onclick="toggleVideoScroll('${item.id}')"><i class="fas fa-play-circle"></i> Assistir</button>
                             <a href="${prefixo}posts/${item.categoria === 'Jogos' ? 'jogos' : 'aplicativos'}/${item.categoria === 'Jogos' ? 'jogo' : 'app'}.html?id=${item.id}" class="btn-download-tutorial"><i class="fas fa-download"></i> Baixar</a>
                         </div>
-                        <div id="video-scroll-${item.id}" class="video-scroll-container"><div class="video-scroll-list">${videosHtml}</div></div>
+                        <div id="video-scroll-${item.id}" class="video-scroll-container">
+                            <div class="video-scroll-list">${videosHtml}</div>
+                        </div>
                     `;
                     tutoriaisContainer.appendChild(tutorialCard);
 
-                    // Modal de Specs
+                    // Modal de Specs — com ícone do app/jogo
                     const modal = document.createElement('div');
-                    modal.id = `modal-${item.id}`;
+                    modal.id = 'modal-' + item.id;
                     modal.className = 'modal';
                     modal.style.display = 'none';
                     const s = item.especificacoes;
-                    modal.innerHTML = `<div class="modal-content"><div class="modal-header"><h2>${item.nome} - Specs</h2><button class="close-btn" onclick="closeSpecsModal('${item.id}')">&times;</button></div><table class="specs-table"><tr><td>${item.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo'}</td><td>${item.nome}</td></tr><tr><td>Versão</td><td>${s.versao}</td></tr><tr><td>Tamanho</td><td>${s.tamanho}</td></tr><tr><td>Categoria</td><td>${s.categoria}</td></tr><tr><td>Desenvolvedor</td><td>${s.desenvolvedor}</td></tr><tr><td>Tipo do Arquivo</td><td>${s.tipoArquivo}</td></tr><tr><td>Requer Android</td><td>${s.androidMin}</td></tr><tr><td>Atualizado em</td><td>${s.atualizadoEm}</td></tr><tr><td>Recursos</td><td>${s.recursosEspecificacoes}</td></tr></table></div>`;
+                    
+                    let modalHTML = '<div class="modal-content">';
+                    modalHTML += '<div class="modal-header"><h2>' + item.nome + ' - Specs</h2>';
+                    modalHTML += '<button class="close-btn" onclick="closeSpecsModal(\'' + item.id + '\')">&times;</button></div>';
+                    modalHTML += '<div style="text-align:center;padding:15px 15px 5px;">';
+                    modalHTML += '<img src="' + iconeUrl + '" alt="' + item.nome + '" style="width:90px;height:90px;border-radius:18px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.18);">';
+                    modalHTML += '</div>';
+                    modalHTML += '<table class="specs-table">';
+                    modalHTML += '<tr><td>' + (item.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo') + '</td><td>' + item.nome + '</td></tr>';
+                    modalHTML += '<tr><td>Versão</td><td>' + s.versao + '</td></tr>';
+                    modalHTML += '<tr><td>Tamanho</td><td>' + s.tamanho + '</td></tr>';
+                    modalHTML += '<tr><td>Categoria</td><td>' + s.categoria + '</td></tr>';
+                    modalHTML += '<tr><td>Desenvolvedor</td><td>' + s.desenvolvedor + '</td></tr>';
+                    modalHTML += '<tr><td>Tipo do Arquivo</td><td>' + s.tipoArquivo + '</td></tr>';
+                    modalHTML += '<tr><td>Requer Android</td><td>' + s.androidMin + '</td></tr>';
+                    modalHTML += '<tr><td>Atualizado em</td><td>' + s.atualizadoEm + '</td></tr>';
+                    modalHTML += '<tr><td>Recursos</td><td>' + s.recursosEspecificacoes + '</td></tr>';
+                    modalHTML += '</table></div>';
+                    
+                    modal.innerHTML = modalHTML;
                     document.body.appendChild(modal);
                 }
                 
