@@ -436,6 +436,12 @@
                     // Usar imagemCapa se disponível, senão usar ícone
                     const imagemFinal = postItem.imagemCapa || postItem.icone || postItem.imagem || 'https://via.placeholder.com/700x300';
                     img.src = imagemFinal;
+                    
+                    // Aplicar cor de fundo dinâmica: Azul para Apps, Vermelho para Jogos
+                    const corFundo = postItem.categoria === 'Jogos' 
+                        ? 'linear-gradient(135deg, #c62828 0%, #d32f2f 100%)' 
+                        : 'linear-gradient(135deg, #1a73e8 0%, #1565c0 100%)';
+                    img.style.background = corFundo;
                 }
 
                 const postDate = document.querySelector('.post-date');
