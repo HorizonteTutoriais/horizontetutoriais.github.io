@@ -67,84 +67,6 @@
     .rss-widget-text { font-size: 12px; color: #666; margin-bottom: 0; line-height: 1.5; padding: 0 15px 15px 15px; }
     .rss-copy-btn { display: block; width: 100%; background: #ff9800; color: #fff; text-align: center; padding: 12px 15px; border-radius: 0 0 var(--radius) var(--radius); font-size: 12px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; transition: background 0.3s ease; margin: 0; }
     .rss-copy-btn:hover { background: #f57c00; color: #fff; text-decoration: none; }
-
-    /* Estilos para a seção de especificações com ícone */
-    .specs-header-container {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      padding: 15px;
-      background: #f8f9fa;
-      border-radius: 8px;
-      border-left: 4px solid #1a73e8;
-    }
-    
-    .specs-icon-wrapper {
-      flex-shrink: 0;
-    }
-    
-    .specs-icon {
-      width: 120px;
-      height: 120px;
-      border-radius: 8px;
-      object-fit: cover;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      border: 2px solid #fff;
-    }
-    
-    .specs-title-content {
-      flex: 1;
-    }
-    
-    .specs-title-content h2 {
-      margin: 0;
-      font-size: 22px;
-      color: #0d47a1;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-    
-    @media (max-width: 768px) {
-      .specs-header-container {
-        flex-direction: column;
-        text-align: center;
-      }
-      
-      .specs-icon {
-        width: 100px;
-        height: 100px;
-      }
-    }
-    
-    .footer-bottom p { margin-bottom: 0; font-size: 13px; color: #cce5ff; }
-    .footer-bottom a { color: #fff; font-weight: 700; }
-    .footer-bottom .footer-nav { display: flex; gap: 15px; margin-bottom: 10px; flex-wrap: wrap; }
-    .footer-bottom .footer-nav a { color: #cce5ff; font-weight: 400; font-size: 12px; }
-    .footer-bottom .footer-nav a:hover { color: #fff; text-decoration: none; }
-
-  
-    /* Restaurar Rodapé Azul Completo */
-    .site-footer { background: var(--blue-dark); color: #cce5ff; margin-top: 30px; padding: 0; }
-    .footer-grid, .footer-top { padding: 30px 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 30px; flex-wrap: wrap; }
-    .footer-brand .footer-logo { color: #fff; font-size: 20px; font-weight: 800; margin-bottom: 10px; }
-    .footer-brand p { font-size: 13px; max-width: 350px; color: #cce5ff; line-height: 1.6; }
-    .footer-social { display: flex; gap: 12px; margin-top: 15px; }
-    .footer-social a { background: rgba(255,255,255,0.1); color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
-    .footer-social a:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); }
-    .footer-links h4 { color: #fff; font-size: 15px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; }
-    .footer-links ul { list-style: none; padding: 0; }
-    .footer-links ul li { margin-bottom: 8px; }
-    .footer-links ul li a { color: #cce5ff; font-size: 13px; transition: color 0.2s; }
-    .footer-links ul li a:hover { color: #fff; text-decoration: none; }
-    .footer-bottom { background: rgba(0,0,0,0.2); padding: 20px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
-    .footer-bottom .footer-nav { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 10px; }
-    .footer-bottom .footer-nav a { color: #cce5ff; font-size: 12px; transition: color 0.2s; }
-    .footer-bottom .footer-nav a:hover { color: #fff; text-decoration: none; }
-    .footer-bottom p { font-size: 12px; color: #90caf9; margin: 0; }
-    .footer-bottom p a { color: #ffd600; font-weight: 700; }
-
   </style>
 </head>
 <body>
@@ -178,67 +100,42 @@
     </div>
     <img src="https://placehold.co/700x300/1a73e8/fff?text=Horizon+Clicker+APK" alt="Horizon Clicker" class="post-featured-img" />
     <div class="post-body">
-      <p>O Horizon Clicker é uma ferramenta poderosa para automação de tarefas repetitivas no seu dispositivo Android, permitindo configurar cliques automáticos com precisão e facilidade.</p>
-      <h2>⭐ RECURSOS PRINCIPAIS ⭐⭐⭐</h2>
-      <ul><li>✅ Interface Intuitiva e fácil de usar</li><li>✅ Cliques Rápidos e Precisos com ajuste de milissegundos</li><li>✅ Fácil de Configurar múltiplos pontos de clique</li><li>✅ Sem Necessidade de Root no dispositivo</li></ul>
+      <!-- Preenchido dinamicamente por renderizar.js -->
     </div>
     
-    <div class="specs-header-container">
-      <div class="specs-icon-wrapper">
-        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/AShzdwWGghpbeWBY.png" alt="Horizon Clicker" class="specs-icon" />
-      </div>
-      <div class="specs-title-content">
-        <h2>📊 ESPECIFICAÇÕES DO APLICATIVO</h2>
-      </div>
-    </div>
-    
+    <h2 class="section-title" style="margin-top: 20px;">📊 ESPECIFICAÇÕES DO APLICATIVO</h2>
     <table class="info-table">
-      <tr><td>Aplicativo</td><td>Horizon Clicker</td></tr>
-      <tr><td>Versão</td><td>Última Versão</td></tr>
-      <tr><td>Tamanho</td><td>Varia de acordo com o dispositivo</td></tr>
-      <tr><td>Categoria</td><td>Ferramentas / Automação</td></tr>
-      <tr><td>Desenvolvedor</td><td>Horizon Dev Team</td></tr>
-      <tr><td>Tipo do Arquivo</td><td>APK</td></tr>
-      <tr><td>Requer Android</td><td>5.0 ou superior</td></tr>
-      <tr><td>Atualizado em</td><td>26/02/2026</td></tr>
+      <!-- Preenchido dinamicamente por renderizar.js -->
     </table>
 
     <div class="download-box">
-      <p style="font-size:14px;font-weight:700;color:#0d47a1;margin-bottom:12px">⬇️ Clique abaixo para baixar o aplicativo</p>
-      <a href="https://4br.me/BaixarHorizonClikerApk" class="btn-big-download" target="_blank" rel="noopener"><i class="fas fa-download"></i> DOWNLOAD</a>
-      <p style="font-size:11px;color:#666;margin-top:10px">Link seguro verificado — Horizonte Tutoriais</p>
-      <a href="../../feed.xml" class="rss-btn" target="_blank" rel="noopener" style="margin-top: 15px;"><i class="fas fa-rss"></i> RSS Feed</a>
+      <!-- Preenchido dinamicamente por renderizar.js -->
     </div>
 
     <div class="telegram-cta"><i class="fab fa-telegram" style="font-size:20px"></i><span>Junte-se ao <a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener">@HorizonteTutoriais</a> no Telegram!</span></div>
-
-    
   </article>
-      <section class="custom-comments">
-        <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
-        <p style="font-size:13px;color:#666;margin-bottom:15px;">Compartilhe sua opinião! Não é necessário fazer login.</p>
-        
-        <div id="cusdis_list">
-          <div id="cusdis_thread"
-            data-host="https://cusdis.com"
-            data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
-            data-page-id="index_horizonte"
-            data-page-url="https://horizontetutoriais.com/index.html"
-            data-page-title="Horizonte Tutoriais - Início"
-          ></div>
-        </div>
-      </section>
 
-    </main>
+  <section class="custom-comments">
+    <h3 class="widget-title">💬 COMENTÁRIOS DA COMUNIDADE</h3>
+    <p style="font-size:13px;color:#666;margin-bottom:15px;">Compartilhe sua opinião! Não é necessário fazer login.</p>
+    <div id="cusdis_list">
+      <div id="cusdis_thread"
+        data-host="https://cusdis.com"
+        data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
+        data-page-id="index_horizonte"
+        data-page-url="https://horizontetutoriais.com/index.html"
+        data-page-title="Horizonte Tutoriais - Início"
+      ></div>
+    </div>
+  </section>
+</main>
+
 <aside class="sidebar">
   <div class="sidebar-widget"><h3 class="widget-title">📣 Mídias Sociais</h3><a href="https://t.me/HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn telegram"><span class="s-icon"><i class="fab fa-telegram"></i></span> Telegram</a><a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="social-btn whatsapp"><span class="s-icon"><i class="fab fa-whatsapp"></i></span> WhatsApp</a><a href="https://instagram.com/horizontetutoriais" target="_blank" rel="noopener" class="social-btn instagram"><span class="s-icon"><i class="fab fa-instagram"></i></span> Instagram</a><a href="https://youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener" class="social-btn youtube"><span class="s-icon"><i class="fab fa-youtube"></i></span> YouTube</a></div>
   <div class="sidebar-widget about-widget"><h3 class="widget-title">ℹ️ Sobre Nós</h3><p>Horizonte Tutoriais — Sua fonte definitiva para APKs e tutoriais.</p></div>
   
   <div class="tutorials-widget">
-    <a href="../../pages/tutoriais.html?open=horizon-click" class="btn-tutorial-direct">
-      <span><i class="fas fa-video"></i> TUTORIAIS</span>
-      <i class="fas fa-external-link-alt"></i>
-    </a>
+    <!-- Preenchido dinamicamente por renderizar.js -->
   </div>
 
   <div class="guides-widget">
@@ -251,32 +148,24 @@
     </div>
   </div>
 
-      <!-- WIDGET DE RSS NA SIDEBAR -->
-      <div class="rss-widget">
-        <div class="rss-widget-title">
-          <i class="fas fa-rss"></i> Receba Novidades!
-        </div>
-        <div class="rss-widget-text">
-          Adicione nosso feed ao seu leitor de RSS favorito e receba notificações de novos tutoriais e jogos.
-        </div>
-        <!-- BOTÃO DE COPIAR LINK DO FEED -->
-        <button class="rss-copy-btn" onclick="copyToClipboard('../../feed.xml')"><i class="fas fa-copy"></i> Copiar Link do Feed</button>
-      </div>
+  <div class="rss-widget">
+    <div class="rss-widget-title"><i class="fas fa-rss"></i> Receba Novidades!</div>
+    <div class="rss-widget-text">Adicione nosso feed ao seu leitor de RSS favorito e receba notificações de novos tutoriais e jogos.</div>
+    <button class="rss-copy-btn" onclick="copyToClipboard('../../feed.xml')"><i class="fas fa-copy"></i> Copiar Link do Feed</button>
+  </div>
 </aside>
 </div></div>
+
 <footer class="site-footer"><div class="container footer-bottom"><p>Copyright &copy; 2025–2026 Horizonte Tutoriais</p></div></footer>
 
-<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 <script src="../../js/dados.js"></script>
+<script src="../../js/renderizar.js"></script>
 <script src="../../js/main.js"></script>
 <script>
   function toggleGuides(header) {
     header.classList.toggle('active');
     header.nextElementSibling.classList.toggle('active');
   }
-</script>
-<script>
-  // FUNÇÃO PARA COPIAR LINK DO FEED
   function copyToClipboard(text) {
     var fullUrl = window.location.origin + '/' + text;
     navigator.clipboard.writeText(fullUrl).then(function() {
@@ -286,68 +175,33 @@
     });
   }
 </script>
-
-<!-- SCRIPT CUSDIS -->
 <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 <script>
-  // Permitir carregamento inicial
   window.cusdis_prevent_initial_load = false;
-
-  // FUNÇÃO PARA COPIAR LINK DO FEED
-  function copyToClipboard(text) {
-    var fullUrl = window.location.origin + '/' + text;
-    navigator.clipboard.writeText(fullUrl).then(function() {
-      alert('Link do feed copiado para a área de transferência!');
-    }).catch(function(err) {
-      alert('Erro ao copiar: ' + err);
-    });
-  }
-
-  // TRADUÇÃO DOS TERMOS E MENSAGENS DE STATUS
   function translateCusdis() {
     const translations = {
-      'Nickname': 'Seu Nome',
-      'Reply': 'Responder',
-      'Comment': 'Comentário',
-      'Submit': 'Enviar Comentário',
-      'Email (optional)': 'E-mail (opcional)',
-      'Reply...': 'Escreva aqui sua opinião...',
-      'Load more': 'Carregar mais',
-      'sending...': 'Enviando...',
-      'Your comment has been sent. Please wait for approval.': 'Seu comentário foi enviado! Aguarde a aprovação do administrador.'
+      'Nickname': 'Seu Nome', 'Reply': 'Responder', 'Comment': 'Comentário', 'Submit': 'Enviar Comentário',
+      'Email (optional)': 'E-mail (opcional)', 'Reply...': 'Escreva aqui sua opinião...', 'Load more': 'Carregar mais',
+      'sending...': 'Enviando...', 'Your comment has been sent. Please wait for approval.': 'Seu comentário foi enviado! Aguarde a aprovação do administrador.'
     };
-
     const iframes = document.querySelectorAll('#cusdis_thread iframe');
     iframes.forEach(iframe => {
       try {
         const doc = iframe.contentDocument || iframe.contentWindow.document;
-        
-        // Traduzir textos fixos e mensagens de status que aparecem dinamicamente
         const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null, false);
         let node;
         while(node = walker.nextNode()) {
           const text = node.nodeValue.trim();
-          if (translations[text]) {
-            node.nodeValue = translations[text];
-          }
+          if (translations[text]) node.nodeValue = translations[text];
         }
-        
-        // Traduzir placeholders e botões
         doc.querySelectorAll('input, textarea, button').forEach(el => {
-          if (el.placeholder && translations[el.placeholder]) {
-            el.placeholder = translations[el.placeholder];
-          }
-          if (el.innerText && translations[el.innerText.trim()]) {
-            el.innerText = translations[el.innerText.trim()];
-          }
+          if (el.placeholder && translations[el.placeholder]) el.placeholder = translations[el.placeholder];
+          if (el.innerText && translations[el.innerText.trim()]) el.innerText = translations[el.innerText.trim()];
         });
       } catch (e) { }
     });
   }
-
-  // Rodar tradução periodicamente (cada 500ms para ser mais rápido na captura do status)
   setInterval(translateCusdis, 500);
 </script>
-
 </body>
-</html>
+  </html>
