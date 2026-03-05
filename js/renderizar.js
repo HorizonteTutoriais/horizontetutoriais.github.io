@@ -1,5 +1,6 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS — Motor de Automação 100% Funcional
+   HORIZONTE TUTORIAIS — Motor de Automação Inteligente v5
+   Lógica: Herança de Template (Jogo/App) + Propagação por Tipo
    ============================================================ */
 
 (function() {
@@ -20,7 +21,6 @@
         if (!id) {
             const path = window.location.pathname;
             if (path.includes('horizon-clicker')) id = 'horizon-clicker';
-            if (path.includes('horizon-tela-ligada')) id = 'horizon-tela-ligada';
             if (path.includes('resident-evil-4')) id = 'resident-evil-4';
         }
         return id;
@@ -50,7 +50,7 @@
         const path = window.location.pathname;
         const urlId = getIdFromUrl();
 
-        // 1. LÓGICA DE PÁGINA DE DETALHES (POST)
+        // 1. PÁGINA DE DETALHES (POST) - LÓGICA DE HERANÇA DE TEMPLATE
         if (urlId) {
             const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
             const postItem = todosItens.find(i => i.id === urlId);
@@ -58,12 +58,23 @@
             if (postItem) {
                 document.title = postItem.titulo + ' — Horizonte Tutoriais';
                 
+                // Aplicar Título e Banner
+                const h1 = document.querySelector('.post-header h1');
+                if (h1) h1.textContent = postItem.titulo;
+                const img = document.querySelector('.post-featured-img');
+                if (img) {
+                    img.src = postItem.imagemCapa;
+                    img.style.cssText = `width: 100%; max-height: 320px; object-fit: contain; background: #1a73e8; border-radius: var(--radius); margin-bottom: 16px;`;
+                }
+
+                // Corpo do Post
                 const postBody = document.querySelector('.post-body');
                 if (postBody) {
                     let rec = postItem.recursos && postItem.recursos.length ? `<h2>⭐ RECURSOS PRINCIPAIS ⭐⭐⭐</h2><ul>${postItem.recursos.map(r => `<li>✅ ${r}</li>`).join('')}</ul>` : '';
                     postBody.innerHTML = `<p>${postItem.descricaoLonga || ''}</p>${rec}`;
                 }
 
+                // HERANÇA DE TEMPLATE: ESPECIFICAÇÕES (Ícone Automático)
                 const infoTable = document.querySelector('.info-table');
                 if (infoTable && postItem.especificacoes) {
                     const s = postItem.especificacoes;
@@ -78,59 +89,54 @@
                     infoTable.innerHTML = `<tr><td>${postItem.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo'}</td><td>${postItem.nome}</td></tr><tr><td>Versão</td><td>${s.versao}</td></tr><tr><td>Tamanho</td><td>${s.tamanho}</td></tr><tr><td>Categoria</td><td>${s.categoria}</td></tr><tr><td>Desenvolvedor</td><td>${s.desenvolvedor}</td></tr><tr><td>Tipo do Arquivo</td><td>${s.tipoArquivo}</td></tr><tr><td>Requer Android</td><td>${s.androidMin}</td></tr><tr><td>Atualizado em</td><td>${s.atualizadoEm}</td></tr>`;
                 }
 
+                // HERANÇA DE TEMPLATE: BOTÕES DE DOWNLOAD (Automático por Categoria)
                 const downloadBox = document.querySelector('.download-box');
                 if (downloadBox) {
-                    if (postItem.tipoDownload === 'multiplo') {
-                        downloadBox.innerHTML = `<p style="font-size:14px;font-weight:700;color:#c62828;margin-bottom:12px">⬇️ Clique abaixo para baixar o jogo</p><div class="download-options"><a href="${postItem.linkDownload}" class="btn-download-option" target="_blank"><i class="fas fa-file-archive"></i> BAIXAR APK</a><a href="${postItem.linkDownloadData1}" class="btn-download-option alt" target="_blank"><i class="fas fa-database"></i> DATA 1</a><a href="${postItem.linkDownloadData2}" class="btn-download-option alt" target="_blank"><i class="fas fa-database"></i> DATA 2</a></div>`;
+                    if (postItem.categoria === 'Jogos' || postItem.tipoDownload === 'multiplo') {
+                        // Template de Jogo (Resident Evil Style)
+                        downloadBox.innerHTML = `<p style="font-size:14px;font-weight:700;color:#c62828;margin-bottom:12px">⬇️ Clique abaixo para baixar o jogo</p><div class="download-options"><a href="${postItem.linkDownload}" class="btn-download-option" target="_blank"><i class="fas fa-file-archive"></i> BAIXAR APK</a><a href="${postItem.linkDownloadData1 || '#'}" class="btn-download-option alt" target="_blank"><i class="fas fa-database"></i> DATA 1</a><a href="${postItem.linkDownloadData2 || '#'}" class="btn-download-option alt" target="_blank"><i class="fas fa-database"></i> DATA 2</a></div>`;
                     } else {
+                        // Template de Aplicativo (Horizon Clicker Style)
                         downloadBox.innerHTML = `<p style="font-size:14px;font-weight:700;color:#0d47a1;margin-bottom:12px">⬇️ Clique abaixo para baixar o aplicativo</p><a href="${postItem.linkDownload}" class="btn-big-download" target="_blank"><i class="fas fa-download"></i> DOWNLOAD</a>`;
                     }
                 }
-
-                const img = document.querySelector('.post-featured-img');
-                if (img) {
-                    img.src = postItem.imagemCapa;
-                    // AJUSTE PARA IMAGEM INTEIRA SEM CORTES
-                    img.style.cssText = `width: 100%; max-height: 320px; object-fit: contain; background: #1a73e8; border-radius: var(--radius); margin-bottom: 16px;`;
-                }
-                const h1 = document.querySelector('.post-header h1');
-                if (h1) h1.textContent = postItem.titulo;
             }
             return;
         }
 
-        // 2. LÓGICA DO MOTOR DE AUTOMAÇÃO (DISTRIBUIÇÃO AUTOMÁTICA)
+        // 2. MOTOR DE PROPAGAÇÃO AUTOMÁTICA (LISTAGENS)
         const container = document.querySelector('.popular-section');
         if (container) {
             let dadosFiltrados = [];
             let tituloSecao = '';
             const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
 
-            // FILTRO: Aplicativos
+            // PÁGINA: Aplicativos (aplicativos.html)
             if (path.includes('aplicativos.html')) {
                 dadosFiltrados = window.APPS_DATA.aplicativos || [];
                 tituloSecao = '📱 Aplicativos';
             } 
-            // FILTRO: Jogos
+            // PÁGINA: Jogos (jogos.html)
             else if (path.includes('jogos.html')) {
                 dadosFiltrados = window.APPS_DATA.jogos || [];
                 tituloSecao = '🎮 Jogos';
             }
-            // FILTRO: Quente (Exemplo 3)
+            // PÁGINA: Quente (quente.html)
             else if (path.includes('quente.html')) {
+                // PROPAGAÇÃO: Aparece aqui se tipo for "quente"
                 dadosFiltrados = todosItens.filter(item => item.tipo === 'quente');
                 tituloSecao = '🔥 Conteúdo Quente';
             }
-            // FILTRO: Populares (Exemplo 1 e 2)
-            else if (path.includes('index.html') || path === '/' || path.includes('index')) {
-                // Na Home mostra os Populares e Destaques
-                dadosFiltrados = todosItens.filter(item => item.popular === true || item.destaque === true);
-                tituloSecao = '⭐ Aplicativos e Jogos em Destaque';
+            // PÁGINA: Inicial (index.html)
+            else if (path.includes('index.html') || path === '/' || path.endsWith('/')) {
+                // PROPAGAÇÃO: Aparece aqui se tipo for "popular" ou "quente"
+                dadosFiltrados = todosItens.filter(item => item.tipo === 'popular' || item.tipo === 'quente' || item.popular === true || item.destaque === true);
+                tituloSecao = '⭐ Populares e Destaques';
             }
 
             if (dadosFiltrados.length > 0) {
                 container.innerHTML = `<h1 class="section-title">${tituloSecao}</h1>`;
-                // Ordenar por data (Últimas Atualizações)
+                // Ordenar por data (Últimas Atualizações) - Sempre Propaga para Últimas Atualizações
                 dadosFiltrados.sort((a, b) => new Date(b.data) - new Date(a.data));
                 dadosFiltrados.forEach(item => {
                     container.appendChild(criarCard(item, prefixo));
