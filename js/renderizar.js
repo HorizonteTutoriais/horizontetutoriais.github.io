@@ -1,37 +1,29 @@
 /* ============================================================
    HORIZONTE TUTORIAIS — Renderizador Dinâmico 100% Automático
-   Gera automaticamente: cards, posts, tutoriais e modais
+   Funciona perfeitamente em desktop e celular
    ============================================================ */
 
 (function() {
+    'use strict';
+
     // Determina o prefixo de caminho com base na localização atual
     function getPrefixo() {
         const path = window.location.pathname;
-        if (path.includes('/posts/')) {
-            return '../../';
-        }
-        if (path.includes('/pages/')) {
-            return '../';
-        }
-        if (path.includes('/Index/')) {
-            return '../';
-        }
+        if (path.includes('/posts/')) return '../../';
+        if (path.includes('/pages/')) return '../';
+        if (path.includes('/Index/')) return '../';
         return '';
     }
 
     const prefixo = getPrefixo();
 
-    /* ================================================================
-       OBTER ID DA URL (para páginas mestras dinâmicas)
-    ================================================================ */
+    // Obter ID da URL (para páginas mestras dinâmicas)
     function getIdFromUrl() {
         const params = new URLSearchParams(window.location.search);
         return params.get('id');
     }
 
-    /* ================================================================
-       CRIAR CARD (elemento reutilizável)
-    ================================================================ */
+    // Criar card reutilizável
     function criarCard(item, prefixo) {
         const card = document.createElement('div');
         card.className = 'app-card';
@@ -118,24 +110,27 @@
         return card;
     }
 
-    /* ================================================================
-       FUNÇÃO PRINCIPAL DE RENDERIZAÇÃO
-    ================================================================ */
+    // Função principal de renderização
     window.renderizarTudo = function() {
-        if (!window.APPS_DATA || (!window.APPS_DATA.aplicativos && !window.APPS_DATA.jogos)) {
-            console.warn('Aguardando dados para renderizar...');
+        if (!window.APPS_DATA) {
+            console.warn('APPS_DATA não está disponível ainda');
             return;
         }
 
         const path = window.location.pathname;
         const urlId = getIdFromUrl();
 
-        // ============= RENDERIZAR PÁGINA MESTRA DINÂMICA (app.html?id=xxx ou jogo.html?id=xxx) =============
+        // ============= RENDERIZAR PÁGINA MESTRA DINÂMICA =============
         if (urlId) {
             let postItem = null;
-            [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])].forEach(app => {
-                if (app.id === urlId) postItem = app;
-            });
+            const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
+            
+            for (let i = 0; i < todosItens.length; i++) {
+                if (todosItens[i].id === urlId) {
+                    postItem = todosItens[i];
+                    break;
+                }
+            }
 
             if (postItem) {
                 // Atualizar título e meta
@@ -146,7 +141,15 @@
                 // Renderizar conteúdo do post
                 const postBody = document.querySelector('.post-body');
                 if (postBody) {
-                    postBody.innerHTML = `<p>${postItem.descricaoLonga || ''}</p><h2>⭐ RECURSOS PRINCIPAIS ⭐⭐⭐</h2><ul>${postItem.recursos.map(r => `<li>✅ ${r}</li>`).join('')}</ul>`;
+                    let recursosHtml = '';
+                    if (postItem.recursos && postItem.recursos.length > 0) {
+                        recursosHtml = '<h2>⭐ RECURSOS PRINCIPAIS ⭐⭐⭐</h2><ul>';
+                        for (let i = 0; i < postItem.recursos.length; i++) {
+                            recursosHtml += '<li>✅ ' + postItem.recursos[i] + '</li>';
+                        }
+                        recursosHtml += '</ul>';
+                    }
+                    postBody.innerHTML = '<p>' + (postItem.descricaoLonga || '') + '</p>' + recursosHtml;
                 }
 
                 // Renderizar tabela de especificações
@@ -195,7 +198,7 @@
                     }
                 }
 
-                // Renderizar botão de tutorial na sidebar
+                // Renderizar botão de tutorial
                 const tutorialsWidget = document.querySelector('.tutorials-widget');
                 if (tutorialsWidget) {
                     tutorialsWidget.innerHTML = `
@@ -230,7 +233,7 @@
                 const postDate = document.querySelector('.post-date');
                 if (postDate) postDate.textContent = '📅 ' + postItem.data;
             }
-            return; // Não renderizar cards se estiver em uma página mestra
+            return;
         }
 
         // ============= RENDERIZAR CARDS NAS PÁGINAS DE LISTAGEM =============
@@ -246,12 +249,11 @@
         } else if (path.includes('/pages/ferramentas.html')) {
             dados = window.APPS_DATA.ferramentas || [];
         } else if (path.includes('/Index/index.html') || path === '/' || path.endsWith('/index.html')) {
-            // Página inicial: renderizar destaques e últimas atualizações
+            // Página inicial
             const updateContainer = document.querySelector('.updates-grid');
             const popularContainer = document.querySelector('.popular-section');
             const sidebarPopulares = document.getElementById('sidebar-populares');
 
-            // Últimas atualizações
             if (updateContainer) {
                 updateContainer.innerHTML = '';
                 const todosItens = [
@@ -259,20 +261,22 @@
                     ...(window.APPS_DATA.jogos || []),
                     ...(window.APPS_DATA.quente || [])
                 ].sort((a, b) => new Date(b.data) - new Date(a.data));
-                todosItens.forEach(item => updateContainer.appendChild(criarCard(item, prefixo)));
+                
+                for (let i = 0; i < todosItens.length; i++) {
+                    updateContainer.appendChild(criarCard(todosItens[i], prefixo));
+                }
             }
 
-            // Destaques
             if (popularContainer) {
                 popularContainer.innerHTML = '';
-                const destaques = [
-                    ...(window.APPS_DATA.aplicativos || []),
-                    ...(window.APPS_DATA.jogos || [])
-                ].filter(item => item.destaque === true);
-                destaques.forEach(item => popularContainer.appendChild(criarCard(item, prefixo)));
+                const destaques = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])]
+                    .filter(item => item.destaque === true);
+                
+                for (let i = 0; i < destaques.length; i++) {
+                    popularContainer.appendChild(criarCard(destaques[i], prefixo));
+                }
             }
 
-            // Sidebar
             if (sidebarPopulares) {
                 sidebarPopulares.innerHTML = '<h3 class="widget-title">🔥 Populares</h3>';
                 const ul = document.createElement('ul');
@@ -280,12 +284,13 @@
                 ul.style.padding = '0';
                 const populares = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])]
                     .filter(item => item.tipo === 'popular').slice(0, 5);
-                populares.forEach(item => {
+                
+                for (let i = 0; i < populares.length; i++) {
                     const li = document.createElement('li');
                     li.style.marginBottom = '8px';
-                    li.innerHTML = `<a href="${prefixo + item.url}" style="color:#0d47a1;text-decoration:none;font-size:13px;font-weight:600;">${item.nome}</a>`;
+                    li.innerHTML = `<a href="${prefixo + populares[i].url}" style="color:#0d47a1;text-decoration:none;font-size:13px;font-weight:600;">${populares[i].nome}</a>`;
                     ul.appendChild(li);
-                });
+                }
                 sidebarPopulares.appendChild(ul);
             }
             return;
@@ -293,7 +298,9 @@
 
         if (container && dados.length > 0) {
             container.innerHTML = '<h1 class="section-title">' + (path.includes('aplicativos') ? '📱 Aplicativos' : '🎮 Jogos') + '</h1>';
-            dados.forEach(item => container.appendChild(criarCard(item, prefixo)));
+            for (let i = 0; i < dados.length; i++) {
+                container.appendChild(criarCard(dados[i], prefixo));
+            }
         }
 
         // ============= RENDERIZAR TUTORIAIS =============
@@ -301,10 +308,23 @@
             const tutoriaisContainer = document.querySelector('.popular-section');
             if (tutoriaisContainer) {
                 tutoriaisContainer.innerHTML = '<h1 class="section-title">📚 Tutoriais</h1>';
-                [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])].forEach(item => {
-                    if (!item.tutorialTitulo) return;
+                const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
+                
+                for (let i = 0; i < todosItens.length; i++) {
+                    const item = todosItens[i];
+                    if (!item.tutorialTitulo) continue;
+
                     const tutorialCard = document.createElement('div');
                     tutorialCard.className = 'tutorial-card';
+                    
+                    let videosHtml = '';
+                    if (item.videos && item.videos.length > 0) {
+                        for (let v = 0; v < item.videos.length; v++) {
+                            const video = item.videos[v];
+                            videosHtml += `<div class="video-btn" onclick="openVideoModal('${item.id}', '${video.id}', '${video.titulo}')"><i class="fas fa-video"></i><span>${video.titulo}</span></div>`;
+                        }
+                    }
+
                     tutorialCard.innerHTML = `
                         <div class="tutorial-header"><img src="${item.icone || item.imagem}" alt="${item.nome}" class="tutorial-icon" /><div class="tutorial-info"><h3>${item.tutorialTitulo}</h3><p>${item.tutorialSubtitulo}</p></div></div>
                         <div class="tutorial-description">${item.tutorialDescricao}</div>
@@ -313,7 +333,7 @@
                             <button class="btn-video" onclick="toggleVideoScroll('${item.id}')"><i class="fas fa-play-circle"></i> Assistir</button>
                             <a href="${prefixo}posts/${item.categoria === 'Jogos' ? 'jogos' : 'aplicativos'}/${item.categoria === 'Jogos' ? 'jogo' : 'app'}.html?id=${item.id}" class="btn-download-tutorial"><i class="fas fa-download"></i> Baixar</a>
                         </div>
-                        <div id="video-scroll-${item.id}" class="video-scroll-container"><div class="video-scroll-list">${item.videos.map(v => `<div class="video-btn" onclick="openVideoModal('${item.id}', '${v.id}', '${v.titulo}')"><i class="fas fa-video"></i><span>${v.titulo}</span></div>`).join('')}</div></div>
+                        <div id="video-scroll-${item.id}" class="video-scroll-container"><div class="video-scroll-list">${videosHtml}</div></div>
                     `;
                     tutoriaisContainer.appendChild(tutorialCard);
 
@@ -325,7 +345,7 @@
                     const s = item.especificacoes;
                     modal.innerHTML = `<div class="modal-content"><div class="modal-header"><h2>${item.nome} - Specs</h2><button class="close-btn" onclick="closeSpecsModal('${item.id}')">&times;</button></div><table class="specs-table"><tr><td>${item.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo'}</td><td>${item.nome}</td></tr><tr><td>Versão</td><td>${s.versao}</td></tr><tr><td>Tamanho</td><td>${s.tamanho}</td></tr><tr><td>Categoria</td><td>${s.categoria}</td></tr><tr><td>Desenvolvedor</td><td>${s.desenvolvedor}</td></tr><tr><td>Tipo do Arquivo</td><td>${s.tipoArquivo}</td></tr><tr><td>Requer Android</td><td>${s.androidMin}</td></tr><tr><td>Atualizado em</td><td>${s.atualizadoEm}</td></tr><tr><td>Recursos</td><td>${s.recursosEspecificacoes}</td></tr></table></div>`;
                     document.body.appendChild(modal);
-                });
+                }
                 
                 // Auto-open
                 const params = new URLSearchParams(window.location.search);
@@ -333,7 +353,10 @@
                 if (autoOpen) {
                     setTimeout(() => {
                         const scroll = document.getElementById('video-scroll-' + autoOpen);
-                        if (scroll) { scroll.classList.add('active'); scroll.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+                        if (scroll) { 
+                            scroll.classList.add('active'); 
+                            scroll.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
+                        }
                     }, 300);
                 }
             }
@@ -341,22 +364,55 @@
     };
 
     // Funções Globais
-    window.openSpecsModal = id => { const m = document.getElementById('modal-' + id); if (m) { m.style.display = 'block'; document.body.style.overflow = 'hidden'; } };
-    window.closeSpecsModal = id => { const m = document.getElementById('modal-' + id); if (m) { m.style.display = 'none'; document.body.style.overflow = 'auto'; } };
-    window.toggleVideoScroll = id => { const s = document.getElementById('video-scroll-' + id); if (s) s.classList.toggle('active'); };
-    window.openVideoModal = (tid, vid, title) => {
+    window.openSpecsModal = function(id) { 
+        const m = document.getElementById('modal-' + id); 
+        if (m) { 
+            m.style.display = 'block'; 
+            document.body.style.overflow = 'hidden'; 
+        } 
+    };
+    
+    window.closeSpecsModal = function(id) { 
+        const m = document.getElementById('modal-' + id); 
+        if (m) { 
+            m.style.display = 'none'; 
+            document.body.style.overflow = 'auto'; 
+        } 
+    };
+    
+    window.toggleVideoScroll = function(id) { 
+        const s = document.getElementById('video-scroll-' + id); 
+        if (s) s.classList.toggle('active'); 
+    };
+    
+    window.openVideoModal = function(tid, vid, title) {
         const m = document.getElementById('modal-video-player');
         const i = document.getElementById('video-iframe');
         const t = document.getElementById('video-modal-title');
-        if (m && i) { t.textContent = '📺 ' + title; i.src = 'https://www.youtube.com/embed/' + vid + '?autoplay=1'; m.style.display = 'block'; document.body.style.overflow = 'hidden'; }
+        if (m && i) { 
+            t.textContent = '📺 ' + title; 
+            i.src = 'https://www.youtube.com/embed/' + vid + '?autoplay=1'; 
+            m.style.display = 'block'; 
+            document.body.style.overflow = 'hidden'; 
+        }
     };
-    window.closeVideoModal = () => {
+    
+    window.closeVideoModal = function() {
         const m = document.getElementById('modal-video-player');
         const i = document.getElementById('video-iframe');
-        if (m && i) { i.src = ''; m.style.display = 'none'; document.body.style.overflow = 'auto'; }
+        if (m && i) { 
+            i.src = ''; 
+            m.style.display = 'none'; 
+            document.body.style.overflow = 'auto'; 
+        }
     };
 
     // Inicialização
-    document.addEventListener('DOMContentLoaded', window.renderizarTudo);
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', window.renderizarTudo);
+    } else {
+        window.renderizarTudo();
+    }
+    
     document.addEventListener('dadosProntos', window.renderizarTudo);
 })();
