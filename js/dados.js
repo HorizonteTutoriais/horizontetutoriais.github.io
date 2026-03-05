@@ -11,11 +11,13 @@ window.APPS_DATA = {
       "nome": "Horizon Clicker",
       "descricao": "Jogo de clicker divertido",
       "categoria": "Aplicativos",
-      "tipo": "quente", // EXEMPLO 3: CONTEÚDO QUENTE -> Propaga para: Aplicativos, Últimas Atualizações e Quente
+      "tipo": "quente", // EXEMPLO 3: CONTEÚDO QUENTE -> Aparece em Aplicativos, Últimas Atualizações e Quente
       "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/AShzdwWGghpbeWBY.png",
       "url": "posts/aplicativos/app.html?id=horizon-clicker",
       "tutorial": "pages/tutoriais.html?open=horizon-clicker",
       "data": "2026-03-04",
+      "destaque": true,
+      "popular": false,
       "titulo": "Download do APK do Horizon Clicker (Automação de Cliques)",
       "descricaoLonga": "O Horizon Clicker é uma ferramenta poderosa para automação de tarefas repetitivas no seu dispositivo Android, permitindo configurar cliques automáticos com precisão e facilidade.",
       "recursos": [
@@ -52,11 +54,13 @@ window.APPS_DATA = {
       "nome": "Resident Evil 4",
       "descricao": "Jogo de ação e horror",
       "categoria": "Jogos",
-      "tipo": "popular", // EXEMPLO 1: NOVO JOGO POPULAR -> Propaga para: Jogos, Últimas Atualizações, Popular e Destaques
+      "tipo": "popular", // EXEMPLO 1: NOVO JOGO POPULAR -> Aparece em Jogos, Últimas Atualizações, Popular e Destaques
       "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404250136/zdklqMSlQEbwtgnX.jpeg",
       "url": "posts/jogos/jogo.html?id=resident-evil-4",
       "tutorial": "pages/tutoriais.html?open=resident-evil-4",
       "data": "2026-03-04",
+      "destaque": true,
+      "popular": true,
       "titulo": "Como Jogar Resident Evil 4 Mobile",
       "descricaoLonga": "Resident Evil 4 é um clássico do survival horror que agora está disponível para Android.",
       "recursos": [
