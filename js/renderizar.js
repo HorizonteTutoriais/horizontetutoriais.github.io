@@ -1,30 +1,40 @@
 // ===== RENDERIZADOR DINÂMICO DO SITE =====
-// Este arquivo monta automaticamente as listas de apps, jogos, tutoriais e ferramentas
+// Este arquivo monta automaticamente as listas de apps, jogos, tutoriais ou ferramentas
 
 function obterPrefixoCaminho() {
   const path = window.location.pathname;
   
-  // Se estiver em uma subpasta (pages, posts, Index)
-  if (path.includes("/pages/") || path.includes("/posts/") || path.includes("/Index/")) {
-    // Se for um post (que está em posts/aplicativos/, posts/jogos/, etc), precisa subir 2 níveis
-    if (path.includes("/posts/aplicativos/") || path.includes("/posts/jogos/") || 
-        path.includes("/posts/tutoriais/") || path.includes("/posts/ferramentas/") ||
-        path.includes("/posts/quente/")) {
-        return "../../";
-    }
-    // Para as outras subpastas (pages), sobe 1 nível
+  // Se a página atual está na pasta 'Index', o prefixo para sair dela é '../'
+  if (path.includes("/Index/")) {
     return "../";
   }
+  // Se a página atual está na pasta 'pages', o prefixo para sair dela é '../'
+  if (path.includes("/pages/")) {
+    return "../";
+  }
+  // Se a página atual está em uma subpasta de 'posts', o prefixo para sair dela é '../../'
+  if (path.includes("/posts/")) {
+    return "../../";
+  }
   
-  // Se estiver na raiz
+  // Se estiver na raiz do site (ex: http://localhost:8000/)
   return "";
+}
+
+// Função auxiliar para determinar o caminho correto de um asset
+function getAssetPath(assetUrl) {
+  // Se for uma URL absoluta (começa com http/https), retorna a própria URL
+  if (assetUrl.startsWith("http://") || assetUrl.startsWith("https://")) {
+    return assetUrl;
+  }
+  // Caso contrário, é um caminho relativo ao site, então aplica o prefixo
+  return obterPrefixoCaminho() + assetUrl;
 }
 
 function renderizarAtualizacoes() {
   const container = document.querySelector(".updates-grid");
   if (!container) return;
 
-  const prefixo = obterPrefixoCaminho();
   container.innerHTML = "";
   
   // Combinar todos os itens e ordenar por data (mais recentes primeiro)
@@ -40,9 +50,9 @@ function renderizarAtualizacoes() {
     const card = document.createElement("div");
     card.className = "update-card";
     card.innerHTML = `
-      <img src="${item.imagemGrande}" alt="${item.nome}" />
+      <img src="${getAssetPath(item.imagemGrande)}" alt="${item.nome}" />
       <div class="card-title">${item.nome} (${item.descricao})</div>
-      <a href="${prefixo}${item.url}" class="btn-download">Download</a>
+      <a href="${getAssetPath(item.url)}" class="btn-download">Download</a>
     `;
     container.appendChild(card);
   });
@@ -52,12 +62,10 @@ function renderizarDestaques() {
   const container = document.querySelector(".popular-section");
   if (!container) return;
 
-  const prefixo = obterPrefixoCaminho();
   const titulo = container.querySelector(".section-title");
   if (!titulo) return;
 
-  const itensAntigos = container.querySelectorAll(".post-list-item");
-  itensAntigos.forEach(item => item.remove());
+  container.innerHTML = `<h2 class="section-title">⭐ Destaques</h2>`; // Limpa e adiciona o título novamente
 
   // Filtrar apenas itens marcados como destaque
   const destaques = [
@@ -72,11 +80,11 @@ function renderizarDestaques() {
     const link = document.createElement("div");
     link.className = "post-list-item";
     link.innerHTML = `
-      <img src="${item.imagem}" alt="${item.nome}" />
+      <img src="${getAssetPath(item.imagem)}" alt="${item.nome}" />
       <div class="post-list-info">
-        <div class="post-title"><a href="${prefixo}${item.url}">${item.nome} (${item.descricao})</a></div>
-        <div class="post-cat"><a href="${prefixo}pages/${item.categoria.toLowerCase()}.html">${item.categoria}</a></div>
-        <a href="${prefixo}${item.url}" class="btn-download-sm">Download</a>
+        <div class="post-title"><a href="${getAssetPath(item.url)}">${item.nome} (${item.descricao})</a></div>
+        <div class="post-cat"><a href="${getAssetPath("pages/" + item.categoria.toLowerCase() + ".html")}">${item.categoria}</a></div>
+        <a href="${getAssetPath(item.url)}" class="btn-download-sm">Download</a>
       </div>
     `;
     container.appendChild(link);
@@ -87,9 +95,7 @@ function renderizarPaginaAplicativos() {
   const container = document.querySelector(".popular-section"); // Usando popular-section como container principal
   if (!container) return;
 
-  const prefixo = obterPrefixoCaminho();
-  const itensAntigos = container.querySelectorAll(".post-list-item");
-  itensAntigos.forEach(item => item.remove());
+  container.innerHTML = `<h1 class="section-title">📱 Aplicativos</h1>`; // Limpa e adiciona o título novamente
 
   const apps = (APPS_DATA.aplicativos || []).sort((a, b) => new Date(b.data) - new Date(a.data));
 
@@ -97,11 +103,11 @@ function renderizarPaginaAplicativos() {
     const item = document.createElement("div");
     item.className = "post-list-item";
     item.innerHTML = `
-      <img src="${app.imagem}" alt="${app.nome}" />
+      <img src="${getAssetPath(app.imagem)}" alt="${app.nome}" />
       <div class="post-list-info">
-        <div class="post-title"><a href="${prefixo}${app.url}">${app.nome} (${app.descricao})</a></div>
-        <div class="post-cat"><a href="aplicativos.html">${app.categoria}</a> · <span style="color:#e53935;font-weight:700">${app.quente ? "Quente" : ""}</span></div>
-        <a href="${prefixo}${app.url}" class="btn-download-sm">Download</a>
+        <div class="post-title"><a href="${getAssetPath(app.url)}">${app.nome} (${app.descricao})</a></div>
+        <div class="post-cat"><a href="${getAssetPath("pages/" + app.categoria.toLowerCase() + ".html")}">${app.categoria}</a> · <span style="color:#e53935;font-weight:700">${app.quente ? "Quente" : ""}</span></div>
+        <a href="${getAssetPath(app.url)}" class="btn-download-sm">Download</a>
       </div>
     `;
     container.appendChild(item);
@@ -112,7 +118,6 @@ function renderizarPaginaJogos() {
   const container = document.querySelector(".apps-grid");
   if (!container) return;
 
-  const prefixo = obterPrefixoCaminho();
   container.innerHTML = "";
 
   const jogos = (APPS_DATA.jogos || []).sort((a, b) => new Date(b.data) - new Date(a.data));
@@ -121,9 +126,9 @@ function renderizarPaginaJogos() {
     const card = document.createElement("div");
     card.className = "app-card";
     card.innerHTML = `
-      <div class="app-card-title"><a href="${prefixo}${jogo.url}">${jogo.nome}</a></div>
+      <div class="app-card-title"><a href="${getAssetPath(jogo.url)}">${jogo.nome}</a></div>
       <div class="app-card-cat"><span>${jogo.quente ? "Quente" : ""}</span> · ${jogo.descricao}</div>
-      <a href="${prefixo}${jogo.url}" class="btn-download-sm">Download</a>
+      <a href="${getAssetPath(jogo.url)}" class="btn-download-sm">Download</a>
     `;
     container.appendChild(card);
   });
@@ -133,7 +138,6 @@ function renderizarPaginaTutoriais() {
   const container = document.querySelector(".apps-grid");
   if (!container) return;
 
-  const prefixo = obterPrefixoCaminho();
   container.innerHTML = "";
 
   const tutoriais = (APPS_DATA.tutoriais || []).sort((a, b) => new Date(b.data) - new Date(a.data));
@@ -142,9 +146,9 @@ function renderizarPaginaTutoriais() {
     const card = document.createElement("div");
     card.className = "app-card";
     card.innerHTML = `
-      <div class="app-card-title"><a href="${prefixo}${tutorial.url}">${tutorial.nome}</a></div>
+      <div class="app-card-title"><a href="${getAssetPath(tutorial.url)}">${tutorial.nome}</a></div>
       <div class="app-card-cat">${tutorial.descricao}</div>
-      <a href="${prefixo}${tutorial.url}" class="btn-download-sm">Acessar</a>
+      <a href="${getAssetPath(tutorial.url)}" class="btn-download-sm">Acessar</a>
     `;
     container.appendChild(card);
   });
@@ -154,7 +158,6 @@ function renderizarPaginaFerramentas() {
   const container = document.querySelector(".apps-grid");
   if (!container) return;
 
-  const prefixo = obterPrefixoCaminho();
   container.innerHTML = "";
 
   const ferramentas = (APPS_DATA.ferramentas || []).sort((a, b) => new Date(b.data) - new Date(a.data));
@@ -163,9 +166,9 @@ function renderizarPaginaFerramentas() {
     const card = document.createElement("div");
     card.className = "app-card";
     card.innerHTML = `
-      <div class="app-card-title"><a href="${prefixo}${ferramenta.url}">${ferramenta.nome}</a></div>
+      <div class="app-card-title"><a href="${getAssetPath(ferramenta.url)}">${ferramenta.nome}</a></div>
       <div class="app-card-cat">${ferramenta.descricao}</div>
-      <a href="${prefixo}${ferramenta.url}" class="btn-download-sm">Usar</a>
+      <a href="${getAssetPath(ferramenta.url)}" class="btn-download-sm">Usar</a>
     `;
     container.appendChild(card);
   });
@@ -175,7 +178,6 @@ function renderizarPaginaQuente() {
   const container = document.querySelector(".apps-grid");
   if (!container) return;
 
-  const prefixo = obterPrefixoCaminho();
   container.innerHTML = "";
 
   // Filtrar apenas itens marcados como quente
@@ -190,9 +192,9 @@ function renderizarPaginaQuente() {
     const card = document.createElement("div");
     card.className = "app-card";
     card.innerHTML = `
-      <div class="app-card-title"><a href="${prefixo}${item.url}">${item.nome}</a></div>
+      <div class="app-card-title"><a href="${getAssetPath(item.url)}">${item.nome}</a></div>
       <div class="app-card-cat">${item.categoria} · ${item.descricao}</div>
-      <a href="${prefixo}${item.url}" class="btn-download-sm">Abrir</a>
+      <a href="${getAssetPath(item.url)}" class="btn-download-sm">Abrir</a>
     `;
     container.appendChild(card);
   });
@@ -202,8 +204,12 @@ function renderizarSidebar() {
   const container = document.getElementById("sidebar-populares"); // Alvo direto pelo ID
   if (!container) return;
 
-  const prefixo = obterPrefixoCaminho();
-  container.innerHTML = ""; // Limpa o conteúdo existente
+  // Limpa o conteúdo existente, mas mantém o título H3
+  const h3Title = container.querySelector("h3");
+  container.innerHTML = "";
+  if (h3Title) {
+    container.appendChild(h3Title);
+  }
 
   // Combinar todos os itens populares e quentes
   const itensPopulares = [
@@ -217,9 +223,9 @@ function renderizarSidebar() {
     const sidebarItem = document.createElement("div");
     sidebarItem.className = "sidebar-post";
     sidebarItem.innerHTML = `
-      <img src="${item.imagem}" alt="${item.nome}" />
+      <img src="${getAssetPath(item.imagem)}" alt="${item.nome}" />
       <div class="sidebar-post-info">
-        <div class="sp-title"><a href="${prefixo}${item.url}">${item.nome}</a></div>
+        <div class="sp-title"><a href="${getAssetPath(item.url)}">${item.nome}</a></div>
         <div class="sp-cat">${item.categoria}</div>
       </div>
     `;
