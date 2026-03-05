@@ -62,7 +62,7 @@ window.APPS_DATA = {
       "descricao": "Jogo de ação e horror",
       "categoria": "Jogos",
       "tipo": "popular",
-      "imagem": "https://via.placeholder.com/150",
+      "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663407143234/rIfxPWmplfZKmpdU.jpg",
       "url": "posts/jogos/jogo.html?id=resident-evil-4",
       "tutorial": "pages/tutoriais.html?open=resident-evil-4",
       "data": "2026-03-04",
@@ -104,7 +104,7 @@ window.APPS_DATA = {
         { "titulo": "Troubleshooting", "id": "XDhx-rdHSmY" },
         { "titulo": "FAQ", "id": "XDhx-rdHSmY" }
       ],
-      "icone": "https://placehold.co/80x80/c62828/fff?text=RE4",
+      "icone": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663407143234/rIfxPWmplfZKmpdU.jpg",
       "tipoDownload": "multiplo"
     }
   ],
