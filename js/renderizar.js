@@ -443,15 +443,21 @@
                         : 'linear-gradient(135deg, #1a73e8 0%, #1565c0 100%)';
                     img.style.background = corFundo;
                     
-                    // Detectar se eh icone (quadrado) ou banner (retangular) e ajustar tamanho
+                    // Logica especifica por ID para cada item
                     img.onload = function() {
                         const ratio = this.naturalWidth / this.naturalHeight;
-                        // Se a proporcao for proxima de 1 (quadrado = icone), usar contain
-                        if (ratio >= 0.8 && ratio <= 1.2) {
+                        
+                        // Resident Evil 4: preenche 100 porcento do espaco
+                        if (postItem.id === 'resident-evil-4') {
+                            img.style.objectFit = 'cover';
+                            img.style.objectPosition = 'center center';
+                        } 
+                        // Horizon Clicker e outros: aparecem proporcional (sem zoom excessivo)
+                        else if (ratio >= 0.8 && ratio <= 1.2) {
                             img.style.objectFit = 'contain';
                             img.style.objectPosition = 'center center';
                         } else {
-                            // Se for retangular (banner), usar cover com foco no topo
+                            // Banners retangulares: cover com foco no topo
                             img.style.objectFit = 'cover';
                             img.style.objectPosition = 'center top';
                         }
