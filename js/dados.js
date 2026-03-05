@@ -12,7 +12,7 @@ window.APPS_DATA = {
       "descricao": "Jogo de clicker divertido",
       "categoria": "Aplicativos",
       "tipo": "quente",
-      "imagem": "https://via.placeholder.com/150",
+      "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/AShzdwWGghpbeWBY.png",
       "url": "posts/aplicativos/app.html?id=horizon-clicker",
       "tutorial": "pages/tutoriais.html?open=horizon-clicker",
       "data": "2026-03-04",
