@@ -67,13 +67,13 @@ function renderizarDestaques() {
 
   container.innerHTML = `<h2 class="section-title">⭐ Destaques</h2>`; // Limpa e adiciona o título novamente
 
-  // Filtrar apenas itens marcados como destaque
+  // Filtrar itens que são destaque, ou quentes, ou populares
   const destaques = [
     ...(APPS_DATA.aplicativos || []),
     ...(APPS_DATA.jogos || []),
     ...(APPS_DATA.tutoriais || []),
     ...(APPS_DATA.ferramentas || [])
-  ].filter(item => item.destaque).sort((a, b) => new Date(b.data) - new Date(a.data));
+  ].filter(item => item.destaque || item.quente || item.tipo === "popular").sort((a, b) => new Date(b.data) - new Date(a.data));
 
   // Renderiza destaques
   destaques.forEach(item => {
