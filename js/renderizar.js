@@ -156,6 +156,55 @@
                 const infoTable = document.querySelector('.info-table');
                 if (infoTable && postItem.especificacoes) {
                     const s = postItem.especificacoes;
+                    
+                    // Adicionar cabeçalho com ícone antes da tabela
+                    const containerPai = infoTable.parentElement;
+                    const headerExistente = document.querySelector('.specs-header-custom');
+                    if (headerExistente) headerExistente.remove();
+
+                    const specsHeader = document.createElement('div');
+                    specsHeader.className = 'specs-header-custom';
+                    specsHeader.style.cssText = `
+                        display: flex;
+                        align-items: center;
+                        gap: 15px;
+                        margin-top: 25px;
+                        margin-bottom: 15px;
+                        padding: 12px;
+                        background: #f0f4ff;
+                        border-radius: 8px;
+                        border-left: 4px solid var(--blue-primary);
+                    `;
+
+                    const iconImg = document.createElement('img');
+                    iconImg.src = postItem.icone || postItem.imagem || 'https://via.placeholder.com/80';
+                    iconImg.style.cssText = `
+                        width: 70px;
+                        height: 70px;
+                        border-radius: 8px;
+                        object-fit: cover;
+                        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+                        background: #fff;
+                    `;
+
+                    const titleWrapper = document.createElement('div');
+                    const titleH2 = document.createElement('h2');
+                    titleH2.textContent = '📊 ESPECIFICAÇÕES DO ' + (postItem.categoria === 'Jogos' ? 'JOGO' : 'APLICATIVO');
+                    titleH2.style.cssText = 'margin: 0; font-size: 16px; font-weight: 700; color: var(--blue-dark);';
+                    titleWrapper.appendChild(titleH2);
+
+                    specsHeader.appendChild(iconImg);
+                    specsHeader.appendChild(titleWrapper);
+
+                    // Inserir antes da tabela
+                    containerPai.insertBefore(specsHeader, infoTable);
+
+                    // Remover o título H2 antigo se existir para não duplicar
+                    const titulosAntigos = containerPai.querySelectorAll('h2.section-title');
+                    titulosAntigos.forEach(t => {
+                        if (t.textContent.includes('ESPECIFICAÇÕES')) t.remove();
+                    });
+
                     infoTable.innerHTML = `
                         <tr><td>${postItem.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo'}</td><td>${postItem.nome}</td></tr>
                         <tr><td>Versão</td><td>${s.versao}</td></tr>
@@ -250,203 +299,34 @@
         else if (path.includes('/pages/jogos.html')) {
             dados = (window.APPS_DATA.jogos || []).filter(item => item.categoria === 'Jogos');
             titulo = '🎮 Jogos';
-        } 
-        // PÁGINA QUENTE - Mostrar APENAS itens com tipo "quente"
-        else if (path.includes('/pages/quente.html')) {
-            const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
-            dados = todosItens.filter(item => item.tipo === 'quente');
-            titulo = '🔥 Quente';
-        } 
-        // PÁGINA FERRAMENTAS
+        }
+        // PÁGINA DE FERRAMENTAS
         else if (path.includes('/pages/ferramentas.html')) {
-            dados = window.APPS_DATA.ferramentas || [];
+            dados = (window.APPS_DATA.aplicativos || []).filter(item => item.categoria === 'Ferramentas');
             titulo = '🔧 Ferramentas';
-        } 
-        // PÁGINA INICIAL
-        else if (path.includes('/Index/index.html') || path === '/' || path.endsWith('/index.html')) {
-            const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
-            
-            // Últimas Atualizações - TODOS os itens, ordenados por data
-            const updateContainer = document.querySelector('.updates-grid');
-            if (updateContainer) {
-                updateContainer.innerHTML = '';
-                const ultimasAtualizacoes = todosItens.sort((a, b) => new Date(b.data) - new Date(a.data));
-                for (let i = 0; i < ultimasAtualizacoes.length; i++) {
-                    updateContainer.appendChild(criarCard(ultimasAtualizacoes[i], prefixo));
-                }
-            }
-
-            // Destaques - APENAS itens com destaque: true
-            const popularContainer = document.querySelector('.popular-section');
-            if (popularContainer) {
-                popularContainer.innerHTML = '';
-                const destaques = todosItens.filter(item => item.destaque === true);
-                for (let i = 0; i < destaques.length; i++) {
-                    popularContainer.appendChild(criarCard(destaques[i], prefixo));
-                }
-            }
-
-            // Sidebar Populares - APENAS itens com tipo: "popular"
-            const sidebarPopulares = document.getElementById('sidebar-populares');
-            if (sidebarPopulares) {
-                sidebarPopulares.innerHTML = '<h3 class="widget-title">🔥 Populares</h3>';
-                const populares = todosItens.filter(item => item.tipo === 'popular');
-                
-                for (let i = 0; i < Math.min(populares.length, 5); i++) {
-                    sidebarPopulares.appendChild(criarCard(populares[i], prefixo));
-                }
-            }
-
-            // Seção Quente - APENAS itens com tipo: "quente"
-            const quenteContainer = document.querySelector('.quente-section');
-            if (quenteContainer) {
-                quenteContainer.innerHTML = '<h2 class="section-title">🔥 Quente Agora</h2>';
-                const quentes = todosItens.filter(item => item.tipo === 'quente');
-                for (let i = 0; i < quentes.length; i++) {
-                    quenteContainer.appendChild(criarCard(quentes[i], prefixo));
-                }
-            }
-
-            return;
+        }
+        // PÁGINA QUENTE
+        else if (path.includes('/pages/quente.html')) {
+            dados = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])].filter(item => item.tipo === 'quente');
+            titulo = '🔥 Conteúdo Quente';
         }
 
-        // Renderizar cards na página de listagem
         if (container && dados.length > 0) {
-            container.innerHTML = '<h1 class="section-title">' + titulo + '</h1>';
-            for (let i = 0; i < dados.length; i++) {
-                container.appendChild(criarCard(dados[i], prefixo));
-            }
-        }
-
-        // ============= RENDERIZAR TUTORIAIS =============
-        if (path.includes('/pages/tutoriais.html')) {
-            const tutoriaisContainer = document.querySelector('.popular-section');
-            if (tutoriaisContainer) {
-                tutoriaisContainer.innerHTML = '<h1 class="section-title">📚 Tutoriais</h1>';
-                const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
-                
-                for (let i = 0; i < todosItens.length; i++) {
-                    const item = todosItens[i];
-                    if (!item.tutorialTitulo) continue;
-
-                    const tutorialCard = document.createElement('div');
-                    tutorialCard.className = 'tutorial-card';
-                    
-                    let videosHtml = '';
-                    if (item.videos && item.videos.length > 0) {
-                        for (let v = 0; v < item.videos.length; v++) {
-                            const video = item.videos[v];
-                            videosHtml += `<div class="video-btn" onclick="openVideoModal('${item.id}', '${video.id}', '${video.titulo}')"><i class="fas fa-video"></i><span>${video.titulo}</span></div>`;
-                        }
-                    }
-
-                    tutorialCard.innerHTML = `
-                        <div class="tutorial-header"><img src="${item.icone || item.imagem}" alt="${item.nome}" class="tutorial-icon" /><div class="tutorial-info"><h3>${item.tutorialTitulo}</h3><p>${item.tutorialSubtitulo}</p></div></div>
-                        <div class="tutorial-description">${item.tutorialDescricao}</div>
-                        <div class="tutorial-buttons">
-                            <button class="btn-specs" onclick="openSpecsModal('${item.id}')"><i class="fas fa-info-circle"></i> Specs</button>
-                            <button class="btn-video" onclick="toggleVideoScroll('${item.id}')"><i class="fas fa-play-circle"></i> Assistir</button>
-                            <a href="${prefixo}posts/${item.categoria === 'Jogos' ? 'jogos' : 'aplicativos'}/${item.categoria === 'Jogos' ? 'jogo' : 'app'}.html?id=${item.id}" class="btn-download-tutorial"><i class="fas fa-download"></i> Baixar</a>
-                        </div>
-                        <div id="video-scroll-${item.id}" class="video-scroll-container"><div class="video-scroll-list">${videosHtml}</div></div>
-                    `;
-                    tutoriaisContainer.appendChild(tutorialCard);
-
-                    // Modal de Specs
-                    const modal = document.createElement('div');
-                    modal.id = 'modal-' + item.id;
-                    modal.className = 'modal';
-                    modal.style.display = 'none';
-                    const s = item.especificacoes;
-                    
-                    let modalHTML = '<div class="modal-content">';
-                    modalHTML += '<div class="modal-header"><h2>' + item.nome + ' - Specs</h2>';
-                    modalHTML += '<button class="close-btn" onclick="closeSpecsModal(\'' + item.id + '\')">&times;</button></div>';
-                    modalHTML += '<div style="text-align:center;padding:15px;">';
-                    modalHTML += '<img src="' + (item.icone || item.imagem) + '" alt="' + item.nome + '" style="width:100px;height:100px;border-radius:8px;object-fit:cover;">';
-                    modalHTML += '</div>';
-                    modalHTML += '<table class="specs-table">';
-                    modalHTML += '<tr><td>' + (item.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo') + '</td><td>' + item.nome + '</td></tr>';
-                    modalHTML += '<tr><td>Versão</td><td>' + s.versao + '</td></tr>';
-                    modalHTML += '<tr><td>Tamanho</td><td>' + s.tamanho + '</td></tr>';
-                    modalHTML += '<tr><td>Categoria</td><td>' + s.categoria + '</td></tr>';
-                    modalHTML += '<tr><td>Desenvolvedor</td><td>' + s.desenvolvedor + '</td></tr>';
-                    modalHTML += '<tr><td>Tipo do Arquivo</td><td>' + s.tipoArquivo + '</td></tr>';
-                    modalHTML += '<tr><td>Requer Android</td><td>' + s.androidMin + '</td></tr>';
-                    modalHTML += '<tr><td>Atualizado em</td><td>' + s.atualizadoEm + '</td></tr>';
-                    modalHTML += '<tr><td>Recursos</td><td>' + s.recursosEspecificacoes + '</td></tr>';
-                    modalHTML += '</table></div>';
-                    
-                    modal.innerHTML = modalHTML;
-                    document.body.appendChild(modal);
-                }
-                
-                // Auto-open
-                const params = new URLSearchParams(window.location.search);
-                const autoOpen = params.get('open');
-                if (autoOpen) {
-                    setTimeout(() => {
-                        const scroll = document.getElementById('video-scroll-' + autoOpen);
-                        if (scroll) { 
-                            scroll.classList.add('active'); 
-                            scroll.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
-                        }
-                    }, 300);
-                }
-            }
+            container.innerHTML = `<h1 class="section-title">${titulo}</h1>`;
+            dados.forEach(item => {
+                container.appendChild(criarCard(item, prefixo));
+            });
         }
     };
 
-    // Funções Globais
-    window.openSpecsModal = function(id) { 
-        const m = document.getElementById('modal-' + id); 
-        if (m) { 
-            m.style.display = 'block'; 
-            document.body.style.overflow = 'hidden'; 
-        } 
-    };
-    
-    window.closeSpecsModal = function(id) { 
-        const m = document.getElementById('modal-' + id); 
-        if (m) { 
-            m.style.display = 'none'; 
-            document.body.style.overflow = 'auto'; 
-        } 
-    };
-    
-    window.toggleVideoScroll = function(id) { 
-        const s = document.getElementById('video-scroll-' + id); 
-        if (s) s.classList.toggle('active'); 
-    };
-    
-    window.openVideoModal = function(tid, vid, title) {
-        const m = document.getElementById('modal-video-player');
-        const i = document.getElementById('video-iframe');
-        const t = document.getElementById('video-modal-title');
-        if (m && i) { 
-            t.textContent = '📺 ' + title; 
-            i.src = 'https://www.youtube.com/embed/' + vid + '?autoplay=1'; 
-            m.style.display = 'block'; 
-            document.body.style.overflow = 'hidden'; 
-        }
-    };
-    
-    window.closeVideoModal = function() {
-        const m = document.getElementById('modal-video-player');
-        const i = document.getElementById('video-iframe');
-        if (m && i) { 
-            i.src = ''; 
-            m.style.display = 'none'; 
-            document.body.style.overflow = 'auto'; 
-        }
-    };
-
-    // Inicialização
+    // Executar renderização
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', window.renderizarTudo);
     } else {
         window.renderizarTudo();
     }
-    
+
+    // Ouvir evento de dados prontos (caso venham de carregamento assíncrono)
     document.addEventListener('dadosProntos', window.renderizarTudo);
+
 })();
