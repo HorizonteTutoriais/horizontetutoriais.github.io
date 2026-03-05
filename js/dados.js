@@ -11,13 +11,13 @@ window.APPS_DATA = {
       "nome": "Horizon Clicker",
       "descricao": "Jogo de clicker divertido",
       "categoria": "Aplicativos",
-      "tipo": "quente",
+      "tipo": "quente", // EXEMPLO 3: CONTEÚDO QUENTE
       "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/AShzdwWGghpbeWBY.png",
       "url": "posts/aplicativos/app.html?id=horizon-clicker",
       "tutorial": "pages/tutoriais.html?open=horizon-clicker",
       "data": "2026-03-04",
       "destaque": true,
-      "popular": true,
+      "popular": false,
       "titulo": "Download do APK do Horizon Clicker (Automação de Cliques)",
       "descricaoLonga": "O Horizon Clicker é uma ferramenta poderosa para automação de tarefas repetitivas no seu dispositivo Android, permitindo configurar cliques automáticos com precisão e facilidade.",
       "recursos": [
@@ -46,44 +46,6 @@ window.APPS_DATA = {
         { "titulo": "Configuração", "id": "XDhx-rdHSmY" }
       ],
       "icone": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/AShzdwWGghpbeWBY.png"
-    },
-    {
-      "id": "horizon-tela-ligada",
-      "nome": "Horizon Tela Ligada",
-      "descricao": "Mantém a tela do seu Android sempre ligada",
-      "categoria": "Aplicativos",
-      "tipo": "normal",
-      "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/ySlUmmMGFwaupDCT.png",
-      "url": "posts/aplicativos/app.html?id=horizon-tela-ligada",
-      "tutorial": "pages/tutoriais.html?open=horizon-tela-ligada",
-      "data": "2026-03-05",
-      "destaque": false,
-      "popular": false,
-      "titulo": "Download do APK do Horizon Tela Ligada",
-      "descricaoLonga": "O Horizon Tela Ligada é uma ferramenta poderosa para manter a tela do seu dispositivo Android sempre ativa.",
-      "recursos": [
-        "Interface Intuitiva e fácil de usar",
-        "Controle de tempo ajustável"
-      ],
-      "especificacoes": {
-        "versao": "Última Versão",
-        "tamanho": "Varia de acordo com o dispositivo",
-        "categoria": "Ferramentas / Utilitários",
-        "desenvolvedor": "Horizon Dev Team",
-        "tipoArquivo": "APK",
-        "androidMin": "5.0 ou superior",
-        "atualizadoEm": "05/03/2026",
-        "recursosEspecificacoes": "Interface Intuitiva, Controle Ajustável"
-      },
-      "linkDownload": "https://4br.me/BaixarHorizonTelaLigada",
-      "imagemCapa": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/ySlUmmMGFwaupDCT.png",
-      "tutorialTitulo": "📱 Como Usar o Horizon Tela Ligada",
-      "tutorialSubtitulo": "Aprenda a manter a tela do seu Android sempre ligada.",
-      "tutorialDescricao": "Neste tutorial completo, você aprenderá como instalar e configurar o Horizon Tela Ligada.",
-      "videos": [
-        { "titulo": "Tutorial Parte 1", "id": "XDhx-rdHSmY" }
-      ],
-      "icone": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/ySlUmmMGFwaupDCT.png"
     }
   ],
   "jogos": [
@@ -92,7 +54,7 @@ window.APPS_DATA = {
       "nome": "Resident Evil 4",
       "descricao": "Jogo de ação e horror",
       "categoria": "Jogos",
-      "tipo": "popular",
+      "tipo": "popular", // EXEMPLO 1: NOVO JOGO POPULAR
       "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404250136/zdklqMSlQEbwtgnX.jpeg",
       "url": "posts/jogos/jogo.html?id=resident-evil-4",
       "tutorial": "pages/tutoriais.html?open=resident-evil-4",
