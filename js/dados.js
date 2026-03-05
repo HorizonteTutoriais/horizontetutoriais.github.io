@@ -11,7 +11,7 @@ window.APPS_DATA = {
       "nome": "Horizon Clicker",
       "descricao": "Jogo de clicker divertido",
       "categoria": "Aplicativos",
-      "tipo": "popular",
+      "tipo": "quente",
       "imagem": "https://via.placeholder.com/150",
       "url": "posts/aplicativos/app.html?id=horizon-clicker",
       "tutorial": "pages/tutoriais.html?open=horizon-clicker",
@@ -59,12 +59,12 @@ window.APPS_DATA = {
       "nome": "Horizon Tela Ligada",
       "descricao": "Mantém a tela do seu Android sempre ligada",
       "categoria": "Aplicativos",
-      "tipo": "popular",
+      "tipo": "normal",
       "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/ySlUmmMGFwaupDCT.png",
       "url": "posts/aplicativos/app.html?id=horizon-tela-ligada",
       "tutorial": "pages/tutoriais.html?open=horizon-tela-ligada",
       "data": "2026-03-05",
-      "destaque": true,
+      "destaque": false,
       "titulo": "Download do APK do Horizon Tela Ligada",
       "descricaoLonga": "O Horizon Tela Ligada é uma ferramenta poderosa para manter a tela do seu dispositivo Android sempre ativa, permitindo configurar a duração com precisão e facilidade.",
       "recursos": [
@@ -170,4 +170,4 @@ if (document.readyState === 'loading') {
   });
 } else {
   document.dispatchEvent(new CustomEvent('dadosProntos', { detail: window.APPS_DATA }));
-                            }
+}
