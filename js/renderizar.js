@@ -1,5 +1,5 @@
 /* ============================================================
-   HORIZONTE TUTORIAIS — Renderizador Dinâmico 100% Automático
+   HORIZONTE TUTORIAIS — Motor de Automação 100% Funcional
    ============================================================ */
 
 (function() {
@@ -17,8 +17,6 @@
     function getIdFromUrl() {
         const params = new URLSearchParams(window.location.search);
         let id = params.get('id');
-        
-        // Fallback: Se não houver ID na URL, tenta identificar pelo nome do arquivo
         if (!id) {
             const path = window.location.pathname;
             if (path.includes('horizon-clicker')) id = 'horizon-clicker';
@@ -34,7 +32,7 @@
         card.style.cssText = `background: var(--white); border: 1px solid var(--gray-border); border-radius: var(--radius); padding: 15px; margin-bottom: 15px; box-shadow: var(--shadow); transition: all 0.3s ease; display: flex; gap: 15px; cursor: pointer;`;
         
         const img = document.createElement('img');
-        img.src = item.imagem || item.icone || 'https://via.placeholder.com/80';
+        img.src = item.icone || item.imagem || 'https://via.placeholder.com/80';
         img.style.cssText = `width: 80px; height: 80px; border-radius: 6px; object-fit: cover; flex-shrink: 0;`;
         
         const content = document.createElement('div');
@@ -52,6 +50,7 @@
         const path = window.location.pathname;
         const urlId = getIdFromUrl();
 
+        // 1. LÓGICA DE PÁGINA DE DETALHES (POST)
         if (urlId) {
             const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
             const postItem = todosItens.find(i => i.id === urlId);
@@ -71,22 +70,13 @@
                 if (infoTable && postItem.especificacoes) {
                     const s = postItem.especificacoes;
                     const containerPai = infoTable.parentElement;
-                    
-                    // Remover headers antigos para não duplicar
                     document.querySelectorAll('.specs-header-custom').forEach(e => e.remove());
-                    
                     const specsHeader = document.createElement('div');
                     specsHeader.className = 'specs-header-custom';
                     specsHeader.style.cssText = `display: flex; align-items: center; gap: 15px; margin-top: 25px; margin-bottom: 15px; padding: 12px; background: #f0f4ff; border-radius: 8px; border-left: 4px solid var(--blue-primary);`;
                     specsHeader.innerHTML = `<img src="${postItem.icone || postItem.imagem}" style="width: 70px; height: 70px; border-radius: 8px; object-fit: cover; box-shadow: 0 2px 6px rgba(0,0,0,0.15); background: #fff;"><div><h2 style="margin: 0; font-size: 16px; font-weight: 700; color: var(--blue-dark);">📊 ESPECIFICAÇÕES DO ${postItem.categoria.toUpperCase()}</h2></div>`;
-                    
                     containerPai.insertBefore(specsHeader, infoTable);
-                    
-                    // Remover título H2 original para evitar duplicação
-                    containerPai.querySelectorAll('h2.section-title').forEach(t => { 
-                        if (t.textContent.includes('ESPECIFICAÇÕES')) t.remove(); 
-                    });
-
+                    containerPai.querySelectorAll('h2.section-title').forEach(t => { if (t.textContent.includes('ESPECIFICAÇÕES')) t.remove(); });
                     infoTable.innerHTML = `<tr><td>${postItem.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo'}</td><td>${postItem.nome}</td></tr><tr><td>Versão</td><td>${s.versao}</td></tr><tr><td>Tamanho</td><td>${s.tamanho}</td></tr><tr><td>Categoria</td><td>${s.categoria}</td></tr><tr><td>Desenvolvedor</td><td>${s.desenvolvedor}</td></tr><tr><td>Tipo do Arquivo</td><td>${s.tipoArquivo}</td></tr><tr><td>Requer Android</td><td>${s.androidMin}</td></tr><tr><td>Atualizado em</td><td>${s.atualizadoEm}</td></tr>`;
                 }
 
@@ -100,30 +90,52 @@
                     }
                 }
 
-                // Renderizar Imagem de Capa (Banner)
+                // Renderizar Banner (Imagem de Capa)
                 const img = document.querySelector('.post-featured-img');
                 if (img) {
                     img.src = postItem.imagemCapa;
                     img.style.cssText = `width: 100%; max-height: 320px; object-fit: contain; background: #1a73e8; border-radius: var(--radius); margin-bottom: 16px;`;
                 }
-                
                 const h1 = document.querySelector('.post-header h1');
                 if (h1) h1.textContent = postItem.titulo;
             }
             return;
         }
 
-        // Renderizar Listagens
+        // 2. LÓGICA DO MOTOR DE AUTOMAÇÃO (LISTAGENS E FILTROS)
         const container = document.querySelector('.popular-section');
         if (container) {
-            let dados = [];
-            let titulo = '';
-            if (path.includes('aplicativos.html')) { dados = window.APPS_DATA.aplicativos; titulo = '📱 Aplicativos'; }
-            else if (path.includes('jogos.html')) { dados = window.APPS_DATA.jogos; titulo = '🎮 Jogos'; }
-            
-            if (dados.length) {
-                container.innerHTML = `<h1 class="section-title">${titulo}</h1>`;
-                dados.forEach(item => container.appendChild(criarCard(item, prefixo)));
+            let dadosFiltrados = [];
+            let tituloSecao = '';
+            const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
+
+            // FILTRO: Aplicativos
+            if (path.includes('aplicativos.html')) {
+                dadosFiltrados = window.APPS_DATA.aplicativos || [];
+                tituloSecao = '📱 Aplicativos';
+            } 
+            // FILTRO: Jogos
+            else if (path.includes('jogos.html')) {
+                dadosFiltrados = window.APPS_DATA.jogos || [];
+                tituloSecao = '🎮 Jogos';
+            }
+            // FILTRO: Quente (Exemplo 3)
+            else if (path.includes('quente.html')) {
+                dadosFiltrados = todosItens.filter(item => item.tipo === 'quente');
+                tituloSecao = '🔥 Conteúdo Quente';
+            }
+            // FILTRO: Populares (Exemplo 1 e 2)
+            else if (path.includes('index.html') || path === '/' || path.includes('index')) {
+                // Na Home, podemos mostrar os Populares ou Últimas Atualizações
+                dadosFiltrados = todosItens.filter(item => item.popular === true);
+                tituloSecao = '⭐ Aplicativos Populares';
+            }
+
+            if (dadosFiltrados.length > 0) {
+                container.innerHTML = `<h1 class="section-title">${tituloSecao}</h1>`;
+                dadosFiltrados.forEach(item => {
+                    container.appendChild(criarCard(item, prefixo));
+                });
             }
         }
     };
