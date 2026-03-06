@@ -61,7 +61,7 @@ window.APPS_DATA = {
       "descricao": "Jogo de ação e horror",
       "categoria": "Jogos",
       "tipo": "popular",
-      "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663407143234/rIfxPWmplfZKmpdU.jpg",
+      "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663409185605/DEguaKtzktTKzSrU.png",
       "url": "posts/jogos/jogo.html?id=resident-evil-4",
       "tutorial": "pages/tutoriais.html?open=resident-evil-4",
       "data": "2026-03-04",
@@ -102,12 +102,88 @@ window.APPS_DATA = {
         { "titulo": "Troubleshooting", "id": "XDhx-rdHSmY" },
         { "titulo": "FAQ", "id": "XDhx-rdHSmY" }
       ],
-      "icone": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663407143234/rIfxPWmplfZKmpdU.jpg",
+      "icone": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663409185605/DEguaKtzktTKzSrU.png",
       "tipoDownload": "multiplo"
     }
   ],
   "tutoriais": [],
-  "ferramentas": [],
+  "ferramentas": [
+    {
+      "id": "superme",
+      "nome": "SuperMe",
+      "descricao": "Crie avatares personalizados com facilidade",
+      "categoria": "Ferramentas",
+      "tipo": "normal",
+      "imagem": "https://via.placeholder.com/150",
+      "url": "posts/aplicativos/app.html?id=superme",
+      "data": "2026-03-06",
+      "destaque": false,
+      "titulo": "Download SuperMe APK",
+      "descricaoLonga": "SuperMe é um aplicativo divertido para criar avatares de anime personalizados. Com milhares de opções de customização, você pode criar um personagem que se parece exatamente com você ou com quem você desejar.",
+      "especificacoes": {
+        "versao": "Última Versão",
+        "tamanho": "Varia de acordo com o dispositivo",
+        "categoria": "Ferramentas / Avatar",
+        "desenvolvedor": "SuperMe Team",
+        "tipoArquivo": "APK",
+        "androidMin": "5.0 ou superior",
+        "atualizadoEm": "06/03/2026",
+        "recursosEspecificacoes": "Customização completa, Exportação em alta qualidade"
+      },
+      "linkDownload": "#",
+      "icone": "https://via.placeholder.com/150"
+    },
+    {
+      "id": "custom-patch-pro",
+      "nome": "Custom Patch Pro",
+      "descricao": "Ferramenta avançada para patches personalizados",
+      "categoria": "Ferramentas",
+      "tipo": "normal",
+      "imagem": "https://via.placeholder.com/150",
+      "url": "posts/aplicativos/app.html?id=custom-patch-pro",
+      "data": "2026-03-06",
+      "destaque": false,
+      "titulo": "Download Custom Patch Pro APK",
+      "descricaoLonga": "Custom Patch Pro permite aplicar modificações e patches em diversos aplicativos Android de forma simples e eficiente.",
+      "especificacoes": {
+        "versao": "Pro Edition",
+        "tamanho": "15 MB",
+        "categoria": "Ferramentas / Modificação",
+        "desenvolvedor": "Patch Dev",
+        "tipoArquivo": "APK",
+        "androidMin": "6.0 ou superior",
+        "atualizadoEm": "06/03/2026",
+        "recursosEspecificacoes": "Interface amigável, Patches rápidos"
+      },
+      "linkDownload": "#",
+      "icone": "https://via.placeholder.com/150"
+    },
+    {
+      "id": "mt-manager",
+      "nome": "MT Manager",
+      "descricao": "Gerenciador de arquivos e editor de APK poderoso",
+      "categoria": "Ferramentas",
+      "tipo": "normal",
+      "imagem": "https://via.placeholder.com/150",
+      "url": "posts/aplicativos/app.html?id=mt-manager",
+      "data": "2026-03-06",
+      "destaque": false,
+      "titulo": "Download MT Manager APK",
+      "descricaoLonga": "MT Manager é um gerenciador de arquivos extremamente poderoso que também funciona como editor de APK, permitindo modificar strings, recursos e muito mais diretamente no seu celular.",
+      "especificacoes": {
+        "versao": "2.14.0",
+        "tamanho": "20 MB",
+        "categoria": "Ferramentas / Gerenciamento",
+        "desenvolvedor": "Lin Jin Bin",
+        "tipoArquivo": "APK",
+        "androidMin": "4.2 ou superior",
+        "atualizadoEm": "06/03/2026",
+        "recursosEspecificacoes": "Editor de APK, Gerenciador de Arquivos Dual-Pane"
+      },
+      "linkDownload": "#",
+      "icone": "https://via.placeholder.com/150"
+    }
+  ],
   "quente": []
 };
 
@@ -120,4 +196,4 @@ if (document.readyState === 'loading') {
   });
 } else {
   document.dispatchEvent(new CustomEvent('dadosProntos', { detail: window.APPS_DATA }));
-         }
+}
