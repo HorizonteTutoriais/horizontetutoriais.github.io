@@ -437,20 +437,18 @@
                     const imagemFinal = postItem.imagemCapa || postItem.icone || postItem.imagem || 'https://via.placeholder.com/700x300';
                     img.src = imagemFinal;
                     
-                    // Aplicar cor de fundo dinamica: Azul para Apps, Vermelho para Jogos
-                    const corFundo = postItem.categoria === 'Jogos' 
-                        ? 'linear-gradient(135deg, #c62828 0%, #d32f2f 100%)' 
-                        : 'linear-gradient(135deg, #1a73e8 0%, #1565c0 100%)';
-                    img.style.background = corFundo;
+                    // Aplicar fundo branco no banner principal
+                    img.style.background = '#ffffff';
                     
                     // Logica especifica por ID para cada item
                     img.onload = function() {
                         const ratio = this.naturalWidth / this.naturalHeight;
                         
-                        // Resident Evil 4: preenche 100 porcento do espaco
+                        // Resident Evil 4: escala otimizada para preencher sem distorcao
                         if (postItem.id === 'resident-evil-4') {
                             img.style.objectFit = 'cover';
                             img.style.objectPosition = 'center center';
+                            img.style.transform = 'scale(0.95)';
                         } 
                         // Horizon Clicker e outros: aparecem proporcional (sem zoom excessivo)
                         else if (ratio >= 0.8 && ratio <= 1.2) {
