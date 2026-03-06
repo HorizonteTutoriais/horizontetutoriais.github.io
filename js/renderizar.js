@@ -103,6 +103,11 @@
             this.style.transform = 'translateY(0)';
         };
 
+        // Adicionar ID para âncora se for ferramenta
+        if (item.categoria === 'Ferramentas') {
+            card.id = item.id;
+        }
+
         // Imagem
         const img = document.createElement('img');
         img.src = item.icone || item.imagem || 'https://via.placeholder.com/80';
@@ -370,6 +375,28 @@
                         <tr><td>Requer Android</td><td>${s.androidMin}</td></tr>
                         <tr><td>Atualizado em</td><td>${s.atualizadoEm}</td></tr>
                     `;
+                    // Adicionar botão Copiar Link do Feed abaixo da tabela de especificações nos posts
+                    let feedBtnWrapper = document.getElementById('feed-btn-wrapper');
+                    if (!feedBtnWrapper) {
+                        feedBtnWrapper = document.createElement('div');
+                        feedBtnWrapper.id = 'feed-btn-wrapper';
+                        feedBtnWrapper.style.cssText = 'margin-top: 15px;';
+                        const feedBtn = document.createElement('button');
+                        feedBtn.className = 'rss-copy-btn';
+                        feedBtn.style.cssText = 'width:100%; border-radius:6px; cursor:pointer;';
+                        feedBtn.innerHTML = '<i class="fas fa-copy"></i> Copiar Link do Feed';
+                        feedBtn.onclick = function() {
+                            const feedPath = prefixo === '../../' ? '../../feed/feed.xml' : (prefixo === '../' ? '../feed/feed.xml' : 'feed/feed.xml');
+                            if (window.copyToClipboard) {
+                                window.copyToClipboard(feedPath);
+                            } else {
+                                const fullUrl = window.location.origin + '/' + feedPath.replace(/\.\.\//g, '');
+                                navigator.clipboard.writeText(fullUrl).then(() => alert('Link do feed copiado!')).catch(err => alert('Erro ao copiar: ' + err));
+                            }
+                        };
+                        feedBtnWrapper.appendChild(feedBtn);
+                        infoTable.parentElement.appendChild(feedBtnWrapper);
+                    }
                 }
 
                 // Renderizar botões de download
@@ -388,15 +415,23 @@
                                 <a href="${postItem.linkDownloadData2}" class="btn-download-option alt" target="_blank" rel="noopener">
                                     <i class="fas fa-database"></i> BAIXAR DATA 2
                                 </a>
+                                <a href="${prefixo}pages/ferramentas.html" class="btn-download-option" style="background: #607d8b;">
+                                    <i class="fas fa-tools"></i> FERRAMENTA
+                                </a>
                             </div>
                             <p style="font-size:11px;color:#666;margin-top:10px">Link seguro verificado — Horizonte Tutoriais</p>
                         `;
                     } else {
                         downloadBox.innerHTML = `
                             <p style="font-size:14px;font-weight:700;color:#0d47a1;margin-bottom:12px">⬇️ Clique abaixo para baixar o aplicativo</p>
-                            <a href="${postItem.linkDownload}" class="btn-big-download" target="_blank" rel="noopener">
-                                <i class="fas fa-download"></i> DOWNLOAD
-                            </a>
+                            <div style="display: flex; gap: 10px;">
+                                <a href="${postItem.linkDownload}" class="btn-big-download" style="flex: 2;" target="_blank" rel="noopener">
+                                    <i class="fas fa-download"></i> DOWNLOAD
+                                </a>
+                                <a href="${prefixo}pages/ferramentas.html" class="btn-big-download" style="flex: 1; background: #607d8b;" target="_blank" rel="noopener">
+                                    <i class="fas fa-tools"></i> FERRAMENTA
+                                </a>
+                            </div>
                             <p style="font-size:11px;color:#666;margin-top:10px">Link seguro verificado — Horizonte Tutoriais</p>
                         `;
                     }
@@ -562,8 +597,17 @@
         // Renderizar cards na página de listagem
         if (container && dados.length > 0) {
             container.innerHTML = '<h1 class="section-title">' + titulo + '</h1>';
+            
+            // Adicionar grid se não existir
+            let grid = container.querySelector('.apps-grid');
+            if (!grid) {
+                grid = document.createElement('div');
+                grid.className = 'apps-grid';
+                container.appendChild(grid);
+            }
+
             for (let i = 0; i < dados.length; i++) {
-                container.appendChild(criarCard(dados[i], prefixo));
+                grid.appendChild(criarCard(dados[i], prefixo));
             }
         }
 
@@ -602,10 +646,24 @@
                             </div>
                         </div>
                         <div class="tutorial-description">${item.tutorialDescricao}</div>
-                        <div class="tutorial-buttons">
-                            <button class="btn-specs" onclick="openSpecsModal('${item.id}')"><i class="fas fa-info-circle"></i> Specs</button>
-                            <button class="btn-video" onclick="toggleVideoScroll('${item.id}')"><i class="fas fa-play-circle"></i> Assistir</button>
-                            <a href="${prefixo}posts/${item.categoria === 'Jogos' ? 'jogos' : 'aplicativos'}/${item.categoria === 'Jogos' ? 'jogo' : 'app'}.html?id=${item.id}" class="btn-download-tutorial"><i class="fas fa-download"></i> Baixar</a>
+                        <div class="tutorial-buttons" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            <button class="btn-specs" onclick="openSpecsModal('${item.id}')" style="flex: 1; min-width: 120px;"><i class="fas fa-info-circle"></i> Specs</button>
+                            <button class="btn-video" onclick="toggleVideoScroll('${item.id}')" style="flex: 1; min-width: 120px;"><i class="fas fa-play-circle"></i> Assistir</button>
+                            
+                            <div style="display: flex; gap: 10px; width: 100%; flex-wrap: wrap;">
+                                <a href="${prefixo}posts/${item.categoria === 'Jogos' ? 'jogos' : 'aplicativos'}/${item.categoria === 'Jogos' ? 'jogo' : 'app'}.html?id=${item.id}" class="btn-download-tutorial" style="flex: 1; min-width: 140px; margin: 0;"><i class="fas fa-download"></i> Baixar</a>
+                                
+                                <!-- Botão de Ferramentas Expansível ao lado do Baixar -->
+                                <button class="btn-ferramenta-main" onclick="toggleFerramentasMenu('${item.id}')" style="background: linear-gradient(135deg, #607d8b 0%, #455a64 100%); flex: 1; min-width: 140px; padding: 12px 14px; border: none; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 5px; text-decoration: none; color: #fff;">
+                                    <i class="fas fa-tools"></i> Ferramentas <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
+                                </button>
+                            </div>
+
+                            <div id="ferramentas-menu-${item.id}" style="display: none; gap: 5px; flex-wrap: wrap; width: 100%; margin-top: 5px; animation: fadeIn 0.3s ease;">
+                                <a href="${prefixo}pages/ferramentas.html#superme" class="btn-ferramenta-tutorial" style="background: #455a64; flex: 1; min-width: 120px; padding: 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; color: #fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 4px;"><i class="fas fa-download"></i> SuperMe</a>
+                                <a href="${prefixo}pages/ferramentas.html#custom-patch-pro" class="btn-ferramenta-tutorial" style="background: #455a64; flex: 1; min-width: 120px; padding: 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; color: #fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 4px;"><i class="fas fa-download"></i> Custom Patch Pro</a>
+                                <a href="${prefixo}pages/ferramentas.html#mt-manager" class="btn-ferramenta-tutorial" style="background: #455a64; flex: 1; min-width: 120px; padding: 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; color: #fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 4px;"><i class="fas fa-download"></i> MT Manager</a>
+                            </div>
                         </div>
                         <div id="video-scroll-${item.id}" class="video-scroll-container">
                             <div class="video-scroll-list">${videosHtml}</div>
@@ -636,7 +694,7 @@
                     modalHTML += '<tr><td>Requer Android</td><td>' + s.androidMin + '</td></tr>';
                     modalHTML += '<tr><td>Atualizado em</td><td>' + s.atualizadoEm + '</td></tr>';
                     modalHTML += '<tr><td>Recursos</td><td>' + s.recursosEspecificacoes + '</td></tr>';
-                    modalHTML += '</table></div>';
+                    modalHTML += '</table><div style="padding:15px; border-top:1px solid #eee;"><button class="rss-copy-btn" onclick="copyToClipboard(\'feed/feed.xml\')" style="width:100%; border-radius:6px;"><i class="fas fa-copy"></i> Copiar Link do Feed</button></div></div>';
                     
                     modal.innerHTML = modalHTML;
                     document.body.appendChild(modal);
@@ -678,6 +736,22 @@
     window.toggleVideoScroll = function(id) { 
         const s = document.getElementById('video-scroll-' + id); 
         if (s) s.classList.toggle('active'); 
+    };
+    
+    window.toggleFerramentasMenu = function(id) {
+        const menu = document.getElementById('ferramentas-menu-' + id);
+        if (menu) {
+            const isHidden = menu.style.display === 'none';
+            menu.style.display = isHidden ? 'flex' : 'none';
+            
+            // Opcional: Rotacionar o ícone de seta
+            const btn = menu.previousElementSibling;
+            const icon = btn.querySelector('.fa-chevron-down, .fa-chevron-up');
+            if (icon) {
+                icon.className = isHidden ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+                icon.style.fontSize = '10px';
+            }
+        }
     };
     
     window.openVideoModal = function(tid, vid, title) {
