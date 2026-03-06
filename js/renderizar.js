@@ -415,34 +415,30 @@
                                 <a href="${postItem.linkDownloadData2}" class="btn-download-option alt" target="_blank" rel="noopener">
                                     <i class="fas fa-database"></i> BAIXAR DATA 2
                                 </a>
-                                <a href="${prefixo}pages/ferramentas.html" class="btn-download-option" style="background: #607d8b;">
-                                    <i class="fas fa-tools"></i> FERRAMENTA
-                                </a>
                             </div>
                             <p style="font-size:11px;color:#666;margin-top:10px">Link seguro verificado — Horizonte Tutoriais</p>
                         `;
                     } else {
                         downloadBox.innerHTML = `
                             <p style="font-size:14px;font-weight:700;color:#0d47a1;margin-bottom:12px">⬇️ Clique abaixo para baixar o aplicativo</p>
-                            <div style="display: flex; gap: 10px;">
-                                <a href="${postItem.linkDownload}" class="btn-big-download" style="flex: 2;" target="_blank" rel="noopener">
-                                    <i class="fas fa-download"></i> DOWNLOAD
-                                </a>
-                                <a href="${prefixo}pages/ferramentas.html" class="btn-big-download" style="flex: 1; background: #607d8b;" target="_blank" rel="noopener">
-                                    <i class="fas fa-tools"></i> FERRAMENTA
-                                </a>
-                            </div>
+                            <a href="${postItem.linkDownload}" class="btn-big-download" target="_blank" rel="noopener">
+                                <i class="fas fa-download"></i> DOWNLOAD
+                            </a>
                             <p style="font-size:11px;color:#666;margin-top:10px">Link seguro verificado — Horizonte Tutoriais</p>
                         `;
                     }
                 }
 
-                // Renderizar botão de tutorial
+                // Renderizar botão de tutorial e botão de ferramenta logo abaixo
                 const tutorialsWidget = document.querySelector('.tutorials-widget');
                 if (tutorialsWidget) {
                     tutorialsWidget.innerHTML = `
                         <a href="${prefixo}pages/tutoriais.html?open=${postItem.id}" class="btn-tutorial-direct">
                             <span><i class="fas fa-video"></i> TUTORIAIS</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <a href="${prefixo}pages/ferramentas.html" class="btn-tutorial-direct" style="background: #607d8b; margin-top: 10px;">
+                            <span><i class="fas fa-tools"></i> FERRAMENTAS</span>
                             <i class="fas fa-external-link-alt"></i>
                         </a>
                     `;
@@ -481,9 +477,9 @@
                         
                         // Resident Evil 4: escala otimizada para preencher sem distorcao
                         if (postItem.id === 'resident-evil-4') {
-                            img.style.objectFit = 'cover';
+                            img.style.objectFit = 'contain';
                             img.style.objectPosition = 'center center';
-                            img.style.transform = 'scale(0.95)';
+                            img.style.background = '#000'; // Fundo preto para preencher as bordas se necessário
                         } 
                         // Horizon Clicker e outros: aparecem proporcional (sem zoom excessivo)
                         else if (ratio >= 0.8 && ratio <= 1.2) {
