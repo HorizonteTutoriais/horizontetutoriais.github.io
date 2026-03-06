@@ -448,7 +448,7 @@
                         if (postItem.id === 'resident-evil-4') {
                             img.style.objectFit = 'cover';
                             img.style.objectPosition = 'center center';
-                            img.style.transform = 'scale(0.95)';
+                            img.style.transform = 'scale(1)';
                         } 
                         // Horizon Clicker e outros: aparecem proporcional (sem zoom excessivo)
                         else if (ratio >= 0.8 && ratio <= 1.2) {
