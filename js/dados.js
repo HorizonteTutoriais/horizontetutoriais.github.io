@@ -123,12 +123,12 @@ window.APPS_DATA = {
       "especificacoes": {
         "versao": "Última Versão",
         "tamanho": "Varia de acordo com o dispositivo",
-        "categoria": "Ferramentas / Avatar",
-        "desenvolvedor": "SuperMe Team",
+        "categoria": "Ferramentas / Automação",
+        "desenvolvedor": "Horizon Dev Team",
         "tipoArquivo": "APK",
         "androidMin": "5.0 ou superior",
-        "atualizadoEm": "06/03/2026",
-        "recursosEspecificacoes": "Customização completa, Exportação em alta qualidade"
+        "atualizadoEm": "26/02/2026",
+        "recursosEspecificacoes": "Interface Intuitiva, Cliques Rápidos e Precisos, Sem Necessidade de Root"
       },
       "linkDownload": "#",
       "icone": "https://via.placeholder.com/150"
@@ -146,14 +146,14 @@ window.APPS_DATA = {
       "titulo": "Download Custom Patch Pro APK",
       "descricaoLonga": "Custom Patch Pro permite aplicar modificações e patches em diversos aplicativos Android de forma simples e eficiente.",
       "especificacoes": {
-        "versao": "Pro Edition",
-        "tamanho": "15 MB",
-        "categoria": "Ferramentas / Modificação",
-        "desenvolvedor": "Patch Dev",
+        "versao": "Última Versão",
+        "tamanho": "Varia de acordo com o dispositivo",
+        "categoria": "Ferramentas / Automação",
+        "desenvolvedor": "Horizon Dev Team",
         "tipoArquivo": "APK",
-        "androidMin": "6.0 ou superior",
-        "atualizadoEm": "06/03/2026",
-        "recursosEspecificacoes": "Interface amigável, Patches rápidos"
+        "androidMin": "5.0 ou superior",
+        "atualizadoEm": "26/02/2026",
+        "recursosEspecificacoes": "Interface Intuitiva, Cliques Rápidos e Precisos, Sem Necessidade de Root"
       },
       "linkDownload": "#",
       "icone": "https://via.placeholder.com/150"
@@ -171,14 +171,14 @@ window.APPS_DATA = {
       "titulo": "Download MT Manager APK",
       "descricaoLonga": "MT Manager é um gerenciador de arquivos extremamente poderoso que também funciona como editor de APK, permitindo modificar strings, recursos e muito mais diretamente no seu celular.",
       "especificacoes": {
-        "versao": "2.14.0",
-        "tamanho": "20 MB",
-        "categoria": "Ferramentas / Gerenciamento",
-        "desenvolvedor": "Lin Jin Bin",
+        "versao": "Última Versão",
+        "tamanho": "Varia de acordo com o dispositivo",
+        "categoria": "Ferramentas / Automação",
+        "desenvolvedor": "Horizon Dev Team",
         "tipoArquivo": "APK",
-        "androidMin": "4.2 ou superior",
-        "atualizadoEm": "06/03/2026",
-        "recursosEspecificacoes": "Editor de APK, Gerenciador de Arquivos Dual-Pane"
+        "androidMin": "5.0 ou superior",
+        "atualizadoEm": "26/02/2026",
+        "recursosEspecificacoes": "Interface Intuitiva, Cliques Rápidos e Precisos, Sem Necessidade de Root"
       },
       "linkDownload": "#",
       "icone": "https://via.placeholder.com/150"
