@@ -872,32 +872,12 @@
     // ============================================================
     // SUPER AUTOMAÇÃO DE INTERFACE (Limpeza e Injeção Dinâmica)
     // ============================================================
+    
+    // ============================================================
+    // AUTOMAÇÃO DE INTERFACE (Transformação de Botões da Sidebar)
+    // ============================================================
     window.executarAutomacaoInterface = function() {
-        // 1. Remover TODOS os botões entre download-box e comentários (apenas em posts)
-        const downloadBox = document.querySelector('.download-box');
-        const commentsSection = document.querySelector('.custom-comments');
-        
-        if (downloadBox && commentsSection) {
-            // Procurar por qualquer elemento entre download-box e comentários
-            let element = downloadBox.nextElementSibling;
-            while (element && element !== commentsSection) {
-                const nextElement = element.nextElementSibling;
-                
-                // Remover se for um container de feed, botão de youtube ou similar
-                if (element.classList.contains('feed-auto-container') || 
-                    element.classList.contains('feed-integration-container') ||
-                    element.querySelector('.feed-auto-container') ||
-                    element.querySelector('.feed-integration-container') ||
-                    (element.tagName === 'A' && element.href && element.href.includes('youtube.com')) ||
-                    (element.tagName === 'A' && element.href && element.href.includes('feed.xml'))) {
-                    element.remove();
-                }
-                
-                element = nextElement;
-            }
-        }
-
-        // 2. Transformar botões da Sidebar
+        // Transformar botões da Sidebar
         document.querySelectorAll('.rss-widget').forEach(widget => {
             const btnAntigo = widget.querySelector('.rss-copy-btn');
             if (btnAntigo && !widget.querySelector('.feed-auto-container')) {
@@ -950,6 +930,7 @@
         setTimeout(window.executarAutomacaoInterface, 500);
         setTimeout(window.executarAutomacaoInterface, 1500);
     });
+
 
 
 })();
