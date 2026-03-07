@@ -275,7 +275,6 @@
             margin-top: auto;
         `;
         btn.innerHTML = '<i class="fas fa-download" style="font-size:10px"></i> Baixar';
-        btn.onclick = function(e) { e.stopPropagation(); };
 
         card.appendChild(img);
         card.appendChild(badge);
@@ -712,56 +711,66 @@
                                     <i class="fas fa-tools"></i> Ferramentas <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
                                 </button>
                             </div>
-
-                            <div id="ferramentas-menu-${item.id}" style="display: none; gap: 5px; flex-wrap: wrap; width: 100%; margin-top: 5px; animation: fadeIn 0.3s ease;">
-                                <a href="${prefixo}pages/ferramentas.html#superme" class="btn-ferramenta-tutorial" style="background: #455a64; flex: 1; min-width: 120px; padding: 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; color: #fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 4px;"><i class="fas fa-download"></i> SuperMe</a>
-                                <a href="${prefixo}pages/ferramentas.html#custom-patch-pro" class="btn-ferramenta-tutorial" style="background: #455a64; flex: 1; min-width: 120px; padding: 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; color: #fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 4px;"><i class="fas fa-download"></i> Custom Patch Pro</a>
-                                <a href="${prefixo}pages/ferramentas.html#mt-manager" class="btn-ferramenta-tutorial" style="background: #455a64; flex: 1; min-width: 120px; padding: 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; color: #fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 4px;"><i class="fas fa-download"></i> MT Manager</a>
+                            
+                            <!-- Menu de Ferramentas (Oculto por padrão) -->
+                            <div id="ferramentas-menu-${item.id}" class="ferramentas-dropdown" style="display: none; width: 100%; background: #f1f1f1; border-radius: 6px; padding: 10px; flex-direction: column; gap: 8px; border: 1px solid #ddd; margin-top: 5px;">
+                                <p style="margin: 0 0 5px 0; font-size: 11px; font-weight: 700; color: #455a64; text-transform: uppercase;"><i class="fas fa-wrench"></i> Ferramentas Recomendadas</p>
+                                <a href="${prefixo}pages/ferramentas.html#superme" class="ferramenta-item" style="display: flex; align-items: center; gap: 8px; padding: 8px; background: #fff; border-radius: 4px; text-decoration: none; color: #333; font-size: 12px; font-weight: 600; border: 1px solid #eee;">
+                                    <img src="https://via.placeholder.com/24" style="width:20px;height:20px;border-radius:4px;"> SuperMe (Avatar Maker)
+                                </a>
+                                <a href="${prefixo}pages/ferramentas.html#custom-patch" class="ferramenta-item" style="display: flex; align-items: center; gap: 8px; padding: 8px; background: #fff; border-radius: 4px; text-decoration: none; color: #333; font-size: 12px; font-weight: 600; border: 1px solid #eee;">
+                                    <img src="https://via.placeholder.com/24" style="width:20px;height:20px;border-radius:4px;"> Custom Patch Pro
+                                </a>
+                                <a href="${prefixo}pages/ferramentas.html#mt-manager" class="ferramenta-item" style="display: flex; align-items: center; gap: 8px; padding: 8px; background: #fff; border-radius: 4px; text-decoration: none; color: #333; font-size: 12px; font-weight: 600; border: 1px solid #eee;">
+                                    <img src="https://via.placeholder.com/24" style="width:20px;height:20px;border-radius:4px;"> MT Manager
+                                </a>
                             </div>
                         </div>
-                        <div id="video-scroll-${item.id}" class="video-scroll-container">
-                            <div class="video-scroll-list">${videosHtml}</div>
+                        <div id="video-scroll-${item.id}" class="video-scroll">
+                            ${videosHtml}
                         </div>
                     `;
                     tutoriaisContainer.appendChild(tutorialCard);
 
-                    // Modal de Specs — com ícone do app/jogo
-                    const modal = document.createElement('div');
-                    modal.id = 'modal-' + item.id;
-                    modal.className = 'modal';
-                    modal.style.display = 'none';
-                    const s = item.especificacoes;
-                    let iconeUrlModal = item.icone || item.imagem || '';
+                    // Criar Modal de Especificações para cada item (se não existir)
+                    if (!document.getElementById('modal-' + item.id)) {
+                        const modal = document.createElement('div');
+                        modal.id = 'modal-' + item.id;
+                        modal.className = 'modal';
+                        modal.style.display = 'none';
+                        const s = item.especificacoes;
+                        let iconeUrlModal = item.icone || item.imagem || '';
 
-                    // Ajuste de caminho relativo para o ícone nos modais
-                    if (iconeUrlModal.startsWith('../') && prefixo === '../../') {
-                        iconeUrlModal = '../' + iconeUrlModal;
+                        // Ajuste de caminho relativo para o ícone nos modais
+                        if (iconeUrlModal.startsWith('../') && prefixo === '../../') {
+                            iconeUrlModal = '../' + iconeUrlModal;
+                        }
+                        
+                        let modalHTML = '<div class="modal-content">';
+                        modalHTML += '<div class="modal-header"><h2>' + item.nome + ' - Specs</h2>';
+                        modalHTML += '<button class="close-btn" onclick="closeSpecsModal(\'' + item.id + '\')">&times;</button></div>';
+                        modalHTML += '<div style="text-align:center;margin-bottom:20px;">';
+                        modalHTML += '<img src="' + iconeUrlModal + '" alt="' + item.nome + '" style="width:90px;height:90px;border-radius:18px;object-fit:contain;background:#ffffff;border:1px solid #eee;box-shadow:0 4px 16px rgba(0,0,0,0.1);">';
+                        modalHTML += '</div>';
+                        modalHTML += '<table class="specs-table">';
+                        modalHTML += '<tr><td>' + (item.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo') + '</td><td>' + item.nome + '</td></tr>';
+                        modalHTML += '<tr><td>Versão</td><td>' + s.versao + '</td></tr>';
+                        modalHTML += '<tr><td>Tamanho</td><td>' + s.tamanho + '</td></tr>';
+                        modalHTML += '<tr><td>Categoria</td><td>' + s.categoria + '</td></tr>';
+                        modalHTML += '<tr><td>Desenvolvedor</td><td>' + s.desenvolvedor + '</td></tr>';
+                        modalHTML += '<tr><td>Tipo do Arquivo</td><td>' + s.tipoArquivo + '</td></tr>';
+                        modalHTML += '<tr><td>Requer Android</td><td>' + s.androidMin + '</td></tr>';
+                        modalHTML += '<tr><td>Atualizado em</td><td>' + s.atualizadoEm + '</td></tr>';
+                        modalHTML += '<tr><td>Recursos</td><td>' + s.recursosEspecificacoes + '</td></tr>';
+                        modalHTML += '</table><div style="padding:15px; border-top:1px solid #eee; display: flex; flex-direction: column; gap: 10px;">';
+                        modalHTML += '<button class="rss-copy-btn" onclick="handleFeedClickWithVideo(this)" style="width:100%; border-radius:6px; display: flex; align-items: center; justify-content: center; gap: 8px;"><i class="fas fa-copy"></i> Copiar Link do Feed</button>';
+                        modalHTML += '<div id="modal-feed-video" style="display: none; width: 100%; border-radius: 8px; overflow: hidden; margin-top: 5px;">';
+                        modalHTML += '<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe></div>';
+                        modalHTML += '</div></div></div>';
+                        
+                        modal.innerHTML = modalHTML;
+                        document.body.appendChild(modal);
                     }
-                    
-                    let modalHTML = '<div class="modal-content">';
-                    modalHTML += '<div class="modal-header"><h2>' + item.nome + ' - Specs</h2>';
-                    modalHTML += '<button class="close-btn" onclick="closeSpecsModal(\'' + item.id + '\')">&times;</button></div>';
-                    modalHTML += '<div style="text-align:center;margin-bottom:20px;">';
-                    modalHTML += '<img src="' + iconeUrlModal + '" alt="' + item.nome + '" style="width:90px;height:90px;border-radius:18px;object-fit:contain;background:#ffffff;border:1px solid #eee;box-shadow:0 4px 16px rgba(0,0,0,0.1);">';
-                    modalHTML += '</div>';
-                    modalHTML += '<table class="specs-table">';
-                    modalHTML += '<tr><td>' + (item.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo') + '</td><td>' + item.nome + '</td></tr>';
-                    modalHTML += '<tr><td>Versão</td><td>' + s.versao + '</td></tr>';
-                    modalHTML += '<tr><td>Tamanho</td><td>' + s.tamanho + '</td></tr>';
-                    modalHTML += '<tr><td>Categoria</td><td>' + s.categoria + '</td></tr>';
-                    modalHTML += '<tr><td>Desenvolvedor</td><td>' + s.desenvolvedor + '</td></tr>';
-                    modalHTML += '<tr><td>Tipo do Arquivo</td><td>' + s.tipoArquivo + '</td></tr>';
-                    modalHTML += '<tr><td>Requer Android</td><td>' + s.androidMin + '</td></tr>';
-                    modalHTML += '<tr><td>Atualizado em</td><td>' + s.atualizadoEm + '</td></tr>';
-                    modalHTML += '<tr><td>Recursos</td><td>' + s.recursosEspecificacoes + '</td></tr>';
-                    modalHTML += '</table><div style="padding:15px; border-top:1px solid #eee; display: flex; flex-direction: column; gap: 10px;">';
-                    modalHTML += '<button class="rss-copy-btn" onclick="handleFeedClickWithVideo(this)" style="width:100%; border-radius:6px; display: flex; align-items: center; justify-content: center; gap: 8px;"><i class="fas fa-copy"></i> Copiar Link do Feed</button>';
-                    modalHTML += '<div id="modal-feed-video" style="display: none; width: 100%; border-radius: 8px; overflow: hidden; margin-top: 5px;">';
-                    modalHTML += '<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe></div>';
-                    modalHTML += '</div></div></div>';
-                    
-                    modal.innerHTML = modalHTML;
-                    document.body.appendChild(modal);
                 }
                 
                 // Auto-open
