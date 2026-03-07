@@ -71,6 +71,38 @@
     }
 
     // ============================================================
+    // FUNÇÃO PARA CRIAR A ÁREA DE FEED E YOUTUBE
+    // ============================================================
+    function criarAreaFeedYouTube(id, prefixo) {
+        const wrapper = document.createElement('div');
+        wrapper.style.cssText = 'margin-top:15px; display:flex; flex-direction:column; gap:10px;';
+        
+        const videoId = `feed-video-${id}`;
+        const feedPath = prefixo === '../../' ? '../../feed/feed.xml' : (prefixo === '../' ? '../feed/feed.xml' : 'feed/feed.xml');
+
+        wrapper.innerHTML = `
+            <div style="background: var(--green-btn); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 8px;">
+                <button class="rss-copy-btn" onclick="handleFeedClickWithVideo(this, '${videoId}', '${feedPath}')" style="background: transparent; border: none; color: #fff; font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 5px 0;">
+                    <i class="fas fa-copy"></i> Copiar Link do Feed
+                </button>
+                <button onclick="toggleFeedVideo('${videoId}')" style="background: rgba(255,255,255,0.2); border: none; color: #fff; border-radius: 4px; padding: 6px; font-weight: 600; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; width: 100%;">
+                    <i class="fas fa-video"></i> Como usar o FEED
+                </button>
+            </div>
+            <a href="https://www.youtube.com/@HorizonteTutoriais" target="_blank" style="background: #ff0000; color: #fff; text-decoration: none; padding: 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; display: flex; flex-direction: column; gap: 2px; transition: transform 0.2s;">
+                <span><i class="fab fa-youtube"></i> CANAL HORIZONTE TUTORIAIS</span>
+                <span style="font-size: 9px; font-weight: 400; opacity: 0.9;">INSCREVA-SE E ATIVE O SINO DE NOTIFICAÇÕES</span>
+            </a>
+            <div id="${videoId}" style="display: none; width: 100%; border-radius: 8px; overflow: hidden; margin-top: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+                </div>
+            </div>
+        `;
+        return wrapper;
+    }
+
+    // ============================================================
     // CARD PADRÃO
     // ============================================================
     function criarCard(item, prefixo) {
@@ -109,25 +141,10 @@
             specsHTML += `<tr><td style="padding:6px; font-weight:700; color:#555; border-bottom:1px solid #f5f5f5;">Android</td><td style="padding:6px; color:#666; border-bottom:1px solid #f5f5f5; text-align:right;">${s.androidMin}</td></tr>`;
             specsHTML += `<tr><td style="padding:6px; font-weight:700; color:#555; border-bottom:1px solid #f5f5f5;">Atualizado</td><td style="padding:6px; color:#666; border-bottom:1px solid #f5f5f5; text-align:right;">${s.atualizadoEm}</td></tr>`;
             specsHTML += `</table>`;
-
             specsHTML += `<a href="${item.linkDownload}" target="_blank" class="btn-big-download" style="display:block; text-align:center; background:var(--green-btn); color:#fff; text-decoration:none; padding:12px; border-radius:6px; font-weight:700; margin-bottom:10px;"><i class="fas fa-download"></i> BAIXAR FERRAMENTA</a>`;
-
-            const videoId = `feed-video-${item.id}`;
-            specsHTML += `<div style="display:flex; flex-direction:column; gap:10px;">
-                            <div style="display:flex; gap:10px;">
-                                <button class="rss-copy-btn" onclick="handleFeedClickWithVideo(this, '${videoId}')" style="flex:1; border-radius:6px; display:flex; align-items:center; justify-content:center; gap:8px;"><i class="fas fa-copy"></i> Copiar Link do Feed</button>
-                                <button onclick="handleFeedClickWithVideo(this, '${videoId}')" style="flex:1; background:#607d8b; color:#fff; border:none; border-radius:6px; padding:10px; font-weight:700; font-size:12px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:5px;"><i class="fas fa-video"></i> Como usar o FEED</button>
-                            </div>
-                            <a href="https://www.youtube.com/@HorizonteTutoriais" target="_blank" style="background:#ff0000; color:#fff; text-decoration:none; padding:10px; border-radius:6px; font-size:11px; font-weight:700; text-align:center; display:flex; flex-direction:column; gap:2px;">
-                                <span><i class="fab fa-youtube"></i> CANAL HORIZONTE TUTORIAIS</span>
-                                <span style="font-size:9px; font-weight:400; opacity:0.9;">INSCREVA-SE E ATIVE O SINO DE NOTIFICAÇÕES</span>
-                            </a>
-                            <div id="${videoId}" style="display:none; width:100%; border-radius:8px; overflow:hidden; margin-top:5px;">
-                                <div style="position:relative; padding-bottom:56.25%; height:0;"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen></iframe></div>
-                            </div>
-                        </div>`;
-
+            
             specsDiv.innerHTML = specsHTML;
+            specsDiv.appendChild(criarAreaFeedYouTube(item.id, prefixo));
             card.appendChild(specsDiv);
         }
 
@@ -185,27 +202,13 @@
                         <tr><td>Requer Android</td><td>${s.androidMin}</td></tr>
                         <tr><td>Atualizado em</td><td>${s.atualizadoEm}</td></tr>
                     `;
-
-                    let feedWrapper = document.getElementById('feed-btn-wrapper');
-                    if (!feedWrapper) {
-                        feedWrapper = document.createElement('div');
-                        feedWrapper.id = 'feed-btn-wrapper';
-                        feedWrapper.style.cssText = 'margin-top:15px;display:flex;flex-direction:column;gap:10px;';
-                        
-                        feedWrapper.innerHTML = `
-                            <div style="display:flex; gap:10px;">
-                                <button class="rss-copy-btn" onclick="handleFeedClickWithVideo(this, 'post-feed-video')" style="flex:1; border-radius:6px; display:flex; align-items:center; justify-content:center; gap:8px;"><i class="fas fa-copy"></i> Copiar Link do Feed</button>
-                                <button onclick="handleFeedClickWithVideo(this, 'post-feed-video')" style="flex:1; background:#607d8b; color:#fff; border:none; border-radius:6px; padding:10px; font-weight:700; font-size:12px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:5px;"><i class="fas fa-video"></i> Como usar o FEED</button>
-                            </div>
-                            <a href="https://www.youtube.com/@HorizonteTutoriais" target="_blank" style="background:#ff0000;color:#fff;text-decoration:none;padding:12px 10px;border-radius:6px;font-size:11px;font-weight:700;text-align:center;display:flex;flex-direction:column;gap:3px;">
-                                <span><i class="fab fa-youtube"></i> CANAL HORIZONTE TUTORIAIS</span>
-                                <span style="font-size:9px;font-weight:400;opacity:0.9;">INSCREVA-SE E ATIVE O SINO DE NOTIFICAÇÕES</span>
-                            </a>
-                            <div id="post-feed-video" style="display:none;width:100%;border-radius:8px;overflow:hidden;margin-top:5px;">
-                                <div style="position:relative;padding-bottom:56.25%;height:0;"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allowfullscreen></iframe></div>
-                            </div>
-                        `;
-                        infoTable.parentElement.appendChild(feedWrapper);
+                    
+                    // Adicionar área de Feed e YouTube no centro/direita (abaixo das specs)
+                    let feedArea = document.getElementById('post-feed-area');
+                    if (!feedArea) {
+                        feedArea = document.createElement('div');
+                        feedArea.id = 'post-feed-area';
+                        infoTable.parentElement.appendChild(criarAreaFeedYouTube(item.id, prefixo));
                     }
                 }
 
@@ -313,30 +316,19 @@
                     const s = i.especificacoes;
                     let iconeM = i.icone || i.imagem; if (iconeM.startsWith('../') && prefixo === '../../') iconeM = '../' + iconeM;
                     
-                    modal.innerHTML = `
-                        <div class="modal-content">
-                            <div class="modal-header"><h2>${i.nome} - Specs</h2><button class="close-btn" onclick="closeSpecsModal('${i.id}')">&times;</button></div>
-                            <div style="text-align:center;margin-bottom:20px;"><img src="${iconeM}" style="width:90px;height:90px;border-radius:18px;object-fit:contain;background:#fff;border:1px solid #eee;"></div>
-                            <table class="specs-table">
-                                <tr><td>Versão</td><td>${s.versao}</td></tr><tr><td>Tamanho</td><td>${s.tamanho}</td></tr>
-                                <tr><td>Categoria</td><td>${s.categoria}</td></tr><tr><td>Desenvolvedor</td><td>${s.desenvolvedor}</td></tr>
-                                <tr><td>Android</td><td>${s.androidMin}</td></tr><tr><td>Atualizado</td><td>${s.atualizadoEm}</td></tr>
-                            </table>
-                            <div style="padding:15px;border-top:1px solid #eee;display:flex;flex-direction:column;gap:10px;">
-                                <div style="display:flex; gap:10px;">
-                                    <button class="rss-copy-btn" onclick="handleFeedClickWithVideo(this, 'modal-feed-video-${i.id}')" style="flex:1; border-radius:6px; display:flex; align-items:center; justify-content:center; gap:8px;"><i class="fas fa-copy"></i> Copiar Link do Feed</button>
-                                    <button onclick="handleFeedClickWithVideo(this, 'modal-feed-video-${i.id}')" style="flex:1; background:#607d8b; color:#fff; border:none; border-radius:6px; padding:10px; font-weight:700; font-size:12px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:5px;"><i class="fas fa-video"></i> Como usar o FEED</button>
-                                </div>
-                                <a href="https://www.youtube.com/@HorizonteTutoriais" target="_blank" style="background:#ff0000;color:#fff;text-decoration:none;padding:12px 10px;border-radius:6px;font-size:11px;font-weight:700;text-align:center;display:flex;flex-direction:column;gap:3px;">
-                                    <span><i class="fab fa-youtube"></i> CANAL HORIZONTE TUTORIAIS</span>
-                                    <span style="font-size:9px;font-weight:400;opacity:0.9;">INSCREVA-SE E ATIVE O SINO DE NOTIFICAÇÕES</span>
-                                </a>
-                                <div id="modal-feed-video-${i.id}" style="display:none;width:100%;border-radius:8px;overflow:hidden;margin-top:5px;">
-                                    <div style="position:relative;padding-bottom:56.25%;height:0;"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allowfullscreen></iframe></div>
-                                </div>
-                            </div>
-                        </div>
+                    const modalContent = document.createElement('div');
+                    modalContent.className = 'modal-content';
+                    modalContent.innerHTML = `
+                        <div class="modal-header"><h2>${i.nome} - Specs</h2><button class="close-btn" onclick="closeSpecsModal('${i.id}')">&times;</button></div>
+                        <div style="text-align:center;margin-bottom:20px;"><img src="${iconeM}" style="width:90px;height:90px;border-radius:18px;object-fit:contain;background:#fff;border:1px solid #eee;"></div>
+                        <table class="specs-table">
+                            <tr><td>Versão</td><td>${s.versao}</td></tr><tr><td>Tamanho</td><td>${s.tamanho}</td></tr>
+                            <tr><td>Categoria</td><td>${s.categoria}</td></tr><tr><td>Desenvolvedor</td><td>${s.desenvolvedor}</td></tr>
+                            <tr><td>Android</td><td>${s.androidMin}</td></tr><tr><td>Atualizado</td><td>${s.atualizadoEm}</td></tr>
+                        </table>
                     `;
+                    modalContent.appendChild(criarAreaFeedYouTube(i.id, prefixo));
+                    modal.appendChild(modalContent);
                     document.body.appendChild(modal);
                 });
             }
@@ -359,21 +351,24 @@
         const m = document.getElementById('modal-video-player'), i = document.getElementById('video-iframe');
         if (m && i) { i.src = ''; m.style.display = 'none'; document.body.style.overflow = 'auto'; }
     };
-    window.handleFeedClickWithVideo = function(btn, videoId) {
-        const path = window.location.pathname;
-        let pFeed = '';
-        if (path.includes('/posts/')) pFeed = '../../'; else if (path.includes('/pages/')) pFeed = '../';
-        const fPath = pFeed + 'feed/feed.xml';
-        
-        if (window.copyToClipboard) window.copyToClipboard(fPath);
-        else {
-            const url = window.location.origin + '/' + fPath.replace(/\.\.\//g, '');
-            navigator.clipboard.writeText(url).then(() => {
-                const old = btn.innerHTML; btn.innerHTML = '<i class="fas fa-check"></i> Link Copiado!';
-                setTimeout(() => btn.innerHTML = old, 2000);
-            });
+
+    window.toggleFeedVideo = function(videoId) {
+        const v = document.getElementById(videoId);
+        if (v) {
+            v.style.display = v.style.display === 'none' ? 'block' : 'none';
+            if (v.style.display === 'block') v.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
-        const v = document.getElementById(videoId); if (v) { v.style.display = v.style.display==='none'?'block':'none'; if(v.style.display==='block') v.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+    };
+
+    window.handleFeedClickWithVideo = function(btn, videoId, feedPath) {
+        const fullUrl = window.location.origin + '/' + feedPath.replace(/\.\.\//g, '');
+        navigator.clipboard.writeText(fullUrl).then(() => {
+            const oldText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Link Copiado!';
+            setTimeout(() => btn.innerHTML = oldText, 2000);
+        }).catch(err => console.error('Erro ao copiar:', err));
+        
+        window.toggleFeedVideo(videoId);
     };
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', window.renderizarTudo);
