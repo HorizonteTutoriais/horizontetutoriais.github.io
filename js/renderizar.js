@@ -71,7 +71,7 @@
     }
 
     // ============================================================
-    // FUNÇÃO PARA CRIAR A ÁREA DE FEED E YOUTUBE
+    // FUNÇÃO PARA CRIAR A ÁREA DE FEED E YOUTUBE (CENTRO DIREITO)
     // ============================================================
     function criarAreaFeedYouTube(id, prefixo) {
         const wrapper = document.createElement('div');
@@ -89,7 +89,7 @@
                     <i class="fas fa-video"></i> Como usar o FEED
                 </button>
             </div>
-            <a href="https://www.youtube.com/@HorizonteTutoriais" target="_blank" style="background: #ff0000; color: #fff; text-decoration: none; padding: 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; display: flex; flex-direction: column; gap: 2px; transition: transform 0.2s;">
+            <a href="https://www.youtube.com/@HorizonteTutoriais" target="_blank" style="background: #ff0000; color: #fff; text-decoration: none; padding: 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; display: flex; flex-direction: column; gap: 2px;">
                 <span><i class="fab fa-youtube"></i> CANAL HORIZONTE TUTORIAIS</span>
                 <span style="font-size: 9px; font-weight: 400; opacity: 0.9;">INSCREVA-SE E ATIVE O SINO DE NOTIFICAÇÕES</span>
             </a>
@@ -246,7 +246,10 @@
                 const h1 = document.querySelector('.post-header h1'); if (h1) h1.textContent = item.titulo;
                 const date = document.querySelector('.post-date'); if (date) date.textContent = '📅 ' + item.data;
                 const bCat = document.querySelector('.badge-cat'); if (bCat) bCat.textContent = item.categoria;
+                
+                // REMOVER BOTÕES ACIMA DOS COMENTÁRIOS
                 const telCta = document.querySelector('.telegram-cta'); if (telCta) telCta.style.display = 'none';
+                const youtubeCta = document.querySelector('.youtube-cta'); if (youtubeCta) youtubeCta.style.display = 'none';
             }
         }
 
@@ -259,12 +262,21 @@
         else if (path.includes('/pages/jogos.html')) { listDados = window.APPS_DATA.jogos; listTitulo = '🎮 Jogos'; }
         else if (path.includes('/pages/quente.html')) { listDados = [...window.APPS_DATA.aplicativos, ...window.APPS_DATA.jogos].filter(i => i.tipo === 'quente'); listTitulo = '🔥 Quente'; }
         else if (path.includes('/pages/ferramentas.html')) { listDados = window.APPS_DATA.ferramentas; listTitulo = '🔧 Ferramentas'; const grid = document.querySelector('.apps-grid'); if (grid) listContainer = grid; }
-        else if (path.includes('/index.html') || path === '/' || path.endsWith('/')) {
+        else if (path.includes('/index.html') || path === '/' || path.endsWith('/') || path.endsWith('/index.html')) {
             const all = [...window.APPS_DATA.aplicativos, ...window.APPS_DATA.jogos];
             const upGrid = document.querySelector('.updates-grid');
             if (upGrid) { upGrid.innerHTML = ''; all.slice().sort((a,b) => new Date(b.data) - new Date(a.data)).forEach(i => upGrid.appendChild(criarUpdateCard(i, prefixo))); }
             const popSec = document.querySelector('.popular-section');
-            if (popSec) { popSec.innerHTML = '<h2 class="section-title">⭐ Destaques</h2>'; all.filter(i => i.destaque).forEach(i => popSec.appendChild(criarCard(i, prefixo))); }
+            if (popSec) { 
+                popSec.innerHTML = '<h2 class="section-title">⭐ Destaques</h2>'; 
+                all.filter(i => i.destaque).forEach(i => popSec.appendChild(criarCard(i, prefixo))); 
+            }
+            // SIDEBAR POPULARES
+            const sidebarPop = document.getElementById('sidebar-populares');
+            if (sidebarPop) {
+                sidebarPop.innerHTML = '<h3 class="widget-title">🔥 Populares</h3>';
+                all.filter(i => i.tipo === 'popular').forEach(i => sidebarPop.appendChild(criarCard(i, prefixo)));
+            }
         }
 
         if (listContainer && listDados.length > 0 && !path.includes('index.html') && path !== '/') {
