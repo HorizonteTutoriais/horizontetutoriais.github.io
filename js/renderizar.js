@@ -78,13 +78,8 @@
     function criarCard(item, prefixo) {
         const card = document.createElement('div');
         card.className = 'app-card';
-        card.style.cssText = 'background:var(--white);border:1px solid var(--gray-border);border-radius:var(--radius);padding:15px;margin-bottom:15px;box-shadow:var(--shadow);transition:all 0.3s ease;display:flex;flex-direction:column;gap:15px;cursor:default;';
+        card.style.cssText = 'background:var(--white);border:1px solid var(--gray-border);border-radius:var(--radius);padding:15px;margin-bottom:15px;box-shadow:var(--shadow);transition:all 0.3s ease;display:flex;gap:15px;cursor:pointer;';
         if (item.categoria === 'Ferramentas') card.id = item.id;
-
-        // Cabeçalho do Card (Ícone + Título + Descrição)
-        const header = document.createElement('div');
-        header.style.cssText = 'display:flex; gap:15px; align-items: flex-start; cursor: pointer;';
-        header.onclick = () => window.location.href = prefixo + item.url;
 
         const img = document.createElement('img');
         img.src = item.icone || item.imagem || 'https://via.placeholder.com/80';
@@ -97,45 +92,9 @@
                             <span class="badge badge-cat" style="display:inline-block;background:#0d47a1;color:#fff;padding:4px 8px;border-radius:4px;font-size:11px;font-weight:600;margin-right:8px;">${item.categoria}</span>
                             <span style="font-size:11px;color:#999;">📅 ${item.data || 'Recente'}</span>`;
 
-        header.appendChild(img);
-        header.appendChild(content);
-        card.appendChild(header);
-
-        // Se for Ferramenta, adicionar Especificações e Botões diretamente no card
-        if (item.categoria === 'Ferramentas' && item.especificacoes) {
-            const specs = item.especificacoes;
-            const specsDiv = document.createElement('div');
-            specsDiv.style.cssText = 'border-top: 1px solid #eee; padding-top: 15px; margin-top: 5px;';
-            
-            let specsHTML = `<table class="specs-table" style="width:100%; font-size:12px; border-collapse:collapse; margin-bottom:15px;">`;
-            specsHTML += `<tr><td style="padding:6px; font-weight:700; color:#555; border-bottom:1px solid #f5f5f5;">Versão</td><td style="padding:6px; color:#666; border-bottom:1px solid #f5f5f5; text-align:right;">${specs.versao}</td></tr>`;
-            specsHTML += `<tr><td style="padding:6px; font-weight:700; color:#555; border-bottom:1px solid #f5f5f5;">Tamanho</td><td style="padding:6px; color:#666; border-bottom:1px solid #f5f5f5; text-align:right;">${specs.tamanho}</td></tr>`;
-            specsHTML += `<tr><td style="padding:6px; font-weight:700; color:#555; border-bottom:1px solid #f5f5f5;">Android</td><td style="padding:6px; color:#666; border-bottom:1px solid #f5f5f5; text-align:right;">${specs.androidMin}</td></tr>`;
-            specsHTML += `<tr><td style="padding:6px; font-weight:700; color:#555; border-bottom:1px solid #f5f5f5;">Atualizado</td><td style="padding:6px; color:#666; border-bottom:1px solid #f5f5f5; text-align:right;">${specs.atualizadoEm}</td></tr>`;
-            specsHTML += `</table>`;
-
-            // Botão Baixar Grande
-            specsHTML += `<a href="${item.linkDownload}" target="_blank" class="btn-big-download" style="display:block; text-align:center; background:var(--green-btn); color:#fff; text-decoration:none; padding:12px; border-radius:6px; font-weight:700; margin-bottom:10px;"><i class="fas fa-download"></i> BAIXAR FERRAMENTA</a>`;
-
-            // Botão Feed com Vídeo
-            const videoId = `feed-video-${item.id}`;
-            specsHTML += `<button class="rss-copy-btn" onclick="handleFeedClickWithVideo(this, '${videoId}')" style="width:100%; border-radius:6px; display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:10px;"><i class="fas fa-copy"></i> Copiar Link do Feed</button>`;
-            
-            // Botão YouTube
-            specsHTML += `<a href="https://www.youtube.com/@HorizonteTutoriais" target="_blank" style="background:#ff0000; color:#fff; text-decoration:none; padding:10px; border-radius:6px; font-size:11px; font-weight:700; text-align:center; display:flex; flex-direction:column; gap:2px; margin-bottom:10px;">
-                            <span><i class="fab fa-youtube"></i> CANAL HORIZONTE TUTORIAIS</span>
-                            <span style="font-size:9px; font-weight:400; opacity:0.9;">INSCREVA-SE E ATIVE O SINO DE NOTIFICAÇÕES</span>
-                        </a>`;
-
-            // Container do Vídeo
-            specsHTML += `<div id="${videoId}" style="display:none; width:100%; border-radius:8px; overflow:hidden; margin-top:5px;">
-                            <div style="position:relative; padding-bottom:56.25%; height:0;"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen></iframe></div>
-                        </div>`;
-
-            specsDiv.innerHTML = specsHTML;
-            card.appendChild(specsDiv);
-        }
-
+        card.appendChild(img);
+        card.appendChild(content);
+        card.onclick = () => window.location.href = prefixo + item.url;
         return card;
     }
 
