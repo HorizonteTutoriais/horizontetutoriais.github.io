@@ -423,10 +423,6 @@
                                     <i class="fas fa-database"></i> BAIXAR DATA 2
                                 </a>
                             </div>
-                            <a href="https://www.youtube.com/@HorizonteTutoriais" style="background: #ff0000; color: #fff; text-decoration: none; padding: 12px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; display: flex; flex-direction: column; gap: 3px; margin-top: 15px;" target="_blank" rel="noopener">
-                                <span><i class="fab fa-youtube"></i> CANAL HORIZONTE TUTORIAIS</span>
-                                <span style="font-size: 9px; font-weight: 400; opacity: 0.9;">INSCREVA-SE E ATIVE O SINO DE NOTIFICAÇÕES</span>
-                            </a>
                             <p style="font-size:11px;color:#666;margin-top:10px">Link seguro verificado — Horizonte Tutoriais</p>
                         `;
                     } else {
@@ -434,10 +430,6 @@
                             <p style="font-size:14px;font-weight:700;color:#0d47a1;margin-bottom:12px">⬇️ Clique abaixo para baixar o aplicativo</p>
                             <a href="${postItem.linkDownload}" class="btn-big-download" target="_blank" rel="noopener">
                                 <i class="fas fa-download"></i> DOWNLOAD
-                            </a>
-                            <a href="https://www.youtube.com/@HorizonteTutoriais" style="background: #ff0000; color: #fff; text-decoration: none; padding: 12px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; display: flex; flex-direction: column; gap: 3px; margin-top: 15px;" target="_blank" rel="noopener">
-                                <span><i class="fab fa-youtube"></i> CANAL HORIZONTE TUTORIAIS</span>
-                                <span style="font-size: 9px; font-weight: 400; opacity: 0.9;">INSCREVA-SE E ATIVE O SINO DE NOTIFICAÇÕES</span>
                             </a>
                             <p style="font-size:11px;color:#666;margin-top:10px">Link seguro verificado — Horizonte Tutoriais</p>
                         `;
@@ -533,7 +525,34 @@
                         badgeHot.style.display = 'none';
                     }
                 }
+
+                // Ajustar Telegram CTA acima dos comentários
+                const telegramCta = document.querySelector('.telegram-cta');
+                if (telegramCta) {
+                    telegramCta.innerHTML = `
+                        <a href="https://www.youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: center; gap: 10px; background: #ff0000; color: #fff; text-decoration: none; padding: 15px; border-radius: 8px; width: 100%; transition: transform 0.2s;">
+                            <i class="fab fa-youtube" style="font-size:24px"></i>
+                            <div style="display: flex; flex-direction: column; text-align: left;">
+                                <span style="font-size: 14px; font-weight: 800;">CANAL HORIZONTE TUTORIAIS</span>
+                                <span style="font-size: 11px; font-weight: 400; opacity: 0.9;">INSCREVA-SE E ATIVE O SINO DE NOTIFICAÇÕES</span>
+                            </div>
+                        </a>
+                    `;
+                    telegramCta.style.background = 'transparent';
+                    telegramCta.style.padding = '0';
+                    telegramCta.style.border = 'none';
+                }
             }
+            
+            // Ajustar Mídias Sociais na Sidebar em todas as páginas
+            const sidebarWidgets = document.querySelectorAll('.sidebar-widget');
+            sidebarWidgets.forEach(widget => {
+                const title = widget.querySelector('.widget-title');
+                if (title && (title.textContent.includes('Mídias Sociais') || title.textContent.includes('MÍDIAS SOCIAIS'))) {
+                    title.innerHTML = '📱 MINHAS REDES SOCIAIS';
+                }
+            });
+
             return;
         }
 
