@@ -358,8 +358,9 @@
                             height: 90px;
                             border-radius: 18px;
                             object-fit: contain;
-                            background: #000;
-                            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+                            background: #ffffff;
+                            border: 1px solid #eee;
+                            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
                             display: inline-block;
                         `;
                         iconWrapper.appendChild(iconImg);
@@ -466,7 +467,13 @@
                 const img = document.querySelector('.post-featured-img');
                 if (img) {
                     // Usar imagemCapa se disponível, senão usar ícone
-                    const imagemFinal = postItem.imagemCapa || postItem.icone || postItem.imagem || 'https://via.placeholder.com/700x300';
+                    let imagemFinal = postItem.imagemCapa || postItem.icone || postItem.imagem || 'https://via.placeholder.com/700x300';
+                    
+                    // Ajuste para caminho relativo se estivermos em uma subpasta de posts
+                    if (imagemFinal.startsWith('../') && prefixo === '../../') {
+                        imagemFinal = '../' + imagemFinal;
+                    }
+                    
                     img.src = imagemFinal;
                     
                     // Aplicar fundo branco no banner principal
@@ -679,7 +686,7 @@
                     modalHTML += '<div class="modal-header"><h2>' + item.nome + ' - Specs</h2>';
                     modalHTML += '<button class="close-btn" onclick="closeSpecsModal(\'' + item.id + '\')">&times;</button></div>';
                     modalHTML += '<div style="text-align:center;margin-bottom:20px;">';
-                    modalHTML += '<img src="' + iconeUrl + '" alt="' + item.nome + '" style="width:90px;height:90px;border-radius:18px;object-fit:contain;background:#000;box-shadow:0 4px 16px rgba(0,0,0,0.18);">';
+                    modalHTML += '<img src="' + iconeUrl + '" alt="' + item.nome + '" style="width:90px;height:90px;border-radius:18px;object-fit:contain;background:#ffffff;border:1px solid #eee;box-shadow:0 4px 16px rgba(0,0,0,0.1);">';
                     modalHTML += '</div>';
                     modalHTML += '<table class="specs-table">';
                     modalHTML += '<tr><td>' + (item.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo') + '</td><td>' + item.nome + '</td></tr>';
