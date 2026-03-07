@@ -12,7 +12,7 @@ window.APPS_DATA = {
       "descricao": "Jogo de clicker divertido",
       "categoria": "Aplicativos",
       "tipo": "quente",
-      "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/AShzdwWGghpbeWBY.png",
+      "imagem": "../images/aplicativos/horizon-icon.png",
       "url": "posts/aplicativos/app.html?id=horizon-clicker",
       "tutorial": "pages/tutoriais.html?open=horizon-clicker",
       "data": "2026-03-04",
@@ -48,10 +48,9 @@ window.APPS_DATA = {
         { "titulo": "Múltiplos Cliques", "id": "XDhx-rdHSmY" },
         { "titulo": "Otimização", "id": "XDhx-rdHSmY" },
         { "titulo": "Troubleshooting", "id": "XDhx-rdHSmY" },
-        { "titulo": "Casos de Uso", "id": "XDhx-rdHSmY" },
         { "titulo": "FAQ", "id": "XDhx-rdHSmY" }
       ],
-      "icone": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663404237058/AShzdwWGghpbeWBY.png"
+      "icone": "../images/aplicativos/horizon-icon.png"
     }
   ],
   "jogos": [
@@ -61,7 +60,7 @@ window.APPS_DATA = {
       "descricao": "Jogo de ação e horror",
       "categoria": "Jogos",
       "tipo": "popular",
-      "imagem": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663409185605/DEguaKtzktTKzSrU.png",
+      "imagem": "../images/jogos/re4-icon.png",
       "url": "posts/jogos/jogo.html?id=resident-evil-4",
       "tutorial": "pages/tutoriais.html?open=resident-evil-4",
       "data": "2026-03-04",
@@ -69,40 +68,40 @@ window.APPS_DATA = {
       "titulo": "Como Jogar Resident Evil 4 Mobile",
       "descricaoLonga": "Resident Evil 4 é um clássico do survival horror que agora está disponível para Android. Descubra como instalar e dominar este jogo épico no seu celular.",
       "recursos": [
-        "Gráficos Otimizados para dispositivos móveis",
-        "Controles Adaptados para tela sensível ao toque",
-        "História Completa do jogo original",
-        "Alta Performance em diversos dispositivos"
+        "Gráficos remasterizados para mobile",
+        "Controles otimizados para tela de toque",
+        "História completa com Leon S. Kennedy",
+        "Modo Mercenários incluso"
       ],
       "especificacoes": {
-        "versao": "Mobile Edition",
-        "tamanho": "~1.5 GB",
+        "versao": "1.0.0",
+        "tamanho": "4 GB",
         "categoria": "Ação / Survival Horror",
         "desenvolvedor": "Capcom",
-        "tipoArquivo": "APK + Dados (Discos)",
-        "androidMin": "7.0 ou superior",
-        "atualizadoEm": "26/02/2026",
-        "recursosEspecificacoes": "Gráficos Otimizados, Controles Adaptados, História Completa, Alta Performance"
+        "tipoArquivo": "APK + DATA",
+        "androidMin": "9.0 ou superior",
+        "atualizadoEm": "04/03/2026",
+        "recursosEspecificacoes": "Alta fidelidade gráfica, Som surround, Suporte a controle Bluetooth"
       },
-      "linkDownload": "https://4br.me/BaixarApkR4",
-      "linkDownloadData1": "https://4br.me/BaixarDico1R4",
-      "linkDownloadData2": "https://4br.me/BaixarDisco2R4",
-      "tutorialTitulo": "🎮 Como Jogar Resident Evil 4 Mobile",
-      "tutorialSubtitulo": "Guia completo para instalar e dominar o clássico survival horror no seu celular.",
-      "tutorialDescricao": "Descubra como instalar Resident Evil 4 no seu Android, configure os controles para melhor experiênca, e aprenda as melhores estratégias para vencer o jogo. Um tutorial passo a passo para iniciantes e veteranos.",
+      "linkDownload": "#",
+      "linkDownloadData1": "#",
+      "linkDownloadData2": "#",
+      "tutorialTitulo": "🧟 Tutorial Resident Evil 4",
+      "tutorialSubtitulo": "Guia definitivo para sobreviver ao horror no seu Android.",
+      "tutorialDescricao": "Aprenda a instalar corretamente o Resident Evil 4, incluindo a extração dos arquivos DATA e a configuração ideal para o seu aparelho.",
       "videos": [
-        { "titulo": "Instalação APK", "id": "XDhx-rdHSmY" },
-        { "titulo": "Configurar OBB", "id": "XDhx-rdHSmY" },
-        { "titulo": "Gameplay", "id": "XDhx-rdHSmY" },
+        { "titulo": "Como Instalar", "id": "XDhx-rdHSmY" },
+        { "titulo": "Configuração Gráfica", "id": "XDhx-rdHSmY" },
+        { "titulo": "Gameplay Inicial", "id": "XDhx-rdHSmY" },
         { "titulo": "Dicas de Combate", "id": "XDhx-rdHSmY" },
-        { "titulo": "Controles", "id": "XDhx-rdHSmY" },
+        { "titulo": "Chefões", "id": "XDhx-rdHSmY" },
         { "titulo": "Gráficos & Performance", "id": "XDhx-rdHSmY" },
         { "titulo": "Melhores Armas", "id": "XDhx-rdHSmY" },
         { "titulo": "Speedrun", "id": "XDhx-rdHSmY" },
         { "titulo": "Troubleshooting", "id": "XDhx-rdHSmY" },
         { "titulo": "FAQ", "id": "XDhx-rdHSmY" }
       ],
-      "icone": "https://files.manuscdn.com/user_upload_by_module/session_file/310519663409185605/DEguaKtzktTKzSrU.png",
+      "icone": "../images/jogos/re4-icon.png",
       "tipoDownload": "multiplo"
     }
   ],
@@ -115,7 +114,7 @@ window.APPS_DATA = {
       "categoria": "Ferramentas",
       "tipo": "normal",
       "imagem": "https://via.placeholder.com/150",
-      "url": "posts/aplicativos/app.html?id=superme",
+      "url": "pages/ferramentas.html#superme",
       "data": "2026-03-06",
       "destaque": false,
       "titulo": "Download SuperMe APK",
@@ -136,11 +135,11 @@ window.APPS_DATA = {
     {
       "id": "custom-patch-pro",
       "nome": "Custom Patch Pro",
-      "descricao": "Ferramenta avançada para patches personalizados",
+      "descricao": "Ferramenta de modificação de apps",
       "categoria": "Ferramentas",
       "tipo": "normal",
       "imagem": "https://via.placeholder.com/150",
-      "url": "posts/aplicativos/app.html?id=custom-patch-pro",
+      "url": "pages/ferramentas.html#custom-patch-pro",
       "data": "2026-03-06",
       "destaque": false,
       "titulo": "Download Custom Patch Pro APK",
@@ -161,11 +160,11 @@ window.APPS_DATA = {
     {
       "id": "mt-manager",
       "nome": "MT Manager",
-      "descricao": "Gerenciador de arquivos e editor de APK poderoso",
+      "descricao": "Poderoso gerenciador e editor de APK",
       "categoria": "Ferramentas",
       "tipo": "normal",
       "imagem": "https://via.placeholder.com/150",
-      "url": "posts/aplicativos/app.html?id=mt-manager",
+      "url": "pages/ferramentas.html#mt-manager",
       "data": "2026-03-06",
       "destaque": false,
       "titulo": "Download MT Manager APK",
@@ -183,17 +182,5 @@ window.APPS_DATA = {
       "linkDownload": "#",
       "icone": "https://via.placeholder.com/150"
     }
-  ],
-  "quente": []
+  ]
 };
-
-console.log('Dados carregados com sucesso:', window.APPS_DATA);
-
-// Notifica que os dados estão prontos
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', function() {
-    document.dispatchEvent(new CustomEvent('dadosProntos', { detail: window.APPS_DATA }));
-  });
-} else {
-  document.dispatchEvent(new CustomEvent('dadosProntos', { detail: window.APPS_DATA }));
-}
