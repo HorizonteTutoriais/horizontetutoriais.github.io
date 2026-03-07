@@ -357,7 +357,8 @@
                             width: 90px;
                             height: 90px;
                             border-radius: 18px;
-                            object-fit: cover;
+                            object-fit: contain;
+                            background: #000;
                             box-shadow: 0 4px 16px rgba(0,0,0,0.18);
                             display: inline-block;
                         `;
@@ -677,8 +678,8 @@
                     let modalHTML = '<div class="modal-content">';
                     modalHTML += '<div class="modal-header"><h2>' + item.nome + ' - Specs</h2>';
                     modalHTML += '<button class="close-btn" onclick="closeSpecsModal(\'' + item.id + '\')">&times;</button></div>';
-                    modalHTML += '<div style="text-align:center;padding:15px 15px 5px;">';
-                    modalHTML += '<img src="' + iconeUrl + '" alt="' + item.nome + '" style="width:90px;height:90px;border-radius:18px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.18);">';
+                    modalHTML += '<div style="text-align:center;margin-bottom:20px;">';
+                    modalHTML += '<img src="' + iconeUrl + '" alt="' + item.nome + '" style="width:90px;height:90px;border-radius:18px;object-fit:contain;background:#000;box-shadow:0 4px 16px rgba(0,0,0,0.18);">';
                     modalHTML += '</div>';
                     modalHTML += '<table class="specs-table">';
                     modalHTML += '<tr><td>' + (item.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo') + '</td><td>' + item.nome + '</td></tr>';
