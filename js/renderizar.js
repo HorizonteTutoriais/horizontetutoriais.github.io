@@ -274,7 +274,8 @@
             width: 100%;
             margin-top: auto;
         `;
-        btn.innerHTML = '<i class="fas fa-download" style="font-size:10px"></i> BAIXAR';
+        btn.innerHTML = '<i class="fas fa-download" style="font-size:10px"></i> Baixar';
+        btn.onclick = function(e) { e.stopPropagation(); };
 
         card.appendChild(img);
         card.appendChild(badge);
@@ -282,51 +283,96 @@
         card.appendChild(data);
         card.appendChild(btn);
 
-        card.onclick = function() {
-            window.location.href = prefixo + item.url;
+        // Clique no card (fora do botão) também navega
+        card.onclick = function(e) {
+            if (e.target.tagName !== 'A' && !e.target.closest('a')) {
+                window.location.href = prefixo + item.url;
+            }
         };
 
         return card;
     }
 
-    // ============================================================
-    // FUNÇÃO PRINCIPAL DE RENDERIZAÇÃO
-    // ============================================================
+    // Função principal de renderização
     window.renderizarTudo = function() {
         if (!window.APPS_DATA) {
-            console.error('Dados não encontrados!');
+            console.warn('APPS_DATA não está disponível ainda');
             return;
         }
 
         const path = window.location.pathname;
+        const urlId = getIdFromUrl();
 
-        // ============= RENDERIZAR PÁGINA DE POST (DETALHES) =============
-        if (path.includes('/posts/')) {
-            const id = getIdFromUrl();
+        // ============= RENDERIZAR PÁGINA MESTRA DINÂMICA =============
+        if (urlId) {
+            let postItem = null;
             const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
-            const postItem = todosItens.find(item => item.id === id);
+            
+            for (let i = 0; i < todosItens.length; i++) {
+                if (todosItens[i].id === urlId) {
+                    postItem = todosItens[i];
+                    break;
+                }
+            }
 
             if (postItem) {
-                // Título e Meta
-                document.title = postItem.nome + ' - Horizonte Tutoriais';
-                const h1 = document.querySelector('.post-header h1');
-                if (h1) h1.textContent = postItem.titulo || postItem.nome;
+                // Atualizar título e meta
+                document.title = postItem.titulo + ' — Horizonte Tutoriais';
+                const metaDesc = document.querySelector('meta[name="description"]');
+                if (metaDesc) metaDesc.setAttribute('content', postItem.descricaoLonga);
 
-                // Tabela de Especificações
+                // Renderizar conteúdo do post
+                const postBody = document.querySelector('.post-body');
+                if (postBody) {
+                    let recursosHtml = '';
+                    if (postItem.recursos && postItem.recursos.length > 0) {
+                        recursosHtml = '<h2>⭐ RECURSOS PRINCIPAIS ⭐⭐⭐</h2><ul>';
+                        for (let i = 0; i < postItem.recursos.length; i++) {
+                            recursosHtml += '<li>✅ ' + postItem.recursos[i] + '</li>';
+                        }
+                        recursosHtml += '</ul>';
+                    }
+                    postBody.innerHTML = '<p>' + (postItem.descricaoLonga || '') + '</p>' + recursosHtml;
+                }
+
+                // Renderizar ícone + tabela de especificações
                 const infoTable = document.querySelector('.info-table');
-                if (infoTable) {
+                if (infoTable && postItem.especificacoes) {
                     const s = postItem.especificacoes;
-                    
-                    // Ajuste para caminho relativo se estivermos em uma subpasta de posts
-                    let iconeUrlSpecs = postItem.icone || postItem.imagem || '';
-                    if (iconeUrlSpecs.startsWith('../') && prefixo === '../../') {
-                        iconeUrlSpecs = '../' + iconeUrlSpecs;
+                    let iconeUrl = postItem.icone || postItem.imagem || '';
+
+                    // Ajuste de caminho relativo para o ícone pequeno na tabela de especificações
+                    if (iconeUrl.startsWith('../') && prefixo === '../../') {
+                        iconeUrl = '../' + iconeUrl;
+                    }
+
+                    // Inserir ícone acima da tabela se existir
+                    let iconWrapper = document.getElementById('spec-icon-wrapper');
+                    if (!iconWrapper && iconeUrl) {
+                        iconWrapper = document.createElement('div');
+                        iconWrapper.id = 'spec-icon-wrapper';
+                        iconWrapper.style.cssText = `
+                            text-align: center;
+                            margin-bottom: 14px;
+                        `;
+                        const iconImg = document.createElement('img');
+                        iconImg.src = iconeUrl;
+                        iconImg.alt = postItem.nome;
+                        iconImg.style.cssText = `
+                            width: 90px;
+                            height: 90px;
+                            border-radius: 18px;
+                            object-fit: contain;
+                            background: #ffffff;
+                            border: 1px solid #eee;
+                            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+                            display: inline-block;
+                        `;
+                        iconWrapper.appendChild(iconImg);
+                        infoTable.parentElement.insertBefore(iconWrapper, infoTable);
                     }
 
                     infoTable.innerHTML = `
-                        <div style="text-align:center;margin-bottom:20px;">
-                            <img src="${iconeUrlSpecs}" alt="${postItem.nome}" style="width:90px;height:90px;border-radius:18px;object-fit:contain;background:#ffffff;border:1px solid #eee;box-shadow:0 4px 16px rgba(0,0,0,0.1);">
-                        </div>
                         <tr><td>${postItem.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo'}</td><td>${postItem.nome}</td></tr>
                         <tr><td>Versão</td><td>${s.versao}</td></tr>
                         <tr><td>Tamanho</td><td>${s.tamanho}</td></tr>
@@ -335,60 +381,91 @@
                         <tr><td>Tipo do Arquivo</td><td>${s.tipoArquivo}</td></tr>
                         <tr><td>Requer Android</td><td>${s.androidMin}</td></tr>
                         <tr><td>Atualizado em</td><td>${s.atualizadoEm}</td></tr>
-                        <tr><td>Recursos</td><td>${s.recursosEspecificacoes}</td></tr>
                     `;
-
-                    // Adicionar botões de Feed e YouTube no centro direito (abaixo das specs)
-                    const feedContainer = document.createElement('div');
-                    feedContainer.style.cssText = 'margin-top:15px; display:flex; flex-direction:column; gap:10px;';
-                    
-                    const videoId = `feed-video-${postItem.id}`;
-                    const feedPath = prefixo === '../../' ? '../../feed/feed.xml' : 'feed/feed.xml';
-
-                    // Botão de Feed LARANJA com botão de Tutorial INTEGRADO (NA COR ALARANJADA)
-                    feedContainer.innerHTML = `
-                        <div style="background: #f57c00; border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                            <button class="rss-copy-btn" onclick="handleFeedClickWithVideo(this, '${videoId}', '${feedPath}')" style="background: transparent; border: none; color: #fff; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 4px 0;">
-                                <i class="fas fa-copy"></i> Copiar Link do Feed
-                            </button>
-                            <button onclick="toggleFeedVideo('${videoId}')" style="background: rgba(255,255,255,0.25); border: none; color: #fff; border-radius: 4px; padding: 8px; font-weight: 700; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; transition: background 0.2s;">
-                                <i class="fas fa-video"></i> Como usar o FEED
-                            </button>
-                        </div>
-                        <a href="https://www.youtube.com/@HorizonteTutoriais" target="_blank" style="background: #ff0000; color: #fff; text-decoration: none; padding: 12px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; display: flex; flex-direction: column; gap: 3px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                            <span><i class="fab fa-youtube"></i> CANAL HORIZONTE TUTORIAIS</span>
-                            <span style="font-size: 9px; font-weight: 400; opacity: 0.9;">INSCREVA-SE E ATIVE O SINO DE NOTIFICAÇÕES</span>
-                        </a>
-                        <div id="${videoId}" style="display: none; width: 100%; border-radius: 8px; overflow: hidden; margin-top: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    // Adicionar botão Copiar Link do Feed interativo abaixo da tabela de especificações nos posts
+                    let feedBtnWrapper = document.getElementById('feed-btn-wrapper');
+                    if (!feedBtnWrapper) {
+                        feedBtnWrapper = document.createElement('div');
+                        feedBtnWrapper.id = 'feed-btn-wrapper';
+                        feedBtnWrapper.style.cssText = 'margin-top: 15px; display: flex; flex-direction: column; gap: 10px;';
+                        
+                        const feedBtn = document.createElement('button');
+                        feedBtn.className = 'rss-copy-btn';
+                        feedBtn.style.cssText = 'width:100%; border-radius:6px; cursor:pointer; display: flex; align-items: center; justify-content: center; gap: 8px;';
+                        feedBtn.innerHTML = '<i class="fas fa-copy"></i> Copiar Link do Feed';
+                        
+                        // Container para o vídeo tutorial do feed (inicialmente oculto)
+                        const feedVideoContainer = document.createElement('div');
+                        feedVideoContainer.id = 'feed-video-tutorial';
+                        feedVideoContainer.style.cssText = 'display: none; margin-top: 10px; width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.2);';
+                        feedVideoContainer.innerHTML = `
                             <div style="position: relative; padding-bottom: 56.25%; height: 0;">
                                 <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
                             </div>
-                        </div>
-                    `;
-                    infoTable.parentElement.appendChild(feedContainer);
+                        `;
+
+                        feedBtn.onclick = function() {
+                            const feedPath = prefixo === '../../' ? '../../feed/feed.xml' : (prefixo === '../' ? '../feed/feed.xml' : 'feed/feed.xml');
+                            
+                            // 1. Copiar o link
+                            if (window.copyToClipboard) {
+                                window.copyToClipboard(feedPath);
+                            } else {
+                                const fullUrl = window.location.origin + '/' + feedPath.replace(/\.\.\//g, '');
+                                navigator.clipboard.writeText(fullUrl).then(() => {
+                                    // Feedback visual de cópia
+                                    const originalText = feedBtn.innerHTML;
+                                    feedBtn.innerHTML = '<i class="fas fa-check"></i> Link Copiado!';
+                                    setTimeout(() => feedBtn.innerHTML = originalText, 2000);
+                                }).catch(err => console.error('Erro ao copiar:', err));
+                            }
+
+                            // 2. Abrir/Alternar o vídeo tutorial
+                            if (feedVideoContainer.style.display === 'none') {
+                                feedVideoContainer.style.display = 'block';
+                                feedVideoContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                            } else {
+                                feedVideoContainer.style.display = 'none';
+                            }
+                        };
+
+                        feedBtnWrapper.appendChild(feedBtn);
+                        feedBtnWrapper.appendChild(feedVideoContainer);
+                        infoTable.parentElement.appendChild(feedBtnWrapper);
+                    }
                 }
 
-                // Área de Download
+                // Renderizar botões de download
                 const downloadBox = document.querySelector('.download-box');
                 if (downloadBox) {
                     if (postItem.tipoDownload === 'multiplo') {
                         downloadBox.innerHTML = `
-                            <p style="font-size: 14px; font-weight: 700; color: #c62828; margin-bottom: 12px">⬇️ Clique abaixo para baixar o jogo</p>
+                            <p style="font-size:14px;font-weight:700;color:#c62828;margin-bottom:12px">⬇️ Clique abaixo para baixar o jogo</p>
                             <div class="download-options">
-                                <a href="${postItem.linkDownload}" class="btn-download-option" target="_blank"><i class="fas fa-file-archive"></i> BAIXAR APK</a>
-                                <a href="${postItem.linkDownloadData1}" class="btn-download-option alt" target="_blank"><i class="fas fa-database"></i> BAIXAR DATA 1</a>
-                                <a href="${postItem.linkDownloadData2}" class="btn-download-option alt" target="_blank"><i class="fas fa-database"></i> BAIXAR DATA 2</a>
+                                <a href="${postItem.linkDownload}" class="btn-download-option" target="_blank" rel="noopener">
+                                    <i class="fas fa-file-archive"></i> BAIXAR APK
+                                </a>
+                                <a href="${postItem.linkDownloadData1}" class="btn-download-option alt" target="_blank" rel="noopener">
+                                    <i class="fas fa-database"></i> BAIXAR DATA 1
+                                </a>
+                                <a href="${postItem.linkDownloadData2}" class="btn-download-option alt" target="_blank" rel="noopener">
+                                    <i class="fas fa-database"></i> BAIXAR DATA 2
+                                </a>
                             </div>
+                            <p style="font-size:11px;color:#666;margin-top:10px">Link seguro verificado — Horizonte Tutoriais</p>
                         `;
                     } else {
                         downloadBox.innerHTML = `
-                            <p style="font-size: 14px; font-weight: 700; color: #0d47a1; margin-bottom: 12px">⬇️ Clique abaixo para baixar o aplicativo</p>
-                            <a href="${postItem.linkDownload}" class="btn-big-download" target="_blank"><i class="fas fa-download"></i> DOWNLOAD</a>
+                            <p style="font-size:14px;font-weight:700;color:#0d47a1;margin-bottom:12px">⬇️ Clique abaixo para baixar o aplicativo</p>
+                            <a href="${postItem.linkDownload}" class="btn-big-download" target="_blank" rel="noopener">
+                                <i class="fas fa-download"></i> DOWNLOAD
+                            </a>
+                            <p style="font-size:11px;color:#666;margin-top:10px">Link seguro verificado — Horizonte Tutoriais</p>
                         `;
                     }
                 }
 
-                // Widgets da Sidebar
+                // Renderizar botão de tutorial e ferramenta logo abaixo
                 const tutorialsWidget = document.querySelector('.tutorials-widget');
                 if (tutorialsWidget) {
                     tutorialsWidget.innerHTML = `
@@ -396,32 +473,62 @@
                             <span><i class="fas fa-video"></i> TUTORIAIS</span>
                             <i class="fas fa-external-link-alt"></i>
                         </a>
-                        <a href="${prefixo}pages/ferramentas.html" class="btn-tutorial-direct" style="background: linear-gradient(135deg, #607d8b 0%, #455a64 100%); margin-top: 10px;">
+                        <a href="${prefixo}pages/ferramentas.html" class="btn-tutorial-direct" style="background: #607d8b; margin-top: 10px;">
                             <span><i class="fas fa-tools"></i> FERRAMENTAS</span>
                             <i class="fas fa-external-link-alt"></i>
                         </a>
                     `;
                 }
 
-                // Imagem de Destaque
+                // Renderizar breadcrumb
+                const breadcrumb = document.querySelector('.breadcrumb');
+                if (breadcrumb) {
+                    breadcrumb.innerHTML = `
+                        <a href="${prefixo}index.html">Lar</a>
+                        <span>›</span>
+                        <a href="${prefixo}pages/${postItem.categoria === 'Jogos' ? 'jogos' : 'aplicativos'}.html">
+                            ${postItem.categoria === 'Jogos' ? 'Jogos' : 'Aplicativos'}
+                        </a>
+                        <span>›</span>
+                        ${postItem.nome}
+                    `;
+                }
+
+                // Atualizar título, imagem e data
+                const h1 = document.querySelector('.post-header h1');
+                if (h1) h1.textContent = postItem.titulo;
+
                 const img = document.querySelector('.post-featured-img');
                 if (img) {
+                    // Usar imagemCapa se disponível, senão usar ícone
                     let imagemFinal = postItem.imagemCapa || postItem.icone || postItem.imagem || 'https://via.placeholder.com/700x300';
+                    
+                    // Ajuste para caminho relativo se estivermos em uma subpasta de posts
                     if (imagemFinal.startsWith('../') && prefixo === '../../') {
                         imagemFinal = '../' + imagemFinal;
                     }
+                    
                     img.src = imagemFinal;
+                    
+                    // Aplicar fundo branco no banner principal
                     img.style.background = '#ffffff';
+                    
+                    // Logica especifica por ID para cada item
                     img.onload = function() {
                         const ratio = this.naturalWidth / this.naturalHeight;
+                        
+                        // Resident Evil 4: escala otimizada para preencher sem distorcao
                         if (postItem.id === 'resident-evil-4') {
                             img.style.objectFit = 'contain';
                             img.style.objectPosition = 'center center';
-                            img.style.background = '#000';
-                        } else if (ratio >= 0.8 && ratio <= 1.2) {
+                            img.style.background = '#000'; // Fundo preto para preencher as bordas se necessário
+                        } 
+                        // Horizon Clicker e outros: aparecem proporcional (sem zoom excessivo)
+                        else if (ratio >= 0.8 && ratio <= 1.2) {
                             img.style.objectFit = 'contain';
                             img.style.objectPosition = 'center center';
                         } else {
+                            // Banners retangulares: cover com foco no topo
                             img.style.objectFit = 'cover';
                             img.style.objectPosition = 'center top';
                         }
@@ -431,6 +538,7 @@
                 const postDate = document.querySelector('.post-date');
                 if (postDate) postDate.textContent = '📅 ' + postItem.data;
 
+                // Atualizar badges de categoria/tipo
                 const badgeCat = document.querySelector('.badge-cat');
                 if (badgeCat) badgeCat.textContent = postItem.categoria;
 
@@ -447,12 +555,11 @@
                     }
                 }
 
-                // REMOVER DEFINITIVAMENTE BOTÕES ACIMA DOS COMENTÁRIOS APENAS NA ABA DE SPECS
+                // Remover Telegram CTA / YouTube CTA acima dos comentários conforme solicitado
                 const telegramCta = document.querySelector('.telegram-cta');
-                if (telegramCta) telegramCta.remove();
-                
-                const youtubeCta = document.querySelector('.youtube-cta');
-                if (youtubeCta) youtubeCta.remove();
+                if (telegramCta) {
+                    telegramCta.style.display = 'none';
+                }
             }
             
             // Ajustar Mídias Sociais na Sidebar em todas as páginas
@@ -472,22 +579,32 @@
         let dados = [];
         let titulo = '';
 
+        // PÁGINA DE APLICATIVOS - Mostrar APENAS itens com categoria "Aplicativos"
         if (path.includes('/pages/aplicativos.html')) {
             dados = (window.APPS_DATA.aplicativos || []).filter(item => item.categoria === 'Aplicativos');
             titulo = '📱 Aplicativos';
-        } else if (path.includes('/pages/jogos.html')) {
+        } 
+        // PÁGINA DE JOGOS - Mostrar APENAS itens com categoria "Jogos"
+        else if (path.includes('/pages/jogos.html')) {
             dados = (window.APPS_DATA.jogos || []).filter(item => item.categoria === 'Jogos');
             titulo = '🎮 Jogos';
-        } else if (path.includes('/pages/quente.html')) {
+        } 
+        // PÁGINA QUENTE - Mostrar APENAS itens com tipo "quente"
+        else if (path.includes('/pages/quente.html')) {
             const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
             dados = todosItens.filter(item => item.tipo === 'quente');
             titulo = '🔥 Quente';
-        } else if (path.includes('/pages/ferramentas.html')) {
+        } 
+        // PÁGINA FERRAMENTAS
+        else if (path.includes('/pages/ferramentas.html')) {
             dados = window.APPS_DATA.ferramentas || [];
             titulo = '🔧 Ferramentas';
-        } else if (path.includes('/Index/index.html') || path === '/' || path.endsWith('/index.html')) {
+        } 
+        // PÁGINA INICIAL
+        else if (path.includes('/Index/index.html') || path === '/' || path.endsWith('/index.html')) {
             const todosItens = [...(window.APPS_DATA.aplicativos || []), ...(window.APPS_DATA.jogos || [])];
             
+            // Últimas Atualizações — usa criarUpdateCard (estilo grade moderno)
             const updateContainer = document.querySelector('.updates-grid');
             if (updateContainer) {
                 updateContainer.innerHTML = '';
@@ -497,6 +614,7 @@
                 }
             }
 
+            // Destaques - APENAS itens com destaque: true
             const popularContainer = document.querySelector('.popular-section');
             if (popularContainer) {
                 popularContainer.innerHTML = '<h2 class="section-title">⭐ Destaques</h2>';
@@ -506,15 +624,18 @@
                 }
             }
 
+            // Sidebar Populares - APENAS itens com tipo: "popular"
             const sidebarPopulares = document.getElementById('sidebar-populares');
             if (sidebarPopulares) {
                 sidebarPopulares.innerHTML = '<h3 class="widget-title">🔥 Populares</h3>';
                 const populares = todosItens.filter(item => item.tipo === 'popular');
+                
                 for (let i = 0; i < Math.min(populares.length, 5); i++) {
                     sidebarPopulares.appendChild(criarCard(populares[i], prefixo));
                 }
             }
 
+            // Seção Quente - APENAS itens com tipo: "quente"
             const quenteContainer = document.querySelector('.quente-section');
             if (quenteContainer) {
                 quenteContainer.innerHTML = '<h2 class="section-title">🔥 Quente Agora</h2>';
@@ -527,14 +648,18 @@
             return;
         }
 
+        // Renderizar cards na página de listagem
         if (container && dados.length > 0) {
             container.innerHTML = '<h1 class="section-title">' + titulo + '</h1>';
+            
+            // Adicionar grid se não existir
             let grid = container.querySelector('.apps-grid');
             if (!grid) {
                 grid = document.createElement('div');
                 grid.className = 'apps-grid';
                 container.appendChild(grid);
             }
+
             for (let i = 0; i < dados.length; i++) {
                 grid.appendChild(criarCard(dados[i], prefixo));
             }
@@ -549,6 +674,8 @@
                 
                 for (let i = 0; i < todosItens.length; i++) {
                     let item = todosItens[i];
+                    
+                    // Aplicar herança automática de tutorial se não tiver customizado
                     item = gerarTutorialAutomatico(item);
 
                     const tutorialCard = document.createElement('div');
@@ -579,6 +706,8 @@
                             
                             <div style="display: flex; gap: 10px; width: 100%; flex-wrap: wrap;">
                                 <a href="${prefixo}posts/${item.categoria === 'Jogos' ? 'jogos' : 'aplicativos'}/${item.categoria === 'Jogos' ? 'jogo' : 'app'}.html?id=${item.id}" class="btn-download-tutorial" style="flex: 1; min-width: 140px; margin: 0;"><i class="fas fa-download"></i> Baixar</a>
+                                
+                                <!-- Botão de Ferramentas Expansível ao lado do Baixar -->
                                 <button class="btn-ferramenta-main" onclick="toggleFerramentasMenu('${item.id}')" style="background: linear-gradient(135deg, #607d8b 0%, #455a64 100%); flex: 1; min-width: 140px; padding: 12px 14px; border: none; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 5px; text-decoration: none; color: #fff;">
                                     <i class="fas fa-tools"></i> Ferramentas <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
                                 </button>
@@ -596,60 +725,56 @@
                     `;
                     tutoriaisContainer.appendChild(tutorialCard);
 
-                    // Modal de Specs
+                    // Modal de Specs — com ícone do app/jogo
                     const modal = document.createElement('div');
                     modal.id = 'modal-' + item.id;
                     modal.className = 'modal';
                     modal.style.display = 'none';
                     const s = item.especificacoes;
                     let iconeUrlModal = item.icone || item.imagem || '';
+
+                    // Ajuste de caminho relativo para o ícone nos modais
                     if (iconeUrlModal.startsWith('../') && prefixo === '../../') {
                         iconeUrlModal = '../' + iconeUrlModal;
                     }
                     
-                    const videoId = `modal-feed-video-${item.id}`;
-                    const feedPath = prefixo === '../../' ? '../../feed/feed.xml' : 'feed/feed.xml';
-
-                    // Botão de Feed LARANJA com botão de Tutorial INTEGRADO (NA COR ALARANJADA)
-                    modal.innerHTML = `
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2>${item.nome} - Specs</h2>
-                                <button class="close-btn" onclick="closeSpecsModal('${item.id}')">&times;</button>
-                            </div>
-                            <div style="text-align:center;margin-bottom:20px;">
-                                <img src="${iconeUrlModal}" alt="${item.nome}" style="width:90px;height:90px;border-radius:18px;object-fit:contain;background:#ffffff;border:1px solid #eee;box-shadow:0 4px 16px rgba(0,0,0,0.1);">
-                            </div>
-                            <table class="specs-table">
-                                <tr><td>Versão</td><td>${s.versao}</td></tr>
-                                <tr><td>Tamanho</td><td>${s.tamanho}</td></tr>
-                                <tr><td>Categoria</td><td>${s.categoria}</td></tr>
-                                <tr><td>Desenvolvedor</td><td>${s.desenvolvedor}</td></tr>
-                                <tr><td>Android</td><td>${s.androidMin}</td></tr>
-                                <tr><td>Atualizado</td><td>${s.atualizadoEm}</td></tr>
-                            </table>
-                            <div style="padding:15px; border-top:1px solid #eee; display: flex; flex-direction: column; gap: 10px;">
-                                <div style="background: #f57c00; border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                                    <button class="rss-copy-btn" onclick="handleFeedClickWithVideo(this, '${videoId}', '${feedPath}')" style="background: transparent; border: none; color: #fff; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 4px 0;">
-                                        <i class="fas fa-copy"></i> Copiar Link do Feed
-                                    </button>
-                                    <button onclick="toggleFeedVideo('${videoId}')" style="background: rgba(255,255,255,0.25); border: none; color: #fff; border-radius: 4px; padding: 8px; font-weight: 700; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; transition: background 0.2s;">
-                                        <i class="fas fa-video"></i> Como usar o FEED
-                                    </button>
-                                </div>
-                                <a href="https://www.youtube.com/@HorizonteTutoriais" target="_blank" style="background: #ff0000; color: #fff; text-decoration: none; padding: 12px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; display: flex; flex-direction: column; gap: 3px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                                    <span><i class="fab fa-youtube"></i> CANAL HORIZONTE TUTORIAIS</span>
-                                    <span style="font-size: 9px; font-weight: 400; opacity: 0.9;">INSCREVA-SE E ATIVE O SINO DE NOTIFICAÇÕES</span>
-                                </a>
-                                <div id="${videoId}" style="display: none; width: 100%; border-radius: 8px; overflow: hidden; margin-top: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-                                    <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
+                    let modalHTML = '<div class="modal-content">';
+                    modalHTML += '<div class="modal-header"><h2>' + item.nome + ' - Specs</h2>';
+                    modalHTML += '<button class="close-btn" onclick="closeSpecsModal(\'' + item.id + '\')">&times;</button></div>';
+                    modalHTML += '<div style="text-align:center;margin-bottom:20px;">';
+                    modalHTML += '<img src="' + iconeUrlModal + '" alt="' + item.nome + '" style="width:90px;height:90px;border-radius:18px;object-fit:contain;background:#ffffff;border:1px solid #eee;box-shadow:0 4px 16px rgba(0,0,0,0.1);">';
+                    modalHTML += '</div>';
+                    modalHTML += '<table class="specs-table">';
+                    modalHTML += '<tr><td>' + (item.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo') + '</td><td>' + item.nome + '</td></tr>';
+                    modalHTML += '<tr><td>Versão</td><td>' + s.versao + '</td></tr>';
+                    modalHTML += '<tr><td>Tamanho</td><td>' + s.tamanho + '</td></tr>';
+                    modalHTML += '<tr><td>Categoria</td><td>' + s.categoria + '</td></tr>';
+                    modalHTML += '<tr><td>Desenvolvedor</td><td>' + s.desenvolvedor + '</td></tr>';
+                    modalHTML += '<tr><td>Tipo do Arquivo</td><td>' + s.tipoArquivo + '</td></tr>';
+                    modalHTML += '<tr><td>Requer Android</td><td>' + s.androidMin + '</td></tr>';
+                    modalHTML += '<tr><td>Atualizado em</td><td>' + s.atualizadoEm + '</td></tr>';
+                    modalHTML += '<tr><td>Recursos</td><td>' + s.recursosEspecificacoes + '</td></tr>';
+                    modalHTML += '</table><div style="padding:15px; border-top:1px solid #eee; display: flex; flex-direction: column; gap: 10px;">';
+                    modalHTML += '<button class="rss-copy-btn" onclick="handleFeedClickWithVideo(this)" style="width:100%; border-radius:6px; display: flex; align-items: center; justify-content: center; gap: 8px;"><i class="fas fa-copy"></i> Copiar Link do Feed</button>';
+                    modalHTML += '<div id="modal-feed-video" style="display: none; width: 100%; border-radius: 8px; overflow: hidden; margin-top: 5px;">';
+                    modalHTML += '<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe></div>';
+                    modalHTML += '</div></div></div>';
+                    
+                    modal.innerHTML = modalHTML;
                     document.body.appendChild(modal);
+                }
+                
+                // Auto-open
+                const params = new URLSearchParams(window.location.search);
+                const autoOpen = params.get('open');
+                if (autoOpen) {
+                    setTimeout(() => {
+                        const scroll = document.getElementById('video-scroll-' + autoOpen);
+                        if (scroll) { 
+                            scroll.classList.add('active'); 
+                            scroll.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
+                        }
+                    }, 300);
                 }
             }
         }
@@ -658,59 +783,60 @@
     // Funções Globais
     window.openSpecsModal = function(id) { 
         const m = document.getElementById('modal-' + id); 
-        if (m) { m.style.display = 'block'; document.body.style.overflow = 'hidden'; } 
+        if (m) { 
+            m.style.display = 'block'; 
+            document.body.style.overflow = 'hidden'; 
+        } 
     };
+    
     window.closeSpecsModal = function(id) { 
         const m = document.getElementById('modal-' + id); 
-        if (m) { m.style.display = 'none'; document.body.style.overflow = 'auto'; } 
+        if (m) { 
+            m.style.display = 'none'; 
+            document.body.style.overflow = 'auto'; 
+        } 
     };
+    
     window.toggleVideoScroll = function(id) { 
         const s = document.getElementById('video-scroll-' + id); 
         if (s) s.classList.toggle('active'); 
     };
+    
     window.toggleFerramentasMenu = function(id) {
         const menu = document.getElementById('ferramentas-menu-' + id);
         if (menu) {
             const isHidden = menu.style.display === 'none';
             menu.style.display = isHidden ? 'flex' : 'none';
+            
+            // Opcional: Rotacionar o ícone de seta
             const btn = menu.previousElementSibling;
             const icon = btn.querySelector('.fa-chevron-down, .fa-chevron-up');
-            if (icon) icon.className = isHidden ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+            if (icon) {
+                icon.className = isHidden ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+                icon.style.fontSize = '10px';
+            }
         }
     };
+    
     window.openVideoModal = function(tid, vid, title) {
         const m = document.getElementById('modal-video-player');
         const i = document.getElementById('video-iframe');
         const t = document.getElementById('video-modal-title');
-        if (m && i) { t.textContent = '📺 ' + title; i.src = 'https://www.youtube.com/embed/' + vid + '?autoplay=1'; m.style.display = 'block'; document.body.style.overflow = 'hidden'; }
+        if (m && i) { 
+            t.textContent = '📺 ' + title; 
+            i.src = 'https://www.youtube.com/embed/' + vid + '?autoplay=1'; 
+            m.style.display = 'block'; 
+            document.body.style.overflow = 'hidden'; 
+        }
     };
+    
     window.closeVideoModal = function() {
         const m = document.getElementById('modal-video-player');
         const i = document.getElementById('video-iframe');
-        if (m && i) { i.src = ''; m.style.display = 'none'; document.body.style.overflow = 'auto'; }
-    };
-
-    // Função para o Feed
-    window.toggleFeedVideo = function(videoId) {
-        const v = document.getElementById(videoId);
-        if (v) {
-            v.style.display = v.style.display === 'none' ? 'block' : 'none';
-            if (v.style.display === 'block') v.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-    };
-
-    window.handleFeedClickWithVideo = function(btn, videoId, feedPath) {
-        const fullUrl = window.location.origin + '/' + feedPath.replace(/\.\.\//g, '');
-        navigator.clipboard.writeText(fullUrl).then(() => {
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-check"></i> Link Copiado!';
-            setTimeout(() => btn.innerHTML = originalText, 2000);
-        }).catch(err => console.error('Erro ao copiar:', err));
-        
-        // Abrir o vídeo automaticamente ao copiar se estiver fechado
-        const v = document.getElementById(videoId);
-        if (v && v.style.display === 'none') {
-            window.toggleFeedVideo(videoId);
+        if (m && i) { 
+            i.src = ''; 
+            m.style.display = 'none'; 
+            document.body.style.overflow = 'auto'; 
         }
     };
 
@@ -720,5 +846,33 @@
     } else {
         window.renderizarTudo();
     }
+    
     document.addEventListener('dadosProntos', window.renderizarTudo);
 })();
+
+// Função Global para lidar com o clique no botão de Feed com Vídeo
+window.handleFeedClickWithVideo = function(btn) {
+    const feedPath = 'feed/feed.xml';
+    
+    // 1. Copiar o link
+    if (window.copyToClipboard) {
+        window.copyToClipboard(feedPath);
+    } else {
+        const fullUrl = window.location.origin + '/' + feedPath;
+        navigator.clipboard.writeText(fullUrl).then(() => {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Link Copiado!';
+            setTimeout(() => btn.innerHTML = originalText, 2000);
+        }).catch(err => console.error('Erro ao copiar:', err));
+    }
+
+    // 2. Abrir o vídeo no modal se existir
+    const videoContainer = document.getElementById('modal-feed-video');
+    if (videoContainer) {
+        if (videoContainer.style.display === 'none') {
+            videoContainer.style.display = 'block';
+        } else {
+            videoContainer.style.display = 'none';
+        }
+    }
+};
