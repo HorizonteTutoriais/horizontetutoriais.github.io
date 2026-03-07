@@ -339,7 +339,12 @@
                 const infoTable = document.querySelector('.info-table');
                 if (infoTable && postItem.especificacoes) {
                     const s = postItem.especificacoes;
-                    const iconeUrl = postItem.icone || postItem.imagem || '';
+                    let iconeUrl = postItem.icone || postItem.imagem || '';
+
+                    // Ajuste de caminho relativo para o ícone pequeno na tabela de especificações
+                    if (iconeUrl.startsWith('../') && prefixo === '../../') {
+                        iconeUrl = '../' + iconeUrl;
+                    }
 
                     // Inserir ícone acima da tabela se existir
                     let iconWrapper = document.getElementById('spec-icon-wrapper');
@@ -681,12 +686,18 @@
                     modal.className = 'modal';
                     modal.style.display = 'none';
                     const s = item.especificacoes;
+                    let iconeUrlModal = item.icone || item.imagem || '';
+
+                    // Ajuste de caminho relativo para o ícone nos modais
+                    if (iconeUrlModal.startsWith('../') && prefixo === '../../') {
+                        iconeUrlModal = '../' + iconeUrlModal;
+                    }
                     
                     let modalHTML = '<div class="modal-content">';
                     modalHTML += '<div class="modal-header"><h2>' + item.nome + ' - Specs</h2>';
                     modalHTML += '<button class="close-btn" onclick="closeSpecsModal(\'' + item.id + '\')">&times;</button></div>';
                     modalHTML += '<div style="text-align:center;margin-bottom:20px;">';
-                    modalHTML += '<img src="' + iconeUrl + '" alt="' + item.nome + '" style="width:90px;height:90px;border-radius:18px;object-fit:contain;background:#ffffff;border:1px solid #eee;box-shadow:0 4px 16px rgba(0,0,0,0.1);">';
+                    modalHTML += '<img src="' + iconeUrlModal + '" alt="' + item.nome + '" style="width:90px;height:90px;border-radius:18px;object-fit:contain;background:#ffffff;border:1px solid #eee;box-shadow:0 4px 16px rgba(0,0,0,0.1);">';
                     modalHTML += '</div>';
                     modalHTML += '<table class="specs-table">';
                     modalHTML += '<tr><td>' + (item.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo') + '</td><td>' + item.nome + '</td></tr>';
