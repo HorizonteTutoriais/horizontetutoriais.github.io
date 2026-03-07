@@ -344,16 +344,17 @@
                     const videoId = `feed-video-${postItem.id}`;
                     const feedPath = prefixo === '../../' ? '../../feed/feed.xml' : 'feed/feed.xml';
 
+                    // Botão de Feed LARANJA com botão de Tutorial INTEGRADO (NA COR ALARANJADA)
                     feedContainer.innerHTML = `
-                        <div style="background: var(--green-btn); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 8px;">
-                            <button class="rss-copy-btn" onclick="handleFeedClickWithVideo(this, '${videoId}', '${feedPath}')" style="background: transparent; border: none; color: #fff; font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 5px 0;">
+                        <div style="background: #f57c00; border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <button class="rss-copy-btn" onclick="handleFeedClickWithVideo(this, '${videoId}', '${feedPath}')" style="background: transparent; border: none; color: #fff; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 4px 0;">
                                 <i class="fas fa-copy"></i> Copiar Link do Feed
                             </button>
-                            <button onclick="toggleFeedVideo('${videoId}')" style="background: rgba(255,255,255,0.2); border: none; color: #fff; border-radius: 4px; padding: 6px; font-weight: 600; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; width: 100%;">
+                            <button onclick="toggleFeedVideo('${videoId}')" style="background: rgba(255,255,255,0.25); border: none; color: #fff; border-radius: 4px; padding: 8px; font-weight: 700; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; transition: background 0.2s;">
                                 <i class="fas fa-video"></i> Como usar o FEED
                             </button>
                         </div>
-                        <a href="https://www.youtube.com/@HorizonteTutoriais" target="_blank" style="background: #ff0000; color: #fff; text-decoration: none; padding: 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; display: flex; flex-direction: column; gap: 2px;">
+                        <a href="https://www.youtube.com/@HorizonteTutoriais" target="_blank" style="background: #ff0000; color: #fff; text-decoration: none; padding: 12px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; display: flex; flex-direction: column; gap: 3px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
                             <span><i class="fab fa-youtube"></i> CANAL HORIZONTE TUTORIAIS</span>
                             <span style="font-size: 9px; font-weight: 400; opacity: 0.9;">INSCREVA-SE E ATIVE O SINO DE NOTIFICAÇÕES</span>
                         </a>
@@ -445,15 +446,15 @@
                     }
                 }
 
-                // REMOVER DEFINITIVAMENTE BOTÕES ACIMA DOS COMENTÁRIOS
+                // REMOVER DEFINITIVAMENTE BOTÕES ACIMA DOS COMENTÁRIOS APENAS NA ABA DE SPECS
                 const telegramCta = document.querySelector('.telegram-cta');
-                if (telegramCta) telegramCta.style.display = 'none';
+                if (telegramCta) telegramCta.remove();
                 
                 const youtubeCta = document.querySelector('.youtube-cta');
-                if (youtubeCta) youtubeCta.style.display = 'none';
+                if (youtubeCta) youtubeCta.remove();
             }
             
-            // Ajustar Mídias Sociais na Sidebar
+            // Ajustar Mídias Sociais na Sidebar em todas as páginas
             const sidebarWidgets = document.querySelectorAll('.sidebar-widget');
             sidebarWidgets.forEach(widget => {
                 const title = widget.querySelector('.widget-title');
@@ -608,6 +609,7 @@
                     const videoId = `modal-feed-video-${item.id}`;
                     const feedPath = prefixo === '../../' ? '../../feed/feed.xml' : 'feed/feed.xml';
 
+                    // Botão de Feed LARANJA com botão de Tutorial INTEGRADO (NA COR ALARANJADA)
                     modal.innerHTML = `
                         <div class="modal-content">
                             <div class="modal-header">
@@ -626,15 +628,15 @@
                                 <tr><td>Atualizado</td><td>${s.atualizadoEm}</td></tr>
                             </table>
                             <div style="padding:15px; border-top:1px solid #eee; display: flex; flex-direction: column; gap: 10px;">
-                                <div style="background: var(--green-btn); border-radius: 6px; padding: 10px; display: flex; flex-direction: column; gap: 8px;">
-                                    <button class="rss-copy-btn" onclick="handleFeedClickWithVideo(this, '${videoId}', '${feedPath}')" style="background: transparent; border: none; color: #fff; font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 5px 0;">
+                                <div style="background: #f57c00; border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                    <button class="rss-copy-btn" onclick="handleFeedClickWithVideo(this, '${videoId}', '${feedPath}')" style="background: transparent; border: none; color: #fff; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 4px 0;">
                                         <i class="fas fa-copy"></i> Copiar Link do Feed
                                     </button>
-                                    <button onclick="toggleFeedVideo('${videoId}')" style="background: rgba(255,255,255,0.2); border: none; color: #fff; border-radius: 4px; padding: 6px; font-weight: 600; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; width: 100%;">
+                                    <button onclick="toggleFeedVideo('${videoId}')" style="background: rgba(255,255,255,0.25); border: none; color: #fff; border-radius: 4px; padding: 8px; font-weight: 700; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; transition: background 0.2s;">
                                         <i class="fas fa-video"></i> Como usar o FEED
                                     </button>
                                 </div>
-                                <a href="https://www.youtube.com/@HorizonteTutoriais" target="_blank" style="background: #ff0000; color: #fff; text-decoration: none; padding: 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; display: flex; flex-direction: column; gap: 2px;">
+                                <a href="https://www.youtube.com/@HorizonteTutoriais" target="_blank" style="background: #ff0000; color: #fff; text-decoration: none; padding: 12px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; display: flex; flex-direction: column; gap: 3px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
                                     <span><i class="fab fa-youtube"></i> CANAL HORIZONTE TUTORIAIS</span>
                                     <span style="font-size: 9px; font-weight: 400; opacity: 0.9;">INSCREVA-SE E ATIVE O SINO DE NOTIFICAÇÕES</span>
                                 </a>
@@ -703,7 +705,12 @@
             btn.innerHTML = '<i class="fas fa-check"></i> Link Copiado!';
             setTimeout(() => btn.innerHTML = originalText, 2000);
         }).catch(err => console.error('Erro ao copiar:', err));
-        window.toggleFeedVideo(videoId);
+        
+        // Abrir o vídeo automaticamente ao copiar se estiver fechado
+        const v = document.getElementById(videoId);
+        if (v && v.style.display === 'none') {
+            window.toggleFeedVideo(videoId);
+        }
     };
 
     // Inicialização
