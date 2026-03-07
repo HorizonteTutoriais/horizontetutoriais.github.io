@@ -317,6 +317,7 @@
                 if (infoTable) {
                     const s = postItem.especificacoes;
                     
+                    // Ajuste para caminho relativo se estivermos em uma subpasta de posts
                     let iconeUrlSpecs = postItem.icone || postItem.imagem || '';
                     if (iconeUrlSpecs.startsWith('../') && prefixo === '../../') {
                         iconeUrlSpecs = '../' + iconeUrlSpecs;
