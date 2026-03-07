@@ -382,28 +382,69 @@
                         <tr><td>Requer Android</td><td>${s.androidMin}</td></tr>
                         <tr><td>Atualizado em</td><td>${s.atualizadoEm}</td></tr>
                     `;
-                    // Adicionar botão Copiar Link do Feed abaixo da tabela de especificações nos posts
+                    // Adicionar botão Copiar Link do Feed interativo abaixo da tabela de especificações nos posts
                     let feedBtnWrapper = document.getElementById('feed-btn-wrapper');
                     if (!feedBtnWrapper) {
                         feedBtnWrapper = document.createElement('div');
                         feedBtnWrapper.id = 'feed-btn-wrapper';
-                        feedBtnWrapper.style.cssText = 'margin-top: 15px;';
+                        feedBtnWrapper.style.cssText = 'margin-top: 15px; display: flex; flex-direction: column; gap: 10px;';
+                        
                         const feedBtn = document.createElement('button');
                         feedBtn.className = 'rss-copy-btn';
-                        feedBtn.style.cssText = 'width:100%; border-radius:6px; cursor:pointer;';
+                        feedBtn.style.cssText = 'width:100%; border-radius:6px; cursor:pointer; display: flex; align-items: center; justify-content: center; gap: 8px;';
                         feedBtn.innerHTML = '<i class="fas fa-copy"></i> Copiar Link do Feed';
-                        feedBtn.onclick = function() {
+                        
+                        // Container para o vídeo tutorial do feed (inicialmente oculto)
+                        const feedVideoContainer = document.createElement('div');
+                        feedVideoContainer.id = 'feed-video-tutorial';
+                        feedVideoContainer.style.cssText = 'display: none; margin-top: 10px; width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.2);';
+                        feedVideoContainer.innerHTML = `
+                            <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+                                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+                            </div>
+                        `;
+
+                        btn.onclick = function() {
                             const feedPath = prefixo === '../../' ? '../../feed/feed.xml' : (prefixo === '../' ? '../feed/feed.xml' : 'feed/feed.xml');
+                            
+                            // 1. Copiar o link
                             if (window.copyToClipboard) {
                                 window.copyToClipboard(feedPath);
                             } else {
                                 const fullUrl = window.location.origin + '/' + feedPath.replace(/\.\.\//g, '');
-                                navigator.clipboard.writeText(fullUrl).then(() => alert('Link do feed copiado!')).catch(err => alert('Erro ao copiar: ' + err));
+                                navigator.clipboard.writeText(fullUrl).then(() => {
+                                    // Feedback visual de cópia
+                                    const originalText = feedBtn.innerHTML;
+                                    feedBtn.innerHTML = '<i class="fas fa-check"></i> Link Copiado!';
+                                    setTimeout(() => feedBtn.innerHTML = originalText, 2000);
+                                }).catch(err => console.error('Erro ao copiar:', err));
+                            }
+
+                            // 2. Abrir/Alternar o vídeo tutorial
+                            if (feedVideoContainer.style.display === 'none') {
+                                feedVideoContainer.style.display = 'block';
+                                feedVideoContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                            } else {
+                                feedVideoContainer.style.display = 'none';
                             }
                         };
+
+                        // Botão do YouTube logo abaixo do Feed
+                        const youtubeBtn = document.createElement('a');
+                        youtubeBtn.href = 'https://www.youtube.com/@HorizonteTutoriais';
+                        youtubeBtn.target = '_blank';
+                        youtubeBtn.rel = 'noopener';
+                        youtubeBtn.style.cssText = 'background: #ff0000; color: #fff; text-decoration: none; padding: 12px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; display: flex; flex-direction: column; gap: 3px; margin-top: 10px;';
+                        youtubeBtn.innerHTML = `
+                            <span><i class="fab fa-youtube"></i> CANAL HORIZONTE TUTORIAIS</span>
+                            <span style="font-size: 9px; font-weight: 400; opacity: 0.9;">INSCREVA-SE E ATIVE O SINO DE NOTIFICAÇÕES</span>
+                        `;
+
                         feedBtnWrapper.appendChild(feedBtn);
+                        feedBtnWrapper.appendChild(youtubeBtn);
+                        feedBtnWrapper.appendChild(feedVideoContainer);
                         infoTable.parentElement.appendChild(feedBtnWrapper);
-                    }
+                    }   }
                 }
 
                 // Renderizar botões de download
@@ -526,21 +567,10 @@
                     }
                 }
 
-                // Ajustar Telegram CTA acima dos comentários
+                // Remover Telegram CTA / YouTube CTA acima dos comentários conforme solicitado
                 const telegramCta = document.querySelector('.telegram-cta');
                 if (telegramCta) {
-                    telegramCta.innerHTML = `
-                        <a href="https://www.youtube.com/@HorizonteTutoriais" target="_blank" rel="noopener" style="display: flex; align-items: center; justify-content: center; gap: 10px; background: #ff0000; color: #fff; text-decoration: none; padding: 15px; border-radius: 8px; width: 100%; transition: transform 0.2s;">
-                            <i class="fab fa-youtube" style="font-size:24px"></i>
-                            <div style="display: flex; flex-direction: column; text-align: left;">
-                                <span style="font-size: 14px; font-weight: 800;">CANAL HORIZONTE TUTORIAIS</span>
-                                <span style="font-size: 11px; font-weight: 400; opacity: 0.9;">INSCREVA-SE E ATIVE O SINO DE NOTIFICAÇÕES</span>
-                            </div>
-                        </a>
-                    `;
-                    telegramCta.style.background = 'transparent';
-                    telegramCta.style.padding = '0';
-                    telegramCta.style.border = 'none';
+                    telegramCta.style.display = 'none';
                 }
             }
             
@@ -737,11 +767,14 @@
                     modalHTML += '<tr><td>Atualizado em</td><td>' + s.atualizadoEm + '</td></tr>';
                     modalHTML += '<tr><td>Recursos</td><td>' + s.recursosEspecificacoes + '</td></tr>';
                     modalHTML += '</table><div style="padding:15px; border-top:1px solid #eee; display: flex; flex-direction: column; gap: 10px;">';
-                    modalHTML += '<button class="rss-copy-btn" onclick="copyToClipboard(\'feed/feed.xml\')" style="width:100%; border-radius:6px;"><i class="fas fa-copy"></i> Copiar Link do Feed</button>';
-                    modalHTML += '<a href="https://www.youtube.com/@HorizonteTutoriais" style="background: #ff0000; color: #fff; text-decoration: none; padding: 12px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; display: flex; flex-direction: column; gap: 3px;" target="_blank" rel="noopener">';
+                    modalHTML += '<button class="rss-copy-btn" onclick="handleFeedClickWithVideo(this)" style="width:100%; border-radius:6px; display: flex; align-items: center; justify-content: center; gap: 8px;"><i class="fas fa-copy"></i> Copiar Link do Feed</button>';
+                    modalHTML += '<a href="https://www.youtube.com/@HorizonteTutoriais" style="background: #ff0000; color: #fff; text-decoration: none; padding: 12px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; display: flex; flex-direction: column; gap: 3px; margin-top: 10px;" target="_blank" rel="noopener">';
                     modalHTML += '<span><i class="fab fa-youtube"></i> CANAL HORIZONTE TUTORIAIS</span>';
                     modalHTML += '<span style="font-size: 9px; font-weight: 400; opacity: 0.9;">INSCREVA-SE E ATIVE O SINO DE NOTIFICAÇÕES</span>';
-                    modalHTML += '</a></div></div>';
+                    modalHTML += '</a>';
+                    modalHTML += '<div id="modal-feed-video" style="display: none; width: 100%; border-radius: 8px; overflow: hidden; margin-top: 5px;">';
+                    modalHTML += '<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe></div>';
+                    modalHTML += '</div></div></div>';
                     
                     modal.innerHTML = modalHTML;
                     document.body.appendChild(modal);
@@ -832,3 +865,30 @@
     
     document.addEventListener('dadosProntos', window.renderizarTudo);
 })();
+
+// Função Global para lidar com o clique no botão de Feed com Vídeo
+window.handleFeedClickWithVideo = function(btn) {
+    const feedPath = 'feed/feed.xml';
+    
+    // 1. Copiar o link
+    if (window.copyToClipboard) {
+        window.copyToClipboard(feedPath);
+    } else {
+        const fullUrl = window.location.origin + '/' + feedPath;
+        navigator.clipboard.writeText(fullUrl).then(() => {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Link Copiado!';
+            setTimeout(() => btn.innerHTML = originalText, 2000);
+        }).catch(err => console.error('Erro ao copiar:', err));
+    }
+
+    // 2. Abrir o vídeo no modal se existir
+    const videoContainer = document.getElementById('modal-feed-video');
+    if (videoContainer) {
+        if (videoContainer.style.display === 'none') {
+            videoContainer.style.display = 'block';
+        } else {
+            videoContainer.style.display = 'none';
+        }
+    }
+};
