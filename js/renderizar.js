@@ -275,6 +275,7 @@
             margin-top: auto;
         `;
         btn.innerHTML = '<i class="fas fa-download" style="font-size:10px"></i> Baixar';
+        btn.onclick = function(e) { e.stopPropagation(); };
 
         card.appendChild(img);
         card.appendChild(badge);
@@ -381,55 +382,31 @@
                         <tr><td>Requer Android</td><td>${s.androidMin}</td></tr>
                         <tr><td>Atualizado em</td><td>${s.atualizadoEm}</td></tr>
                     `;
-                    // Adicionar botão Copiar Link do Feed interativo abaixo da tabela de especificações nos posts
+                    // Botão de Feed Integrado (Specs)
                     let feedBtnWrapper = document.getElementById('feed-btn-wrapper');
                     if (!feedBtnWrapper) {
                         feedBtnWrapper = document.createElement('div');
                         feedBtnWrapper.id = 'feed-btn-wrapper';
-                        feedBtnWrapper.style.cssText = 'margin-top: 15px; display: flex; flex-direction: column; gap: 10px;';
-                        
-                        const feedBtn = document.createElement('button');
-                        feedBtn.className = 'rss-copy-btn';
-                        feedBtn.style.cssText = 'width:100%; border-radius:6px; cursor:pointer; display: flex; align-items: center; justify-content: center; gap: 8px;';
-                        feedBtn.innerHTML = '<i class="fas fa-copy"></i> Copiar Link do Feed';
-                        
-                        // Container para o vídeo tutorial do feed (inicialmente oculto)
-                        const feedVideoContainer = document.createElement('div');
-                        feedVideoContainer.id = 'feed-video-tutorial';
-                        feedVideoContainer.style.cssText = 'display: none; margin-top: 10px; width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.2);';
-                        feedVideoContainer.innerHTML = `
-                            <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-                                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
-                            </div>
-                        `;
-
-                        feedBtn.onclick = function() {
-                            const feedPath = prefixo === '../../' ? '../../feed/feed.xml' : (prefixo === '../' ? '../feed/feed.xml' : 'feed/feed.xml');
-                            
-                            // 1. Copiar o link
-                            if (window.copyToClipboard) {
-                                window.copyToClipboard(feedPath);
-                            } else {
-                                const fullUrl = window.location.origin + '/' + feedPath.replace(/\.\.\//g, '');
-                                navigator.clipboard.writeText(fullUrl).then(() => {
-                                    // Feedback visual de cópia
-                                    const originalText = feedBtn.innerHTML;
-                                    feedBtn.innerHTML = '<i class="fas fa-check"></i> Link Copiado!';
-                                    setTimeout(() => feedBtn.innerHTML = originalText, 2000);
-                                }).catch(err => console.error('Erro ao copiar:', err));
-                            }
-
-                            // 2. Abrir/Alternar o vídeo tutorial
-                            if (feedVideoContainer.style.display === 'none') {
-                                feedVideoContainer.style.display = 'block';
-                                feedVideoContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                            } else {
-                                feedVideoContainer.style.display = 'none';
-                            }
-                        };
-
-                        feedBtnWrapper.appendChild(feedBtn);
-                        feedBtnWrapper.appendChild(feedVideoContainer);
+                        feedBtnWrapper.innerHTML = `
+        <div class="feed-integration-container" style="margin-top: 15px; display: flex; flex-direction: column; gap: 8px; width: 100%;">
+            <div style="display: flex; gap: 5px; width: 100%;">
+                <button class="rss-copy-btn" onclick="handleFeedCopy(this)" style="flex: 1.5; background: #ff9800; color: white; border: none; border-radius: 6px; padding: 12px 5px; font-weight: bold; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;">
+                    <i class="fas fa-copy"></i> Copiar Link do Feed
+                </button>
+                <button class="how-to-use-btn" onclick="toggleFeedTutorial(this)" style="flex: 1; background: #e65100; color: white; border: none; border-radius: 6px; padding: 12px 5px; font-weight: bold; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                    <i class="fas fa-play-circle"></i> como usar o FEED
+                </button>
+            </div>
+            <a href="https://youtube.com/@HorizonteTutoriais?sub_confirmation=1" target="_blank" style="background: #ff0000; color: white; text-decoration: none; padding: 10px; border-radius: 6px; font-weight: bold; font-size: 11px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <i class="fab fa-youtube"></i> canal Horizonte tutoriais inscreva-se e Ative o sino de notificações
+            </a>
+            <div class="feed-tutorial-video" style="display: none; width: 100%; border-radius: 8px; overflow: hidden; margin-top: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    `;
                         infoTable.parentElement.appendChild(feedBtnWrapper);
                     }
                 }
@@ -711,66 +688,75 @@
                                     <i class="fas fa-tools"></i> Ferramentas <i class="fas fa-chevron-down" style="font-size: 10px;"></i>
                                 </button>
                             </div>
-                            
-                            <!-- Menu de Ferramentas (Oculto por padrão) -->
-                            <div id="ferramentas-menu-${item.id}" class="ferramentas-dropdown" style="display: none; width: 100%; background: #f1f1f1; border-radius: 6px; padding: 10px; flex-direction: column; gap: 8px; border: 1px solid #ddd; margin-top: 5px;">
-                                <p style="margin: 0 0 5px 0; font-size: 11px; font-weight: 700; color: #455a64; text-transform: uppercase;"><i class="fas fa-wrench"></i> Ferramentas Recomendadas</p>
-                                <a href="${prefixo}pages/ferramentas.html#superme" class="ferramenta-item" style="display: flex; align-items: center; gap: 8px; padding: 8px; background: #fff; border-radius: 4px; text-decoration: none; color: #333; font-size: 12px; font-weight: 600; border: 1px solid #eee;">
-                                    <img src="https://via.placeholder.com/24" style="width:20px;height:20px;border-radius:4px;"> SuperMe (Avatar Maker)
-                                </a>
-                                <a href="${prefixo}pages/ferramentas.html#custom-patch" class="ferramenta-item" style="display: flex; align-items: center; gap: 8px; padding: 8px; background: #fff; border-radius: 4px; text-decoration: none; color: #333; font-size: 12px; font-weight: 600; border: 1px solid #eee;">
-                                    <img src="https://via.placeholder.com/24" style="width:20px;height:20px;border-radius:4px;"> Custom Patch Pro
-                                </a>
-                                <a href="${prefixo}pages/ferramentas.html#mt-manager" class="ferramenta-item" style="display: flex; align-items: center; gap: 8px; padding: 8px; background: #fff; border-radius: 4px; text-decoration: none; color: #333; font-size: 12px; font-weight: 600; border: 1px solid #eee;">
-                                    <img src="https://via.placeholder.com/24" style="width:20px;height:20px;border-radius:4px;"> MT Manager
-                                </a>
+
+                            <div id="ferramentas-menu-${item.id}" style="display: none; gap: 5px; flex-wrap: wrap; width: 100%; margin-top: 5px; animation: fadeIn 0.3s ease;">
+                                <a href="${prefixo}pages/ferramentas.html#superme" class="btn-ferramenta-tutorial" style="background: #455a64; flex: 1; min-width: 120px; padding: 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; color: #fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 4px;"><i class="fas fa-download"></i> SuperMe</a>
+                                <a href="${prefixo}pages/ferramentas.html#custom-patch-pro" class="btn-ferramenta-tutorial" style="background: #455a64; flex: 1; min-width: 120px; padding: 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; color: #fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 4px;"><i class="fas fa-download"></i> Custom Patch Pro</a>
+                                <a href="${prefixo}pages/ferramentas.html#mt-manager" class="btn-ferramenta-tutorial" style="background: #455a64; flex: 1; min-width: 120px; padding: 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-align: center; color: #fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 4px;"><i class="fas fa-download"></i> MT Manager</a>
                             </div>
                         </div>
-                        <div id="video-scroll-${item.id}" class="video-scroll">
-                            ${videosHtml}
+                        <div id="video-scroll-${item.id}" class="video-scroll-container">
+                            <div class="video-scroll-list">${videosHtml}</div>
                         </div>
                     `;
                     tutoriaisContainer.appendChild(tutorialCard);
 
-                    // Criar Modal de Especificações para cada item (se não existir)
-                    if (!document.getElementById('modal-' + item.id)) {
-                        const modal = document.createElement('div');
-                        modal.id = 'modal-' + item.id;
-                        modal.className = 'modal';
-                        modal.style.display = 'none';
-                        const s = item.especificacoes;
-                        let iconeUrlModal = item.icone || item.imagem || '';
+                    // Modal de Specs — com ícone do app/jogo
+                    const modal = document.createElement('div');
+                    modal.id = 'modal-' + item.id;
+                    modal.className = 'modal';
+                    modal.style.display = 'none';
+                    const s = item.especificacoes;
+                    let iconeUrlModal = item.icone || item.imagem || '';
 
-                        // Ajuste de caminho relativo para o ícone nos modais
-                        if (iconeUrlModal.startsWith('../') && prefixo === '../../') {
-                            iconeUrlModal = '../' + iconeUrlModal;
-                        }
-                        
-                        let modalHTML = '<div class="modal-content">';
-                        modalHTML += '<div class="modal-header"><h2>' + item.nome + ' - Specs</h2>';
-                        modalHTML += '<button class="close-btn" onclick="closeSpecsModal(\'' + item.id + '\')">&times;</button></div>';
-                        modalHTML += '<div style="text-align:center;margin-bottom:20px;">';
-                        modalHTML += '<img src="' + iconeUrlModal + '" alt="' + item.nome + '" style="width:90px;height:90px;border-radius:18px;object-fit:contain;background:#ffffff;border:1px solid #eee;box-shadow:0 4px 16px rgba(0,0,0,0.1);">';
-                        modalHTML += '</div>';
-                        modalHTML += '<table class="specs-table">';
-                        modalHTML += '<tr><td>' + (item.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo') + '</td><td>' + item.nome + '</td></tr>';
-                        modalHTML += '<tr><td>Versão</td><td>' + s.versao + '</td></tr>';
-                        modalHTML += '<tr><td>Tamanho</td><td>' + s.tamanho + '</td></tr>';
-                        modalHTML += '<tr><td>Categoria</td><td>' + s.categoria + '</td></tr>';
-                        modalHTML += '<tr><td>Desenvolvedor</td><td>' + s.desenvolvedor + '</td></tr>';
-                        modalHTML += '<tr><td>Tipo do Arquivo</td><td>' + s.tipoArquivo + '</td></tr>';
-                        modalHTML += '<tr><td>Requer Android</td><td>' + s.androidMin + '</td></tr>';
-                        modalHTML += '<tr><td>Atualizado em</td><td>' + s.atualizadoEm + '</td></tr>';
-                        modalHTML += '<tr><td>Recursos</td><td>' + s.recursosEspecificacoes + '</td></tr>';
-                        modalHTML += '</table><div style="padding:15px; border-top:1px solid #eee; display: flex; flex-direction: column; gap: 10px;">';
-                        modalHTML += '<button class="rss-copy-btn" onclick="handleFeedClickWithVideo(this)" style="width:100%; border-radius:6px; display: flex; align-items: center; justify-content: center; gap: 8px;"><i class="fas fa-copy"></i> Copiar Link do Feed</button>';
-                        modalHTML += '<div id="modal-feed-video" style="display: none; width: 100%; border-radius: 8px; overflow: hidden; margin-top: 5px;">';
-                        modalHTML += '<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe></div>';
-                        modalHTML += '</div></div></div>';
-                        
-                        modal.innerHTML = modalHTML;
-                        document.body.appendChild(modal);
+                    // Ajuste de caminho relativo para o ícone nos modais
+                    if (iconeUrlModal.startsWith('../') && prefixo === '../../') {
+                        iconeUrlModal = '../' + iconeUrlModal;
                     }
+                    
+                    let modalHTML = '<div class="modal-content">';
+                    modalHTML += '<div class="modal-header"><h2>' + item.nome + ' - Specs</h2>';
+                    modalHTML += '<button class="close-btn" onclick="closeSpecsModal(\'' + item.id + '\')">&times;</button></div>';
+                    modalHTML += '<div style="text-align:center;margin-bottom:20px;">';
+                    modalHTML += '<img src="' + iconeUrlModal + '" alt="' + item.nome + '" style="width:90px;height:90px;border-radius:18px;object-fit:contain;background:#ffffff;border:1px solid #eee;box-shadow:0 4px 16px rgba(0,0,0,0.1);">';
+                    modalHTML += '</div>';
+                    modalHTML += '<table class="specs-table">';
+                    modalHTML += '<tr><td>' + (item.categoria === 'Jogos' ? 'Jogo' : 'Aplicativo') + '</td><td>' + item.nome + '</td></tr>';
+                    modalHTML += '<tr><td>Versão</td><td>' + s.versao + '</td></tr>';
+                    modalHTML += '<tr><td>Tamanho</td><td>' + s.tamanho + '</td></tr>';
+                    modalHTML += '<tr><td>Categoria</td><td>' + s.categoria + '</td></tr>';
+                    modalHTML += '<tr><td>Desenvolvedor</td><td>' + s.desenvolvedor + '</td></tr>';
+                    modalHTML += '<tr><td>Tipo do Arquivo</td><td>' + s.tipoArquivo + '</td></tr>';
+                    modalHTML += '<tr><td>Requer Android</td><td>' + s.androidMin + '</td></tr>';
+                    modalHTML += '<tr><td>Atualizado em</td><td>' + s.atualizadoEm + '</td></tr>';
+                    modalHTML += '<tr><td>Recursos</td><td>' + s.recursosEspecificacoes + '</td></tr>';
+                    modalHTML += '</table><div style="padding:15px; border-top:1px solid #eee; display: flex; flex-direction: column; gap: 10px;">';
+                    modalHTML += `
+        <div class="feed-integration-container" style="margin-top: 15px; display: flex; flex-direction: column; gap: 8px; width: 100%;">
+            <div style="display: flex; gap: 5px; width: 100%;">
+                <button class="rss-copy-btn" onclick="handleFeedCopy(this)" style="flex: 1.5; background: #ff9800; color: white; border: none; border-radius: 6px; padding: 12px 5px; font-weight: bold; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;">
+                    <i class="fas fa-copy"></i> Copiar Link do Feed
+                </button>
+                <button class="how-to-use-btn" onclick="toggleFeedTutorial(this)" style="flex: 1; background: #e65100; color: white; border: none; border-radius: 6px; padding: 12px 5px; font-weight: bold; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                    <i class="fas fa-play-circle"></i> como usar o FEED
+                </button>
+            </div>
+            <a href="https://youtube.com/@HorizonteTutoriais?sub_confirmation=1" target="_blank" style="background: #ff0000; color: white; text-decoration: none; padding: 10px; border-radius: 6px; font-weight: bold; font-size: 11px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <i class="fab fa-youtube"></i> canal Horizonte tutoriais inscreva-se e Ative o sino de notificações
+            </a>
+            <div class="feed-tutorial-video" style="display: none; width: 100%; border-radius: 8px; overflow: hidden; margin-top: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    `;
+                    modalHTML += '<div id="modal-feed-video" style="display: none; width: 100%; border-radius: 8px; overflow: hidden; margin-top: 5px;">';
+                    modalHTML += '<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe></div>';
+                    modalHTML += '</div></div></div>';
+                    
+                    modal.innerHTML = modalHTML;
+                    document.body.appendChild(modal);
                 }
                 
                 // Auto-open
@@ -857,6 +843,97 @@
     }
     
     document.addEventListener('dadosProntos', window.renderizarTudo);
+
+    
+    
+
+
+    window.handleFeedCopy = function(btn) {
+        const url = window.location.origin + '/feed/feed.xml';
+        navigator.clipboard.writeText(url).then(() => {
+            const old = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+            setTimeout(() => btn.innerHTML = old, 2000);
+        });
+    };
+    window.toggleFeedTutorial = function(btn) {
+        const container = btn.closest('.feed-integration-container').querySelector('.feed-tutorial-video');
+        if (container) {
+            container.style.display = container.style.display === 'none' ? 'block' : 'none';
+            if (container.style.display === 'block') container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    };
+
+
+    // ============================================================
+    // SUPER AUTOMAÇÃO DE INTERFACE (Limpeza e Injeção Dinâmica)
+    // ============================================================
+    window.executarAutomacaoInterface = function() {
+        // 1. Remover o botão RSS solto acima dos comentários (apenas nos posts)
+        const botoesSoltos = document.querySelectorAll('main a[href*="feed.xml"], main button.rss-btn');
+        botoesSoltos.forEach(btn => {
+            if (!btn.closest('.feed-auto-container') && !btn.closest('.info-table')) {
+                btn.style.display = 'none'; 
+                if (btn.parentElement && btn.parentElement.classList.contains('download-box')) {
+                    btn.remove();
+                }
+            }
+        });
+
+        // 2. Transformar botões da Sidebar
+        document.querySelectorAll('.rss-widget').forEach(widget => {
+            const btnAntigo = widget.querySelector('.rss-copy-btn');
+            if (btnAntigo && !widget.querySelector('.feed-auto-container')) {
+                const novoContainer = document.createElement('div');
+                novoContainer.innerHTML = `
+        <div class="feed-auto-container" style="margin-top: 15px; display: flex; flex-direction: column; gap: 8px; width: 100%;">
+            <div style="display: flex; gap: 5px; width: 100%;">
+                <button class="rss-copy-btn" onclick="handleFeedCopyAction(this)" style="flex: 1.5; background: #ff9800; color: white; border: none; border-radius: 6px; padding: 12px 5px; font-weight: bold; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;">
+                    <i class="fas fa-copy"></i> Copiar Link do Feed
+                </button>
+                <button class="how-to-use-btn" onclick="toggleFeedTutorialInline(this)" style="flex: 1; background: #e65100; color: white; border: none; border-radius: 6px; padding: 12px 5px; font-weight: bold; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                    <i class="fas fa-play-circle"></i> como usar o FEED
+                </button>
+            </div>
+            <a href="https://youtube.com/@HorizonteTutoriais?sub_confirmation=1" target="_blank" style="background: #ff0000; color: white; text-decoration: none; padding: 10px; border-radius: 6px; font-weight: bold; font-size: 11px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <i class="fab fa-youtube"></i> canal Horizonte tutoriais inscreva-se e Ative o sino de notificações
+            </a>
+            <div class="feed-tutorial-video-box" style="display: none; width: 100%; border-radius: 8px; overflow: hidden; margin-top: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    `;
+                btnAntigo.replaceWith(novoContainer.firstElementChild);
+            }
+        });
+    };
+
+    window.handleFeedCopyAction = function(btn) {
+        const url = window.location.origin + '/feed/feed.xml';
+        navigator.clipboard.writeText(url).then(() => {
+            const old = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+            setTimeout(() => btn.innerHTML = old, 2000);
+        });
+    };
+
+    window.toggleFeedTutorialInline = function(btn) {
+        const container = btn.closest('.feed-auto-container').querySelector('.feed-tutorial-video-box');
+        if (container) {
+            const isHidden = container.style.display === 'none';
+            container.style.display = isHidden ? 'block' : 'none';
+            if (isHidden) container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    };
+
+    window.addEventListener('load', () => {
+        window.executarAutomacaoInterface();
+        setTimeout(window.executarAutomacaoInterface, 500);
+        setTimeout(window.executarAutomacaoInterface, 1500);
+    });
+
 })();
 
 // Função Global para lidar com o clique no botão de Feed com Vídeo
