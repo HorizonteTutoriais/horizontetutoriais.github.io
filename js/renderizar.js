@@ -393,7 +393,7 @@
                 <button class="rss-copy-btn" onclick="handleFeedCopy(this)" style="flex: 1.5; background: #ff9800; color: white; border: none; border-radius: 6px; padding: 12px 5px; font-weight: bold; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;">
                     <i class="fas fa-copy"></i> Copiar Link do Feed
                 </button>
-                <button class="how-to-use-btn" onclick="toggleFeedTutorial(this)" style="flex: 1; background: #e65100; color: white; border: none; border-radius: 6px; padding: 12px 5px; font-weight: bold; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                <button class="how-to-use-btn" onclick="toggleFeedTutorial(this)" style="flex: 1; background: #8e44ad; color: white; border: none; border-radius: 6px; padding: 12px 5px; font-weight: bold; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
                     <i class="fas fa-play-circle"></i> como usar o FEED
                 </button>
             </div>
@@ -737,7 +737,7 @@
                 <button class="rss-copy-btn" onclick="handleFeedCopy(this)" style="flex: 1.5; background: #ff9800; color: white; border: none; border-radius: 6px; padding: 12px 5px; font-weight: bold; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;">
                     <i class="fas fa-copy"></i> Copiar Link do Feed
                 </button>
-                <button class="how-to-use-btn" onclick="toggleFeedTutorial(this)" style="flex: 1; background: #e65100; color: white; border: none; border-radius: 6px; padding: 12px 5px; font-weight: bold; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                <button class="how-to-use-btn" onclick="toggleFeedTutorial(this)" style="flex: 1; background: #8e44ad; color: white; border: none; border-radius: 6px; padding: 12px 5px; font-weight: bold; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
                     <i class="fas fa-play-circle"></i> como usar o FEED
                 </button>
             </div>
@@ -868,17 +868,34 @@
     // ============================================================
     // SUPER AUTOMAÇÃO DE INTERFACE (Limpeza e Injeção Dinâmica)
     // ============================================================
+    
+    // ============================================================
+    // SUPER AUTOMAÇÃO DE INTERFACE (Limpeza e Injeção Dinâmica)
+    // ============================================================
     window.executarAutomacaoInterface = function() {
-        // 1. Remover o botão RSS solto acima dos comentários (apenas nos posts)
-        const botoesSoltos = document.querySelectorAll('main a[href*="feed.xml"], main button.rss-btn');
-        botoesSoltos.forEach(btn => {
-            if (!btn.closest('.feed-auto-container') && !btn.closest('.info-table')) {
-                btn.style.display = 'none'; 
-                if (btn.parentElement && btn.parentElement.classList.contains('download-box')) {
-                    btn.remove();
+        // 1. Remover TODOS os botões entre download-box e comentários (apenas em posts)
+        const downloadBox = document.querySelector('.download-box');
+        const commentsSection = document.querySelector('.custom-comments');
+        
+        if (downloadBox && commentsSection) {
+            // Procurar por qualquer elemento entre download-box e comentários
+            let element = downloadBox.nextElementSibling;
+            while (element && element !== commentsSection) {
+                const nextElement = element.nextElementSibling;
+                
+                // Remover se for um container de feed, botão de youtube ou similar
+                if (element.classList.contains('feed-auto-container') || 
+                    element.classList.contains('feed-integration-container') ||
+                    element.querySelector('.feed-auto-container') ||
+                    element.querySelector('.feed-integration-container') ||
+                    (element.tagName === 'A' && element.href && element.href.includes('youtube.com')) ||
+                    (element.tagName === 'A' && element.href && element.href.includes('feed.xml'))) {
+                    element.remove();
                 }
+                
+                element = nextElement;
             }
-        });
+        }
 
         // 2. Transformar botões da Sidebar
         document.querySelectorAll('.rss-widget').forEach(widget => {
@@ -891,7 +908,7 @@
                 <button class="rss-copy-btn" onclick="handleFeedCopyAction(this)" style="flex: 1.5; background: #ff9800; color: white; border: none; border-radius: 6px; padding: 12px 5px; font-weight: bold; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;">
                     <i class="fas fa-copy"></i> Copiar Link do Feed
                 </button>
-                <button class="how-to-use-btn" onclick="toggleFeedTutorialInline(this)" style="flex: 1; background: #e65100; color: white; border: none; border-radius: 6px; padding: 12px 5px; font-weight: bold; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                <button class="how-to-use-btn" onclick="toggleFeedTutorialInline(this)" style="flex: 1; background: #8e44ad; color: white; border: none; border-radius: 6px; padding: 12px 5px; font-weight: bold; font-size: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
                     <i class="fas fa-play-circle"></i> como usar o FEED
                 </button>
             </div>
@@ -933,6 +950,7 @@
         setTimeout(window.executarAutomacaoInterface, 500);
         setTimeout(window.executarAutomacaoInterface, 1500);
     });
+
 
 })();
 
