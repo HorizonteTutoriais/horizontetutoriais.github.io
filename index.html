@@ -61,6 +61,19 @@
                     <a href="#" target="_blank" class="social-item discord" title="Discord">🎮 Discord</a>
                 </div>
             </div>
+<!-- SEÇÃO DE COMENTÁRIOS CUSDIS -->
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">💬 COMENTÁRIOS</h3>
+            <div id="cusdis_thread"
+                data-host="https://cusdis.com"
+                data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
+                data-page-id="index_horizonte"
+                data-page-url="https://horizontetutoriais.com/index.html"
+                data-page-title="Horizonte Tutoriais - Início">
+            </div>
+            <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+        </div>
+
             <div class="sidebar-section">
                 <h3 class="sidebar-title">🔗 LINKS RÁPIDOS</h3>
                 <ul class="quick-links">
@@ -103,5 +116,37 @@
     <script src="assets/js/data.js"></script>
     <script src="assets/js/app.js"></script>
     <script src="assets/js/search.js"></script>
+<script>
+  function translateCusdis() {
+    const translations = {
+      'Nickname': 'Seu Nome',
+      'Reply': 'Responder',
+      'Comment': 'Comentário',
+      'Submit': 'Enviar Comentário',
+      'Email (optional)': 'E-mail (opcional)',
+      'Reply...': 'Escreva aqui sua opinião...',
+      'Load more': 'Carregar mais',
+      'sending...': 'Enviando...',
+      'Your comment has been sent. Please wait for approval.': 'Seu comentário foi enviado! Aguarde a aprovação do administrador.'
+    };
+    const iframes = document.querySelectorAll('#cusdis_thread iframe');
+    iframes.forEach(iframe => {
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null, false);
+        let node;
+        while(node = walker.nextNode()) {
+          const text = node.nodeValue.trim();
+          if (translations[text]) { node.nodeValue = translations[text]; }
+        }
+        doc.querySelectorAll('input, textarea, button').forEach(el => {
+          if (el.placeholder && translations[el.placeholder]) { el.placeholder = translations[el.placeholder]; }
+          if (el.innerText && translations[el.innerText.trim()]) { el.innerText = translations[el.innerText.trim()]; }
+        });
+      } catch (e) { }
+    });
+  }
+  setInterval(translateCusdis, 500);
+</script>
 </body>
 </html>
