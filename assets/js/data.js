@@ -1,35 +1,49 @@
-// Horizonte Tutoriais v2.0 - Base de Dados
-// Esta array será preenchida com seus apps e jogos
-const items = [];
-
-function getAllItems() {
-    return items;
-}
-
-function getLatestUpdates() {
-    return items.slice(0, 8);
-}
-
-function getHighlights() {
-    return items.filter(i => i.exibir?.emDestaques).slice(0, 2);
-}
-
-function getPopular() {
-    return items.filter(i => i.exibir?.emPopulares).slice(0, 5);
-}
-
-function loadItemsFromStorage() {
-    const stored = localStorage.getItem('horizonte_v2_items');
-    if (stored) {
-        items.length = 0;
-        items.push(...JSON.parse(stored));
+const items = [
+    {
+    "id": "re4-1",
+    "nome": "Resident Evil 4",
+    "tipo": "Jogo",
+    "descricao": "Prepare-se para o terror. Confira o tutorial para saber como jogar.",
+    "imagem": "https://i.postimg.cc/8cKT5Ws9/re4-icon.png",
+    "data": "2026-03-19",
+    "download": "#",
+    "downloads": {
+        "apk": "https://4br.me/BaixarApkR4",
+        "data": "https://4br.me/BaixarDico1R4",
+        "obb": "https://4br.me/BaixarDisco2R4"
+    },
+    "guia_link": "https://4br.me/Guiaimportante",
+    "tutorial": "https://www.youtube.com/embed/videoseries?list=PL6qi2hUjNC8rO0iQMZUpOcwnrzBOuKthi&si=-6Pdc7eJ4uSJWgR86Pdc7eJ4uSJWgR8",
+    "especificacoes": {
+        "versao": "1.0",
+        "tamanho": "2,6 GB",
+        "android": "6.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": false,
+        "emJogos": true,
+        "emTutoriais": true,
+        "emFerramentas": false
     }
-}
-
-window.HorizonteData = {
-    getAllItems,
-    getLatestUpdates,
-    getHighlights,
-    getPopular,
-    loadItemsFromStorage
+},];
+const HorizonteData = {
+    items: items,
+    loadItemsFromStorage() {
+        const stored = localStorage.getItem('horizonte_items');
+        if (stored) {
+            try {
+                const localItems = JSON.parse(stored);
+                const fileIds = new Set(this.items.map(i => i.id));
+                localItems.forEach(item => { if (!fileIds.has(item.id)) this.items.push(item); });
+            } catch (e) { console.error("Erro:", e); }
+        }
+    },
+    getAllItems() { return [...this.items].reverse(); },
+    getLatestUpdates() { return this.getAllItems().slice(0, 8); },
+    getHighlights() { return this.items.filter(i => i.exibir?.emDestaques).slice(-4).reverse(); },
+    getPopular() { return this.items.filter(i => i.exibir?.emPopulares).slice(-6).reverse(); }
 };

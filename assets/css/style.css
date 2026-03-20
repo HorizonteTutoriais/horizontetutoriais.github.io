@@ -431,3 +431,14 @@ body {
         padding: 15px;
     }
 }
+.item-card img, .modal-content img {
+    width: 100% !important;
+    height: 180px !important;
+    object-fit: contain !important;
+    padding: 15px !important;
+    background: rgba(0,0,0,0.03) !important;
+    border-radius: 15px !important;
+}
+.dark-mode .item-card img, .dark-mode .modal-content img {
+    background: rgba(255,255,255,0.05) !important;
+}

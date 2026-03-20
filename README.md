@@ -15,7 +15,7 @@ Bem-vindo ao seu novo site de APKs e Jogos Android! Este é um sistema totalment
 ## 📁 Estrutura de Pastas
 
 ```
-./
+horizonte_v2/
 ├── index.html              # Página principal
 ├── README.md               # Este arquivo
 ├── assets/
@@ -28,16 +28,14 @@ Bem-vindo ao seu novo site de APKs e Jogos Android! Este é um sistema totalment
     └── add_item.py         # Script para adicionar novos itens
 ```
 
-**Nota sobre Termux:** Ao clonar o repositório no Termux, certifique-se de que você está no diretório raiz do projeto (`horizonte_v2/`) antes de executar os comandos. O `python3 -m http.server` deve ser executado a partir da raiz do projeto para servir os arquivos corretamente.
-
 ## 🚀 Como Usar
 
 ### 1️⃣ Preparar no Termux (Android)
 
 ```bash
 # Clonar/copiar o repositório
-cd ~/horizonte_v2
-# (Se você clonou o repositório, os arquivos já estarão aqui)
+cd ~/seu-repositorio-github
+# (Copie os arquivos aqui)
 
 # Testar localmente
 python3 -m http.server 8112
