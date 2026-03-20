@@ -1,18 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <!-- ONESIGNAL NOTIFICAÇÕES -->
-    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-    <script>
-      window.OneSignalDeferred = window.OneSignalDeferred || [];
-      OneSignalDeferred.push(async function(OneSignal) {
-        await OneSignal.init({
-          appId: "91217243-0831-478c-8d9b-d5951f0bbdb2",
-        });
-      });
-    </script>
-    <meta charset="UTF-8">
-<!-- ONESIGNAL NOTIFICAÇÕES -->
+        <!-- ONESIGNAL NOTIFICAÇÕES -->
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
       window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -42,7 +31,50 @@
                 text: {
                   actionMessage: "Gostaria de receber notificações de novos jogos e apps?",
                   acceptButton: "Sim, eu quero!",
-                  cancelButton: "Agora não"
+                  cancelButton: "Agora não",
+                  confirmButton: "INSCREVER-SE",
+                  laterButton: "DEPOIS"
+                }
+              }]
+            }
+          }
+        });
+      });
+    </script>
+    <meta charset="UTF-8">
+    <!-- ONESIGNAL NOTIFICAÇÕES -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "91217243-0831-478c-8d9b-d5951f0bbdb2",
+          notifyButton: {
+            enable: true,
+            text: {
+              "tip.state.unsubscribed": "Inscreva-se para notificações",
+              "tip.state.subscribed": "Você está inscrito",
+              "tip.state.blocked": "Você bloqueou as notificações",
+              "message.prenotify": "Clique para receber notificações de novos jogos",
+              "message.action.subscribed": "Obrigado por se inscrever!",
+              "message.action.resubscribed": "Você está inscrito novamente",
+              "message.action.unsubscribed": "Você não receberá mais notificações",
+              "dialog.main.title": "Gerenciar Notificações",
+              "dialog.main.button.subscribe": "INSCREVER-SE",
+              "dialog.main.button.unsubscribe": "CANCELAR INSCRIÇÃO"
+            }
+          },
+          promptOptions: {
+            slidedown: {
+              prompts: [{
+                type: "push",
+                autoPrompt: true,
+                text: {
+                  actionMessage: "Gostaria de receber notificações de novos jogos e apps?",
+                  acceptButton: "Sim, eu quero!",
+                  cancelButton: "Agora não",
+                  confirmButton: "INSCREVER-SE",
+                  laterButton: "DEPOIS"
                 }
               }]
             }
