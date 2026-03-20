@@ -442,3 +442,28 @@ body {
 .dark-mode .item-card img, .dark-mode .modal-content img {
     background: rgba(255,255,255,0.05) !important;
 }
+
+/* --- ESTILO DO LETREIRO DE NOTÍCIAS --- */
+.news-feed {
+    background: var(--primary);
+    color: white;
+    padding: 8px 0;
+    overflow: hidden;
+    border-bottom: 2px solid var(--accent);
+}
+.news-ticker {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.news-ticker p {
+    margin: 0;
+    font-size: 14px;
+    animation: ticker 25s linear infinite;
+    white-space: nowrap;
+    padding-left: 100%;
+}
+@keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-200%); }
+}
