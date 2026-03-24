@@ -1,0 +1,211 @@
+here<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- ONESIGNAL NOTIFICAÇÕES -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "91217243-0831-478c-8d9b-d5951f0bbdb2",
+          allowLocalhostAsSecureOrigin: true,
+        });
+      });
+    </script> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizonte Tutoriais - APKs e Jogos</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- BARRA SUPERIOR (TOP BAR) -->
+    <div class="top-bar">
+        <a href="#" onclick="openInfoModal('contatoModal'); return false;">Contate-Nos</a>
+        <a href="#" onclick="openInfoModal('privacidadeModal'); return false;">Política de Privacidade</a>
+        <a href="#" onclick="openInfoModal('isencaoModal'); return false;">Isenção de Responsabilidade</a>
+        <a href="#" class="rss-btn-top" onclick="navigator.clipboard.writeText('https://horizontetutoriais.github.io/feed.xml'); alert('Link do Feed RSS copiado! Agora você pode colar no seu leitor de notícias.'); return false;"><i class="fas fa-rss"></i> RSS</a>
+    </div>
+
+    <header class="header">
+        <div class="search-box" style="padding: 15px; max-width: 1200px; margin: 0 auto;">
+            <input type="text" id="searchInput" placeholder="🔍 Pesquisar apps ou jogos..." style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; outline: none; font-size: 16px; background: var(--bg-card); color: var(--text);">
+        </div>
+        <div class="header-container">
+            <h1 class="logo">📦 Horizonte Tutoriais</h1>
+            <button id="darkModeToggle" class="theme-btn">🌙</button>
+        </div>
+        <nav class="navbar">
+            <a href="#" class="nav-item active" data-page="home">🏠 Lar</a>
+            <a href="#" class="nav-item" data-page="aplicativos">📱 Aplicativos</a>
+            <a href="#" class="nav-item" data-page="jogos">🎮 Jogos</a>
+            <a href="#" class="nav-item" data-page="tutoriais">📚 Tutoriais</a>
+            <a href="#" class="nav-item" data-page="ferramentas">🛠️ Ferramentas</a>
+            <a href="#" class="nav-item" data-page="quente">🔥 Quente</a>
+        </nav>
+    </header>
+
+    <!-- LETREIRO DE NOTÍCIAS -->
+    <div class="news-feed" id="newsFeed">
+        <div class="news-ticker">
+            <p id="newsText">Bem-vindo ao seu site Horizonte Tutoriais, a sua fonte definitiva de aplicativos, tutoriais e jogos.</p>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="main-content">
+            <section id="homeSections">
+                <h2 class="section-title"><i class="fas fa-sync-alt"></i> ÚLTIMAS ATUALIZAÇÕES</h2>
+                <div id="grid-updates" class="items-grid"></div>
+                <h2 class="section-title"><i class="fas fa-star"></i> DESTAQUES</h2>
+                <div id="grid-highlights" class="highlights-container"></div>
+            </section>
+            <section id="categorySection" style="display:none;">
+                <h2 id="categoryTitle" class="section-title"></h2>
+                <div id="grid-category" class="items-grid"></div>
+            </section>
+        </div>
+
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">🔥 POPULARES</h3>
+                <div id="grid-popular" class="popular-list"></div>
+            </div>
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">📱 ME SIGA NAS MINHAS REDES SOCIAIS</h3>
+                <div class="social-grid">
+                    <a href="https://www.youtube.com/@horizontetutoriais1346" target="_blank" class="social-item youtube" title="YouTube">🎥 YouTube</a>
+                    <a href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=j3hx7fv" target="_blank" class="social-item instagram" title="Instagram">📸 Instagram</a>
+                    <a href="https://www.facebook.com/share/18J1CStDy4/" target="_blank" class="social-item facebook" title="Facebook">👥 Facebook</a>
+                    <a href="#" target="_blank" class="social-item whatsapp" title="WhatsApp">💬 WhatsApp</a>
+                    <a href="#" target="_blank" class="social-item telegram" title="Telegram">✈️ Telegram</a>
+                    <a href="#" target="_blank" class="social-item twitter" title="Twitter (X)">🐦 Twitter (X)</a>
+                    <a href="#" target="_blank" class="social-item discord" title="Discord">🎮 Discord</a>
+                </div>
+            </div>
+            <!-- SEÇÃO DE COMENTÁRIOS CUSDIS -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">💬 COMENTÁRIOS</h3>
+                <div id="cusdis_thread"
+                    data-host="https://cusdis.com"
+                    data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
+                    data-page-id="index_horizonte"
+                    data-page-url="https://horizontetutoriais.com/index.html"
+                    data-page-title="Horizonte Tutoriais - Início">
+                </div>
+                <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+            </div>
+        </aside>
+    </main>
+
+    <!-- RODAPÉ (FOOTER) -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>📦 Horizonte Tutoriais</h3>
+                <p>Horizonte Tutoriais — Sua fonte definitiva para APKs e Tutoriais. Todos os direitos reservados.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=j3hx7fv" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@horizontetutoriais1346" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/share/18J1CStDy4/" target="_blank"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>LINKS RÁPIDOS</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Início</a></li>
+                    <li><a href="#" onclick="document.querySelector('[data-page=\'aplicativos\']').click(); return false;">Aplicativos</a></li>
+                    <li><a href="#" onclick="document.querySelector('[data-page=\'jogos\']').click(); return false;">Jogos</a></li>
+                    <li><a href="#" onclick="document.querySelector('[data-page=\'tutoriais\']').click(); return false;">Tutoriais</a></li>
+                    <li><a href="#" onclick="document.querySelector('[data-page=\'quente\']').click(); return false;">Quente</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>INFORMAÇÕES</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="openInfoModal('sobreModal'); return false;">Sobre</a></li>
+                    <li><a href="#" onclick="openInfoModal('contatoModal'); return false;">Contate-nos</a></li>
+                    <li><a href="#" onclick="openInfoModal('privacidadeModal'); return false;">Política de Privacidade</a></li>
+                    <li><a href="#" onclick="openInfoModal('isencaoModal'); return false;">Isenção de Responsabilidade</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p>Copyright © 2025-2026 <a href="#">Horizonte Tutoriais</a> | Todos os direitos reservados | <a href="#" class="rss-feed-btn" onclick="navigator.clipboard.writeText('https://horizontetutoriais.github.io/feed.xml'); alert('Link do Feed RSS copiado! Agora você pode colar no seu leitor de notícias.'); return false;"><i class="fas fa-rss"></i> RSS Feed</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAIS -->
+    <div id="itemModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('itemModal')">&times;</span>
+            <img id="modalImage" src="" class="modal-hero">
+            <h2 id="modalName"></h2>
+            <p id="modalDesc"></p>
+            <div class="specs-box">
+                <h3>📋 Especificações Técnicas</h3>
+                <div id="modalSpecs"></div>
+            </div>
+            <div id="modalActions" class="modal-actions"></div>
+        </div>
+    </div>
+
+    <div id="tutorialModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeTutorial()">&times;</span>
+            <h2 id="tutTitle"></h2>
+            <div class="video-container">
+                <iframe id="tutVideo" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <div id="tutFooter"></div>
+        </div>
+    </div>
+
+    <div id="sobreModal" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeModal('sobreModal')">&times;</span><h2>Sobre Nós</h2><p>Horizonte Tutoriais: Sua fonte definitiva para APKs e Jogos Android.</p></div></div>
+    <div id="contatoModal" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeModal('contatoModal')">&times;</span><h2>Contato</h2><p>E-mail: contato@horizontetutoriais.com</p></div></div>
+    <div id="privacidadeModal" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeModal('privacidadeModal')">&times;</span><h2>Política de Privacidade</h2><p>Sua privacidade é importante para nós. Coletamos apenas dados necessários para o funcionamento do site.</p></div></div>
+    <div id="isencaoModal" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeModal('isencaoModal')">&times;</span><h2>Isenção de Responsabilidade</h2><p>Não nos responsabilizamos pelo uso indevido dos arquivos disponibilizados.</p></div></div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/search.js"></script>
+    <script>
+      function translateCusdis() {
+        const translations = {
+          'Nickname': 'Seu Nome',
+          'Reply': 'Responder',
+          'Comment': 'Comentário',
+          'Submit': 'Enviar Comentário',
+          'Email (optional)': 'E-mail (opcional)',
+          'Reply...': 'Escreva aqui sua opinião...',
+          'Load more': 'Carregar mais',
+          'sending...': 'Enviando...',
+          'Your comment has been sent. Please wait for approval.': 'Seu comentário foi enviado! Aguarde a aprovação do administrador.'
+        };
+        const iframes = document.querySelectorAll('#cusdis_thread iframe');
+        iframes.forEach(iframe => {
+          try {
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            while(node = walker.nextNode()) {
+              const text = node.nodeValue.trim();
+              if (translations[text]) { node.nodeValue = translations[text]; }
+            }
+          } catch (e) { }
+        });
+      }
+      setInterval(translateCusdis, 500);
+
+      function openInfoModal(id) {
+          document.getElementById(id).classList.add('active');
+      }
+      function closeModal(id) {
+          document.getElementById(id).classList.remove('active');
+      }
+    </script>
+</body>
+                                                                                                                                </html>
