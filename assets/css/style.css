@@ -520,3 +520,27 @@ body {
 .dark-mode #cusdis_thread {
     filter: invert(0.9) hue-rotate(180deg);
 }
+/* Estilo do Botão Ver Mais */
+.load-more-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.btn-load-more {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.btn-load-more:hover {
+    transform: scale(1.05);
+    background: var(--dark);
+}

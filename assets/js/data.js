@@ -42,8 +42,16 @@ const HorizonteData = {
             } catch (e) { console.error("Erro:", e); }
         }
     },
-    getAllItems() { return [...this.items].reverse(); },
-    getLatestUpdates() { return this.getAllItems().slice(0, 8); },
-    getHighlights() { return this.items.filter(i => i.exibir?.emDestaques).slice(-4).reverse(); },
-    getPopular() { return this.items.filter(i => i.exibir?.emPopulares).slice(-6).reverse(); }
+getAllItems() { 
+        return this.items; 
+    },
+    getLatestUpdates() { 
+        return this.items.slice(0, 8); 
+    },
+    getHighlights() { 
+        return this.items.filter(i => i.exibir?.emDestaques).slice(0, 4);
+    },
+    getPopular() { 
+        return this.items.filter(i => i.exibir?.emPopulares).slice(0, 6);
+    }
 };
