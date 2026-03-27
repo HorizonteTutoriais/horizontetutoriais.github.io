@@ -1,5 +1,32 @@
 const items = [
     {
+    "id": "Horizon Clicker-1",
+    "nome": "Horizon Clicker",
+    "tipo": "Aplicativo",
+    "descricao": "Horizon Clicker é um app que automatiza cliques e tarefas repetitivas no celular.",
+    "imagem": "https://i.postimg.cc/DfRPQrFz/horizon_icon.png",
+    "data": "2026-03-27",
+    "download": "https://4br.me/BaixarHorizonClicker",
+    "downloads": null,
+    "guia_link": "https://4br.me/BaixarGuiaHorizonCliker",
+    "tutorial": "https://www.youtube.com/embed/videoseries?list=PL6qi2hUjNC8qMkMyAxQOcpmJAnhhi12rS&si=NX_DmsbUb2dwqooV",
+    "especificacoes": {
+        "versao": "1.0",
+        "tamanho": "20Mb",
+        "android": "4.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": true,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": false
+    }
+},
+    {
     "id": "re4-1",
     "nome": "Resident Evil 4",
     "tipo": "Jogo",
