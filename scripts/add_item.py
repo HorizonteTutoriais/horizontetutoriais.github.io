@@ -30,8 +30,9 @@ def add_item():
     print("   1. Aplicativo")
     print("   2. Jogo")
     print("   3. Ferramenta")
-    t_idx = input("Escolha (1-3): ").strip()
-    tipo = "Aplicativo" if t_idx == "1" else "Jogo" if t_idx == "2" else "Ferramenta"
+    print("   4. Postagem")
+    t_idx = input("Escolha (1-4): ").strip()
+    tipo = "Aplicativo" if t_idx == "1" else "Jogo" if t_idx == "2" else "Ferramenta" if t_idx == "3" else "Postagem"
 
     desc = input("🔹 Descrição: ").strip()
     img = input("🔹 URL da Imagem: ").strip()
@@ -42,9 +43,9 @@ def add_item():
 
     if tipo == "Jogo":
         print("\n⬇️ Links de Download para Jogo:")
-        downloads['apk'] = input("   - Link APK: ").strip() or "#"
-        downloads['data'] = input("   - Link DATA (opcional): ").strip() or "#"
-        downloads['obb'] = input("   - Link OBB (opcional): ").strip() or "#"
+        downloads["apk"] = input("   - Link APK: ").strip() or "#"
+        downloads["data"] = input("   - Link DATA (opcional): ").strip() or "#"
+        downloads["obb"] = input("   - Link OBB (opcional): ").strip() or "#"
     else:
         down_direto = input("🔹 Link Download: ").strip() or "#"
 
@@ -62,13 +63,14 @@ def add_item():
     # Categorias de exibição
     print("\n🌍 Onde exibir este item? (s/n)")
     exibir = {
-        "emDestaques": input("   - Destaques? (s/n): ").lower() == 's',
-        "emPopulares": input("   - Populares? (s/n): ").lower() == 's',
-        "emQuente": input("   - Aba Quente? (s/n): ").lower() == 's',
-        "emAplicativos": input("   - Aba Aplicativos? (s/n): ").lower() == 's',
-        "emJogos": input("   - Aba Jogos? (s/n): ").lower() == 's',
-        "emTutoriais": input("   - Aba Tutoriais? (s/n): ").lower() == 's',
-        "emFerramentas": input("   - Aba Ferramentas? (s/n): ").lower() == 's'
+        "emDestaques": input("   - Destaques? (s/n): ").lower() == "s",
+        "emPopulares": input("   - Populares? (s/n): ").lower() == "s",
+        "emQuente": input("   - Aba Quente? (s/n): ").lower() == "s",
+        "emAplicativos": input("   - Aba Aplicativos? (s/n): ").lower() == "s",
+        "emJogos": input("   - Aba Jogos? (s/n): ").lower() == "s",
+        "emTutoriais": input("   - Aba Tutoriais? (s/n): ").lower() == "s",
+        "emFerramentas": input("   - Aba Ferramentas? (s/n): ").lower() == "s",
+        "emPostagens": input("   - Aba Postagens? (s/n): ").lower() == "s"
     }
 
     # Criar objeto do item
@@ -93,25 +95,25 @@ def add_item():
     }
 
     # Adicionar ao data.js
-    path = 'assets/js/data.js'
+    path = "assets/js/data.js"
 
     if not os.path.exists(path):
         print(f"❌ Arquivo {path} não encontrado!")
         return
 
-    with open(path, 'r', encoding='utf-8') as f:
+    with open(path, "r", encoding="utf-8") as f:
         content = f.read()
 
-    if 'const items = [' in content:
-        parts = content.split('const items = [')
+    if "const items = [" in content:
+        parts = content.split("const items = [")
         novo_json = json.dumps(novo, indent=4, ensure_ascii=False)
-        novo_content = parts[0] + 'const items = [\n    ' + novo_json + ',' + parts[1]
+        novo_content = parts[0] + "const items = [\n    " + novo_json + "," + parts[1]
 
-        with open(path, 'w', encoding='utf-8') as f:
+        with open(path, "w", encoding="utf-8") as f:
             f.write(novo_content)
 
         print("\n" + "="*60)
-        print(f"✅ SUCESSO! '{nome}' foi adicionado com sucesso!")
+        print(f"✅ SUCESSO! \'{nome}\' foi adicionado com sucesso!")
         print("="*60)
         print(f"\n📝 Detalhes:")
         print(f"   - Tipo: {tipo}")

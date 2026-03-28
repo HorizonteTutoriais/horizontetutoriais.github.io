@@ -83,6 +83,7 @@ loadPage(page) {
             const titles = {
                 aplicativos: '📱 APLICATIVOS',
                 jogos: '🎮 JOGOS',
+                postagens: '📝 POSTAGENS',
                 tutoriais: '📚 TUTORIAIS',
                 ferramentas: '🛠️ FERRAMENTAS',
                 quente: '🔥 QUENTE'
@@ -100,6 +101,7 @@ loadPage(page) {
         const filtered = HorizonteData.getAllItems().filter(i => {
             if (page === 'aplicativos') return i.exibir?.emAplicativos;
             if (page === 'jogos') return i.exibir?.emJogos;
+            if (page === 'postagens') return i.exibir?.emPostagens;
             if (page === 'tutoriais') return i.exibir?.emTutoriais;
             if (page === 'ferramentas') return i.exibir?.emFerramentas;
             if (page === 'quente') return i.exibir?.emQuente;

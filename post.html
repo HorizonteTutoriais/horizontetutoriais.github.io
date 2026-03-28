@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postagem - Horizonte Tutoriais</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .post-container {
+            max-width: 800px;
+            margin: 120px auto 40px;
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .post-header { margin-bottom: 30px; text-align: left; border-bottom: 2px solid var(--primary-color); padding-bottom: 15px; }
+        .post-title { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 10px; font-weight: 800; }
+        .post-content { 
+            font-size: 1.15rem; 
+            line-height: 1.9; 
+            color: #e0e0e0; 
+            white-space: pre-wrap; /* Essencial para manter os parágrafos do seu texto */
+        }
+        .resgate-section {
+            margin-top: 50px;
+            padding: 40px;
+            background: linear-gradient(145deg, rgba(255, 102, 0, 0.15), rgba(0, 0, 0, 0.2));
+            border: 2px dashed var(--primary-color);
+            border-radius: 20px;
+            text-align: center;
+        }
+        .resgate-section h3 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 15px; }
+        .btn-resgate {
+            display: inline-block;
+            padding: 18px 50px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-top: 25px;
+            box-shadow: 0 8px 20px rgba(255, 102, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-resgate:hover { transform: translateY(-5px) scale(1.05); background: #ff8533; box-shadow: 0 12px 25px rgba(255, 102, 0, 0.6); }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .back-btn:hover { color: white; transform: translateX(-5px); }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">Horizonte <span>Tutoriais</span></a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="post-container">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Voltar ao Início</a>
+        
+        <div id="post-data">
+            <div class="post-header">
+                <h1 class="post-title" id="title">Carregando...</h1>
+            </div>
+            <div class="post-content" id="content">
+                Aguarde um momento enquanto preparamos o tutorial...
+            </div>
+            <div class="resgate-section" id="resgate-area" style="display: none;">
+                <h3><i class="fas fa-gift"></i> Área de Resgate</h3>
+                <p>Tudo pronto! Clique no botão abaixo para ser redirecionado e garantir o seu item grátis.</p>
+                <a href="#" id="resgate-link" class="btn-resgate" target="_blank">RESGATAR AGORA</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Importante: Carregar o data.js antes do script de lógica -->
+    <script src="assets/js/data.js"></script>
+    <script>
+        function loadPost() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = urlParams.get('id');
+            
+            // Procura a postagem no seu banco de dados (data.js)
+            // O 'database' é a variável que já existe no seu data.js
+            const post = database.find(item => item.id == postId);
+            
+            if (post) {
+                document.title = post.nome + " - Horizonte Tutoriais";
+                document.getElementById('title').innerText = post.nome;
+                document.getElementById('content').innerText = post.descricao;
+                
+                // Se houver um link de resgate no item, mostra a seção de resgate
+                if (post.link_resgate) {
+                    document.getElementById('resgate-area').style.display = 'block';
+                    document.getElementById('resgate-link').href = post.link_resgate;
+                }
+            } else {
+                document.getElementById('title').innerText = "Postagem não encontrada";
+                document.getElementById('content').innerText = "Desculpe, mas este tutorial não existe ou foi removido.";
+            }
+        }
+        
+        window.onload = loadPost;
+    </script>
+</body>
+</html>

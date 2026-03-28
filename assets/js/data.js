@@ -22,6 +22,7 @@ const items = [
         "emQuente": true,
         "emAplicativos": true,
         "emJogos": false,
+        "emPostagens": false,
         "emTutoriais": true,
         "emFerramentas": false
     }
