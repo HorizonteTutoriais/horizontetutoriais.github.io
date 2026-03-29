@@ -198,8 +198,18 @@ loadPage(page) {
         };
         actions.appendChild(tutBtn);
 
-        // Downloads - Diferenciação automática
-        if (item.tipo === 'Jogo' && item.downloads) {
+// Downloads - Diferenciação automática
+        if (item.tipo === 'Postagem') {
+            // Para Postagens: botão "Acessar agora" que redireciona para o link
+            const acessarBtn = document.createElement('button');
+            acessarBtn.className = 'action-btn';
+            acessarBtn.style.background = '#ff9800';
+            acessarBtn.style.width = '100%';
+            acessarBtn.style.marginTop = '5px';
+            acessarBtn.innerHTML = '🔗 Acessar agora';
+            acessarBtn.onclick = () => window.open(item.download || '#', '_blank');
+            actions.appendChild(acessarBtn);
+        } else if (item.tipo === 'Jogo' && item.downloads) {
             // Para Jogos: APK/DATA/OBB
             const downloadContainer = document.createElement('div');
             downloadContainer.style.width = '100%';

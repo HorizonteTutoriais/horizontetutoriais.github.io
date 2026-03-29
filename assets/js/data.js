@@ -62,6 +62,7 @@ const HorizonteData = {
     items: items,
     loadItemsFromStorage() {
         const stored = localStorage.getItem('horizonte_items');
+
         if (stored) {
             try {
                 const localItems = JSON.parse(stored);
