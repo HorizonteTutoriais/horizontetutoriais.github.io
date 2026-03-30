@@ -84,22 +84,11 @@
                     <a href="#" target="_blank" class="social-item twitter" title="Twitter (X)">🐦 Twitter (X)</a>
                     <a href="#" target="_blank" class="social-item discord" title="Discord">🎮 Discord</a>
                 </div>
-<!-- SEÇÃO DE COMENTÁRIOS CUSDIS OFICIAL -->
-<div class="sidebar-section">
-    <h3 class="sidebar-title">💬 COMENTÁRIOS</h3>
-    <div id="cusdis_thread"
-      data-host="https://cusdis.com"
-      data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
-      data-page-id="index_horizonte"
-      data-page-url="https://horizontetutoriais.com/index.html"
-      data-page-title="Horizonte Tutoriais - Início"
-      style="min-height: 550px; width: 100%; background: white; border-radius: 8px; padding: 10px;"
-    ></div>
-    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-</div>
+            </div>
         </aside>
+<!--
+        </aside>ÇÃ
     </main>
-
     <!-- RODAPÉ (FOOTER) -->
     <footer class="footer">
         <div class="footer-container">
@@ -120,7 +109,18 @@
                     <li><a href="#" onclick="document.querySelector('[data-page=\'jogos\']').click(); return false;">Jogos</a></li>
                     <li><a href="#" onclick="document.querySelector('[data-page=\'tutoriais\']').click(); return false;">Tutoriais</a></li>
                     <li><a href="#" onclick="document.querySelector('[data-page=\'ferramentas\']').click(); return false;">Ferramentas</a></li>
-                    <li><a href="#" onclick="document.querySelector('[data-page=\'quente\']').click(); return false;">Quente</a></li>
+<!-- SEÇÃO DE COMENTÁRIOS CUSDIS (INSTALAÇÃO LIMPA) -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">💬 COMENTÁRIOS</h3>
+                <div id="cusdis_thread"
+                    data-host="https://cusdis.com"
+                    data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
+                    data-page-id="index"
+                    data-page-url="https://horizontetutoriais.github.io/"
+                    data-page-title="Horizonte Tutoriais">
+                </div>
+                <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+            </div>                    <li><a href="#" onclick="document.querySelector('[data-page=\'quente\']').click(); return false;">Quente</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -175,33 +175,6 @@
     <script src="assets/js/app.js"></script>
     <script src="assets/js/search.js"></script>
     <script>
-      function translateCusdis() {
-        const translations = {
-          'Nickname': 'Seu Nome',
-          'Reply': 'Responder',
-          'Comment': 'Comentário',
-          'Submit': 'Enviar Comentário',
-          'Email (optional)': 'E-mail (opcional)',
-          'Reply...': 'Escreva aqui sua opinião...',
-          'Load more': 'Carregar mais',
-          'sending...': 'Enviando...',
-          'Your comment has been sent. Please wait for approval.': 'Seu comentário foi enviado! Aguarde a aprovação do administrador.'
-        };
-        const iframes = document.querySelectorAll('#cusdis_thread iframe');
-        iframes.forEach(iframe => {
-          try {
-            const doc = iframe.contentDocument || iframe.contentWindow.document;
-            const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null, false);
-            let node;
-            while(node = walker.nextNode()) {
-              const text = node.nodeValue.trim();
-              if (translations[text]) { node.nodeValue = translations[text]; }
-            }
-          } catch (e) { }
-        });
-      }
-      setInterval(translateCusdis, 500);
-
       function openInfoModal(id) {
           document.getElementById(id).classList.add('active');
       }
@@ -225,5 +198,7 @@
             <button class="action-btn" style="width: 100%; background: var(--primary); margin-top: 10px;" onclick="closeTutorialInscricao()">Entendi, quero me inscrever!</button>
         </div>
     </div>
+<script>
+    </script>
 </body>
                                                                                                                                 </html>                                                                                                                                </html>
