@@ -27,7 +27,7 @@ const items = [
         "emPostagens": true
     }
 },
-    {
+{
     "id": "Horizon Clicker-1",
     "nome": "Horizon Clicker",
     "tipo": "Aplicativo",
@@ -55,7 +55,7 @@ const items = [
         "emFerramentas": false
     }
 },
-    {
+{
     "id": "re4-1",
     "nome": "Resident Evil 4",
     "tipo": "Jogo",
@@ -85,7 +85,8 @@ const items = [
         "emTutoriais": true,
         "emFerramentas": false
     }
-},];
+},
+];
 const HorizonteData = {
     items: items,
     loadItemsFromStorage() {
