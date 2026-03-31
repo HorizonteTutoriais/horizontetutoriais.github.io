@@ -1,156 +1,46 @@
-📦 Horizonte Tutoriais
+# 📦 Horizonte Tutoriais - Especificação Técnica
 
-O Horizonte Tutoriais é uma plataforma web de alto desempenho dedicada à distribuição de aplicativos, jogos e tutoriais para Android.
+O **Horizonte Tutoriais** é uma plataforma web de alto desempenho dedicada à distribuição de aplicativos, jogos e tutoriais para Android. O projeto destaca-se por sua **Inteligência Dinâmica e Automática**, oferecendo uma experiência de usuário fluida e moderna sem a necessidade de recarregamento de páginas.
 
-O projeto se destaca por sua Inteligência Dinâmica e Automática, proporcionando uma experiência moderna, fluida e sem recarregamento de páginas.
+## 🚀 Tecnologias Utilizadas
+- **Frontend:** HTML5 Semântico, CSS3 Moderno (Variáveis e Flexbox/Grid).
+- **Inteligência:** JavaScript Vanilla (ES6+) com manipulação dinâmica de DOM.
+- **Notificações:** Integração com OneSignal SDK para alertas em tempo real.
+- **Comentários:** Sistema Cusdis com tradução automática via script.
+- **Ícones:** Font Awesome 6.0.0.
 
+## 🧠 Inteligência Dinâmica e Automática
 
----
+O coração do site reside em sua arquitetura orientada a dados, permitindo que o conteúdo seja gerenciado de forma centralizada e automática.
 
-🚀 Tecnologias Utilizadas
+### 1. Sistema de Filtragem Inteligente
+- **Filtro em Tempo Real:** Através da função `filterCategory`, o site processa o banco de dados local (`data.js`) e renderiza instantaneamente os itens solicitados (Aplicativos, Jogos, Postagens, etc.).
+- **Sincronização de Navegação:** Os links do rodapé utilizam uma lógica de "espelhamento" que aciona os gatilhos do menu superior, garantindo que a página suba ao topo (`scrollTo`) suavemente enquanto o conteúdo é atualizado.
 
-🎨 Frontend
+### 2. Gestão de Dados Centralizada (`data.js`)
+- Toda a biblioteca de conteúdo é gerida por um objeto estruturado, permitindo que novos itens sejam adicionados apenas inserindo um novo bloco de código, sem mexer na estrutura do HTML.
+- **Campos Automáticos:** Nome, Descrição, Categoria, Link de Download e Imagens são injetados dinamicamente nos cards e modais.
 
-HTML5 Semântico
+### 3. Sistema de Busca Instantânea
+- Implementação de um motor de busca que filtra os itens conforme o usuário digita, oferecendo feedback visual imediato.
 
-CSS3 Moderno (Variáveis, Flexbox e Grid)
+### 4. Modo Escuro (Dark Mode) Persistente
+- Sistema automático que detecta e salva a preferência do usuário no `localStorage`.
+- **Inversão Inteligente:** O sistema aplica filtros de inversão de cores inclusive em widgets externos (como o Cusdis) para manter a harmonia visual no modo noturno.
 
+## 🛠️ Funcionalidades Avançadas
 
-🧠 Inteligência
+| Funcionalidade | Descrição |
+| :--- | :--- |
+| **Modais Inteligentes** | Janelas flutuantes que carregam especificações técnicas e links de download dinamicamente. |
+| **Tutorial de Inscrição** | Botão flutuante que abre um tutorial em vídeo (YouTube Shorts) com autoplay e loop configurados. |
+| **Feed RSS** | Sistema de compartilhamento de notícias via XML integrado ao rodapé. |
+| **Cusdis Traduzido** | Script customizado que traduz em tempo real os campos do sistema de comentários para o Português. |
 
-JavaScript Vanilla (ES6+)
-
-Manipulação dinâmica do DOM
-
-
-🔔 Notificações
-
-Integração com OneSignal SDK (alertas em tempo real)
-
-
-💬 Comentários
-
-Sistema Cusdis com tradução automática via script
-
-
-🎯 Ícones
-
-Font Awesome 6.0.0
-
-
-
----
-
-🧠 Inteligência Dinâmica e Automática
-
-O núcleo do sistema é baseado em uma arquitetura orientada a dados, permitindo gerenciamento centralizado e automatizado do conteúdo.
-
-1. 🔍 Sistema de Filtragem Inteligente
-
-Filtro em Tempo Real:
-A função filterCategory processa os dados do arquivo data.js e renderiza instantaneamente os itens (apps, jogos, posts, etc.).
-
-Sincronização de Navegação:
-Links do rodapé utilizam lógica de espelhamento que acionam o menu superior, combinados com scrollTo suave para melhor experiência.
-
-
+## 📁 Estrutura de Pastas
+- `/assets/css/`: Folhas de estilo (Design Responsivo e Dark Mode).
+- `/assets/js/`: Inteligência do site (`app.js`), Banco de dados (`data.js`) e Motor de busca (`search.js`).
+- `/index.html`: Estrutura principal e containers de renderização.
 
 ---
-
-2. 📊 Gestão de Dados Centralizada (data.js)
-
-Todo o conteúdo é gerenciado por um objeto estruturado.
-
-Novos itens podem ser adicionados sem alterar o HTML.
-
-Campos dinâmicos:
-
-Nome
-
-Descrição
-
-Categoria
-
-Link de download
-
-Imagens
-
-
-
-
----
-
-3. 🔎 Sistema de Busca Instantânea
-
-Motor de busca em tempo real
-
-Filtragem dinâmica conforme o usuário digita
-
-Feedback visual imediato
-
-
-
----
-
-4. 🌙 Modo Escuro (Dark Mode) Persistente
-
-Preferência salva automaticamente no localStorage
-
-Detecção automática do modo preferido do usuário
-
-Inversão Inteligente:
-Widgets externos (como Cusdis) também são adaptados ao modo escuro
-
-
-
----
-
-🛠️ Funcionalidades Avançadas
-
-Funcionalidade	Descrição
-
-🪟 Modais Inteligentes	Carregam conteúdo dinâmico com especificações e downloads
-🎥 Tutorial de Inscrição	Botão flutuante com vídeo (YouTube Shorts) em autoplay e loop
-
-
-
----
-
-📁 Estrutura de Pastas
-
-/assets/
- ├── css/       → Estilos (responsivo + dark mode)
- ├── js/        → Scripts principais
- │    ├── app.js
- │    ├── data.js
- │    └── search.js
-/index.html     → Estrutura principal
-
-
----
-
-⚡ Destaques do Projeto
-
-Alta performance 🚀
-
-Zero reload de páginas 🔄
-
-Arquitetura escalável 📈
-
-Código limpo e organizado 🧩
-
-Experiência fluida e moderna ✨
-
-
-
----
-
-📌 Objetivo
-
-Desenvolvido com foco em:
-
-Velocidade
-
-Automação
-
-Acessibilidade
+*Desenvolvido com foco em velocidade, automação e acessibilidade.*
