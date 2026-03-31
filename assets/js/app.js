@@ -306,7 +306,7 @@ window.openTutorialInscricao = () => {
     const video = document.getElementById('tutInscricaoVideo');
     
     // O segredo: Definimos o link do seu Shorts com autoplay e som (mute=0) no momento do clique
-    const videoId = "0G8Vcvypu6U"; 
+    const videoId = "yVUuIQfHcpo"; 
     video.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0&mute=0&loop=1&playlist=${videoId}`;
     
     modal.classList.add('active');
