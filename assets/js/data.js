@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "playhop.com/pt-1",
+    "nome": "Playhop",
+    "tipo": "Postagem",
+    "descricao": "desfrute do melhor site de jogos online grátis.",
+    "imagem": "https://i.postimg.cc/KcDK5qhQ/Screenshot_20260327_214145.png",
+    "data": "2026-03-31",
+    "download": "https://playhop.com/pt",
+    "downloads": null,
+    "guia_link": "https://www.mediafire.com/file/167s9wmknmffs7l/Guia_Playhop.zip/file",
+    "tutorial": "https://www.youtube.com/embed/31zDng73TsQ?si=nXH-6e8j97c_pSGQ",
+    "especificacoes": {
+        "versao": "Não se aplica",
+        "tamanho": "Não se aplica",
+        "android": "qualquer Android com o navegador atualizado.",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": false,
+        "emJogos": true,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": true
+    }
+},
+    {
     "id": "Horizon Clicker-1",
     "nome": "Horizon Clicker",
     "tipo": "Aplicativo",
