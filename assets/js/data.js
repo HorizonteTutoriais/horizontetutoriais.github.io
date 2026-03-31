@@ -1,5 +1,61 @@
 const items = [
     {
+    "id": "clash royale-2",
+    "nome": "Clash Royale",
+    "tipo": "Postagem",
+    "descricao": "Resgate agora o novo emote de 10 anos de clash Royale",
+    "imagem": "https://i.postimg.cc/tCTsjLTY/Screenshot-20260331145231.jpg",
+    "data": "2026-03-31",
+    "download": "https://www.clashroyaledicas.com/2026/03/emote-gratis-10-aniversario.html",
+    "downloads": null,
+    "guia_link": "https://www.mediafire.com/file/bfvz0u12ns04eb0/guia+aniversário+de+10+anos+clash+Royale.txt/file",
+    "tutorial": "https://www.youtube.com/embed/2XUrFgcTHmw?si=dhl1uXFwlPqhxs7k",
+    "especificacoes": {
+        "versao": "não se aplica",
+        "tamanho": "não se aplica",
+        "android": "qualquer celular com o navegador atualizado.",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": false,
+        "emJogos": true,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": true
+    }
+},
+    {
+    "id": "clash royale-1",
+    "nome": "Clash Royale",
+    "tipo": "Postagem",
+    "descricao": "Como resgatar o prêmio diário grátis",
+    "imagem": "https://i.postimg.cc/7LryY2qd/Screenshot-20260331145311.jpg",
+    "data": "2026-03-31",
+    "download": "https://store.supercell.com/pt",
+    "downloads": null,
+    "guia_link": "https://www.mediafire.com/file/djhlfo93mh66jyb/Guia+como+resgatar+o+prêmio+diario+no+clash+Royale.txt/file",
+    "tutorial": "https://www.youtube.com/embed/C3D90UXQWBI?si=C6TWbWLY64CLw-z60q9",
+    "especificacoes": {
+        "versao": "não se aplica",
+        "tamanho": "não se aplica",
+        "android": "qualquer Android com o navegador atualizado.",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": false,
+        "emJogos": true,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": true
+    }
+},
+    {
     "id": "playhop.com/pt-1",
     "nome": "Playhop",
     "tipo": "Postagem",
