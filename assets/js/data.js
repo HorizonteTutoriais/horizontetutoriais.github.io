@@ -9,7 +9,7 @@ const items = [
     "download": "https://www.clashroyaledicas.com/2026/03/emote-gratis-10-aniversario.html",
     "downloads": null,
     "guia_link": "https://www.mediafire.com/file/bfvz0u12ns04eb0/guia+aniversário+de+10+anos+clash+Royale.txt/file",
-    "tutorial": "https://www.youtube.com/embed/2XUrFgcTHmw?si=dhl1uXFwlPqhxs7k",
+    "tutorial": "https://www.youtube.com/embed/2XUrFgcTHmw?autoplay=1&rel=0&showinfo=0&mute=0&loop=1&playlist=2XUrFgcTHmw",
     "especificacoes": {
         "versao": "não se aplica",
         "tamanho": "não se aplica",
@@ -37,7 +37,7 @@ const items = [
     "download": "https://store.supercell.com/pt",
     "downloads": null,
     "guia_link": "https://www.mediafire.com/file/djhlfo93mh66jyb/Guia+como+resgatar+o+prêmio+diario+no+clash+Royale.txt/file",
-    "tutorial": "https://www.youtube.com/embed/C3D90UXQWBI?si=C6TWbWLY64CLw-z60q9",
+    "tutorial": "https://www.youtube.com/embed/C3D90UXQWBI?autoplay=1&rel=0&showinfo=0&mute=0&loop=1&playlist=C3D90UXQWBI",
     "especificacoes": {
         "versao": "não se aplica",
         "tamanho": "não se aplica",
@@ -65,7 +65,7 @@ const items = [
     "download": "https://playhop.com/pt",
     "downloads": null,
     "guia_link": "https://www.mediafire.com/file/167s9wmknmffs7l/Guia_Playhop.zip/file",
-    "tutorial": "https://www.youtube.com/embed/31zDng73TsQ?si=nXH-6e8j97c_pSGQ",
+    "tutorial": "https://www.youtube.com/embed/31zDng73TsQ?autoplay=1&rel=0&showinfo=0&mute=0&loop=1&playlist=31zDng73TsQ",
     "especificacoes": {
         "versao": "Não se aplica",
         "tamanho": "Não se aplica",
@@ -125,7 +125,7 @@ const items = [
         "obb": "https://4br.me/BaixarDisco2R4"
     },
     "guia_link": "https://4br.me/Guiaimportante",
-    "tutorial": "https://www.youtube.com/embed/videoseries?list=PL6qi2hUjNC8rO0iQMZUpOcwnrzBOuKthi&si=-6Pdc7eJ4uSJWgR86Pdc7eJ4uSJWgR8",
+    "tutorial": "https://www.youtube.com/embed/XDhx-rdHSmY?autoplay=1&loop=1&playlist=XDhx-rdHSmY",
     "especificacoes": {
         "versao": "1.0",
         "tamanho": "2,6 GB",
