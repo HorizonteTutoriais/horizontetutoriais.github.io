@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "MT Manager-1",
+    "nome": "MT Manager Vip + Arquivos",
+    "tipo": "Ferramenta",
+    "descricao": "Desfrute de um dos melhores editores de APK! Veja o tutorial com o MT Manager, em prática, adicionando widgets flutuantes e toasts personalizado.",
+    "imagem": "https://i.postimg.cc/nzV8N7ZW/unnamed.png",
+    "data": "2026-04-05",
+    "download": "https://4br.me/MTmanagerMaisArquivos",
+    "downloads": null,
+    "guia_link": "https://4br.me/BaixarGuiaMTmanager",
+    "tutorial": "https://www.youtube.com/embed/bXmD2KnKnF4?autoplay=1&loop=1&playlist=bXmD2KnKnF4",
+    "especificacoes": {
+        "versao": "2.14.5",
+        "tamanho": "27.11M",
+        "android": "5.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": false,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": true,
+        "emPostagens": false
+    }
+},
+    {
     "id": "clash royale-2",
     "nome": "Clash Royale",
     "tipo": "Postagem",
@@ -90,9 +118,9 @@ const items = [
     "descricao": "Horizon Clicker é um app que automatiza cliques e tarefas repetitivas no celular.",
     "imagem": "https://i.postimg.cc/DfRPQrFz/horizon_icon.png",
     "data": "2026-03-27",
-    "download": "https://4br.me/BaixarHorizonClicker",
+    "download": "https://4br.me/HorizonCliker",
     "downloads": null,
-    "guia_link": "https://4br.me/BaixarGuiaHorizonCliker",
+    "guia_link": "https://4br.me/BaixarHorizonCliker",
     "tutorial": "https://www.youtube.com/embed/videoseries?list=PL6qi2hUjNC8qMkMyAxQOcpmJAnhhi12rS&si=NX_DmsbUb2dwqooV",
     "especificacoes": {
         "versao": "1.0",
