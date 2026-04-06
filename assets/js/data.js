@@ -121,7 +121,7 @@ const items = [
     "download": "https://4br.me/HorizonCliker",
     "downloads": null,
     "guia_link": "https://4br.me/BaixarHorizonCliker",
-    "tutorial": "https://www.youtube.com/embed/videoseries?list=PL6qi2hUjNC8qMkMyAxQOcpmJAnhhi12rS&si=NX_DmsbUb2dwqooV",
+    "tutorial": "https://www.youtube.com/embed/WIrPFoqKbpg?autoplay=1&loop=1&playlist=WIrPFoqKbpg",
     "especificacoes": {
         "versao": "1.0",
         "tamanho": "20Mb",
