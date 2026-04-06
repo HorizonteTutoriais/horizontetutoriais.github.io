@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "emoji Horda de servo cantando-1",
+    "nome": "Clash Royale",
+    "tipo": "Postagem",
+    "descricao": "✨ Descubra como desbloquear o novo emote da Ordem do Servo Cantando e adicione estilo às suas celebrações! 🎶",
+    "imagem": "https://i.postimg.cc/ZR18LhL0/IMG_20260406_WA0004.jpg",
+    "data": "2026-04-06",
+    "download": "https://store.supercell.com/pt/clashroyale",
+    "downloads": null,
+    "guia_link": "https://www.mediafire.com/file/nyfs6k4xubdm960/Guia+emoji+da+ordem+de+servo+cantando,+Clash+Royale.txt/file",
+    "tutorial": "https://www.youtube.com/embed/0BsW9Up61xw?autoplay=1&loop=1&playlist=0BsW9Up61xw",
+    "especificacoes": {
+        "versao": "não se aplica",
+        "tamanho": "não se aplica",
+        "android": "não se aplica",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": false,
+        "emJogos": true,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": true
+    }
+},
+    {
     "id": "MT Manager-1",
     "nome": "MT Manager Vip + Arquivos",
     "tipo": "Ferramenta",
