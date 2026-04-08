@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "Horizon Bloquear Apps-1",
+    "nome": "Horizon Bloquear Apps",
+    "tipo": "Aplicativo",
+    "descricao": "O Horizon Bloquear Apps bloqueia apps e a área de recentes 🔒, tirando selfie de quem tentar invadir 📸👀.",
+    "imagem": "https://i.postimg.cc/Zq5JWGbh/Resized-Image-2026-04-08-05-19-03-8639-1.png",
+    "data": "2026-04-08",
+    "download": "https://4br.me/HorizonBloquearApps",
+    "downloads": null,
+    "guia_link": "https://4br.me/GuiaHorizonBloquearApps",
+    "tutorial": "https://www.youtube.com/embed/SzB5Jr6JpTM?autoplay=1&loop=1&playlist=SzB5Jr6JpTM",
+    "especificacoes": {
+        "versao": "1.0",
+        "tamanho": "8.65M",
+        "android": "5.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": true,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": false
+    }
+},
+    {
     "id": "emoji Horda de servo cantando-1",
     "nome": "Clash Royale",
     "tipo": "Postagem",
