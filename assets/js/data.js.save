@@ -116,7 +116,7 @@ const items = [
     "nome": "Clash Royale",
     "tipo": "Postagem",
     "descricao": "Como resgatar o prêmio diário grátis",
-    "imagem": "https://i.postimg.cc/zfCgfMFz/In-Shot-20260409-234717772.jpg",
+    "imagem": "https://i.postimg.cc/7LryY2qd/Screenshot-20260331145311.jpg",
     "data": "2026-03-31",
     "download": "https://store.supercell.com/pt",
     "downloads": null,
@@ -128,8 +128,7 @@ const items = [
         "android": "qualquer Android com o navegador atualizado.",
         "desenvolvedora": "Horizonte Tutoriais"
     },
-    "exibir": {
-        "emDestaques": true,
+    "exibir":         "emDestaques": true,
         "emPopulares": true,
         "emQuente": true,
         "emAplicativos": false,
@@ -172,7 +171,7 @@ const items = [
     "nome": "Horizon Clicker",
     "tipo": "Aplicativo",
     "descricao": "Horizon Clicker é um app que automatiza cliques e tarefas repetitivas no celular.",
-    "imagem": "https://i.postimg.cc/D02dFh9H/In-Shot-20260409-234654727.png",
+    "imagem": "https://i.postimg.cc/DfRPQrFz/horizon_icon.png",
     "data": "2026-03-27",
     "download": "https://4br.me/HorizonCliker",
     "downloads": null,
