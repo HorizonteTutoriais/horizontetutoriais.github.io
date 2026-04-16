@@ -145,17 +145,9 @@ loadPage(page) {
         return div;
     }
 
-    createPopularItem(item) {
-        const div = document.createElement('div');
-        div.className = 'popular-item';
-        div.innerHTML = `
-            <img src="${item.imagem}" class="popular-item-image" alt="${item.nome}">
-            <div class="popular-item-name">${item.nome}</div>
-        `;
-        div.onclick = () => this.showItemModal(item);
-        return div;
+createPopularItem(item) {
+        return this.createCard(item);
     }
-
     showItemModal(item) {
         const modal = document.getElementById('itemModal');
         document.getElementById('modalImage').src = item.imagem;

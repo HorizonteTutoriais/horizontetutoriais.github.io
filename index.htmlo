@@ -29,8 +29,8 @@
     </div>
 
     <header class="header">
-        <div class="search-box" style="padding: 15px; max-width: 1200px; margin: 0 auto;">
-            <input type="text" id="searchInput" placeholder="🔍 Pesquisar apps ou jogos..." style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; outline: none; font-size: 16px; background: var(--bg-card); color: white;">
+        <div class="search-box" style="padding: 15px; max-width: 100%; margin: 0;">
+            <input type="text" id="searchInput" placeholder="🔍 Pesquisar apps ou jogos..." style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; outline: none; font-size: 16px; background: var(--bg-card); color: var(--text);">
         </div>
         <div class="header-container">
             <h1 class="logo">📦 Horizonte Tutoriais</h1>
@@ -61,15 +61,19 @@
                 <div id="grid-updates" class="items-grid"></div>
                 <h2 class="section-title"><i class="fas fa-star"></i> DESTAQUES</h2>
                 <div id="grid-highlights" class="highlights-container"></div>
-                <h2 class="section-title"><i class="fas fa-fire"></i> POPULARES</h2>  
-                <div id="grid-popular" class="items-grid popular-grid"></div>
+                
+                <!-- POPULARES MOVIDO PARA BAIXO DOS DESTAQUES -->
+                <h2 class="section-title"><i class="fas fa-fire"></i> POPULARES</h2>
+                <div id="grid-popular" class="popular-list"></div>
             </section>
             <section id="categorySection" style="display:none;">
                 <h2 id="categoryTitle" class="section-title"></h2>
                 <div id="grid-category" class="items-grid"></div>
             </section>
         </div>
+
         <aside class="sidebar">
+            <!-- REDES SOCIAIS MOVIDO PARA O TOPO DA SIDEBAR -->
             <div class="sidebar-section">
                 <h3 class="sidebar-title">📱 ME SIGA NAS MINHAS REDES SOCIAIS</h3>
                 <div class="social-grid">
@@ -81,20 +85,21 @@
                     <a href="#" target="_blank" class="social-item twitter" title="Twitter (X)">🐦 Twitter (X)</a>
                     <a href="#" target="_blank" class="social-item discord" title="Discord">🎮 Discord</a>
                 </div>
-               </div>
-<!-- SEÇÃO DE COMENTÁRIOS CUSDIS OFICIAL -->
-<div class="sidebar-section">
-    <h3 class="sidebar-title">💬 COMENTÁRIOS</h3>
-    <div id="cusdis_thread"
-      data-host="https://cusdis.com"
-      data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
-      data-page-id="index_horizonte"
-      data-page-url="https://horizontetutoriais.com/index.html"
-      data-page-title="Horizonte Tutoriais - Início"
-      style="min-height: 550px; width: 100%; background: white; border-radius: 8px; padding: 10px;"
-    ></div>
-    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-</div>
+            </div>
+            
+            <!-- COMENTÁRIOS LOGO ABAIXO DAS REDES SOCIAIS -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">💬 COMENTÁRIOS</h3>
+                <div id="cusdis_thread"
+                  data-host="https://cusdis.com"
+                  data-app-id="e3da7ffe-b147-47d9-b66a-8c62df6263b4"
+                  data-page-id="index_horizonte"
+                  data-page-url="https://horizontetutoriais.com/index.html"
+                  data-page-title="Horizonte Tutoriais - Início"
+                  style="min-height: 850px; width: 100%; background: white; border-radius: 8px; padding: 10px;"
+                ></div>
+                <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+            </div>
         </aside>
     </main>
 
@@ -224,5 +229,32 @@
             <button class="action-btn" style="width: 100%; background: var(--primary); margin-top: 10px;" onclick="closeTutorialInscricao()">Entendi, quero me inscrever!</button>
         </div>
     </div>
+<script>
+  // Monitora o carregamento dos comentários e força a altura
+  const forceCusdisHeight = () => {
+    const container = document.getElementById('cusdis_thread');
+    const iframe = container ? container.querySelector('iframe') : null;
+    if (iframe) {
+      iframe.style.setProperty('height', '1050px', 'important');
+      iframe.style.setProperty('min-height', '1050px', 'important');
+      iframe.height = '1050';
+    }
+  };
+
+  // Tenta forçar a altura assim que carregar e continua tentando por 5 segundos
+  window.addEventListener('load', () => {
+    let attempts = 0;
+    const interval = setInterval(() => {
+      forceCusdisHeight();
+      attempts++;
+      if (attempts > 10) clearInterval(interval);
+    }, 500);
+  });
+
+  // Também vigia mudanças no container
+  const observer = new MutationObserver(forceCusdisHeight);
+  const target = document.getElementById('cusdis_thread');
+  if (target) observer.observe(target, { childList: true, subtree: true });
+</script>
 </body>
-                                                                                                                                </html>                                                                                                                                </html>
+</html>

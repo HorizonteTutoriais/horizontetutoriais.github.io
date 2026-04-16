@@ -247,9 +247,9 @@ getAllItems() {
         return this.items.slice(0, 8); 
     },
     getHighlights() { 
-        return this.items.filter(i => i.exibir?.emDestaques).slice(0, 4);
+        return this.items.filter(i => i.exibir?.emDestaques).slice(0, 8);
     },
     getPopular() { 
-        return this.items.filter(i => i.exibir?.emPopulares).slice(0, 6);
+        return this.items.filter(i => i.exibir?.emPopulares).slice(0, 8);
     }
 };
