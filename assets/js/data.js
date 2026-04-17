@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "Apktool M-1",
+    "nome": "Apktool M",
+    "tipo": "Ferramenta",
+    "descricao": "Baixe o Apktool M 🛠️ — Um dos melhores editores! Confira o tutorial e  Aprenda a Traduzir Apps Fácil 🌟",
+    "imagem": "https://i.postimg.cc/g2ghrmzp/images.jpg",
+    "data": "2026-04-16",
+    "download": "https://4br.me/BaixarApktoolM",
+    "downloads": null,
+    "guia_link": "https://4br.me/GuiaApktoolM",
+    "tutorial": "https://www.youtube.com/embed/fhoagcnavCQ?autoplay=1&loop=1&playlist=fhoagcnavCQ",
+    "especificacoes": {
+        "versao": "2.4.0-260328",
+        "tamanho": "15,46M",
+        "android": "5.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": false,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": true,
+        "emPostagens": false
+    }
+},
+    {
     "id": "Horizon Bloquear Apps-1",
     "nome": "Horizon Bloquear Apps",
     "tipo": "Aplicativo",
