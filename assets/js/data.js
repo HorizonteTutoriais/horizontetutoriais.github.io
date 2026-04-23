@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "Clash Royale-1",
+    "nome": "Clash Royale Baú da Sorte 1",
+    "tipo": "Postagem",
+    "descricao": "Como resgatar o Baú da Sorte no Clash Royale 🍀🎁✨",
+    "imagem": "https://i.postimg.cc/CKDFNQg3/images.jpg",
+    "data": "2026-04-23",
+    "download": "https://link.clashroyale.com/?action=voucher&code=9e1aeaba-cc62-46ed-8aaa-30b309501094",
+    "downloads": null,
+    "guia_link": "https://4br.me/GuiaCRBauDaSorte",
+    "tutorial": "https://www.youtube.com/embed/qXWbVmZUaxY?autoplay=1&loop=1&playlist=qXWbVmZUaxY",
+    "especificacoes": {
+        "versao": "não se aplica",
+        "tamanho": "não se aplica",
+        "android": "qualquer Android com o navegador atualizado",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": false,
+        "emPopulares": false,
+        "emQuente": false,
+        "emAplicativos": false,
+        "emJogos": true,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": true
+    }
+},
+    {
     "id": "Apktool M-1",
     "nome": "Apktool M",
     "tipo": "Ferramenta",
