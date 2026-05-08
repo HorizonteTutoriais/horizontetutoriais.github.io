@@ -232,7 +232,7 @@ const items = [
     "data": "2026-03-27",
     "download": "https://4br.me/HorizonCliker",
     "downloads": null,
-    "guia_link": "https://4br.me/BaixarHorizonCliker",
+    "guia_link": "https://4br.me/GuiaHorizonCliker",
     "tutorial": "https://www.youtube.com/embed/WIrPFoqKbpg?autoplay=1&loop=1&playlist=WIrPFoqKbpg",
     "especificacoes": {
         "versao": "1.0",
