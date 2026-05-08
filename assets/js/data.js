@@ -1,5 +1,37 @@
 const items = [
     {
+    "id": "Horizon Games-1",
+    "nome": "Horizon Games",
+    "tipo": "Jogo",
+    "descricao": "Horizon Games: baixe e jogue com um dos melhores apps offline! 🎮📲✨",
+    "imagem": "https://i.postimg.cc/VLdCQpZN/Horizon-Games.png",
+    "data": "2026-05-08",
+    "download": "#",
+    "downloads": {
+        "apk": "https://4br.me/BaixarHorizonGames",
+        "data": "https://4br.me/BaixarHorizonGames",
+        "obb": "https://4br.me/BaixarHorizonGames"
+    },
+    "guia_link": "https://4br.me/BaixarGuiaHorizonGames",
+    "tutorial": "#",
+    "especificacoes": {
+        "versao": "1.0",
+        "tamanho": "64.32M",
+        "android": "4.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": false,
+        "emQuente": true,
+        "emAplicativos": false,
+        "emJogos": true,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": false
+    }
+},
+    {
     "id": "Clash Royale-1",
     "nome": "Clash Royale Baú da Sorte 1",
     "tipo": "Postagem",
