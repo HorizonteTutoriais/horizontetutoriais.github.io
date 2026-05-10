@@ -13,7 +13,7 @@ const items = [
         "obb": "https://4br.me/BaixarHorizonGames"
     },
     "guia_link": "https://4br.me/BaixarGuiaHorizonGames",
-    "tutorial": "#",
+    "tutorial": "https://www.youtube.com/embed/pePdYFsxomc?autoplay=1&loop=1&playlist=pePdYFsxomc",
     "especificacoes": {
         "versao": "1.0",
         "tamanho": "64.32M",
