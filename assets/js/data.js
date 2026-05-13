@@ -4,7 +4,7 @@ const items = [
     "nome": "Horizon Games",
     "tipo": "Jogo",
     "descricao": "Horizon Games: baixe e jogue com um dos melhores apps offline! 🎮📲✨",
-    "imagem": "https://i.postimg.cc/VLdCQpZN/Horizon-Games.png",
+    "imagem": "https://i.postimg.cc/7h3JnGJ2/Horizon-Games.png",
     "data": "2026-05-08",
     "download": "#",
     "downloads": {
