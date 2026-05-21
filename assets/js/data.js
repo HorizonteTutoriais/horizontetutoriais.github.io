@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "emoji princesa evoluída-1",
+    "nome": "Resgatar Emoj da Princesa Evo",
+    "tipo": "Postagem",
+    "descricao": "✨👑 Como Resgatar o Novo Emoji da Princesa Evoluída Via link 🌟💎",
+    "imagem": "https://i.postimg.cc/4y4DVR4F/In-Shot-20260521-143038751.jpg",
+    "data": "2026-05-21",
+    "download": "https://bit.ly/4dTNIFx?r=qr",
+    "downloads": null,
+    "guia_link": "https://www.mediafire.com/file/afurx0z72da6hds/BaixarGuiaEmojEvoPrincesa.md/file",
+    "tutorial": "https://www.youtube.com/embed/kJvaEydFokQ?autoplay=1&loop=1&playlist=kJvaEydFokQ",
+    "especificacoes": {
+        "versao": "não se aplica",
+        "tamanho": "não se aplica",
+        "android": "qualquer Android com o navegador atualizado",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": false,
+        "emJogos": true,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": true
+    }
+},
+    {
     "id": "HorizonVPN-1",
     "nome": "Horizon VPN",
     "tipo": "Ferramenta",
