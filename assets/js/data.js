@@ -1,5 +1,61 @@
 const items = [
     {
+    "id": "HorizonTV2-1",
+    "nome": "HorizonTV2",
+    "tipo": "Aplicativo",
+    "descricao": "⬇️ Baixe: HorizonTV2 📺🍿 e desfrute de um dos melhores apps para canais, séries, e filmes 🍿📲 com Dawload⚡e grátis🌟.",
+    "imagem": "https://i.postimg.cc/2yHNq8kY/In-Shot-20260525-155100273.png",
+    "data": "2026-05-30",
+    "download": "https://4br.me/BaixarHorizonTV2Apk",
+    "downloads": null,
+    "guia_link": "https://4br.me/BaixarCuiaHorizonTV2",
+    "tutorial": "https://www.youtube.com/embed/vxLkKCIJiUc?autoplay=1&loop=1&playlist=vxLkKCIJiUc",
+    "especificacoes": {
+        "versao": "1.0",
+        "tamanho": "30.49M",
+        "android": "5.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": true,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": false
+    }
+},
+    {
+    "id": "Horizon Enviar Arquivos-1",
+    "nome": "Horizon Enviar Arquivos",
+    "tipo": "Ferramenta",
+    "descricao": "🫶💜 Link Direto Para Inscritos🎈✨  📡 Baixar: Horizon Enviar Arquivos. Envie arquivos do celular para TVS e dispositivos, rapido e facil⚡📂",
+    "imagem": "https://i.postimg.cc/nrsnX4t9/In-Shot-20260521-053116498.png",
+    "data": "2026-05-28",
+    "download": "https://www.mediafire.com/file/7etxsew7j342anp/Horizon_Enviar_Arquivos_1.0.apk/file",
+    "downloads": null,
+    "guia_link": "https://4br.me/GuiaHorizonEnviarArquivo",
+    "tutorial": "https://www.youtube.com/embed/R_MJ5tYau1o?autoplay=1&loop=1&playlist=R_MJ5tYau1o",
+    "especificacoes": {
+        "versao": "1.0",
+        "tamanho": "30.49M",
+        "android": "5.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": false,
+        "emPopulares": false,
+        "emQuente": false,
+        "emAplicativos": false,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": true,
+        "emPostagens": false
+    }
+},
+    {
     "id": "emoji princesa evoluída-1",
     "nome": "Resgatar Emoj da Princesa Evo",
     "tipo": "Postagem",
@@ -40,7 +96,7 @@ const items = [
     "tutorial": "https://www.youtube.com/embed/3DFKZ7m8L3o?autoplay=1&loop=1&playlist=3DFKZ7m8L3o",
     "especificacoes": {
         "versao": "1.0",
-        "tamanho": "1.0   49.30M",
+        "tamanho": "49.30M",
         "android": "4.0",
         "desenvolvedora": "Horizonte Tutoriais"
     },
@@ -288,7 +344,7 @@ const items = [
     "nome": "Playhop",
     "tipo": "Postagem",
     "descricao": "desfrute do melhor site de jogos online grátis.",
-    "imagem": "https://i.postimg.cc/KcDK5qhQ/Screenshot_20260327_214145.png",
+    "imagem": "https://i.postimg.cc/8z9FKf4W/In-Shot-20260521-192328079.jpg",
     "data": "2026-03-31",
     "download": "https://playhop.com/pt",
     "downloads": null,
