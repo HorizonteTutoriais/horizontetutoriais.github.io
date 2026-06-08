@@ -6,7 +6,7 @@ const items = [
     "descricao": "⬇️ Baixe: HorizonTV2 📺🍿 e desfrute de um dos melhores apps para canais, séries, e filmes 🍿📲 com Dawload⚡e grátis🌟.",
     "imagem": "https://i.postimg.cc/2yHNq8kY/In-Shot-20260525-155100273.png",
     "data": "2026-05-30",
-    "download": "https://4br.me/BaixarHorizonTV2Apk",
+    "download": "https://4br.me/BaixarHorizonTv2",
     "downloads": null,
     "guia_link": "https://4br.me/BaixarCuiaHorizonTV2",
     "tutorial": "https://www.youtube.com/embed/vxLkKCIJiUc?autoplay=1&loop=1&playlist=vxLkKCIJiUc",
