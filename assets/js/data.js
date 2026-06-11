@@ -1,5 +1,37 @@
 const items = [
     {
+    "id": "HorizonGames2-1",
+    "nome": "HorizonGames2",
+    "tipo": "Jogo",
+    "descricao": "⬇️ Baixe agora e divirta-se com o HorizonGames2! 🔥🚀🕹️ Emulador embutido no aplicativo📶 Diversos títulos podem ser aproveitados offline após o download🎮 Funciona com gamepad💫 Jogos de PlayStation 2📹 Confira o vídeo tutorial para ver como é o aplicativo.!",
+    "imagem": "https://i.postimg.cc/qqBH9W5m/Horizon-Games2.png",
+    "data": "2026-06-11",
+    "download": "#",
+    "downloads": {
+        "apk": "https://4br.me/BaixarHorizonGames2APK",
+        "data": "https://4br.me/BaixarHorizonGames2APK",
+        "obb": "https://4br.me/BaixarHorizonGames2APK"
+    },
+    "guia_link": "https://4br.me/BaixarGuiaHorizonGames2",
+    "tutorial": "#",
+    "especificacoes": {
+        "versao": "2.0",
+        "tamanho": "68.48M",
+        "android": "5.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": false,
+        "emJogos": true,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": false
+    }
+},
+    {
     "id": "HorizonTV2-1",
     "nome": "HorizonTV2",
     "tipo": "Aplicativo",
