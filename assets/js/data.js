@@ -13,7 +13,7 @@ const items = [
         "obb": "https://4br.me/BaixarHorizonGames2APK"
     },
     "guia_link": "https://4br.me/BaixarGuiaHorizonGames2",
-    "tutorial": "#",
+    "tutorial": "https://www.youtube.com/embed/l0SE98ZtLYU?autoplay=1&loop=1&playlist=l0SE98ZtLYU",
     "especificacoes": {
         "versao": "2.0",
         "tamanho": "68.48M",
