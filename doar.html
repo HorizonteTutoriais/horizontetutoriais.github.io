@@ -1,1 +1,43 @@
-
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apoie o Projeto Horizon</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .container { background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); max-width: 500px; width: 100%; padding: 40px; text-align: center; }
+        .icon { font-size: 60px; margin-bottom: 15px; }
+        h1 { color: #333; font-size: 28px; margin-bottom: 10px; }
+        .subtitle { color: #666; font-size: 16px; margin-bottom: 30px; }
+        .pix-section { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 15px; color: white; }
+        .pix-key { font-size: 16px; word-break: break-all; margin-bottom: 15px; background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; font-family: monospace; }
+        .btn { padding: 12px 20px; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; text-transform: uppercase; background: white; color: #667eea; width: 100%; }
+        .copy-feedback { margin-top: 15px; color: #155724; display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">💜</div>
+        <h1>Apoie o Projeto Horizon</h1>
+        <p class="subtitle">Sua contribuição ajuda a manter este aplicativo gratuito e sem anúncios!</p>
+        <div class="pix-section">
+            <div style="font-size: 12px; margin-bottom: 10px; opacity: 0.9;">CHAVE PIX</div>
+            <div class="pix-key" id="pixKey">horizontetutoriais@gmail.com</div>
+            <button class="btn" onclick="copiarChave()">📋 Copiar Chave Pix</button>
+        </div>
+        <div class="copy-feedback" id="feedback">✓ Chave Pix copiada com sucesso!</div>
+    </div>
+    <script>
+        function copiarChave() {
+            const pixKey = document.getElementById('pixKey').textContent;
+            navigator.clipboard.writeText(pixKey).then(() => {
+                const feedback = document.getElementById('feedback');
+                feedback.style.display = 'block';
+                setTimeout(() => { feedback.style.display = 'none'; }, 3000);
+            });
+        }
+    </script>
+</body>
+</html>
