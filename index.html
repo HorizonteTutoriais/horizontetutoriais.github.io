@@ -32,11 +32,19 @@
         <div class="search-box" style="padding: 15px; max-width: 1200px; margin: 0 auto;">
             <input type="text" id="searchInput" placeholder="🔍 Pesquisar apps ou jogos..." style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; outline: none; font-size: 16px; background: var(--bg-card); color: white;">
         </div>
-        <div class="header-container">
-            <h1 class="logo">📦 Horizonte Tutoriais</h1>
-    <a href="doar.html" class="theme-btn" style="text-decoration: none; margin-right: 10px; display: inline-flex; align-items: center; justify-content: center; width: auto; padding: 0 15px; font-size: 14px; font-weight: bold; color: white;" title="Apoiar o Projeto">🎁 Apoiar</a>
-            <button id="darkModeToggle" class="theme-btn">🌙</button>
+        <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; position: relative;">
+    
+    <!-- 1. Botão Apoiar (Fica na esquerda) -->
+    <a href="doar.html" class="theme-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; width: auto; padding: 0 15px; font-size: 14px; font-weight: bold; color: white; z-index: 2;" title="Apoiar o Projeto">🎁 Apoiar</a>
+    
+    <!-- 2. Logo (Fica centralizado no meio de tudo) -->
+    <h1 class="logo" style="position: absolute; left: 50%; transform: translateX(-50%); margin: 0; white-space: nowrap; font-size: 20px;">📦 Horizonte Tutoriais</h1>
+    
+    <!-- 3. Modo Noturno (Fica na direita) -->
+    <button id="darkModeToggle" class="theme-btn" style="z-index: 2;">🌙</button>
+
         </div>
+        
         <nav class="navbar">
             <a href="#" class="nav-item active" data-page="home">🏠 Lar</a>
             <a href="#" class="nav-item" data-page="aplicativos">📱 Aplicativos</a>
