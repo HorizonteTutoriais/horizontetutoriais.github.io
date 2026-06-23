@@ -27,19 +27,15 @@
         <a href="#" onclick="openInfoModal('isencaoModal'); return false;">Isenção de Responsabilidade</a>
         <a href="#" class="rss-btn-top" onclick="navigator.clipboard.writeText('https://horizontetutoriais.github.io/feed.xml'); alert('Link do Feed RSS copiado! Agora você pode colar no seu leitor de notícias.'); return false;"><i class="fas fa-rss"></i> RSS</a>
     </div>
-    <div class="header-container" style="display: flex; align-items: center; justify-content: space-between; width: 100%; position: relative; height: 60px; padding: 0 15px;">
-    
-    <!-- Botão Apoiar (Movido para a esquerda com margin-left negativa) -->
-    <a href="doar.html" class="theme-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; width: auto; padding: 0 10px; font-size: 14px; font-weight: bold; color: white; z-index: 2; white-space: nowrap; margin-left: -10px;" title="Apoiar o Projeto">🎁 Apoiar</a>
-    
-    <!-- Logo Centralizada -->
-    <h1 class="logo" style="position: absolute; left: 50%; transform: translateX(-50%); margin: 0; white-space: nowrap; font-size: 18px; text-align: center;">📦 Horizonte Tutoriais</h1>
-    
-    <!-- Modo Noturno (Mantido no lugar original) -->
-    <button id="darkModeToggle" class="theme-btn" style="z-index: 2;">🌙</button>
 
-    </div>
-    
+    <header class="header">
+        <div class="search-box" style="padding: 15px; max-width: 1200px; margin: 0 auto;">
+            <input type="text" id="searchInput" placeholder="🔍 Pesquisar apps ou jogos..." style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; outline: none; font-size: 16px; background: var(--bg-card); color: white;">
+        </div>
+        <div class="header-container">
+            <h1 class="logo">📦 Horizonte Tutoriais</h1>
+            <button id="darkModeToggle" class="theme-btn">🌙</button>
+        </div>
         <nav class="navbar">
             <a href="#" class="nav-item active" data-page="home">🏠 Lar</a>
             <a href="#" class="nav-item" data-page="aplicativos">📱 Aplicativos</a>
@@ -50,12 +46,14 @@
             <a href="#" class="nav-item" data-page="quente">🔥 Quente</a>
         </nav>
     </header>
+
     <!-- LETREIRO DE NOTÍCIAS -->
     <div class="news-feed" id="newsFeed">
         <div class="news-ticker">
             <p id="newsText">Bem-vindo ao seu site Horizonte Tutoriais, a sua fonte definitiva de aplicativos, jogos e tutoriais.</p>
         </div>
     </div>
+
     <main class="container">
         <div class="main-content">
             <section id="homeSections">
@@ -99,6 +97,7 @@
 </div>
         </aside>
     </main>
+
     <!-- RODAPÉ (FOOTER) -->
     <footer class="footer">
         <div class="footer-container">
@@ -111,9 +110,8 @@
                     <a href="https://www.facebook.com/share/18J1CStDy4/" target="_blank"><i class="fab fa-facebook"></i></a>
                 </div>
             </div>
-            <div class="footer-col">                
+            <div class="footer-col">
     <h3>LINKS RÁPIDOS</h3>
-                <a href="doar.html" class="theme-btn" style="text-decoration: none; margin-right: 10px; display: inline-flex; align-items: center; justify-content: center; width: auto; padding: 0 15px; font-size: 14px; font-weight: bold; color: white;" title="Apoiar o Projeto">🎁 Apoiar</a>
     <ul class="footer-links">
         <li><a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Início</a></li>
         <li><a href="#" onclick="document.querySelector('[data-page=\'aplicativos\']').click(); return false;">Aplicativos</a></li>
@@ -228,3 +226,4 @@
     </div>
 </body>
                                                                                                                                 </html>                                                                                                                                </html>
+        
