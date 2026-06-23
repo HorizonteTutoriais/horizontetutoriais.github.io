@@ -3,148 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apoie o Projeto Horizonte Tutoriais</title>
+    <title>Apoie o Projeto Horizon</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-            min-height: 100vh; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            padding: 20px; 
-            color: white;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .container { background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); max-width: 450px; width: 100%; padding: 40px; text-align: center; }
         
-        .main-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 500px; /* Limita o tamanho no computador */
-            text-align: center;
-        }
-        
-        /* Coração Responsivo */
-        .icon { 
-            font-size: 120px; 
-            margin-bottom: 20px; 
-            display: inline-block; 
-            animation: pulse 1.5s infinite; 
-        }
+        /* Coração Pulsando */
+        .icon { font-size: 60px; margin-bottom: 15px; display: inline-block; animation: pulse 1.5s infinite; }
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.2); }
             100% { transform: scale(1); }
         }
 
-        /* Títulos que se adaptam ao tamanho da tela */
-        h1 { 
-            font-size: clamp(24px, 8vw, 36px); 
-            margin-bottom: 10px; 
-            font-weight: 900; 
-            line-height: 1.1;
-        }
-        .subtitle { 
-            font-size: clamp(16px, 4vw, 20px); 
-            margin-bottom: 30px; 
-            line-height: 1.4; 
-            opacity: 0.9;
-        }
+        h1 { color: #333; font-size: 26px; margin-bottom: 10px; }
+        .subtitle { color: #666; font-size: 15px; margin-bottom: 30px; line-height: 1.5; }
         
-        /* Caixa do Pix Responsiva */
-        .pix-box { 
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 2px dashed rgba(255, 255, 255, 0.5); 
-            padding: 20px; 
-            border-radius: 25px; 
-            width: 100%; 
-            margin-bottom: 30px;
-        }
-        .pix-label {
-            font-size: 14px; 
-            margin-bottom: 10px; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            letter-spacing: 2px;
-        }
-        .pix-key { 
-            font-size: clamp(14px, 4vw, 18px); 
-            font-weight: bold; 
-            word-break: break-all; 
-            margin-bottom: 20px; 
-            font-family: monospace;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 15px;
-            border-radius: 12px;
-        }
+        .pix-box { background: #f8f9fa; border: 2px dashed #667eea; padding: 20px; border-radius: 15px; margin-bottom: 20px; }
+        .pix-key { font-size: 14px; color: #333; font-weight: bold; word-break: break-all; margin-bottom: 15px; font-family: monospace; }
         
-        /* Botão que cabe no celular */
-        .btn { 
-            background: #ffffff; 
-            color: #667eea; 
-            border: none; 
-            padding: 18px; 
-            width: 100%; 
-            border-radius: 15px; 
-            font-weight: 900; 
-            cursor: pointer; 
-            text-transform: uppercase; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 10px; 
-            font-size: clamp(14px, 4vw, 18px); 
-        }
+        .btn { background: #667eea; color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s; text-transform: uppercase; margin-bottom: 10px; }
+        .btn:hover { background: #764ba2; }
         
-        /* QR Code que nunca transborda */
-        .qr-section { width: 100%; }
-        .qr-label { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
-        .qr-code { 
-            width: min(300px, 80vw); /* Usa 300px ou 80% da largura da tela, o que for menor */
-            height: min(300px, 80vw); 
-            margin: 0 auto; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            border: 4px solid white;
-            padding: 10px;
-            border-radius: 20px;
-            background: white;
-        }
-        .qr-code img { width: 100%; height: 100%; }
+        .qr-section { margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; }
+        .qr-code { width: 180px; height: 180px; margin: 10px auto; background: #eee; display: flex; align-items: center; justify-content: center; border-radius: 10px; }
         
-        .copy-feedback { font-weight: bold; margin-top: 15px; font-size: 16px; display: none; }
-
-        /* Ajustes específicos para telas muito pequenas */
-        @media (max-height: 600px) {
-            .icon { font-size: 80px; }
-            h1 { font-size: 20px; }
-            .subtitle { margin-bottom: 15px; }
-            .pix-box { margin-bottom: 15px; }
-        }
+        .copy-feedback { color: #28a745; font-weight: bold; margin-top: 10px; display: none; }
     </style>
 </head>
 <body>
-    <div class="main-container">
+    <div class="container">
         <div class="icon">💜</div>
-
-        <h1>Apoie o Projeto Horizonte Tutoriais</h1>
-        <p class="subtitle">Sua ajuda nos mantém gratuitos!</p>
+        <h1>Apoie o Projeto Horizon</h1>
+        <p class="subtitle">Sua ajuda é fundamental para continuarmos desenvolvendo ferramentas gratuitas!</p>
         
         <div class="pix-box">
-            <p class="pix-label">Chave Pix (E-mail)</p>
+            <p style="font-size: 12px; color: #667eea; margin-bottom: 10px; font-weight: bold;">CHAVE PIX (E-MAIL)</p>
             <div class="pix-key" id="pixKey">horizontetutoriais@gmail.com</div>
-            <button class="btn" onclick="copiarChave()">📋 COPIAR CHAVE PIX</button>
-            <div class="copy-feedback" id="feedback">✓ Copiado!</div>
+            <button class="btn" onclick="copiarChave()">📋 Copiar Chave Pix</button>
+            <div class="copy-feedback" id="feedback">✓ Copiado! Agora cole no seu banco.</div>
         </div>
 
         <div class="qr-section">
-            <p class="qr-label">Ou escaneie o QR Code:</p>
+            <p style="font-size: 14px; color: #666; margin-bottom: 10px;">Ou escaneie o QR Code:</p>
             <div class="qr-code">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=horizontetutoriais@gmail.com" alt="QR Code Pix">
+                <!-- Gerador de QR Code Simples -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=horizontetutoriais@gmail.com" alt="QR Code Pix">
             </div>
         </div>
     </div>
