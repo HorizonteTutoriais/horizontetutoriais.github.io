@@ -13,74 +13,71 @@
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            padding: 30px 20px; 
+            justify-content: space-around; /* Espalha os elementos verticalmente */
+            padding: 40px 20px; 
             color: #333;
         }
         
-        /* Coração Muito Maior e Pulsante */
+        /* Coração Gigante e Pulsante */
         .icon { 
-            font-size: 150px; 
-            margin-top: 10px; 
-            margin-bottom: 20px; 
+            font-size: 180px; /* Aumentado de 150px para 180px */
             display: inline-block; 
             animation: pulse 1.5s infinite; 
             color: #7b61ff; 
         }
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
+            50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
 
         /* Títulos Maiores */
+        .text-section { text-align: center; width: 100%; }
         h1 { 
             color: #333; 
-            font-size: 32px; 
-            margin-bottom: 15px; 
-            text-align: center; 
+            font-size: 36px; 
+            margin-bottom: 10px; 
             font-weight: 800; 
-            line-height: 1.2;
+            line-height: 1.1;
         }
         .subtitle { 
             color: #666; 
-            font-size: 18px; 
-            margin-bottom: 40px; 
-            line-height: 1.5; 
-            text-align: center; 
+            font-size: 20px; 
+            line-height: 1.4; 
             max-width: 90%; 
+            margin: 0 auto;
         }
         
-        /* Área do Pix Ampliada */
+        /* Área do Pix Super Ampliada */
         .pix-box { 
-            border: 3px dashed #7b61ff; 
-            padding: 30px; 
-            border-radius: 20px; 
-            margin-bottom: 40px; 
+            border: 4px dashed #7b61ff; 
+            padding: 35px; 
+            border-radius: 25px; 
             width: 100%; 
-            max-width: 500px; 
+            max-width: 550px; 
             text-align: center; 
             background: #fdfdff; 
         }
         .pix-key { 
-            font-size: 18px; 
+            font-size: 20px; 
             color: #333; 
             font-weight: bold; 
             word-break: break-all; 
-            margin-bottom: 25px; 
+            margin-bottom: 30px; 
             font-family: monospace;
-            background: #eee;
-            padding: 10px;
-            border-radius: 8px;
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 12px;
         }
         
-        /* Botão Grande */
+        /* Botão Super Grande */
         .btn { 
             background: #667eea; 
             color: white; 
             border: none; 
-            padding: 22px; 
+            padding: 25px; 
             width: 100%; 
-            border-radius: 15px; 
+            border-radius: 20px; 
             font-weight: 900; 
             cursor: pointer; 
             transition: 0.3s; 
@@ -88,49 +85,56 @@
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            gap: 12px; 
-            font-size: 18px; 
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            gap: 15px; 
+            font-size: 22px; 
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
         }
         
-        /* QR Code Gigante */
+        /* QR Code Enorme */
         .qr-section { 
-            margin-top: 10px; 
             text-align: center; 
             width: 100%; 
         }
         .qr-code { 
-            width: 300px; 
-            height: 300px; 
-            margin: 20px auto; 
+            width: 350px; /* Aumentado de 300px para 350px */
+            height: 350px; 
+            margin: 15px auto; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            border: 1px solid #eee;
-            padding: 10px;
-            border-radius: 15px;
+            border: 2px solid #eee;
+            padding: 15px;
+            border-radius: 20px;
+            background: white;
         }
         .qr-code img { width: 100%; height: 100%; }
         
-        .copy-feedback { color: #28a745; font-weight: bold; margin-top: 20px; font-size: 18px; display: none; }
+        .copy-feedback { color: #28a745; font-weight: bold; margin-top: 15px; font-size: 20px; display: none; }
     </style>
 </head>
 <body>
+    <!-- Seção do Coração -->
     <div class="icon">💜</div>
-    <h1>Apoie o Projeto Horizonte Tutoriais</h1>
-    <p class="subtitle">Sua ajuda é fundamental para continuarmos desenvolvendo ferramentas gratuitas!</p>
+
+    <!-- Seção de Texto -->
+    <div class="text-section">
+        <h1>Apoie o Projeto Horizonte Tutoriais</h1>
+        <p class="subtitle">Sua ajuda é fundamental para continuarmos crescendo!</p>
+    </div>
     
+    <!-- Seção do Pix -->
     <div class="pix-box">
-        <p style="font-size: 14px; color: #7b61ff; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Chave Pix (E-mail)</p>
+        <p style="font-size: 16px; color: #7b61ff; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px;">Chave Pix (E-mail)</p>
         <div class="pix-key" id="pixKey">horizontetutoriais@gmail.com</div>
         <button class="btn" onclick="copiarChave()">📋 COPIAR CHAVE PIX</button>
         <div class="copy-feedback" id="feedback">✓ Chave Copiada!</div>
     </div>
 
+    <!-- Seção do QR Code -->
     <div class="qr-section">
-        <p style="font-size: 18px; color: #666; margin-bottom: 10px; font-weight: bold;">Ou escaneie o QR Code:</p>
+        <p style="font-size: 20px; color: #666; font-weight: bold;">Ou escaneie o QR Code:</p>
         <div class="qr-code">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=horizontetutoriais@gmail.com" alt="QR Code Pix">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=horizontetutoriais@gmail.com" alt="QR Code Pix">
         </div>
     </div>
 
