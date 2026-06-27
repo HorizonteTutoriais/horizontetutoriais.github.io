@@ -1,33 +1,5 @@
 const items = [
     {
-    "id": "emote goblin cartao-1",
-    "nome": "Clash Royale",
-    "tipo": "Postagem",
-    "descricao": "🎁🟥 Como Resgatar o Emoji do Goblin Dando Cartão Vermelho!",
-    "imagem": "https://i.postimg.cc/ZKxhsxZj/In-Shot-20260627-182042032.jpg",
-    "data": "2026-06-27",
-    "download": "store.supercell.com",
-    "downloads": null,
-    "guia_link": "https://4br.me/BaixarGuiaResgatarEmoj",
-    "tutorial": "https://www.youtube.com/embed/5Np7-xyPnjo?autoplay=1&loop=1&playlist=5Np7-xyPnjo",
-    "especificacoes": {
-        "versao": "não se aplica",
-        "tamanho": "não se aplica",
-        "android": "qualquer Android com o navegador atualizado!",
-        "desenvolvedora": "Horizonte Tutoriais"
-    },
-    "exibir": {
-        "emDestaques": false,
-        "emPopulares": false,
-        "emQuente": false,
-        "emAplicativos": false,
-        "emJogos": true,
-        "emTutoriais": true,
-        "emFerramentas": false,
-        "emPostagens": true
-    }
-},
-    {
     "id": "HorizonGames2-1",
     "nome": "HorizonGames2",
     "tipo": "Jogo",
