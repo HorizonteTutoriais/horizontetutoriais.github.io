@@ -6,7 +6,7 @@ const items = [
     "descricao": "🎁🟥 Como Resgatar o Emoji do Goblin Dando Cartão Vermelho!",
     "imagem": "https://i.postimg.cc/ZKxhsxZj/In-Shot-20260627-182042032.jpg",
     "data": "2026-06-27",
-    "download": "store.supercell.com",
+    "download": "https://store.supercell.com",
     "downloads": null,
     "guia_link": "https://4br.me/BaixarGuiaResgatarEmoj",
     "tutorial": "https://www.youtube.com/embed/5Np7-xyPnjo?autoplay=1&loop=1&playlist=5Np7-xyPnjo",
