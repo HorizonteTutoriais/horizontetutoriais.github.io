@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "horizon tela-1",
+    "nome": "Horizon Tela Ligada 1",
+    "tipo": "Aplicativo",
+    "descricao": "📱 Mantenha a tela do seu celular sempre ligada de forma eficiente.⚡ E automática, funcionando mesmo após reiniciar o aparelho. 🚀 Leve, fácil de usar e 100% gratuito. 🔋✨",
+    "imagem": "https://i.postimg.cc/XqZhxn26/In-Shot-20260627-162727150.png",
+    "data": "2026-06-28",
+    "download": "https://4br.me/BaixarHorizonTelaLigada1",
+    "downloads": null,
+    "guia_link": "https://4br.me/BaixarGuiaHorizonTelaLigada",
+    "tutorial": "#",
+    "especificacoes": {
+        "versao": "1.0",
+        "tamanho": "7.03M",
+        "android": "5.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": false,
+        "emQuente": false,
+        "emAplicativos": true,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": false
+    }
+},
+    {
     "id": "emote goblin cartao-1",
     "nome": "Clash Royale",
     "tipo": "Postagem",
