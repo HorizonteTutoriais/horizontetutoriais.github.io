@@ -9,7 +9,7 @@ const items = [
     "download": "https://store.supercell.com",
     "downloads": null,
     "guia_link": "https://4br.me/BaixarGuiaResgatarEmoj",
-    "tutorial": "https://www.youtube.com/embed/5Np7-xyPnjo?autoplay=1&loop=1&playlist=5Np7-xyPnjo",
+    "tutorial": "https://www.youtube.com/embed/7509613nte8?autoplay=1&loop=1&playlist=7509613nte8",
     "especificacoes": {
         "versao": "não se aplica",
         "tamanho": "não se aplica",
