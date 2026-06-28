@@ -8,7 +8,7 @@ const items = [
     "data": "2026-06-28",
     "download": "https://4br.me/BaixarHorizonTelaLigada1",
     "downloads": null,
-    "guia_link": "https://4br.me/BaixarGuiaHorizonTelaLigada",
+    "guia_link": "https://4br.me/BaixarGuiaHorizonTela",
     "tutorial": "#",
     "especificacoes": {
         "versao": "1.0",
