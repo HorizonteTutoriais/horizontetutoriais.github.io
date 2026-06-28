@@ -8,8 +8,8 @@ const items = [
     "data": "2026-06-28",
     "download": "https://4br.me/BaixarHorizonTelaLigada1",
     "downloads": null,
-    "guia_link": "https://4br.me/BaixarGuiaHorizonTela",
-    "tutorial": "#",
+    "guia_link": "https://4br.me/BaixarGuiaHorizonTela5",
+    "tutorial": "https://www.youtube.com/embed/WhXIGWKviSo?autoplay=1&loop=1&playlist=WhXIGWKviSo",
     "especificacoes": {
         "versao": "1.0",
         "tamanho": "7.03M",
