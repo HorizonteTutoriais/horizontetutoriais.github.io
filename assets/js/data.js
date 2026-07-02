@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "horizontv3-1",
+    "nome": "📺 Horizon TV 3",
+    "tipo": "Aplicativo",
+    "descricao": "📺 Horizon TV 3 com canais fechados 100% gratuitos, compatível com celulares, tablets, TV Box e Smart TVs. Receba notificações inteligentes com alertas do seu esporte favorito. ⚽🔔",
+    "imagem": "https://i.postimg.cc/wMxFPMDv/In-Shot-20260701-230332053.png",
+    "data": "2026-07-02",
+    "download": "https://4br.me/BaixarHorizonTV3",
+    "downloads": null,
+    "guia_link": "https://4br.me/BaixarGuiaHorizonTV3",
+    "tutorial": "#",
+    "especificacoes": {
+        "versao": "3.0",
+        "tamanho": "30.33M",
+        "android": "5.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": true,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": false
+    }
+},
+    {
     "id": "horizon tela-1",
     "nome": "Horizon Tela Ligada 1",
     "tipo": "Aplicativo",
