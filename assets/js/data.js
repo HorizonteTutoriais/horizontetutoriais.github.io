@@ -6,7 +6,7 @@ const items = [
     "descricao": "📺 Horizon TV 3 com canais fechados 100% gratuitos, compatível com celulares, tablets, TV Box e Smart TVs. Receba notificações inteligentes com alertas do seu esporte favorito. ⚽🔔",
     "imagem": "https://i.postimg.cc/wMxFPMDv/In-Shot-20260701-230332053.png",
     "data": "2026-07-02",
-    "download": "https://4br.me/BaixarHorizonTV3",
+    "download": "https://4br.me/BaixarHorizonTv3",
     "downloads": null,
     "guia_link": "https://4br.me/BaixarGuiaHorizonTV3",
     "tutorial": "#",
