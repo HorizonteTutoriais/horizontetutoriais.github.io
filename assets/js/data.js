@@ -9,7 +9,7 @@ const items = [
     "download": "https://4br.me/BaixarHorizontv3",
     "downloads": null,
     "guia_link": "https://4br.me/BaixarGuiaHorizonTV3",
-    "tutorial": "https://www.youtube.com/embed/O-tKhYYBf1I?autoplay=1&loop=1&playlist=O-tKhYYBf1I",
+    "tutorial": "https://www.youtube.com/embed/UA7p2dnE3kI?autoplay=1&loop=1&playlist=UA7p2dnE3kI",
     "especificacoes": {
         "versao": "3.0",
         "tamanho": "30.33M",
