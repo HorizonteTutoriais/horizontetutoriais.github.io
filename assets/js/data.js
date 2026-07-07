@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "Horizon Cine-3",
+    "nome": "🎬 Horizon Cine 3",
+    "tipo": "Aplicativo",
+    "descricao": "🎬 Um aplicativo 100% gratuito para assistir e baixar filmes e séries, compatível com celulares Android e TV Box. Leve, rápido e fácil de usar. 🍿📥",
+    "imagem": "https://i.postimg.cc/W169KGQC/In-Shot-20260701-130500196.png",
+    "data": "2026-07-07",
+    "download": "https://4br.me/BaixarHorizonCine3",
+    "downloads": null,
+    "guia_link": "https://4br.me/BaixarGuiaHorizonCine3",
+    "tutorial": "#",
+    "especificacoes": {
+        "versao": "3.0",
+        "tamanho": "40.70M",
+        "android": "5.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": true,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": false
+    }
+},
+    {
     "id": "horizontv3-1",
     "nome": "📺 Horizon TV 3",
     "tipo": "Aplicativo",
