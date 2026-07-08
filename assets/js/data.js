@@ -9,7 +9,7 @@ const items = [
     "download": "https://4br.me/BaixarHorizonCine3",
     "downloads": null,
     "guia_link": "https://4br.me/BaixarGuiaHorizonCine3",
-    "tutorial": "#",
+    "tutorial": "https://www.youtube.com/embed/HBLDPRyJAds?autoplay=1&loop=1&playlist=HBLDPRyJAds",
     "especificacoes": {
         "versao": "3.0",
         "tamanho": "40.70M",
