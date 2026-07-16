@@ -3,7 +3,7 @@ const items = [
     "id": "MT Manager-1",
     "nome": "MT Manager",
     "tipo": "Ferramenta",
-    "descricao": "📺 Gerenciador de arquivos para extrair arquivos ZIP e instalar aplicativos APK. Leve, rápido e fácil de usar.",
+    "descricao": "📁 Gerenciador de arquivos para extrair arquivos ZIP e instalar, fácil de usar, com link direto para inscritos⚡",
     "imagem": "https://i.postimg.cc/7hd6b4R3/38428b6e4cfa1e5d459da7fcbfc10bb5.webp",
     "data": "2026-07-16",
     "download": "https://www.mediafire.com/file/uro0nnbgwv0ui86/MT+Manager_2.26.7.apk/file",
