@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "MT Manager-1",
+    "nome": "MT Manager",
+    "tipo": "Ferramenta",
+    "descricao": "📺 Gerenciador de arquivos para extrair arquivos ZIP e instalar aplicativos APK. Leve, rápido e fácil de usar.",
+    "imagem": "https://i.postimg.cc/7hd6b4R3/38428b6e4cfa1e5d459da7fcbfc10bb5.webp",
+    "data": "2026-07-16",
+    "download": "https://www.mediafire.com/file/uro0nnbgwv0ui86/MT+Manager_2.26.7.apk/file",
+    "downloads": null,
+    "guia_link": "https://4br.me/GuiaMTmanagerExtrairInstalar",
+    "tutorial": "#",
+    "especificacoes": {
+        "versao": "2.26.7",
+        "tamanho": "29.71M",
+        "android": "5.0+",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": false,
+        "emPopulares": false,
+        "emQuente": false,
+        "emAplicativos": false,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": true,
+        "emPostagens": false
+    }
+},
+    {
     "id": "Horizontv-1",
     "nome": "📺 Horizon TV 1",
     "tipo": "Aplicativo",
