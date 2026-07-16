@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "Horizontv-1",
+    "nome": "📺 Horizon TV 1",
+    "tipo": "Aplicativo",
+    "descricao": "Desfrute de 📺 canais, 🎬 filmes, 📖 séries e 🍿 animes em um App leve e totalmente grátis. Compatível com celular, 📱 TV Box e 🖥️ Android TV. 🎥 Baixe o Guia,  e assista ao tutorial para informações importantes.",
+    "imagem": "https://i.postimg.cc/bvWDHjVN/Horizon-TV-1.png",
+    "data": "2026-07-15",
+    "download": "https://4br.me/BaixarHorizonTV1ZIP",
+    "downloads": null,
+    "guia_link": "https://4br.me/BaixarGuiaHorizonTV1",
+    "tutorial": "#",
+    "especificacoes": {
+        "versao": "1.0",
+        "tamanho": "18.65M",
+        "android": "5.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": true,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": false
+    }
+},
+    {
     "id": "Horizon Cine-3",
     "nome": "🎬 Horizon Cine 3",
     "tipo": "Aplicativo",
