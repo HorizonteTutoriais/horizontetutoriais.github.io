@@ -3,7 +3,7 @@ const items = [
     "id": "Horizontv-1",
     "nome": "📺 Horizon TV 1",
     "tipo": "Aplicativo",
-    "descricao": "Desfrute de 📺 canais, 🎬 filmes, 📖 séries e 🍿 animes em um App leve e totalmente grátis. Compatível com celular, 📱 TV Box e 🖥️ Android TV. 🎥 Baixe o Guia,  e assista ao tutorial para informações importantes.",
+    "descricao": "📺 Canais, 🎬 filmes, 📖 séries e 🍿 animes totalmente grátis. Compatível com celular, 📱 TV Box e 🖥️ Android TV. 🎥 Baixe o Guia, e assista ao tutorial para Saber como descompactar.",
     "imagem": "https://i.postimg.cc/bvWDHjVN/Horizon-TV-1.png",
     "data": "2026-07-15",
     "download": "https://4br.me/BaixarHorizonTV1ZIP",
