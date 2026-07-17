@@ -37,7 +37,7 @@ const items = [
     "download": "https://4br.me/BaixarHorizonTV1ZIP",
     "downloads": null,
     "guia_link": "https://4br.me/BaixarGuiaHorizonTV1",
-    "tutorial": "#",
+    "tutorial": "https://www.youtube.com/embed/VbrwcEmuMtQ?autoplay=1&loop=1&playlist=VbrwcEmuMtQ",
     "especificacoes": {
         "versao": "1.0",
         "tamanho": "18.65M",
