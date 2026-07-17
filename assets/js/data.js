@@ -92,7 +92,7 @@ const items = [
     "data": "2026-07-02",
     "download": "https://4br.me/BaixarHorizonTV3zip",
     "downloads": null,
-    "guia_link": "https://4br.me/BaixarGuiaHorizonTV3",
+    "guia_link": "https://4br.me/BaixarGuiaHorizonTV3ZIP",
     "tutorial": "https://www.youtube.com/embed/UA7p2dnE3kI?autoplay=1&loop=1&playlist=UA7p2dnE3kI",
     "especificacoes": {
         "versao": "3.0",
@@ -120,7 +120,7 @@ const items = [
     "data": "2026-06-28",
     "download": "https://4br.me/BaixarHorizonTelaZip",
     "downloads": null,
-    "guia_link": "https://4br.me/BaixarGuiaHorizonTela1",
+    "guia_link": "https://4br.me/BaixarGuiaHorizonTelaLigadaZIP",
     "tutorial": "https://www.youtube.com/embed/WhXIGWKviSo?autoplay=1&loop=1&playlist=WhXIGWKviSo",
     "especificacoes": {
         "versao": "1.0",
