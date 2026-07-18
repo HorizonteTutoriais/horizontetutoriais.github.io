@@ -9,7 +9,7 @@ const items = [
     "download": "https://www.mediafire.com/file/uro0nnbgwv0ui86/MT+Manager_2.26.7.apk/file",
     "downloads": null,
     "guia_link": "https://4br.me/GuiaMTmanagerExtrairInstalar",
-    "tutorial": "https://www.youtube.com/embed/clqqwO4h8cI?autoplay=1&loop=1&playlist=clqqwO4h8cI",
+    "tutorial":"https://youtube.com/shorts/clqqwO4h8cI?si=UJKdVZfGXj5gVVbF",
     "especificacoes": {
         "versao": "2.26.7",
         "tamanho": "29.71M",
