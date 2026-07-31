@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "horizon-tv4",
+    "nome": "📺 Horizon TV 4",
+    "tipo": "Aplicativo",
+    "descricao": "📺 Um aplicativo gratuito para assistir canais de TV ao 🍿, com interface simples, leve e compatível com celular, TV Box, Android TV e Fire TV Stick🎁.",
+    "imagem": "https://i.postimg.cc/tgBCLJSH/In-Shot-20260731-195302712.png",
+    "data": "2026-07-31",
+    "download": "https://4br.me/BaixarHorizonTV4Zip",
+    "downloads": null,
+    "guia_link": "https://4br.me/BaixarGuiaHorizonTV4",
+    "tutorial": "#",
+    "especificacoes": {
+        "versao": "4.0",
+        "tamanho": "21.08M",
+        "android": "5.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": true,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": false
+    }
+},
+    {
     "id": "MT Manager-1",
     "nome": "MT Manager",
     "tipo": "Ferramenta",
