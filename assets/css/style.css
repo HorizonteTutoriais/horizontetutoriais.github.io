@@ -477,25 +477,6 @@ justify-content: center;                                                        
 .footer-bottom { background: rgba(0,0,0,0.2); padding: 20px; text-align: center; font-size: 13px; width: 100%; }
 .rss-feed-btn { background: #ff9800; color: white !important; padding: 5px 10px; border-radius: 4px; text-decoration: none; }
 .footer-social a { color: white; font-size: 20px; margin-right: 15px; text-decoration: none; }
-/* AJUSTE DE CORES CUSDIS - MODO CLARO/NOTURNO */
-#cusdis_thread {
-    margin-top: 20px;
-    min-height: 450px;
-    width: 100%;
-    display: block;
-}
-#cusdis_thread iframe {
-    width: 100% !important;
-    min-height: 450px !important;
-    height: 450px !important;
-    border: 0 !important;
-    display: block !important;
-    overflow: hidden;
-}
-/* Inverte as cores do iframe no modo noturno para combinar com o tema escuro */
-.dark-mode #cusdis_thread {
-    filter: invert(0.9) hue-rotate(180deg);
-}
 
 }
 /* Estilo do Botão Ver Mais */
@@ -561,24 +542,4 @@ justify-content: center;                                                        
         padding: 10px 15px;
         font-size: 12px;
     }
-}
-/* Estica o CONTEÚDO real dos comentários */
-#cusdis_thread {
-    display: flex;
-    flex-direction: column;
-    height: 825px !important; /* Força a altura da caixa */
-}
-
-#cusdis_thread iframe {
-    height: 100% !important; /* Força o conteúdo interno a ocupar toda a altura */
-    min-height: 825px !important;
-    border: none;
-}
-
-/* Garante que o quadro branco acompanhe o conteúdo */
-.sidebar-section:has(#cusdis_thread) {
-    height: auto;
-    min-height: 825px; /* Ajuste este valor para nivelar com o último card */
-    display: flex;
-    flex-direction: column;
 }

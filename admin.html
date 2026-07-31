@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Moderação - Horizonte Tutoriais</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { padding: 20px; background: #f0f2f5; color: #333; }
+        .admin-container { max-width: 900px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .header-admin { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--primary); padding-bottom: 10px; margin-bottom: 20px; }
+        .card-comentario { border: 1px solid #ddd; padding: 15px; border-radius: 10px; margin-bottom: 15px; position: relative; }
+        .card-comentario.pendente { border-left: 5px solid #ff9800; background: #fffdf9; }
+        .meta { font-size: 12px; color: #666; margin-bottom: 5px; }
+        .texto { font-size: 15px; margin-bottom: 10px; }
+        .acoes { display: flex; gap: 10px; }
+        .btn { padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 13px; }
+        .btn-aprovar { background: #28a745; color: white; }
+        .btn-excluir { background: #dc3545; color: white; }
+        .btn-responder { background: #1e5ba8; color: white; }
+        .btn-exportar { background: #333; color: white; }
+        .login-screen { text-align: center; padding: 50px; }
+        #lista-admin { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div id="admin-app">
+        <div id="login-area" class="login-screen">
+            <h1>🔒 Painel de Moderação</h1>
+            <p>Faça login com sua conta de administrador para gerenciar os comentários.</p>
+            <button id="btn-login-admin" class="btn btn-responder" style="font-size: 18px; padding: 15px 30px;">Entrar com Google</button>
+        </div>
+
+        <div id="painel-area" style="display: none;" class="admin-container">
+            <div class="header-admin">
+                <h2>Gerenciar Comentários</h2>
+                <div>
+                    <button id="btn-exportar" class="btn btn-exportar"><i class="fas fa-download"></i> Exportar JSON</button>
+                    <button id="btn-sair-admin" class="btn btn-excluir">Sair</button>
+                </div>
+            </div>
+            <div id="lista-admin">Carregando...</div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, query, orderBy, onSnapshot, doc, updateDoc, deleteDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAOr7R2x1mxjmvGb0nW3vq59yvYt5oRk-Y",
+            authDomain: "horizonte-comentarios.firebaseapp.com",
+            projectId: "horizonte-comentarios",
+            storageBucket: "horizonte-comentarios.firebasestorage.app",
+            messagingSenderId: "841275597135",
+            appId: "1:841275597135:web:a5f7b3d51d9bf72fb3a53a"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        // LISTA DE E-MAILS QUE PODEM MODERAR (Coloque o seu e-mail aqui!)
+        const ADMINS = ["seu-email@gmail.com"]; 
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Se você quiser restringir por e-mail, descomente as linhas abaixo
+                // if (!ADMINS.includes(user.email)) { alert("Acesso negado"); signOut(auth); return; }
+                document.getElementById('login-area').style.display = 'none';
+                document.getElementById('painel-area').style.display = 'block';
+                carregarComentariosAdmin();
+            } else {
+                document.getElementById('login-area').style.display = 'block';
+                document.getElementById('painel-area').style.display = 'none';
+            }
+        });
+
+        document.getElementById('btn-login-admin').onclick = () => signInWithPopup(auth, provider);
+        document.getElementById('btn-sair-admin').onclick = () => signOut(auth);
+
+        function carregarComentariosAdmin() {
+            const lista = document.getElementById('lista-admin');
+            const q = query(collection(db, "comentarios"), orderBy("data", "desc"));
+
+            onSnapshot(q, (snapshot) => {
+                lista.innerHTML = "";
+                snapshot.forEach((d) => {
+                    const dados = d.data();
+                    const id = d.id;
+                    const card = document.createElement('div');
+                    card.className = `card-comentario ${dados.aprovado ? '' : 'pendente'}`;
+                    card.innerHTML = `
+                        <div class="meta"><b>${dados.nome}</b> (${dados.email || 'Visitante'}) - ${dados.pagina}</div>
+                        <div class="texto">${dados.texto}</div>
+                        <div class="acoes">
+                            ${!dados.aprovado ? `<button class="btn btn-aprovar" onclick="aprovar('${id}')">Aprovar</button>` : ''}
+                            <button class="btn btn-responder" onclick="responder('${id}', '${dados.texto}')">Responder</button>
+                            <button class="btn btn-excluir" onclick="excluir('${id}')">Excluir</button>
+                        </div>
+                    `;
+                    lista.appendChild(card);
+                });
+            });
+        }
+
+        window.aprovar = async (id) => {
+            await updateDoc(doc(db, "comentarios", id), { aprovado: true });
+        };
+
+        window.excluir = async (id) => {
+            if(confirm("Deseja excluir este comentário?")) {
+                await deleteDoc(doc(db, "comentarios", id));
+            }
+        };
+
+        window.responder = async (id, textoOriginal) => {
+            const resposta = prompt("Escreva sua resposta para: " + textoOriginal);
+            if(resposta) {
+                await updateDoc(doc(db, "comentarios", id), { resposta: resposta, aprovado: true });
+            }
+        };
+
+        document.getElementById('btn-exportar').onclick = async () => {
+            const querySnapshot = await getDocs(collection(db, "comentarios"));
+            const dados = [];
+            querySnapshot.forEach((doc) => dados.push({ id: doc.id, ...doc.data() }));
+            
+            const blob = new Blob([JSON.stringify(dados, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'comentarios_export.json';
+            a.click();
+        };
+    </script>
+</body>
+</html>

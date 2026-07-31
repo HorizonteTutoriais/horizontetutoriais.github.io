@@ -1,0 +1,156 @@
+/* Estilo da Seção de Comentários - Horizonte Tutoriais */
+:root {
+    --coment-bg: #ffffff;
+    --coment-text: #333333;
+    --coment-border: #dddddd;
+    --coment-input-bg: #f9f9f9;
+    --coment-accent: #1e5ba8; /* Azul do site */
+    --coment-orange: #ff9800; /* Laranja do site */
+}
+
+.dark-mode {
+    --coment-bg: #1e1e1e;
+    --coment-text: #e0e0e0;
+    --coment-border: #333333;
+    --coment-input-bg: #2a2a2a;
+}
+
+#secao-comentarios {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 100%;
+    margin: 20px 0;
+    color: var(--coment-text);
+
+    /* NOVA LÓGICA DE ALTURA E ROLAGEM */
+    height: 890px; /* Altura fixa para a seção de comentários */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Esconde o overflow da própria seção */
+    border: 1px solid var(--coment-border);
+    border-radius: 8px;
+    background: var(--coment-bg);
+}
+
+.coment-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--coment-accent);
+    padding-bottom: 5px;
+}
+
+.coment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.coment-row {
+    display: flex;
+    gap: 10px;
+}
+
+.coment-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--coment-border);
+    border-radius: 8px;
+    background: var(--coment-input-bg);
+    color: var(--coment-text);
+    font-size: 14px;
+}
+
+.coment-textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.coment-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-comentar {
+    background: var(--coment-accent);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-comentar:hover {
+    background: var(--coment-orange);
+}
+
+.btn-visitante {
+    background: transparent;
+    border: 1px solid var(--coment-accent);
+    color: var(--coment-accent);
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.lista-comentarios {
+    flex-grow: 1; /* Faz a lista de comentários ocupar o espaço restante */
+    overflow-y: auto; /* Adiciona rolagem interna APENAS à lista de comentários */
+    padding-right: 10px; /* Espaço para a barra de rolagem */
+    margin-top: 0; /* Ajustado para não ter margem superior extra */
+    padding-top: 10px; /* Adiciona um pouco de padding interno */
+}
+
+.item-comentario {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--coment-border);
+}
+
+.item-comentario:last-child {
+    border-bottom: none;
+}
+
+.coment-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.coment-autor {
+    font-weight: bold;
+    color: var(--coment-accent);
+}
+
+.coment-texto {
+    font-size: 14px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+}
+
+.coment-resposta {
+    margin-left: 20px;
+    margin-top: 10px;
+    padding-left: 10px;
+    border-left: 2px solid var(--coment-orange);
+    background: rgba(255, 152, 0, 0.05);
+}
+
+.msg-status {
+    font-size: 12px;
+    margin-top: 5px;
+    color: var(--coment-orange);
+}
+
+/* Esconder elementos se o modo visitante estiver desativado */
+.modo-login-only .btn-visitante, 
+.modo-login-only .input-visitante {
+    display: none;
+}
