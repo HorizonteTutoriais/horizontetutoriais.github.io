@@ -64,12 +64,12 @@
         const provider = new GoogleAuthProvider();
 
         // LISTA DE E-MAILS QUE PODEM MODERAR (Coloque o seu e-mail aqui!)
-        const ADMINS = ["seu-email@gmail.com"]; 
+        const ADMINS = ["drchorizonti@gmail.com"]; 
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 // Se você quiser restringir por e-mail, descomente as linhas abaixo
-                // if (!ADMINS.includes(user.email)) { alert("Acesso negado"); signOut(auth); return; }
+                if (!ADMINS.includes(user.email)) { alert("Acesso negado"); signOut(auth); return; }
                 document.getElementById('login-area').style.display = 'none';
                 document.getElementById('painel-area').style.display = 'block';
                 carregarComentariosAdmin();

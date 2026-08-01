@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /comentarios/{document=**} {
+      // Regra de leitura:
+      // - Se o usuário está logado E é o administrador, pode ler TUDO (aprovados e não aprovados).
+      // - Se não é administrador, só pode ler se o comentário estiver aprovado.
+      allow read: if (request.auth != null && request.auth.token.email == 'drchorizonti@gmail.com') || resource.data.aprovado == true;
+
+      // Permitir criação de comentários por usuários logados ou visitantes (com nome)
+      allow create: if request.auth != null || (request.resource.data.nome != null && request.resource.data.nome != '');
+
+      // Permitir atualização e exclusão APENAS para o administrador
+      allow update, delete: if request.auth != null && request.auth.token.email == 'drchorizonti@gmail.com';
+    }
+  }
+}
