@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "horizon-cine4",
+    "nome": "🎬 Horizon Cine 4",
+    "tipo": "Aplicativo",
+    "descricao": "🎬 Um aplicativo gratuito para assistir filmes, séries e animes🍿, com interface leve, rápida e compatível com Celular, TV Box, Android TV e Fire TV Stick🎁.",
+    "imagem": "https://i.postimg.cc/rpVwnx9p/In-Shot-20260731-195321780.png",
+    "data": "2026-07-31",
+    "download": "https://4br.me/BaixarHorizonCine4Zip",
+    "downloads": null,
+    "guia_link": "https://4br.me/BaixarGuia",
+    "tutorial": "#",
+    "especificacoes": {
+        "versao": "4.0",
+        "tamanho": "39.94M",
+        "android": "5.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": true,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": false
+    }
+},
+    {
     "id": "horizon-tv4",
     "nome": "📺 Horizon TV 4",
     "tipo": "Aplicativo",
