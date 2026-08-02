@@ -7,3 +7,4 @@ firestore.indexes.json
 data.jsx
 firebase/
 firebase/
+.firebase/
