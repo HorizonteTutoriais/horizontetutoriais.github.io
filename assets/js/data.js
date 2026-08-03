@@ -9,7 +9,7 @@ const items = [
     "download": "https://store.supercell.com",
     "downloads": null,
     "guia_link": "https://www.mediafire.com/file/139silgluzur3v2/🎁Guia+Emote+Super+Sayajin.md/file",
-    "tutorial": "#",
+    "tutorial": "https://www.youtube.com/embed/q1ZGPhHl1D0?autoplay=1&loop=1&playlist=q1ZGPhHl1D0",
     "especificacoes": {
         "versao": "não se aplica",
         "tamanho": "não se aplica",
