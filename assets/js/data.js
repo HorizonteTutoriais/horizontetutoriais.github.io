@@ -6,7 +6,7 @@ const items = [
     "descricao": "🎁 Resgate o novo Emote da Valquíria Super Sayajin GRÁTIS! Assista ao tutorial completo e inscreva-se no canal e no site Horizonte Tutoriais para acompanhar as próximas novidades.",
     "imagem": "https://i.postimg.cc/05FVLr9T/emote-valquiria-heroica-na-chuva-gratis-clash-royale-supercell-store-codes-pxd-Atc-768x413.jpg",
     "data": "2026-08-03",
-    "download": "store.supercell.com/clashroyale",
+    "download": "store.supercell.com/pt/",
     "downloads": null,
     "guia_link": "https://www.mediafire.com/file/139silgluzur3v2/🎁Guia+Emote+Super+Sayajin.md/file",
     "tutorial": "#",
