@@ -90,12 +90,12 @@ const items = [
     "descricao": "📁 Gerenciador de arquivos para extrair arquivos ZIP e instalar APKs, fácil de usar, com link direto para inscritos do Site.⚡Baixe o guia para + informações, e assista o tutorial de como extrair e instalar.",
     "imagem": "https://i.postimg.cc/7hd6b4R3/38428b6e4cfa1e5d459da7fcbfc10bb5.webp",
     "data": "2026-07-16",
-    "download": "https://www.mediafire.com/file/uro0nnbgwv0ui86/MT+Manager_2.26.7.apk/file",
+    "download": "https://www.mediafire.com/file/6dha2b8h657svr7/MT+Manager_2.26.8.apk/file",
     "downloads": null,
     "guia_link": "https://4br.me/GuiaMTmanagerExtrairInstalar",
     "tutorial": "https://www.youtube.com/embed/ZD392Ur_Zv8?autoplay=1&loop=1&playlist=ZD392Ur_Zv8",
     "especificacoes": {
-        "versao": "2.26.7",
+        "versao": "2.26.8",
         "tamanho": "29.71M",
         "android": "5.0+",
         "desenvolvedora": "Horizonte Tutoriais"
