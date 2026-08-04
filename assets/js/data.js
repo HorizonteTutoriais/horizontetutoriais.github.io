@@ -65,7 +65,7 @@ const items = [
     "download": "https://4br.me/BaixarHorizonTV4Zip",
     "downloads": null,
     "guia_link": "https://4br.me/BaixarGuiaHorizonTV4",
-    "tutorial": "#",
+    "tutorial": "https://www.youtube.com/embed/jKXN9cBjkJM?autoplay=1&loop=1&playlist=jKXN9cBjkJM",
     "especificacoes": {
         "versao": "4.0",
         "tamanho": "21.08M",
