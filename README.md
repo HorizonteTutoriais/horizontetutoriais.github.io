@@ -52,8 +52,12 @@ O site possui um sistema de comentários próprio, construído com **Firebase**,
 
 Gostou do Horizonte Tutoriais? Apoie nosso trabalho com uma doação!
 
-📧 **Contato:** horizontetutoriais@gmail.com
+CHAVE PIX (E-MAIL)
+ horizontetutoriais@gmail.com
 
 ---
+
+📧 **Contato:** horizontetutoriais@gmail.com
+🌐 **Site:** https://horizontetutoriais.github.io
 
 *Desenvolvido com foco em velocidade, automação e acessibilidade.*
