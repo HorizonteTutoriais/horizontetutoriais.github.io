@@ -6,7 +6,7 @@ O **Horizonte Tutoriais** é uma plataforma web de alto desempenho dedicada à d
 - **Frontend:** HTML5 Semântico, CSS3 Moderno (Variáveis e Flexbox/Grid).
 - **Inteligência:** JavaScript Vanilla (ES6+) com manipulação dinâmica de DOM.
 - **Notificações:** Integração com OneSignal SDK para alertas em tempo real.
-- **Comentários:** Sistema Cusdis com tradução automática via script.
+- **Comentários:** Sistema próprio com Firebase (Firestore + Authentication).
 - **Ícones:** Font Awesome 6.0.0.
 
 ## 🧠 Inteligência Dinâmica e Automática
@@ -26,16 +26,20 @@ O coração do site reside em sua arquitetura orientada a dados, permitindo que 
 
 ### 4. Modo Escuro (Dark Mode) Persistente
 - Sistema automático que detecta e salva a preferência do usuário no `localStorage`.
-- **Inversão Inteligente:** O sistema aplica filtros de inversão de cores inclusive em widgets externos (como o Cusdis) para manter a harmonia visual no modo noturno.
 
-## 🛠️ Funcionalidades Avançadas
+## 💬 Sistema de Comentários (Firebase)
 
-| Funcionalidade | Descrição |
-| :--- | :--- |
-| **Modais Inteligentes** | Janelas flutuantes que carregam especificações técnicas e links de download dinamicamente. |
-| **Tutorial de Inscrição** | Botão flutuante que abre um tutorial em vídeo (YouTube Shorts) com autoplay e loop configurados. |
-| **Feed RSS** | Sistema de compartilhamento de notícias via XML integrado ao rodapé. |
-| **Cusdis Traduzido** | Script customizado que traduz em tempo real os campos do sistema de comentários para o Português. |
+O site possui um sistema de comentários próprio, construído com **Firebase**, que oferece:
+
+- **Login com Google:** Opcional, para que o nome do visitante apareça automaticamente nos comentários.
+- **Aprovação prévia:** Comentários ficam invisíveis até serem aprovados pelo administrador.
+- **Painel de Moderação:** Interface exclusiva para gerenciar comentários (aprovar, excluir, responder e exportar).
+- **Restrição de acesso:** Apenas o administrador pode acessar o painel.
+
+**Tecnologias do sistema de comentários:**
+- **Firebase Firestore:** Banco de dados para armazenar os comentários.
+- **Firebase Authentication:** Controle de login e permissão de administrador.
+- **Firebase Hosting:** Hospedagem permanente do painel de moderação.
 
 ## 📁 Estrutura de Pastas
 - `/assets/css/`: Folhas de estilo (Design Responsivo e Dark Mode).
@@ -43,4 +47,13 @@ O coração do site reside em sua arquitetura orientada a dados, permitindo que 
 - `/index.html`: Estrutura principal e containers de renderização.
 
 ---
+
+## 💚 Apoie o Projeto
+
+Gostou do Horizonte Tutoriais? Apoie nosso trabalho com uma doação!
+
+📧 **Contato:** horizontetutoriais@gmail.com
+
+---
+
 *Desenvolvido com foco em velocidade, automação e acessibilidade.*
