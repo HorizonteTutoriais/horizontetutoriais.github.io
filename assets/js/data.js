@@ -37,7 +37,7 @@ const items = [
     "download": "https://4br.me/BaixarHorizonCine4Zip",
     "downloads": null,
     "guia_link": "https://4br.me/BaixarGuia",
-    "tutorial": "#",
+    "tutorial": "https://www.youtube.com/embed/XtO12HkCGl0?autoplay=1&loop=1&playlist=XtO12HkCGl0",
     "especificacoes": {
         "versao": "4.0",
         "tamanho": "39.94M",
