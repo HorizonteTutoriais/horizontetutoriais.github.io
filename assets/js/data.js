@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "📺 Horizon TV 5-1",
+    "nome": "📺 Horizon TV 5",
+    "tipo": "Aplicativo",
+    "descricao": "🍿Aplicativo leve e totalmente gratuito, compatível com Celular, TV Box e Android TV. Assista ao tutorial para aprender a baixar, extrair e instalar o APK.",
+    "imagem": "https://i.postimg.cc/kGD0mCpp/In-Shot-20260807-205942345.png",
+    "data": "2026-08-10",
+    "download": "https://4br.me/BaixarHorizonTV5apk",
+    "downloads": null,
+    "guia_link": "https://4br.me/BaixarGuia1",
+    "tutorial": "#",
+    "especificacoes": {
+        "versao": "5.0",
+        "tamanho": "26.92M",
+        "android": "5.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": false,
+        "emPopulares": false,
+        "emQuente": false,
+        "emAplicativos": true,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": false
+    }
+},
+    {
     "id": "emoj Super Sayajin-1",
     "nome": "Emote Super Sayajin",
     "tipo": "Postagem",
