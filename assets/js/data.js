@@ -9,7 +9,7 @@ const items = [
     "download": "https://4br.me/BaixarHorizonTV5apk",
     "downloads": null,
     "guia_link": "https://4br.me/BaixarGuia1",
-    "tutorial": "#",
+    "tutorial": "https://www.youtube.com/embed/_Vi3EmPVBCo?autoplay=1&loop=1&playlist=_Vi3EmPVBCo",
     "especificacoes": {
         "versao": "5.0",
         "tamanho": "26.92M",
