@@ -3,7 +3,7 @@ const items = [
     "id": "horizon cine-5",
     "nome": "🎬 Horizon Cine 5",
     "tipo": "Aplicativo",
-    "descricao": "🍿Gratuito para filmes, séries, animes. funciona na TV box, Celularar, e Andoid TV,📱📺Baixe o Guia para + informações, e assista ao tutorial para aprender a passar pelo encurtador, baixar, extrair e instalar.🎁",
+    "descricao": "🍿Gratuito para filmes, séries, animes. funciona na TV box, Celular, e Andoid TV,📱📺Baixe o Guia para + informações, e assista ao tutorial para aprender a passar pelo encurtador, baixar, extrair e instalar.🎁",
     "imagem": "https://i.postimg.cc/5tWdQwvF/In-Shot-20260812-175447122.png",
     "data": "2026-08-12",
     "download": "https://4br.me/BaixarHorizonCine5apk",
