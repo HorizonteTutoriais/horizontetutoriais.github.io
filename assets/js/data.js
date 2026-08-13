@@ -9,7 +9,7 @@ const items = [
     "download": "https://4br.me/BaixarHorizonCine5",
     "downloads": null,
     "guia_link": "https://4br.me/BaixarGuiaHorizonCine5apk",
-    "tutorial": "#",
+    "tutorial": "https://www.youtube.com/embed/m7kv0JXHoEQ?autoplay=1&loop=1&playlist=m7kv0JXHoEQ",
     "especificacoes": {
         "versao": "5.0",
         "tamanho": "17.60M",
