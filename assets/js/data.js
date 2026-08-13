@@ -6,7 +6,7 @@ const items = [
     "descricao": "🍿 Gratuito para filmes, séries e animes. Funciona em TV Box, celular e Android TV. 📺 Baixe o guia para mais informações e assista ao tutorial para aprender a extrair e instalar.",
     "imagem": "https://i.postimg.cc/5tWdQwvF/In-Shot-20260812-175447122.png",
     "data": "2026-08-12",
-    "download": "https://4br.me/BaixarHorizonCine5apk",
+    "download": "https://4br.me/BaixarHorizonCine5APK",
     "downloads": null,
     "guia_link": "https://4br.me/BaixarGuiaHorizonCine5apk",
     "tutorial": "#",
