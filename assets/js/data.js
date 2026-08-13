@@ -8,7 +8,7 @@ const items = [
     "data": "2026-08-12",
     "download": "https://4br.me/BaixarHorizonCine5apk",
     "downloads": null,
-    "guia_link": "https://4br.me/BaixarGuiaHorizonCine5",
+    "guia_link": "https://4br.me/BaixarGuiaHorizonCine5apk",
     "tutorial": "#",
     "especificacoes": {
         "versao": "5.0",
