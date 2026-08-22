@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "Horizon TV Cine-2",
+    "nome": "📺🎬 Horizon TV Cine 2",
+    "tipo": "Aplicativo",
+    "descricao": "em breve",
+    "imagem": "https://i.postimg.cc/WbJtSXVD/In-Shot-20260821-033338755.png",
+    "data": "2026-08-22",
+    "download": "https://www.mediafire.com/file/839vhk6lf6zvdg7/Horizon-TV-Cine-2-portugues-completo-interface.apk/file",
+    "downloads": null,
+    "guia_link": "https://www.mediafire.com/file/zmi7evh9cir76ig/Guia.md/file",
+    "tutorial": "#",
+    "especificacoes": {
+        "versao": "39.69M",
+        "tamanho": "39.69M",
+        "android": "5.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": true,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": false
+    }
+},
+    {
     "id": "horizon cine-5",
     "nome": "🎬 Horizon Cine 5",
     "tipo": "Aplicativo",
