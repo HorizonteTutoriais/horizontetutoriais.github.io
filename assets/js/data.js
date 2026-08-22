@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "Horizon TV Cine-1",
+    "nome": "📺🎬 Horizon TV Cine 1",
+    "tipo": "Aplicativo",
+    "descricao": "teste",
+    "imagem": "https://i.postimg.cc/CxdCCdsC/In-Shot-20260813-203735009.png",
+    "data": "2026-08-22",
+    "download": "https://www.mediafire.com/file/fe6xgjqcluxtchx/9Horizon_TV_Cine1_Generos_Sem_Transicao_Play_Direto_DynamicShare_signed.apk/file",
+    "downloads": null,
+    "guia_link": "https://www.mediafire.com/file/zmi7evh9cir76ig/Guia.md/file",
+    "tutorial": "#",
+    "especificacoes": {
+        "versao": "1.0",
+        "tamanho": "65.52M",
+        "android": "5.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": true,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": false
+    }
+},
+    {
     "id": "Horizon TV Cine-2",
     "nome": "📺🎬 Horizon TV Cine 2",
     "tipo": "Aplicativo",
