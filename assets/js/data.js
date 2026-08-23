@@ -6,12 +6,12 @@ const items = [
     "descricao": "em breve",
     "imagem": "https://i.postimg.cc/WbJtSXVD/In-Shot-20260821-033338755.png\",",
     "data": "2026-08-23",
-    "download": "\"dahttps://www.mediafire.com/file/839vhk6lf6zvdg7/Horizon-TV-Cine-2-portugues-completo-interface.apk/file",
+    "download": "https://www.mediafire.com/file/839vhk6lf6zvdg7/Horizon-TV-Cine-2-portugues-completo-interface.apk/file",
     "downloads": null,
     "guia_link": "https://www.mediafire.com/file/zmi7evh9cir76ig/Guia.md/file",
     "tutorial": "#",
     "especificacoes": {
-        "versao": "1.0",
+        "versao": "2.0",
         "tamanho": "39.69M",
         "android": "5.0",
         "desenvolvedora": "Horizonte Tutoriais"
