@@ -11,7 +11,7 @@ const items = [
     "guia_link": "https://www.mediafire.com/file/zmi7evh9cir76ig/Guia.md/file",
     "tutorial": "#",
     "especificacoes": {
-        "versao": "1.1",
+        "versao": "1.0",
         "tamanho": "65.52M",
         "android": "5.0",
         "desenvolvedora": "Horizonte Tutoriais"
@@ -39,7 +39,7 @@ const items = [
     "guia_link": "https://www.mediafire.com/file/zmi7evh9cir76ig/Guia.md/file",
     "tutorial": "#",
     "especificacoes": {
-        "versao": "2.1",
+        "versao": "2.0",
         "tamanho": "39.69M",
         "android": "5.0",
         "desenvolvedora": "Horizonte Tutoriais"
