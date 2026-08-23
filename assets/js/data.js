@@ -41,7 +41,7 @@ const items = [
     "especificacoes": {
         "versao": "2.2",
         "tamanho": "39.69M",
-        "android": "5.0",
+        "android": "5.2",
         "desenvolvedora": "Horizonte Tutoriais"
     },
     "exibir": {
