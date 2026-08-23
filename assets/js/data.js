@@ -27,35 +27,7 @@ const items = [
         "emPostagens": false
     }
 },
-    {
-    "id": "Horizon TV Cine-2",
-    "nome": "📺🎬 Horizon TV Cine 2",
-    "tipo": "Aplicativo",
-    "descricao": "em breve",
-    "imagem": "https://i.postimg.cc/WbJtSXVD/In-Shot-20260821-033338755.png",
-    "data": "2026-08-22",
-    "download": "",
-    "downloads": null,
-    "guia_link": "https://www.mediafire.com/file/zmi7evh9cir76ig/Guia.md/file",
-    "tutorial": "#",
-    "especificacoes": {
-        "versao": "2.0",
-        "tamanho": "39.69M",
-        "android": "5.0",
-        "desenvolvedora": "Horizonte Tutoriais"
-    },
-    "exibir": {
-        "emDestaques": true,
-        "emPopulares": true,
-        "emQuente": true,
-        "emAplicativos": true,
-        "emJogos": false,
-        "emTutoriais": true,
-        "emFerramentas": false,
-        "emPostagens": false
-    }
-},
-    {
+{
     "id": "horizon cine-5",
     "nome": "🎬 Horizon Cine 5",
     "tipo": "Aplicativo",
@@ -83,7 +55,7 @@ const items = [
         "emPostagens": false
     }
 },
-    {
+{
     "id": "📺 Horizon TV 5-1",
     "nome": "📺 Horizon TV 5",
     "tipo": "Aplicativo",
@@ -111,7 +83,7 @@ const items = [
         "emPostagens": false
     }
 },
-    {
+{
     "id": "emoj Super Sayajin-1",
     "nome": "Emote Super Sayajin",
     "tipo": "Postagem",
@@ -139,7 +111,7 @@ const items = [
         "emPostagens": true
     }
 },
-    {
+{
     "id": "horizon-cine4",
     "nome": "🎬 Horizon Cine 4",
     "tipo": "Aplicativo",
@@ -167,7 +139,7 @@ const items = [
         "emPostagens": false
     }
 },
-    {
+{
     "id": "horizon-tv4",
     "nome": "📺 Horizon TV 4",
     "tipo": "Aplicativo",
@@ -195,7 +167,7 @@ const items = [
         "emPostagens": false
     }
 },
-    {
+{
     "id": "MT Manager-1",
     "nome": "MT Manager",
     "tipo": "Ferramenta",
@@ -223,7 +195,7 @@ const items = [
         "emPostagens": false
     }
 },
-    {
+{
     "id": "Horizontv-1",
     "nome": "📺 Horizon TV 1",
     "tipo": "Aplicativo",
@@ -251,7 +223,7 @@ const items = [
         "emPostagens": false
     }
 },
-    {
+{
     "id": "Horizon Cine-3",
     "nome": "🎬 Horizon Cine 3",
     "tipo": "Aplicativo",
@@ -279,7 +251,7 @@ const items = [
         "emPostagens": false
     }
 },
-    {
+{
     "id": "horizontv3-1",
     "nome": "📺 Horizon TV 3",
     "tipo": "Aplicativo",
@@ -307,7 +279,7 @@ const items = [
         "emPostagens": false
     }
 },
-    {
+{
     "id": "horizon tela-1",
     "nome": "Horizon Tela Ligada 1",
     "tipo": "Aplicativo",
@@ -335,7 +307,7 @@ const items = [
         "emPostagens": false
     }
 },
-    {
+{
     "id": "emote goblin cartao-1",
     "nome": "Clash Royale",
     "tipo": "Postagem",
@@ -363,7 +335,7 @@ const items = [
         "emPostagens": true
     }
 },
-    {
+{
     "id": "HorizonGames2-1",
     "nome": "HorizonGames2",
     "tipo": "Jogo",
@@ -395,7 +367,7 @@ const items = [
         "emPostagens": false
     }
 },
-    {
+{
     "id": "HorizonTV2-1",
     "nome": "HorizonTV2",
     "tipo": "Aplicativo",
@@ -423,7 +395,7 @@ const items = [
         "emPostagens": false
     }
 },
-    {
+{
     "id": "Horizon Enviar Arquivos-1",
     "nome": "Horizon Enviar Arquivos",
     "tipo": "Ferramenta",
@@ -451,7 +423,7 @@ const items = [
         "emPostagens": false
     }
 },
-    {
+{
     "id": "emoji princesa evoluída-1",
     "nome": "Resgatar Emoj da Princesa Evo",
     "tipo": "Postagem",
@@ -479,7 +451,7 @@ const items = [
         "emPostagens": true
     }
 },
-    {
+{
     "id": "HorizonVPN-1",
     "nome": "Horizon VPN",
     "tipo": "Ferramenta",
@@ -507,7 +479,7 @@ const items = [
         "emPostagens": false
     }
 },
-    {
+{
     "id": "Horizon Games-1",
     "nome": "Horizon Games",
     "tipo": "Jogo",
