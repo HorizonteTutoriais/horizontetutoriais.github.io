@@ -286,12 +286,12 @@ const items = [
     "descricao": "📺 Com canais fechados 100% gratuitos, compatível com celulares, tablets, TV Box e Smart TVs. Receba notificações inteligentes com alertas do seu esporte favorito. ⚽🔔",
     "imagem": "https://i.postimg.cc/wMxFPMDv/In-Shot-20260701-230332053.png",
     "data": "2026-07-02",
-    "download": "https://4br.me/BaixarHorizonTV3zip",
+    "download": "https://4br.me/BaixarHorizonTV3apk",
     "downloads": null,
     "guia_link": "https://4br.me/BaixarGuiaHorizonTV3ZIP",
     "tutorial": "https://www.youtube.com/embed/UA7p2dnE3kI?autoplay=1&loop=1&playlist=UA7p2dnE3kI",
     "especificacoes": {
-        "versao": "3.0",
+        "versao": "3.1",
         "tamanho": "30.33M",
         "android": "5.0",
         "desenvolvedora": "Horizonte Tutoriais"
