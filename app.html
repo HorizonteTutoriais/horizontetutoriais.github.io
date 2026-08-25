@@ -105,13 +105,17 @@
       gap: 7px;
       min-height: 48px;
       padding: 13px 10px;
+      border: 0;
       border-radius: 10px;
       color: #fff;
+      background: transparent;
+      font: inherit;
       text-align: center;
       text-decoration: none;
       font-size: 16px;
       font-weight: 700;
       line-height: 1.15;
+      cursor: pointer;
       transition: filter .2s ease, transform .2s ease;
     }
 
@@ -139,14 +143,17 @@
       display: block;
       width: 100%;
       margin-top: 10px;
-      background: var(--app-orange);
+      border: 0;
+      border-radius: 13px;
       color: #fff;
+      background: var(--app-orange);
+      font: inherit;
       text-align: center;
       text-decoration: none;
       font-weight: 700;
       font-size: 22px;
       padding: 17px 20px;
-      border-radius: 13px;
+      cursor: pointer;
     }
 
     .download-btn:hover {
@@ -336,6 +343,7 @@
       };
       const guideUrl = validExternalUrl(item.guia_link);
       const tutorialUrl = validExternalUrl(item.tutorial);
+      const downloadUrl = validExternalUrl(item.download);
 
       document.title = item.nome + ' - Especificações técnicas';
       root.innerHTML = `
@@ -351,11 +359,19 @@
             <div class="spec-row"><span class="spec-label">Desenvolvedora:</span><span class="spec-value">${specs.desenvolvedora || 'Horizonte Tutoriais'}</span></div>
           </div>
           <div class="app-actions" aria-label="Ações adicionais">
-            <a class="app-action-btn guide-btn" href="${guideUrl}" target="_blank" rel="noopener">📁 Ver Guia</a>
+            <button class="app-action-btn guide-btn" id="guide-open-button" type="button">📁 Ver Guia</button>
             <button class="app-action-btn tutorial-btn" id="tutorial-open-button" type="button">📚 Ver Tutorial</button>
           </div>
-          <a class="download-btn" href="${item.download || '#'}" target="_blank" rel="noopener"><i class="fa-solid fa-download"></i> Download</a>
+          <button class="download-btn" id="download-open-button" type="button"><i class="fa-solid fa-download"></i> Download</button>
         </div>`;
+
+      root.querySelector('#guide-open-button').addEventListener('click', () => {
+        if (guideUrl !== '#') window.open(guideUrl, '_blank');
+      });
+
+      root.querySelector('#download-open-button').addEventListener('click', () => {
+        if (downloadUrl !== '#') window.open(downloadUrl, '_blank');
+      });
 
       root.querySelector('#tutorial-open-button').addEventListener('click', () => {
         if (tutorialUrl === '#') return;
