@@ -7,25 +7,193 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
-    :root { --app-blue:#2167b1; --app-orange:#ff9f0a; }
-    body { background:#0b0d0f; color:#222; min-height:100vh; }
-    .app-page { max-width:760px; margin:0 auto; padding:24px 16px 40px; }
-    .app-card { background:#fff; border-radius:22px; overflow:hidden; box-shadow:0 18px 55px rgba(0,0,0,.42); }
-    .app-hero { width:100%; max-height:320px; object-fit:cover; display:block; background:#f3f3f3; }
-    .app-body { padding:26px; }
-    .app-title { color:#2167b1; font-size:clamp(28px,5vw,42px); margin:0 0 12px; }
-    .app-description { font-size:18px; line-height:1.6; margin:0 0 22px; }
-    .spec-box { background:#f1f1f1; border-radius:16px; padding:20px 22px; margin:20px 0 24px; }
-    .spec-title { font-size:22px; margin:0 0 10px; }
-    .spec-row { display:flex; justify-content:space-between; gap:18px; padding:12px 0; border-bottom:1px solid #d5d5d5; font-size:17px; }
-    .spec-row:last-child { border-bottom:0; }
-    .spec-label { font-weight:700; text-transform:uppercase; }
-    .spec-value { text-align:right; }
-    .download-btn { display:block; width:100%; background:var(--app-orange); color:#fff; text-align:center; text-decoration:none; font-weight:700; font-size:22px; padding:17px 20px; border-radius:13px; }
-    .download-btn:hover { filter:brightness(1.06); }
-    .back-link { display:inline-block; color:#fff; text-decoration:none; margin-bottom:18px; font-size:17px; }
-    .not-found { color:#fff; text-align:center; padding:70px 20px; }
-    @media (max-width:520px) { .app-body { padding:20px 17px; } .app-description { font-size:16px; } .spec-row { font-size:15px; } }
+    :root {
+      --app-blue: #2167b1;
+      --app-orange: #ff9f0a;
+      --app-guide: #673ab7;
+      --app-tutorial: #1e5ba8;
+    }
+
+    body {
+      background: #0b0d0f;
+      color: #222;
+      min-height: 100vh;
+    }
+
+    .app-page {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    .app-card {
+      background: #fff;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 18px 55px rgba(0, 0, 0, .42);
+    }
+
+    .app-hero {
+      width: 100%;
+      max-height: 320px;
+      object-fit: cover;
+      display: block;
+      background: #f3f3f3;
+    }
+
+    .app-body {
+      padding: 26px;
+    }
+
+    .app-title {
+      color: var(--app-blue);
+      font-size: clamp(28px, 5vw, 42px);
+      margin: 0 0 12px;
+    }
+
+    .app-description {
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0 0 22px;
+    }
+
+    .spec-box {
+      background: #f1f1f1;
+      border-radius: 16px;
+      padding: 20px 22px;
+      margin: 20px 0 24px;
+    }
+
+    .spec-title {
+      font-size: 22px;
+      margin: 0 0 10px;
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 12px 0;
+      border-bottom: 1px solid #d5d5d5;
+      font-size: 17px;
+    }
+
+    .spec-row:last-child {
+      border-bottom: 0;
+    }
+
+    .spec-label {
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .spec-value {
+      text-align: right;
+    }
+
+    .app-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .app-action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 48px;
+      padding: 13px 10px;
+      border-radius: 10px;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.15;
+      transition: filter .2s ease, transform .2s ease;
+    }
+
+    .app-action-btn:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .app-action-btn:focus-visible,
+    .download-btn:focus-visible,
+    .back-link:focus-visible {
+      outline: 3px solid #ffd166;
+      outline-offset: 3px;
+    }
+
+    .guide-btn {
+      background: var(--app-guide);
+    }
+
+    .tutorial-btn {
+      background: var(--app-tutorial);
+    }
+
+    .download-btn {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      background: var(--app-orange);
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 22px;
+      padding: 17px 20px;
+      border-radius: 13px;
+    }
+
+    .download-btn:hover {
+      filter: brightness(1.06);
+    }
+
+    .back-link {
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 18px;
+      font-size: 17px;
+    }
+
+    .not-found {
+      color: #fff;
+      text-align: center;
+      padding: 70px 20px;
+    }
+
+    @media (max-width: 520px) {
+      .app-body {
+        padding: 20px 17px;
+      }
+
+      .app-description {
+        font-size: 16px;
+      }
+
+      .spec-row {
+        font-size: 15px;
+      }
+
+      .app-actions {
+        gap: 8px;
+      }
+
+      .app-action-btn {
+        min-height: 46px;
+        padding: 12px 7px;
+        font-size: 14px;
+      }
+
+      .download-btn {
+        font-size: 20px;
+      }
+    }
   </style>
 <script type="text/javascript" data-cfasync="false">
 /*<![CDATA[/* */
@@ -43,14 +211,25 @@
     (function () {
       const params = new URLSearchParams(window.location.search);
       const requestedId = params.get('id') || 'Horizon TV Cine-2';
-      const item = HorizonteData.getAllItems().find(entry => String(entry.id).toLowerCase() === requestedId.toLowerCase());
+      const item = HorizonteData.getAllItems().find(
+        entry => String(entry.id).toLowerCase() === requestedId.toLowerCase()
+      );
       const root = document.getElementById('app-content');
+
       if (!item) {
         root.className = 'not-found';
         root.innerHTML = '<h1>Aplicativo não encontrado</h1><p>Não foi possível localizar esta ficha técnica.</p>';
         return;
       }
+
       const specs = item.especificacoes || {};
+      const validExternalUrl = (value) => {
+        const url = String(value || '').trim();
+        return url.startsWith('https://') || url.startsWith('http://') ? url : '#';
+      };
+      const guideUrl = validExternalUrl(item.guia_link);
+      const tutorialUrl = validExternalUrl(item.tutorial);
+
       document.title = item.nome + ' - Especificações técnicas';
       root.innerHTML = `
         <img class="app-hero" src="${item.imagem || ''}" alt="${item.nome}">
@@ -64,8 +243,13 @@
             <div class="spec-row"><span class="spec-label">Android:</span><span class="spec-value">${specs.android || '5.0 ou superior'}</span></div>
             <div class="spec-row"><span class="spec-label">Desenvolvedora:</span><span class="spec-value">${specs.desenvolvedora || 'Horizonte Tutoriais'}</span></div>
           </div>
+          <div class="app-actions" aria-label="Ações adicionais">
+            <a class="app-action-btn guide-btn" href="${guideUrl}" target="_blank" rel="noopener">📁 Ver Guia</a>
+            <a class="app-action-btn tutorial-btn" href="${tutorialUrl}" target="_blank" rel="noopener">📚 Ver Tutorial</a>
+          </div>
           <a class="download-btn" href="${item.download || '#'}" target="_blank" rel="noopener"><i class="fa-solid fa-download"></i> Download</a>
         </div>`;
+
     })();
   </script>
 </body>
