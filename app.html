@@ -359,19 +359,17 @@
             <div class="spec-row"><span class="spec-label">Desenvolvedora:</span><span class="spec-value">${specs.desenvolvedora || 'Horizonte Tutoriais'}</span></div>
           </div>
           <div class="app-actions" aria-label="Ações adicionais">
-            <button class="app-action-btn guide-btn" id="guide-open-button" type="button">📁 Ver Guia</button>
-            <button class="app-action-btn tutorial-btn" id="tutorial-open-button" type="button">📚 Ver Tutorial</button>
+            <button class="action-btn app-action-btn guide-btn" id="guide-open-button" type="button">📁 Ver Guia</button>
+            <button class="action-btn app-action-btn tutorial-btn" id="tutorial-open-button" type="button">📚 Ver Tutorial</button>
           </div>
-          <button class="download-btn" id="download-open-button" type="button"><i class="fa-solid fa-download"></i> Download</button>
+          <button class="action-btn download-btn" id="download-open-button" type="button"><i class="fa-solid fa-download"></i> Download</button>
         </div>`;
 
-      root.querySelector('#guide-open-button').addEventListener('click', () => {
-        if (guideUrl !== '#') window.open(guideUrl, '_blank');
-      });
+      const guideButton = root.querySelector('#guide-open-button');
+      guideButton.onclick = () => window.open(guideUrl || '#', '_blank');
 
-      root.querySelector('#download-open-button').addEventListener('click', () => {
-        if (downloadUrl !== '#') window.open(downloadUrl, '_blank');
-      });
+      const downloadButton = root.querySelector('#download-open-button');
+      downloadButton.onclick = () => window.open(downloadUrl || '#', '_blank');
 
       root.querySelector('#tutorial-open-button').addEventListener('click', () => {
         if (tutorialUrl === '#') return;
