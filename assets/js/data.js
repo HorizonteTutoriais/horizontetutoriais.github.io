@@ -1,7 +1,7 @@
 const items = [
     {
-    "id": "Horizon TV Cine-2",
-    "nome": "📺🎬 Horizon TV Cine 2",
+    "id": "Horizon TV Cine-1",
+    "nome": "📺🎬 Horizon TV Cine",
     "tipo": "Aplicativo",
     "descricao": "em breve",
     "imagem": "https://i.postimg.cc/WbJtSXVD/In-Shot-20260821-033338755.png",
@@ -11,7 +11,7 @@ const items = [
     "guia_link": "https://www.mediafire.com/file/zmi7evh9cir76ig/Guia.md/file",
     "tutorial": "https://www.youtube.com/embed/HBLDPRyJAds?autoplay=1&loop=1&playlist=HBLDPRyJAds",
     "especificacoes": {
-        "versao": "2.0",
+        "versao": "1.0",
         "tamanho": "39.69M",
         "android": "5.0",
         "desenvolvedora": "Horizonte Tutoriais"
@@ -27,34 +27,7 @@ const items = [
         "emPostagens": false
     }
 },
-    {
-    "id": "Horizon TV Cine-1",
-    "nome": "📺🎬 Horizon TV Cine 1",
-    "tipo": "Aplicativo",
-    "descricao": "em breve",
-    "imagem": "https://i.postimg.cc/CxdCCdsC/In-Shot-20260813-203735009.png",
-    "data": "2026-08-22",
-    "download": "",
-    "downloads": null,
-    "guia_link": "https://www.mediafire.com/file/zmi7evh9cir76ig/Guia.md/file",
-    "tutorial": "#",
-    "especificacoes": {
-        "versao": "1.2",
-        "tamanho": "65.52M",
-        "android": "5.0",
-        "desenvolvedora": "Horizonte Tutoriais"
-    },
-    "exibir": {
-        "emDestaques": true,
-        "emPopulares": true,
-        "emQuente": true,
-        "emAplicativos": true,
-        "emJogos": false,
-        "emTutoriais": true,
-        "emFerramentas": false,
-        "emPostagens": false
-    }
-},
+
 {
     "id": "horizon cine-5",
     "nome": "🎬 Horizon Cine 5",
