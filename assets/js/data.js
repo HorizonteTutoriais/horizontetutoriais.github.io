@@ -1,6 +1,6 @@
 const items = [
     {
-    "id": "Horizon TV Cine-1",
+    "id": "horizon tv cine-1",
     "nome": "📺🎬 Horizon TV Cine",
     "tipo": "Aplicativo",
     "descricao": "em breve",
