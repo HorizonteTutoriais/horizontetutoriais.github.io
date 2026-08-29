@@ -1,17 +1,17 @@
 const items = [
     {
-    "id": "horizon tv cine-1",
+    "id": "Horizon TV Cine-1",
     "nome": "📺🎬 Horizon TV Cine",
     "tipo": "Aplicativo",
     "descricao": "em breve",
     "imagem": "https://i.postimg.cc/fLJ0KRrh/In-Shot-20260825-174501210.png",
     "data": "2026-08-23",
-    "download": "https://www.mediafire.com/file/tmi7k5p7vlm2ygg/16HorizonTVCine-1.0-build1-country-filter-route-aligned_mod_mod.apk/file",
+    "download": "#",
     "downloads": null,
     "guia_link": "https://www.mediafire.com/file/zmi7evh9cir76ig/Guia.md/file",
     "tutorial": "#",
     "especificacoes": {
-        "versao": "1.0",
+        "versao": "1.1",
         "tamanho": "39.69M",
         "android": "5.0",
         "desenvolvedora": "Horizonte Tutoriais"
