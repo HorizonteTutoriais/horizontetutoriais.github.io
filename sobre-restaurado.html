@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>📺🎬 Horizon TV Cine — Sobre</title>
+  <style>
+    body{margin:0;background:#0d1117;color:#e6edf3;font-family:Arial,sans-serif;line-height:1.6}
+    main{max-width:850px;margin:auto;padding:32px 20px}
+    h1{color:#58a6ff;font-size:32px}
+    h2{color:#79c0ff;border-bottom:1px solid #30363d;padding-bottom:8px;margin-top:32px}
+    .card{background:#161b22;border:1px solid #30363d;border-radius:14px;padding:22px;margin-top:20px}
+    a{color:#58a6ff}
+    button{font-family:inherit}
+    .janela-detalhes{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:10;align-items:center;justify-content:center;padding:20px}
+    .janela-detalhes.aberta{display:flex}
+    .conteudo-detalhes{background:#161b22;border:1px solid #30363d;border-radius:14px;padding:24px;max-width:600px;width:100%;box-sizing:border-box}
+    .fechar-detalhes{float:right;background:none;border:0;color:#e6edf3;font-size:26px;cursor:pointer}.botao-detalhes{display:inline-block;background:#238636;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold}
+  </style>
+</head>
+<body>
+  <main>
+    
+    <h1>📺🎬 Horizon TV Cine</h1>
+
+    <section class="card">
+      <h2>Compatibilidade</h2>
+      <p>O <strong>📺🎬 Horizon TV Cine</strong> é compatível com celulares Android, Android TV, TV Box, Fire TV e outros dispositivos Android TV compatíveis.</p>
+    </section>
+
+    <section class="card">
+      <h2>Conteúdos e canais</h2>
+      <p>O aplicativo reúne aproximadamente <strong>150 conteúdos</strong>, incluindo filmes, séries, animes, novelas e doramas.</p>
+      <p>Também são disponibilizados aproximadamente <strong>6.419 canais IPTV</strong>.</p>
+      <p>Essas informações são baseadas nos conteúdos apresentados diretamente pelos Addons e pelas fontes IPTV utilizadas. As quantidades podem variar conforme atualizações, disponibilidade das fontes e substituição de URLs.</p>
+    </section>
+
+    <section class="card">
+      <h2>Carregamento inicial</h2>
+      <p>Devido à quantidade de conteúdos e canais, o primeiro carregamento pode levar aproximadamente <strong>30 a 40 minutos</strong>, dependendo do dispositivo, aparelho e velocidade da internet.</p>
+      <p>Esse tempo ocorre somente no primeiro carregamento. Depois que os conteúdos forem carregados, eles poderão aparecer rapidamente ao sair e entrar novamente no aplicativo, por meio do cache, desde que os dados não sejam apagados.</p>
+    </section>
+
+    <section class="card">
+      <h2>Qualidade de reprodução</h2>
+      <p>O aplicativo pode disponibilizar conteúdos com resolução de até <strong>4K</strong>, conforme a fonte, o dispositivo e a velocidade da conexão.</p>
+      <p>Se ocorrerem travamentos ou pausas, reduza a resolução para adequá-la à velocidade da internet disponível.</p>
+    </section>
+
+    <section class="card">
+      <h2>Recursos principais</h2>
+      <p>O aplicativo possui botão de download, lupa de pesquisa, separação por gêneros, organização de canais, filmes, séries, animes e doramas, além de suporte a Addons e listas IPTV.</p>
+    </section>
+
+    <section class="card">
+      <h2>Atualização dos canais</h2>
+      <p>Ao sair da seção de canais e entrar novamente, os canais poderão ser carregados outra vez. O tempo dependerá das fontes, da conexão e do dispositivo.</p>
+    </section>
+
+    <section class="card">
+      <h2>Addons, IPTV e responsabilidade</h2>
+      <p>O aplicativo utiliza Addons e listas IPTV para acessar conteúdos fornecidos por fontes externas.</p>
+      <p>O funcionamento, a disponibilidade, a qualidade e a atualização dependem dessas fontes. O usuário é responsável pelo uso dos Addons, das listas IPTV e de qualquer URL adicionada ou substituída.</p>
+      <p>Utilize somente endereços confiáveis e conteúdos que você tenha autorização para acessar.</p>
+    </section>
+
+    <section class="card">
+      <h2>Aviso importante</h2>
+      <p>O <strong>Horizon TV Cine</strong> funciona como uma interface de organização e acesso. Ele não hospeda, controla nem garante a disponibilidade dos conteúdos fornecidos por terceiros.</p>
+      <p>Utilize o aplicativo de forma responsável, respeitando os direitos autorais, as leis aplicáveis e os termos de uso das fontes externas.</p>
+
+    <section class="card">
+      <h2>Projeto</h2>
+      <p><strong>Nome:</strong> 📺🎬 Horizon TV Cine</p>
+      <p><strong>Site oficial:</strong> <a href="https://horizontetutoriais.github.io">Horizonte Tutoriais</a></p>
+      <p>
+        <button class="botao-detalhes" type="button" onclick="abrirDetalhes()">Detalhes</button>
+      </p>
+    </section>
+  <div id="janelaDetalhes" class="janela-detalhes" onclick="fecharDetalhes(event)">
+      <div class="conteudo-detalhes">
+        <button class="fechar-detalhes" type="button" onclick="fecharDetalhes()">×</button>
+        <h2>Detalhes</h2>
+        <p>Descrição oficial do aplicativo 📺🎬 Horizon TV Cine</p>
+      </div>
+    </div>
+  </main>
+<script>
+function abrirDetalhes() {
+  document.getElementById("janelaDetalhes").classList.add("aberta");
+}
+function fecharDetalhes(event) {
+  if (!event || event.target.id === "janelaDetalhes") {
+    document.getElementById("janelaDetalhes").classList.remove("aberta");
+  }
+}
+</script>
+</body>
+</html>

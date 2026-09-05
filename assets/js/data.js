@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "Horizon TV Cine-1",
+    "nome": "📺🎬 Horizon TV Cine",
+    "tipo": "Aplicativo",
+    "descricao": "📺🎬 Aplicativo oficial do site, totalmente grátis e compatível com celulares, Android TV, TV Box, Fire TV e dispositivos Android TV compatíveis.",
+    "imagem": "https://i.postimg.cc/SN46CN8X/In-Shot-20260905-063544599.png",
+    "data": "2026-09-05",
+    "download": "https://4br.me/BaixarHorizonTVCine",
+    "downloads": null,
+    "guia_link": "https://4br.me/BaixarGuiaHorizonTvCine",
+    "tutorial": "#",
+    "especificacoes": {
+        "versao": "1.0",
+        "tamanho": "51.04M",
+        "android": "5.0",
+        "desenvolvedora": "🌟 Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": true,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": false
+    }
+},
+    {
     "id": "horizon tv cine-1",
     "nome": "📺🎬 Horizon TV Cine",
     "tipo": "Aplicativo",
