@@ -1,11 +1,11 @@
 const items = [
     {
-    "id": "Horizon TV Cine-1",
+    "id": "horizon tv cine-1",
     "nome": "📺🎬 Horizon TV Cine",
     "tipo": "Aplicativo",
     "descricao": "📺🎬 Aplicativo oficial do site, totalmente grátis e compatível com celulares, Android TV, TV Box, Fire TV e dispositivos Android TV compatíveis.",
     "imagem": "https://i.postimg.cc/SN46CN8X/In-Shot-20260905-063544599.png",
-    "data": "2026-09-05",
+    "data": "2026-08-23",
     "download": "https://4br.me/BaixarHorizonTVCine",
     "downloads": null,
     "guia_link": "https://4br.me/BaixarGuiaHorizonTvCine",
@@ -13,34 +13,6 @@ const items = [
     "especificacoes": {
         "versao": "1.0",
         "tamanho": "51.04M",
-        "android": "5.0",
-        "desenvolvedora": "🌟 Horizonte Tutoriais"
-    },
-    "exibir": {
-        "emDestaques": true,
-        "emPopulares": true,
-        "emQuente": true,
-        "emAplicativos": true,
-        "emJogos": false,
-        "emTutoriais": true,
-        "emFerramentas": false,
-        "emPostagens": false
-    }
-},
-    {
-    "id": "horizon tv cine-1",
-    "nome": "📺🎬 Horizon TV Cine",
-    "tipo": "Aplicativo",
-    "descricao": "em breve",
-    "imagem": "https://i.postimg.cc/fLJ0KRrh/In-Shot-20260825-174501210.png",
-    "data": "2026-08-23",
-    "download": "https://www.mediafire.com/file/tmi7k5p7vlm2ygg/16HorizonTVCine-1.0-build1-country-filter-route-aligned_mod_mod.apk/file",
-    "downloads": null,
-    "guia_link": "https://www.mediafire.com/file/zmi7evh9cir76ig/Guia.md/file",
-    "tutorial": "#",
-    "especificacoes": {
-        "versao": "1.0",
-        "tamanho": "39.69M",
         "android": "5.0",
         "desenvolvedora": "Horizonte Tutoriais"
     },
