@@ -154,3 +154,36 @@
 .modo-login-only .input-visitante {
     display: none;
 }
+
+/* Alinhamento automático dos comentários no modo computador */
+@media (min-width: 851px) {
+    .container {
+        align-items: stretch;
+    }
+
+    .sidebar {
+        height: 100%;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar-section {
+        flex: 0 0 auto;
+    }
+
+    #secao-comentarios {
+        flex: 1 1 0;
+        height: auto;
+        min-height: 890px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #secao-comentarios .lista-comentarios {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+    }
+}

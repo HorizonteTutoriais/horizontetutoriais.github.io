@@ -17,3 +17,11 @@ firebase/
 *.save.*
 *.bak
 *.old
+
+# Backups locais e arquivos temporarios
+*.backup
+*.backup-*
+*.id-backup
+*.nome-antigo.backup
+*.tmp.js
+README-antes-da-atualizacao.md
