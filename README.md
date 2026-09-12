@@ -1,63 +1,161 @@
-# 📦 Horizonte Tutoriais - Especificação Técnica
+# 📦 Horizonte Tutoriais — Especificação Técnica
 
-O **Horizonte Tutoriais** é uma plataforma web de alto desempenho dedicada à distribuição de aplicativos, jogos e tutoriais para Android. O projeto destaca-se por sua **Inteligência Dinâmica e Automática**, oferecendo uma experiência de usuário fluida e moderna sem a necessidade de recarregamento de páginas.
+O **Horizonte Tutoriais** é uma plataforma web dedicada à distribuição de aplicativos, jogos, tutoriais e informações para Android. O site utiliza uma arquitetura estática orientada a dados, com carregamento dinâmico de conteúdo, busca, filtros, páginas técnicas e recursos de interação.
 
-## 🚀 Tecnologias Utilizadas
-- **Frontend:** HTML5 Semântico, CSS3 Moderno (Variáveis e Flexbox/Grid).
-- **Inteligência:** JavaScript Vanilla (ES6+) com manipulação dinâmica de DOM.
-- **Notificações:** Integração com OneSignal SDK para alertas em tempo real.
-- **Comentários:** Sistema próprio com Firebase (Firestore + Authentication).
-- **Ícones:** Font Awesome 6.0.0.
+## 🚀 Tecnologias utilizadas
 
-## 🧠 Inteligência Dinâmica e Automática
+- **Frontend:** HTML5, CSS3, Flexbox e Grid.
+- **Lógica do site:** JavaScript Vanilla (ES6+).
+- **Dados do catálogo:** arquivo centralizado `assets/js/data.js`.
+- **Busca:** `assets/js/search.js`.
+- **Comentários:** integração com Firebase Firestore e Firebase Authentication.
+- **Notificações:** OneSignal SDK, quando configurado.
+- **Ícones:** Font Awesome.
+- **Hospedagem principal:** GitHub Pages.
 
-O coração do site reside em sua arquitetura orientada a dados, permitindo que o conteúdo seja gerenciado de forma centralizada e automática.
+## 🧠 Arquitetura dinâmica
 
-### 1. Sistema de Filtragem Inteligente
-- **Filtro em Tempo Real:** Através da função `filterCategory`, o site processa o banco de dados local (`data.js`) e renderiza instantaneamente os itens solicitados (Aplicativos, Jogos, Postagens, etc.).
-- **Sincronização de Navegação:** Os links do rodapé utilizam uma lógica de "espelhamento" que aciona os gatilhos do menu superior, garantindo que a página suba ao topo (`scrollTo`) suavemente enquanto o conteúdo é atualizado.
+O conteúdo do site é controlado principalmente por `assets/js/data.js`. Cada item do catálogo pode conter nome, descrição, imagem, categoria, data, link de download, guia, tutorial e especificações técnicas.
 
-### 2. Gestão de Dados Centralizada (`data.js`)
-- Toda a biblioteca de conteúdo é gerida por um objeto estruturado, permitindo que novos itens sejam adicionados apenas inserindo um novo bloco de código, sem mexer na estrutura do HTML.
-- **Campos Automáticos:** Nome, Descrição, Categoria, Link de Download e Imagens são injetados dinamicamente nos cards e modais.
+Os campos utilizados nos itens incluem:
 
-### 3. Sistema de Busca Instantânea
-- Implementação de um motor de busca que filtra os itens conforme o usuário digita, oferecendo feedback visual imediato.
+```text
+id
+nome
+tipo
+descricao
+imagem
+data
+download
+guia_link
+tutorial
+especificacoes
+exibir
+```
 
-### 4. Modo Escuro (Dark Mode) Persistente
-- Sistema automático que detecta e salva a preferência do usuário no `localStorage`.
+A inclusão ou atualização de um aplicativo normalmente pode ser feita alterando o cadastro correspondente em `data.js`, sem modificar a estrutura principal do HTML.
 
-## 💬 Sistema de Comentários (Firebase)
+## 🔎 Busca, filtros e navegação
 
-O site possui um sistema de comentários próprio, construído com **Firebase**, que oferece:
+O arquivo `assets/js/app.js` renderiza os cards, categorias, modais e demais elementos dinâmicos do site. O arquivo `assets/js/search.js` realiza a busca instantânea no catálogo.
 
-- **Login com Google:** Opcional, para que o nome do visitante apareça automaticamente nos comentários.
-- **Aprovação prévia:** Comentários ficam invisíveis até serem aprovados pelo administrador.
-- **Painel de Moderação:** Interface exclusiva para gerenciar comentários (aprovar, excluir, responder e exportar).
-- **Restrição de acesso:** Apenas o administrador pode acessar o painel.
+Os filtros permitem organizar o conteúdo por categorias, como aplicativos, jogos, ferramentas, tutoriais e postagens. A navegação do site é feita sem a necessidade de recarregar toda a página para cada filtro.
 
-**Tecnologias do sistema de comentários:**
-- **Firebase Firestore:** Banco de dados para armazenar os comentários.
-- **Firebase Authentication:** Controle de login e permissão de administrador.
-- **Firebase Hosting:** Hospedagem permanente do painel de moderação.
+## 📋 Página de especificações técnicas
 
-## 📁 Estrutura de Pastas
-- `/assets/css/`: Folhas de estilo (Design Responsivo e Dark Mode).
-- `/assets/js/`: Inteligência do site (`app.js`), Banco de dados (`data.js`) e Motor de busca (`search.js`).
-- `/index.html`: Estrutura principal e containers de renderização.
+A página `app.html` exibe a ficha técnica de cada item usando o parâmetro `id` na URL. Exemplo:
+
+```text
+app.html?id=horizon%20tv%20cine-1
+```
+
+A página lê os dados do item em `assets/js/data.js` e pode exibir:
+
+- nome e descrição;
+- imagem do aplicativo;
+- versão;
+- tamanho;
+- compatibilidade Android;
+- desenvolvedora;
+- botão de Download;
+- botão Ver Guia;
+- botão Ver Tutorial.
+
+O botão de **Download** utiliza o campo `download`. O botão de **Guia** utiliza `guia_link`. O botão de **Tutorial** utiliza `tutorial`.
+
+## 🔄 Sistema de atualização do aplicativo
+
+O arquivo `update.json` é utilizado pelo aplicativo Android para consultar informações de atualização. Ele não é uma página visual e não cria botões no site.
+
+Os principais campos são:
+
+```json
+{
+  "version": "1.1",
+  "title": "📺🎬 Horizon TV Cine",
+  "notes": "Notas da atualização",
+  "download_url": "URL usada para baixar a atualização",
+  "details_url": "URL da página de especificações técnicas",
+  "file_name": "Nome do APK",
+  "size_bytes": 0
+}
+```
+
+A diferença entre os links de download é a seguinte:
+
+- `download` em `data.js`: alimenta o botão Download da página técnica do site.
+- `download_url` em `update.json`: é usado pelo aplicativo para baixar uma atualização.
+- `details_url` em `update.json`: abre a página técnica no site.
+
+Quando uma nova versão for publicada, mantenha a versão, o nome do APK, o tamanho e os links coerentes entre o APK, `update.json` e `data.js`.
+
+## 💬 Sistema de comentários
+
+O site possui uma integração de comentários que pode utilizar:
+
+- **Firebase Firestore:** armazenamento dos comentários.
+- **Firebase Authentication:** autenticação dos usuários.
+- **`assets/js/comentarios.js`:** lógica dos comentários e interação com o serviço.
+
+As regras, credenciais e configurações do Firebase não devem ser publicadas no repositório quando contiverem dados sensíveis. Arquivos de configuração locais devem ser protegidos pelo `.gitignore`.
+
+## 📁 Estrutura principal
+
+```text
+/
+├── index.html                 # Página principal do site
+├── app.html                   # Página de especificações técnicas
+├── update.json                # Manifesto de atualização do aplicativo
+├── doar.html                  # Página de apoio/doação
+├── post.html                  # Página de postagens
+├── admin.html                 # Área administrativa, quando configurada
+├── assets/
+│   ├── css/
+│   │   ├── style.css          # Estilos principais
+│   │   └── comentarios.css    # Estilos dos comentários
+│   └── js/
+│       ├── app.js             # Renderização e lógica principal
+│       ├── data.js            # Catálogo central de itens
+│       ├── search.js          # Sistema de busca
+│       └── comentarios.js     # Sistema de comentários
+└── .gitignore                 # Arquivos locais e temporários ignorados
+```
+
+A página oficial Sobre do aplicativo deve permanecer no repositório próprio do aplicativo, no caminho configurado pelo link utilizado pelo APK:
+
+```text
+https://horizontetutoriais.github.io/horizon-tv-cine/sobre.html
+```
+
+As antigas cópias `sobre-atual.html` e `sobre-restaurado.html` não fazem parte da estrutura necessária do site principal.
+
+## 🧹 Arquivos temporários e backups
+
+Backups e arquivos locais não devem ser publicados no repositório. Recomenda-se manter no `.gitignore` regras como:
+
+```gitignore
+*.backup
+*.id-backup
+*.nome-antigo.backup
+*.save
+*.save.*
+*.bak
+*.old
+firebase/
+.firebase/
+```
+
+O `.gitignore` impede novos envios, mas arquivos que já foram enviados precisam ser removidos do controle do Git com `git rm --cached` ou `git rm`.
+
+## 💚 Apoie o projeto
+
+Para apoiar o projeto, utilize a página oficial de doação ou a chave PIX publicada pelo responsável pelo projeto.
+
+## 📧 Contato
+
+- **E-mail:** horizontetutoriais@gmail.com
+- **Site:** https://horizontetutoriais.github.io
 
 ---
 
-## 💚 Apoie o Projeto
-
-Gostou do Horizonte Tutoriais? Apoie nosso trabalho com uma doação!
-
-CHAVE PIX (E-MAIL)
- horizontetutoriais@gmail.com
-
----
-
-📧 **Contato:** horizontetutoriais@gmail.com
-🌐 **Site:** https://horizontetutoriais.github.io
-
-*Desenvolvido com foco em velocidade, automação e acessibilidade.*
+*Documentação atualizada conforme a estrutura do site, da página técnica e do sistema de atualização do Horizon TV Cine.*
