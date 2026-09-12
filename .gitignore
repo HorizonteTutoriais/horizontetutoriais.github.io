@@ -8,3 +8,12 @@ data.jsx
 firebase/
 firebase/
 .firebase/
+
+# Backups e arquivos temporários
+*.backup
+*.id-backup
+*.nome-antigo.backup
+*.save
+*.save.*
+*.bak
+*.old
