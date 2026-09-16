@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "horizon-teclado-ia",
+    "nome": "HorizonTeclado IA",
+    "tipo": "Aplicativo",
+    "descricao": "Aplicativo de teclado com ferramentas de inteligência artificial para Android.",
+    "imagem": "",
+    "data": "2026-09-16",
+    "download": "#",
+    "downloads": null,
+    "guia_link": "#",
+    "tutorial": "#",
+    "especificacoes": {
+        "versao": "1.0",
+        "tamanho": "116.44M",
+        "android": "5.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": true,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": false
+    }
+},
+    {
     "id": "horizon tv cine-1",
     "nome": "📺🎬 Horizon TV Cine",
     "tipo": "Aplicativo",
