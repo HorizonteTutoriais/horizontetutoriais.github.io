@@ -1,103 +1,88 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobre o HorizonTeclado IA</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>⌨️ HorizonTeclado IA — Sobre</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      padding: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: Arial, sans-serif;
-      color: #ffffff;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-
-    main {
-      width: 100%;
-      max-width: 520px;
-      padding: 34px 26px;
-      border: 1px solid rgba(255,255,255,0.28);
-      border-radius: 22px;
-      background: rgba(255,255,255,0.14);
-      box-shadow: 0 18px 50px rgba(0,0,0,0.2);
-    }
-
-    .icon {
-      text-align: center;
-      font-size: 52px;
-      margin-bottom: 8px;
-    }
-
-    h1 {
-      margin: 0 0 12px;
-      text-align: center;
-      font-size: 28px;
-    }
-
-    p {
-      line-height: 1.6;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .card {
-      margin-top: 22px;
-      padding: 18px;
-      border-radius: 14px;
-      background: rgba(0,0,0,0.14);
-    }
-
-    .card strong {
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    a {
-      display: inline-block;
-      margin-top: 22px;
-      color: #ffffff;
-      font-weight: bold;
-      text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.65);
-      border-radius: 10px;
-      padding: 12px 18px;
-    }
+    body{margin:0;background:#0d1117;color:#e6edf3;font-family:Arial,sans-serif;line-height:1.6}
+    main{max-width:850px;margin:auto;padding:32px 20px}
+    h1{color:#58a6ff;font-size:32px}
+    h2{color:#79c0ff;border-bottom:1px solid #30363d;padding-bottom:8px;margin-top:32px}
+    .card{background:#161b22;border:1px solid #30363d;border-radius:14px;padding:22px;margin-top:20px}
+    a{color:#58a6ff}
+    button{font-family:inherit}
+    .janela-detalhes{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:10;align-items:center;justify-content:center;padding:20px}
+    .janela-detalhes.aberta{display:flex}
+    .conteudo-detalhes{background:#161b22;border:1px solid #30363d;border-radius:14px;padding:24px;max-width:600px;width:100%;box-sizing:border-box}
+    .fechar-detalhes{float:right;background:none;border:0;color:#e6edf3;font-size:26px;cursor:pointer}
+    .botao-detalhes{display:inline-block;background:#238636;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold}
   </style>
 </head>
 
 <body>
   <main>
-    <div class="icon">⌨️</div>
+    <h1>⌨️ HorizonTeclado IA</h1>
 
-    <h1>HorizonTeclado IA</h1>
+    <section class="card">
+      <h2>Compatibilidade</h2>
+      <p>O <strong>⌨️ HorizonTeclado IA</strong> foi desenvolvido para dispositivos Android compatíveis.</p>
+    </section>
 
-    <p>
-      O HorizonTeclado IA foi desenvolvido para oferecer recursos inteligentes
-      de escrita, assistência e produtividade diretamente no teclado do Android.
-    </p>
+    <section class="card">
+      <h2>Assistência inteligente</h2>
+      <p>O aplicativo oferece recursos de inteligência artificial para auxiliar na escrita, revisão, tradução e produtividade diretamente pelo teclado.</p>
+    </section>
 
-    <div class="card">
-      <strong>Sobre o aplicativo</strong>
+    <section class="card">
+      <h2>Recursos principais</h2>
+      <p>O aplicativo reúne ferramentas de assistência, sugestões, tradução, respostas, prompts, dicionário pessoal e opções de personalização do teclado.</p>
+    </section>
 
+    <section class="card">
+      <h2>Privacidade e conexão</h2>
+      <p>Alguns recursos dependem de conexão com a internet e de serviços externos. O funcionamento pode variar conforme a disponibilidade desses serviços e a qualidade da conexão.</p>
+    </section>
+
+    <section class="card">
+      <h2>Atualizações</h2>
+      <p>As atualizações, guias e tutoriais do aplicativo são disponibilizados pela Horizonte Tutoriais por meio do site oficial.</p>
+    </section>
+
+    <section class="card">
+      <h2>Uso responsável</h2>
+      <p>Use as respostas e sugestões geradas pelo aplicativo com atenção. Revise o conteúdo antes de utilizá-lo em situações importantes.</p>
+    </section>
+
+    <section class="card">
+      <h2>Projeto</h2>
+      <p><strong>Nome:</strong> ⌨️ HorizonTeclado IA</p>
+      <p><strong>Site oficial:</strong> <a href="https://horizontetutoriais.github.io">Horizonte Tutoriais</a></p>
       <p>
-        Este aplicativo faz parte dos projetos da Horizonte Tutoriais.
-        Consulte o site oficial para acompanhar novidades, guias, tutoriais
-        e atualizações.
+        <button class="botao-detalhes" type="button" onclick="abrirDetalhes()">Detalhes</button>
       </p>
-    </div>
+    </section>
 
-    <a href="https://horizontetutoriais.github.io">
-      Voltar ao site oficial
-    </a>
+    <div id="janelaDetalhes" class="janela-detalhes" onclick="fecharDetalhes(event)">
+      <div class="conteudo-detalhes">
+        <button class="fechar-detalhes" type="button" onclick="fecharDetalhes()">×</button>
+        <h2>Detalhes</h2>
+        <p>Descrição oficial do aplicativo ⌨️ HorizonTeclado IA</p>
+      </div>
+    </div>
   </main>
+
+  <script>
+    function abrirDetalhes() {
+      document.getElementById("janelaDetalhes").classList.add("aberta");
+    }
+
+    function fecharDetalhes(event) {
+      if (!event || event.target.id === "janelaDetalhes") {
+        document.getElementById("janelaDetalhes").classList.remove("aberta");
+      }
+    }
+  </script>
 </body>
 </html>
