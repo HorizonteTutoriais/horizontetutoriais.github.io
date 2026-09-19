@@ -3,7 +3,7 @@ const items = [
     "id": "horizon-teclado-ia-1",
     "nome": "HorizonTeclado IA",
     "tipo": "Aplicativo",
-    "descricao": "Aplicativo de teclado com ferramentas de inteligência artificial para Android.",
+    "descricao": "Em Breve",
     "imagem": "",
     "data": "2026-09-16",
     "download": "#",
