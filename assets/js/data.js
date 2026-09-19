@@ -4,7 +4,7 @@ const items = [
     "nome": "HorizonTeclado IA",
     "tipo": "Aplicativo",
     "descricao": "Em Breve",
-    "imagem": "",
+    "imagem": "https://i.postimg.cc/W4pqLMND/In-Shot-20260919-053338074.png",
     "data": "2026-09-16",
     "download": "#",
     "downloads": null,
