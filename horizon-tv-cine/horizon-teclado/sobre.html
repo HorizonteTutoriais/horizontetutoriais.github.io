@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, user-scalable=yes">
+  <title>⌨️ HorizonTeclado IA — Sobre</title>
+
+  <style>
+    html {
+      touch-action: manipulation;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    body{margin:0;background:#0d1117;color:#e6edf3;font-family:Arial,sans-serif;line-height:1.6}
+    main{max-width:850px;margin:auto;padding:32px 20px}
+    h1{color:#58a6ff;font-size:32px}
+    h2{color:#79c0ff;border-bottom:1px solid #30363d;padding-bottom:8px;margin-top:32px}
+    .card{background:#161b22;border:1px solid #30363d;border-radius:14px;padding:22px;margin-top:20px}
+    a{color:#58a6ff}
+    button{font-family:inherit}
+    .janela-detalhes{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:10;align-items:center;justify-content:center;padding:20px}
+    .janela-detalhes.aberta{display:flex}
+    .conteudo-detalhes{background:#161b22;border:1px solid #30363d;border-radius:14px;padding:24px;max-width:600px;width:100%;box-sizing:border-box}
+    .fechar-detalhes{float:right;background:none;border:0;color:#e6edf3;font-size:26px;cursor:pointer}
+    .botao-detalhes{display:inline-block;background:#238636;color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold}
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>⌨️ HorizonTeclado IA</h1>
+
+    <section class="card">
+      <h2>Atualização</h2>
+      <p>Para atualizar o aplicativo para a versão mais recente, toque no botão <strong>Baixar</strong>, exibido na tela do aplicativo, ou no botão <strong>Atualizar</strong>, disponível em <strong>Configurações</strong>. Você será redirecionado para a aba <strong>Especificação técnica</strong>, onde estarão disponíveis o guia, o aplicativo e o tutorial de atualização.</p>
+    </section>
+
+    <section class="card">
+      <h2>Tutoriais</h2>
+      <p><strong>Atenção:</strong> para assistir a outros tutoriais, toque no botão <strong>Tutoriais</strong>, localizado no topo da tela principal.</p>
+      <p>Em caso de dúvida, acesse o site ou o canal <strong>Horizonte Tutoriais</strong> e deixe sua dúvida nos comentários.</p>
+    </section>
+
+    <section class="card">
+      <h2>Servidor gratuito</h2>
+      <p>Crie seu servidor gratuito e cadastre a URL para usar os recursos de Inteligência Artificial que dependem da internet.</p>
+      <p>Informe a URL base do seu servidor. Use HTTPS e mantenha o endereço terminado em <strong>/</strong>.</p>
+      <p><strong>Exemplo de URL:</strong> <code>https://horizon-servidor-ia.onrender.com/</code></p>
+    </section>
+
+    <section class="card">
+      <h2>Backup e restauração</h2>
+      <p>Crie pastas para salvar códigos e anotações como atalhos. Faça backup do conteúdo para restaurá-lo, compartilhá-lo ou guardá-lo ao trocar de celular ou reinstalar o aplicativo.</p>
+    </section>
+
+    <section class="card">
+      <h2>Recursos de Inteligência Artificial</h2>
+      <p>O aplicativo oferece correção ortográfica automática, correção gramatical, extração de texto em imagens, geração de imagens em diferentes categorias e conversas com a Inteligência Artificial para tirar dúvidas, entre outros recursos.</p>
+    </section>
+
+    <section class="card">
+      <h2>Mais informações</h2>
+      <p>Conheça outros recursos baixando o <strong>HorizonTeclado IA</strong> no site oficial <strong>Horizonte Tutoriais</strong>, pelo botão <strong>Tutoriais</strong>, e pelas informações da aba <strong>Especificação técnica</strong>, que também inclui um guia.</p>
+      <p>Desenvolvido com carinho para facilitar o dia a dia dos inscritos do <strong>Horizonte Tutoriais</strong>.</p>
+    </section>
+
+    <section class="card">
+      <h2>Projeto</h2>
+      <p><strong>Nome:</strong> ⌨️ HorizonTeclado IA</p>
+      <p><strong>Site oficial:</strong> <a href="https://horizontetutoriais.github.io">Horizonte Tutoriais</a></p>
+      <p>
+        <button class="botao-detalhes" type="button" onclick="abrirDetalhes()">Detalhes</button>
+      </p>
+    </section>
+
+    <div id="janelaDetalhes" class="janela-detalhes" onclick="fecharDetalhes(event)">
+      <div class="conteudo-detalhes">
+        <button class="fechar-detalhes" type="button" onclick="fecharDetalhes()">×</button>
+        <h2>Detalhes</h2>
+        <p>Descrição oficial do aplicativo ⌨️ HorizonTeclado IA</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function abrirDetalhes() {
+      document.getElementById("janelaDetalhes").classList.add("aberta");
+    }
+
+    function fecharDetalhes(event) {
+      if (!event || event.target.id === "janelaDetalhes") {
+        document.getElementById("janelaDetalhes").classList.remove("aberta");
+      }
+    }
+  </script>
+</body>
+</html>
