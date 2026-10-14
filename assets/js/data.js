@@ -12,7 +12,7 @@ const items = [
     "tutorial": "#",
     "especificacoes": {
         "versao": "1.0",
-        "tamanho": "116.44M",
+        "tamanho": "96.87M",
         "android": "5.0",
         "desenvolvedora": "Horizonte Tutoriais"
     },
