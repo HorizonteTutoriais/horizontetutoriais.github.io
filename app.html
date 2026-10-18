@@ -288,6 +288,73 @@
         font-size: 20px;
       }
     }
+
+    /* Ficha compacta ativada somente com compact=1 */
+    body.compact-mode .app-page {
+      max-width: 420px;
+      padding: 12px 10px 24px;
+    }
+
+    body.compact-mode .app-card {
+      border-radius: 16px;
+    }
+
+    body.compact-mode .app-hero {
+      max-height: 190px;
+      height: 190px;
+      object-fit: contain;
+      object-position: center center;
+      background: #f3f3f3;
+    }
+
+    body.compact-mode .app-body {
+      padding: 16px 15px;
+    }
+
+    body.compact-mode .app-title {
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+    body.compact-mode .app-description {
+      font-size: 14px;
+      line-height: 1.35;
+      margin-bottom: 14px;
+    }
+
+    body.compact-mode .spec-box {
+      padding: 12px 14px;
+      margin: 12px 0 15px;
+      border-radius: 12px;
+    }
+
+    body.compact-mode .spec-title {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    body.compact-mode .spec-row {
+      gap: 10px;
+      padding: 7px 0;
+      font-size: 13px;
+    }
+
+    body.compact-mode .app-actions {
+      gap: 7px;
+    }
+
+    body.compact-mode .app-action-btn {
+      min-height: 40px;
+      padding: 9px 6px;
+      font-size: 12px;
+    }
+
+    body.compact-mode .download-btn {
+      min-height: 42px;
+      padding: 10px;
+      font-size: 17px;
+    }
+
   </style>
 <script type="text/javascript" data-cfasync="false">
 /*<![CDATA[/* */
@@ -316,7 +383,14 @@
   <script>
     (function () {
       const params = new URLSearchParams(window.location.search);
-      const requestedId = params.get('id') || 'horizon tv cine-1';
+      const rawRequestedId = params.get('id') || 'horizon tv cine-1';
+      const compactRequested = params.get('compact') === '1' || rawRequestedId.endsWith('&compact=1');
+
+      if (compactRequested) {
+        document.body.classList.add('compact-mode');
+      }
+
+      const requestedId = rawRequestedId.replace(/&compact=1$/, '');
       const item = HorizonteData.getAllItems().find(
         entry => String(entry.id).toLowerCase() === requestedId.toLowerCase()
       );
