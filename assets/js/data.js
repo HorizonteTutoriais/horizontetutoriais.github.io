@@ -6,9 +6,9 @@ const items = [
     "descricao": "⌨️🚀 Correção ortográfica automática e servidor próprio 100% grátis. Faça backup de pastas e confira o tutorial no aplicativo para criar seu servidor!",
     "imagem": "https://i.postimg.cc/W4pqLMND/In-Shot-20260919-053338074.png",
     "data": "2026-09-16",
-    "download": "https://www.mediafire.com/file/8ayhgdcqvgidxw9/HorizonTeclado+IA_1.0.zip/file",
+    "download": "https://4br.me/BaixarHorizonTecladoIA",
     "downloads": null,
-    "guia_link": "https://www.mediafire.com/file/kgjdsenp187oba8/⌨️Guia+HorizonTeclado+IA.zip/file",
+    "guia_link": "https://4br.me/BaixarGuiaHorizonTecladoIA",
     "tutorial": "#",
     "especificacoes": {
         "versao": "1.0",
