@@ -1,7 +1,7 @@
 const items = [
     {
     "id": "horizon-teclado-ia-1",
-    "nome": "HorizonTeclado IA",
+    "nome": "⌨️ HorizonTeclado IA",
     "tipo": "Aplicativo",
     "descricao": "⌨️🚀 Correção ortográfica automática e servidor próprio 100% grátis. Faça backup de pastas e confira o tutorial no aplicativo para criar seu servidor!",
     "imagem": "https://i.postimg.cc/W4pqLMND/In-Shot-20260919-053338074.png",
