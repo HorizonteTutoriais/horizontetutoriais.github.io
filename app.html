@@ -423,7 +423,7 @@
       root.innerHTML = `
         <img class="app-hero" src="${item.imagem || ''}" alt="${item.nome}">
         <div class="app-body">
-          <h1 class="app-title">🎬 ${item.nome.replace(/^📺🎬\s*/, '')}</h1>
+          <h1 class="app-title"> ${item.nome.replace(/^📺🎬\s*/, '')}</h1>
           <p class="app-description">${item.descricao && item.descricao !== 'em breve' ? item.descricao : 'Aplicativo gratuito para filmes, séries e animes. Compatível com celular, TV Box e Android TV.'}</p>
           <div class="spec-box">
             <h2 class="spec-title">📋 Especificações técnicas</h2>
