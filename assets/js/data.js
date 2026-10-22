@@ -6,7 +6,7 @@ const items = [
     "descricao": "⌨️🚀 Correção ortográfica automática e servidor próprio 100% grátis. Faça backup de pastas e confira o tutorial no aplicativo para criar seu servidor!",
     "imagem": "https://i.postimg.cc/W4pqLMND/In-Shot-20260919-053338074.png",
     "data": "2026-09-16",
-    "download": "https://4br.me/BaixarHorizonTecladoIA",
+    "download": "https://4br.me/BaixeHorizonTecladoIA",
     "downloads": null,
     "guia_link": "https://4br.me/BaixarGuiaHorizonTecladoIA",
     "tutorial": "#",
