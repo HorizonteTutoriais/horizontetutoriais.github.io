@@ -8,7 +8,7 @@ const items = [
     "data": "2026-09-16",
     "download": "https://4br.me/BaixeHorizonTecladoIA",
     "downloads": null,
-    "guia_link": "https://4br.me/BaixarGuiaHorizonTecladoIA",
+    "guia_link": "https://4br.me/BaixeGuiaHorizonTecladoIA",
     "tutorial": "#",
     "especificacoes": {
         "versao": "1.0",
@@ -203,12 +203,12 @@ const items = [
     "descricao": "📁 Gerenciador de arquivos para extrair arquivos ZIP e instalar APKs, fácil de usar, com link direto para inscritos do Site.⚡Baixe o guia para + informações, e assista o tutorial de como extrair e instalar.",
     "imagem": "https://i.postimg.cc/7hd6b4R3/38428b6e4cfa1e5d459da7fcbfc10bb5.webp",
     "data": "2026-07-16",
-    "download": "https://www.mediafire.com/file/1ocib3wvtjxm2dh/MT+Manager_2.26.9.apk/file",
+    "download": "https://www.mediafire.com/file/r8gcu9mr9duokz8/MT_Manager_2.26.10.apk/file",
     "downloads": null,
     "guia_link": "https://4br.me/GuiaMTmanagerExtrairInstalar",
     "tutorial": "https://www.youtube.com/embed/ZD392Ur_Zv8?autoplay=1&loop=1&playlist=ZD392Ur_Zv8",
     "especificacoes": {
-        "versao": "2.26.8",
+        "versao": "2.26.10",
         "tamanho": "29.71M",
         "android": "5.0+",
         "desenvolvedora": "Horizonte Tutoriais"
