@@ -209,7 +209,7 @@ const items = [
     "tutorial": "https://www.youtube.com/embed/ZD392Ur_Zv8?autoplay=1&loop=1&playlist=ZD392Ur_Zv8",
     "especificacoes": {
         "versao": "2.26.10",
-        "tamanho": "29.71M",
+        "tamanho": "35.78M",
         "android": "5.0+",
         "desenvolvedora": "Horizonte Tutoriais"
     },
