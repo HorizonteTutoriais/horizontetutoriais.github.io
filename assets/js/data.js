@@ -3,7 +3,7 @@ const items = [
     "id": "HorizonTeclado IA-2",
     "nome": "⌨️ HorizonTeclado IA 2° Video",
     "tipo": "Aplicativo",
-    "descricao": "2º tutorial: configure seu servidor e use grátis a IA do HorizonTeclado.Para mais informações, baixe o guia.",
+    "descricao": "2º tutorial: configure seu servidor e use grátis a IA do HorizonTeclado. Para mais informações, baixe o guia.",
     "imagem": "https://i.postimg.cc/W4pqLMND/In-Shot-20260919-053338074.png",
     "data": "2026-11-03",
     "download": "#",
