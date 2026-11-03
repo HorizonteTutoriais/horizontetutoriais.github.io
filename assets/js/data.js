@@ -1,15 +1,43 @@
 const items = [
     {
+    "id": "HorizonTeclado IA-2",
+    "nome": "⌨️ HorizonTeclado IA",
+    "tipo": "Aplicativo",
+    "descricao": "2º tutorial: configure seu servidor e use grátis a IA do HorizonTeclado.Para mais informações, baixe o guia.",
+    "imagem": "https://i.postimg.cc/W4pqLMND/In-Shot-20260919-053338074.png",
+    "data": "2026-11-03",
+    "download": "#",
+    "downloads": null,
+    "guia_link": "https://4br.me/BaixeGuia2HorizonTecladoIA",
+    "tutorial": "#",
+    "especificacoes": {
+        "versao": "1.1",
+        "tamanho": "96.80M",
+        "android": "5.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": true,
+        "emPopulares": true,
+        "emQuente": true,
+        "emAplicativos": true,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": true,
+        "emPostagens": false
+    }
+},
+    {
     "id": "horizon-teclado-ia-1",
     "nome": "⌨️ HorizonTeclado IA",
     "tipo": "Aplicativo",
-    "descricao": "⌨️🚀 Correção ortográfica automática e servidor próprio 100% grátis. Faça backup de pastas e confira o tutorial no aplicativo para criar seu servidor!",
+    "descricao": "1º tutorial: baixe, extraia e instale o APK atualizado do HorizonTeclado.Para mais informações, baixe o guia.",
     "imagem": "https://i.postimg.cc/W4pqLMND/In-Shot-20260919-053338074.png",
     "data": "2026-09-16",
-    "download": "https://4br.me/BaixeHorizonTecladoIAapk",
+    "download": "https://4br.me/BaixeHorizonTecladoIA1",
     "downloads": null,
-    "guia_link": "https://4br.me/BaixeGuiaHorizonTecladoIA",
-    "tutorial": "#",
+    "guia_link": "https://4br.me/BaixeGuia1HorizonTecladoIA",
+    "tutorial": "https://www.youtube.com/embed/4Hr8fCSn2gM?autoplay=1&loop=1&playlist=4Hr8fCSn2gM",
     "especificacoes": {
         "versao": "1.0",
         "tamanho": "96.80M",
@@ -203,7 +231,7 @@ const items = [
     "descricao": "📁 Gerenciador de arquivos para extrair arquivos ZIP e instalar APKs, fácil de usar, com link direto para inscritos do Site.⚡Baixe o guia para + informações, e assista o tutorial de como extrair e instalar.",
     "imagem": "https://i.postimg.cc/7hd6b4R3/38428b6e4cfa1e5d459da7fcbfc10bb5.webp",
     "data": "2026-07-16",
-    "download": "https://www.mediafire.com/file/r8gcu9mr9duokz8/MT_Manager_2.26.10.apk/file",
+    "download": "https://www.mediafire.com/file/htcay8yrysf4b57/MT_Manager_2.26.11.apk/file",
     "downloads": null,
     "guia_link": "https://4br.me/GuiaMTmanagerExtrairInstalar",
     "tutorial": "https://www.youtube.com/embed/ZD392Ur_Zv8?autoplay=1&loop=1&playlist=ZD392Ur_Zv8",
