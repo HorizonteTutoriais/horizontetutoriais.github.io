@@ -31,7 +31,7 @@ const items = [
     "id": "horizon-teclado-ia-1",
     "nome": "⌨️ HorizonTeclado IA 2° Tutorial",
     "tipo": "Aplicativo",
-    "descricao": "Como configurar seu servidor e use grátis a IA do HorizonTeclado IA. Para mais informações, baixe o guia.",
+    "descricao": "Como configurar seu servidor e usar grátis a IA do HorizonTeclado IA. Para mais informações, baixe o guia.",
     "imagem": "https://i.postimg.cc/W4pqLMND/In-Shot-20260919-053338074.png",
     "data": "2026-09-16",
     "download": "https://4br.me/BaixeHorizonTecladoIAv2apk",
