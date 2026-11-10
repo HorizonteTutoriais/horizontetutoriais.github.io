@@ -9,7 +9,7 @@ const items = [
     "download": "https://4br.me/BaixeHorizonTecladoIA1",
     "downloads": null,
     "guia_link": "https://4br.me/1BaixeGuiaHorizonTecladoIA",
-    "tutorial": "https://www.youtube.com/embed/ID_DO_SHORTS?autoplay=1&loop=1&playlist=ID_DO_SHORTS",
+    "tutorial": "https://www.youtube.com/embed/4Hr8fCSn2gM?autoplay=1&loop=1&playlist=4Hr8fCSn2gM",
     "especificacoes": {
         "versao": "1.1",
         "tamanho": "96.80M",
