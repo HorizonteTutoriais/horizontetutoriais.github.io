@@ -37,7 +37,7 @@ const items = [
     "download": "https://4br.me/BaixeHorizonTecladoIAv2apk",
     "downloads": null,
     "guia_link": "https://4br.me/2BaixeGuiaHorizonTecladoIA",
-    "tutorial": "#",
+    "tutorial": "https://www.youtube.com/embed/RbgoTJJR3GY?autoplay=1&loop=1&playlist=RbgoTJJR3GY",
     "especificacoes": {
         "versao": "2.0",
         "tamanho": "97.15M",
