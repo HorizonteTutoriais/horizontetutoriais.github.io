@@ -1,5 +1,33 @@
 const items = [
     {
+    "id": "HorizonTeclado IA-3",
+    "nome": "HorizonTeclado IA 3° Tutorial",
+    "tipo": "Aplicativo",
+    "descricao": "Como criar categoria de mensagens pré-definidas no HorizonTeclado IA, para mais informações baixe o guia, e assista ao tutorial.",
+    "imagem": "https://i.postimg.cc/W4pqLMND/In-Shot-20260919-053338074.png",
+    "data": "2026-11-13",
+    "download": "https://4br.me/BaixeHorizonTecladoIAv2apk",
+    "downloads": null,
+    "guia_link": "https://4br.me/BaixeGuiaHorizonTecladoIA3",
+    "tutorial": "https://www.youtube.com/embed/QaqXv_sDdUc?autoplay=1&loop=1&playlist=QaqXv_sDdUc",
+    "especificacoes": {
+        "versao": "2.0",
+        "tamanho": "97.15M",
+        "android": "5.0",
+        "desenvolvedora": "Horizonte Tutoriais"
+    },
+    "exibir": {
+        "emDestaques": false,
+        "emPopulares": false,
+        "emQuente": false,
+        "emAplicativos": true,
+        "emJogos": false,
+        "emTutoriais": true,
+        "emFerramentas": false,
+        "emPostagens": false
+    }
+},
+    {
     "id": "HorizonTeclado IA-2",
     "nome": "⌨️ HorizonTeclado IA 1° Tutorial",
     "tipo": "Aplicativo",
