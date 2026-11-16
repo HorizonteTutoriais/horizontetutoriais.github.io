@@ -8,7 +8,7 @@ const items = [
     "data": "2026-11-16",
     "download": "https://4br.me/BaixeHorizonTecladoIAv2apk",
     "downloads": null,
-    "guia_link": "#",
+    "guia_link": "https://4br.me/BaixeGuiaBacupRestauro",
     "tutorial": "https://www.youtube.com/embed/h2hiT4hlmZc?autoplay=1&loop=1&playlist=h2hiT4hlmZc",
     "especificacoes": {
         "versao": "5.0",
