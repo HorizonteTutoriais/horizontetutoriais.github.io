@@ -3,7 +3,7 @@ const items = [
     "id": "HorizonTeclado IA-4",
     "nome": "⌨️ HorizonTeclado IA 4° Tutorial",
     "tipo": "Aplicativo",
-    "descricao": "Restaure suas pastas com anotações ao formatar o celular, ou compartilhe-as. Para mais informações, baixe o guia.",
+    "descricao": "Restaure suas pastas com anotações ao formatar o celular, ou compartilhe-as. Para mais informações, baixe o guia e assista ao tutorial.",
     "imagem": "https://i.postimg.cc/W4pqLMND/In-Shot-20260919-053338074.png",
     "data": "2026-11-16",
     "download": "https://4br.me/BaixeHorizonTecladoIAv2apk",
