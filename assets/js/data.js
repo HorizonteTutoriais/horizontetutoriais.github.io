@@ -11,7 +11,7 @@ const items = [
     "guia_link": "https://4br.me/BaixeGuiaHorizonTecladoIA4",
     "tutorial": "https://www.youtube.com/embed/h2hiT4hlmZc?autoplay=1&loop=1&playlist=h2hiT4hlmZc",
     "especificacoes": {
-        "versao": "5.0",
+        "versao": "2.0",
         "tamanho": "97.15M",
         "android": "5.0+",
         "desenvolvedora": "Horizonte Tutoriais"
